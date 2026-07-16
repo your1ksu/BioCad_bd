@@ -1,0 +1,685 @@
+{
+  "IGHV1-18_01_IGHJ4_02": {
+    "mrbayes": {
+      "threshold": {
+        "posterior_min": 0.95
+      },
+      "clades": [
+        {
+          "clade": "AAGGCAGCACCAGTTA-1_contig_1|ACACTGACAGTTCCCT-1_contig_1|ACTTGTTCAGGTCTCG-1_contig_2|AGAATAGTCAACGCTA-1_contig_2|AGATTGCCAGTGAGTG-1_contig_1|AGCAGCCGTTTAAGCC-1_contig_2|AGCGGTCCAGGTGCCT-1_contig_2|AGGTCATTCCTTGCCA-1_contig_1|CCAATCCAGGTGCACA-1_contig_2|CCTTTCTTCCACGACG-1_contig_1|CGGAGTCGTGCACCAC-1_contig_1|CGTCACTCACCTGGTG-1_contig_1|CGTGAGCTCGCTTAGA-1_contig_1|CGTGTAAAGCCGATTT-1_contig_2|CTAACTTTCTAGCACA-1_contig_2|CTGATCCTCGTGACAT-1_contig_1|GACAGAGTCATAGCAC-1_contig_2|GACTGCGTCCTTTCGG-1_contig_1|GCAATCAAGTGTCCAT-1_contig_1|GCACTCTCAGCCACCA-1_contig_2|GCCAAATTCTCCCTGA-1_contig_2|GCTTGAAGTCTCCATC-1_contig_1|GGAATAAAGCGTCTAT-1_contig_1|GGACAAGCACATTTCT-1_contig_1|GGACAAGGTAAGTGTA-1_contig_1|GTGTTAGTCATGCATG-1_contig_1|TAAACCGCATGAAGTA-1_contig_1|TATCAGGGTGCATCTA-1_contig_2|TGAGGGACAGTACACT-1_contig_2|TGCGGGTTCTTGTATC-1_contig_2|TGGTTCCCACATTTCT-1_contig_1|TTTGGTTCAATGGAGC-1_contig_2",
+          "size": 32,
+          "leaves": [
+            "AAGGCAGCACCAGTTA-1_contig_1",
+            "ACACTGACAGTTCCCT-1_contig_1",
+            "ACTTGTTCAGGTCTCG-1_contig_2",
+            "AGAATAGTCAACGCTA-1_contig_2",
+            "AGATTGCCAGTGAGTG-1_contig_1",
+            "AGCAGCCGTTTAAGCC-1_contig_2",
+            "AGCGGTCCAGGTGCCT-1_contig_2",
+            "AGGTCATTCCTTGCCA-1_contig_1",
+            "CCAATCCAGGTGCACA-1_contig_2",
+            "CCTTTCTTCCACGACG-1_contig_1",
+            "CGGAGTCGTGCACCAC-1_contig_1",
+            "CGTCACTCACCTGGTG-1_contig_1",
+            "CGTGAGCTCGCTTAGA-1_contig_1",
+            "CGTGTAAAGCCGATTT-1_contig_2",
+            "CTAACTTTCTAGCACA-1_contig_2",
+            "CTGATCCTCGTGACAT-1_contig_1",
+            "GACAGAGTCATAGCAC-1_contig_2",
+            "GACTGCGTCCTTTCGG-1_contig_1",
+            "GCAATCAAGTGTCCAT-1_contig_1",
+            "GCACTCTCAGCCACCA-1_contig_2",
+            "GCCAAATTCTCCCTGA-1_contig_2",
+            "GCTTGAAGTCTCCATC-1_contig_1",
+            "GGAATAAAGCGTCTAT-1_contig_1",
+            "GGACAAGCACATTTCT-1_contig_1",
+            "GGACAAGGTAAGTGTA-1_contig_1",
+            "GTGTTAGTCATGCATG-1_contig_1",
+            "TAAACCGCATGAAGTA-1_contig_1",
+            "TATCAGGGTGCATCTA-1_contig_2",
+            "TGAGGGACAGTACACT-1_contig_2",
+            "TGCGGGTTCTTGTATC-1_contig_2",
+            "TGGTTCCCACATTTCT-1_contig_1",
+            "TTTGGTTCAATGGAGC-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CCAATCCAGGTGCACA-1_contig_2|GCACTCTCAGCCACCA-1_contig_2|GCCAAATTCTCCCTGA-1_contig_2|TGAGGGACAGTACACT-1_contig_2|TTTGGTTCAATGGAGC-1_contig_2",
+          "size": 5,
+          "leaves": [
+            "CCAATCCAGGTGCACA-1_contig_2",
+            "GCACTCTCAGCCACCA-1_contig_2",
+            "GCCAAATTCTCCCTGA-1_contig_2",
+            "TGAGGGACAGTACACT-1_contig_2",
+            "TTTGGTTCAATGGAGC-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AGGTCATTCCTTGCCA-1_contig_1|CGGAGTCGTGCACCAC-1_contig_1",
+          "size": 2,
+          "leaves": [
+            "AGGTCATTCCTTGCCA-1_contig_1",
+            "CGGAGTCGTGCACCAC-1_contig_1"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CGTGAGCTCGCTTAGA-1_contig_1|GCAATCAAGTGTCCAT-1_contig_1",
+          "size": 2,
+          "leaves": [
+            "CGTGAGCTCGCTTAGA-1_contig_1",
+            "GCAATCAAGTGTCCAT-1_contig_1"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AGATTGCCAGTGAGTG-1_contig_1|GGAATAAAGCGTCTAT-1_contig_1",
+          "size": 2,
+          "leaves": [
+            "AGATTGCCAGTGAGTG-1_contig_1",
+            "GGAATAAAGCGTCTAT-1_contig_1"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CGTGTAAAGCCGATTT-1_contig_2|CTAACTTTCTAGCACA-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "CGTGTAAAGCCGATTT-1_contig_2",
+            "CTAACTTTCTAGCACA-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AAGGCAGCACCAGTTA-1_contig_1|CTGATCCTCGTGACAT-1_contig_1",
+          "size": 2,
+          "leaves": [
+            "AAGGCAGCACCAGTTA-1_contig_1",
+            "CTGATCCTCGTGACAT-1_contig_1"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AGAATAGTCAACGCTA-1_contig_2|TATCAGGGTGCATCTA-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "AGAATAGTCAACGCTA-1_contig_2",
+            "TATCAGGGTGCATCTA-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.998,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AGGTCCGTCTGCGGCA-1_contig_2|GGGAATGGTTGGTAAA-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "AGGTCCGTCTGCGGCA-1_contig_2",
+            "GGGAATGGTTGGTAAA-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.991,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        }
+      ]
+    }
+  },
+  "IGHV1-46_01_IGHJ4_02": {
+    "mrbayes": {
+      "threshold": {
+        "posterior_min": 0.95
+      },
+      "clades": [
+        {
+          "clade": "ACCCACTAGACAATAC-1_contig_1|ATAGACCAGGGCACTA-1_contig_1",
+          "size": 2,
+          "leaves": [
+            "ACCCACTAGACAATAC-1_contig_1",
+            "ATAGACCAGGGCACTA-1_contig_1"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.999,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AGGCCGTTCGTTGACA-1_contig_2|TACTCGCCAATAGAGT-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "AGGCCGTTCGTTGACA-1_contig_2",
+            "TACTCGCCAATAGAGT-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.998,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "GCTGCAGTCAGGTTCA-1_contig_1|TATCAGGAGATATGCA-1_contig_1",
+          "size": 2,
+          "leaves": [
+            "GCTGCAGTCAGGTTCA-1_contig_1",
+            "TATCAGGAGATATGCA-1_contig_1"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.993,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        }
+      ]
+    }
+  },
+  "IGHV1-69_12_IGHJ6_03": {
+    "mrbayes": {
+      "threshold": {
+        "posterior_min": 0.95
+      },
+      "clades": [
+        {
+          "clade": "ACACCAACACGTCAGC-1_contig_2|ACGCCAGGTCGCTTTC-1_contig_2|ACTGCTCCACTTACGA-1_contig_2|ATTGGACCAAAGGCGT-1_contig_2|CAACCTCGTGTAAGTA-1_contig_2|CCACGGATCCAACCAA-1_contig_2|GATCTAGAGCCCAGCT-1_contig_2|GATGAGGCAGGGTTAG-1_contig_2|GCAGTTACAAAGCGGT-1_contig_2|GCGCGATGTCTCCACT-1_contig_2|GGACAGAAGACTTGAA-1_contig_2|GTGAAGGGTAGCTAAA-1_contig_2",
+          "size": 12,
+          "leaves": [
+            "ACACCAACACGTCAGC-1_contig_2",
+            "ACGCCAGGTCGCTTTC-1_contig_2",
+            "ACTGCTCCACTTACGA-1_contig_2",
+            "ATTGGACCAAAGGCGT-1_contig_2",
+            "CAACCTCGTGTAAGTA-1_contig_2",
+            "CCACGGATCCAACCAA-1_contig_2",
+            "GATCTAGAGCCCAGCT-1_contig_2",
+            "GATGAGGCAGGGTTAG-1_contig_2",
+            "GCAGTTACAAAGCGGT-1_contig_2",
+            "GCGCGATGTCTCCACT-1_contig_2",
+            "GGACAGAAGACTTGAA-1_contig_2",
+            "GTGAAGGGTAGCTAAA-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CAACCAATCCTAGAAC-1_contig_2|CTCGAGGTCGTTGCCT-1_contig_2|TGTGTTTGTGTGGTTT-1_contig_2",
+          "size": 3,
+          "leaves": [
+            "CAACCAATCCTAGAAC-1_contig_2",
+            "CTCGAGGTCGTTGCCT-1_contig_2",
+            "TGTGTTTGTGTGGTTT-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AGCATACCAACACGCC-1_contig_2|ATTGGACAGGCTATCT-1_contig_2|GCTGCTTCAGCCTGTG-1_contig_2",
+          "size": 3,
+          "leaves": [
+            "AGCATACCAACACGCC-1_contig_2",
+            "ATTGGACAGGCTATCT-1_contig_2",
+            "GCTGCTTCAGCCTGTG-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "GAAGCAGGTGCAGACA-1_contig_2|GCAATCACAAGGACTG-1_contig_2|TACAGTGGTATAGGTA-1_contig_2",
+          "size": 3,
+          "leaves": [
+            "GAAGCAGGTGCAGACA-1_contig_2",
+            "GCAATCACAAGGACTG-1_contig_2",
+            "TACAGTGGTATAGGTA-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CAAGATCGTTCAACCA-1_contig_2|GCAAACTCAGACGCTC-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "CAAGATCGTTCAACCA-1_contig_2",
+            "GCAAACTCAGACGCTC-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CTCGAGGTCGTTGCCT-1_contig_2|TGTGTTTGTGTGGTTT-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "CTCGAGGTCGTTGCCT-1_contig_2",
+            "TGTGTTTGTGTGGTTT-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CATGCCTAGGAGCGTT-1_contig_2|CGTCTACAGCATGGCA-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "CATGCCTAGGAGCGTT-1_contig_2",
+            "CGTCTACAGCATGGCA-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "ATTACTCGTTTAAGCC-1_contig_2|CAGTAACCAAGGGTCA-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "ATTACTCGTTTAAGCC-1_contig_2",
+            "CAGTAACCAAGGGTCA-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "ACTGCTCCACTTACGA-1_contig_2|ATTGGACCAAAGGCGT-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "ACTGCTCCACTTACGA-1_contig_2",
+            "ATTGGACCAAAGGCGT-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "GCGCGATGTCTCCACT-1_contig_2|GGACAGAAGACTTGAA-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "GCGCGATGTCTCCACT-1_contig_2",
+            "GGACAGAAGACTTGAA-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "ACAGCCGTCTAAGCCA-1_contig_2|CTCACACGTCACAAGG-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "ACAGCCGTCTAAGCCA-1_contig_2",
+            "CTCACACGTCACAAGG-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "GGCTCGAAGGACACCA-1_contig_2|TTAGTTCCAATGGTCT-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "GGCTCGAAGGACACCA-1_contig_2",
+            "TTAGTTCCAATGGTCT-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CTCGGGACATGCGCAC-1_contig_2|TACGGATGTTCCGTCT-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "CTCGGGACATGCGCAC-1_contig_2",
+            "TACGGATGTTCCGTCT-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CATCGAACAGGGCATA-1_contig_2|CTACACCTCTGAAAGA-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "CATCGAACAGGGCATA-1_contig_2",
+            "CTACACCTCTGAAAGA-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AGATTGCCACCAGTTA-1_contig_2|CATTCGCAGTTACCCA-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "AGATTGCCACCAGTTA-1_contig_2",
+            "CATTCGCAGTTACCCA-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "GCATGTACAGTCAGAG-1_contig_2|TACTTGTAGGGTGTGT-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "GCATGTACAGTCAGAG-1_contig_2",
+            "TACTTGTAGGGTGTGT-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CATGGCGGTTCCATGA-1_contig_2|TCGGTAAAGAGGTAGA-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "CATGGCGGTTCCATGA-1_contig_2",
+            "TCGGTAAAGAGGTAGA-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CACCAGGTCATGCTCC-1_contig_2|TGACGGCTCGTACCGG-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "CACCAGGTCATGCTCC-1_contig_2",
+            "TGACGGCTCGTACCGG-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CAACCAATCCTAGAAC-1_contig_2|CATGCCTAGGAGCGTT-1_contig_2|CGTCTACAGCATGGCA-1_contig_2|CTCGAGGTCGTTGCCT-1_contig_2|TGTGTTTGTGTGGTTT-1_contig_2",
+          "size": 5,
+          "leaves": [
+            "CAACCAATCCTAGAAC-1_contig_2",
+            "CATGCCTAGGAGCGTT-1_contig_2",
+            "CGTCTACAGCATGGCA-1_contig_2",
+            "CTCGAGGTCGTTGCCT-1_contig_2",
+            "TGTGTTTGTGTGGTTT-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.995,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AGCATACCAACACGCC-1_contig_2|GCTGCTTCAGCCTGTG-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "AGCATACCAACACGCC-1_contig_2",
+            "GCTGCTTCAGCCTGTG-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.993,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "ACACCAACACGTCAGC-1_contig_2|ACAGCCGTCTAAGCCA-1_contig_2|ACGCCAGGTCGCTTTC-1_contig_2|ACTGCTCCACTTACGA-1_contig_2|AGATTGCCACCAGTTA-1_contig_2|AGCATACCAACACGCC-1_contig_2|ATTACTCGTTTAAGCC-1_contig_2|ATTGGACAGGCTATCT-1_contig_2|ATTGGACCAAAGGCGT-1_contig_2|CAACCAATCCTAGAAC-1_contig_2|CAACCTCGTGTAAGTA-1_contig_2|CAAGATCGTTCAACCA-1_contig_2|CAGAATCAGATGAGAG-1_contig_2|CAGTAACCAAGGGTCA-1_contig_2|CATCGAACAGGGCATA-1_contig_2|CATGCCTAGGAGCGTT-1_contig_2|CATTATCGTTATGTGC-1_contig_2|CATTCGCAGTTACCCA-1_contig_2|CCACGGATCCAACCAA-1_contig_2|CGTCTACAGCATGGCA-1_contig_2|CTACACCTCTGAAAGA-1_contig_2|CTCACACGTCACAAGG-1_contig_2|CTCGAGGTCGTTGCCT-1_contig_2|CTCGGGACATGCGCAC-1_contig_2|GAAGCAGGTGCAGACA-1_contig_2|GATCTAGAGCCCAGCT-1_contig_2|GATGAGGCAGGGTTAG-1_contig_2|GCAAACTCAGACGCTC-1_contig_2|GCAATCACAAGGACTG-1_contig_2|GCAGTTACAAAGCGGT-1_contig_2|GCATACATCTCGCTTG-1_contig_2|GCGCGATGTCTCCACT-1_contig_2|GCTGCTTCAGCCTGTG-1_contig_2|GGACAGAAGACTTGAA-1_contig_2|GGCTCGAAGGACACCA-1_contig_2|GTGAAGGGTAGCTAAA-1_contig_2|TACAGTGGTATAGGTA-1_contig_2|TACGGATGTTCCGTCT-1_contig_2|TCAGCTCTCAGAGCTT-1_contig_3|TGTGTTTGTGTGGTTT-1_contig_2|TTAGTTCCAATGGTCT-1_contig_2",
+          "size": 41,
+          "leaves": [
+            "ACACCAACACGTCAGC-1_contig_2",
+            "ACAGCCGTCTAAGCCA-1_contig_2",
+            "ACGCCAGGTCGCTTTC-1_contig_2",
+            "ACTGCTCCACTTACGA-1_contig_2",
+            "AGATTGCCACCAGTTA-1_contig_2",
+            "AGCATACCAACACGCC-1_contig_2",
+            "ATTACTCGTTTAAGCC-1_contig_2",
+            "ATTGGACAGGCTATCT-1_contig_2",
+            "ATTGGACCAAAGGCGT-1_contig_2",
+            "CAACCAATCCTAGAAC-1_contig_2",
+            "CAACCTCGTGTAAGTA-1_contig_2",
+            "CAAGATCGTTCAACCA-1_contig_2",
+            "CAGAATCAGATGAGAG-1_contig_2",
+            "CAGTAACCAAGGGTCA-1_contig_2",
+            "CATCGAACAGGGCATA-1_contig_2",
+            "CATGCCTAGGAGCGTT-1_contig_2",
+            "CATTATCGTTATGTGC-1_contig_2",
+            "CATTCGCAGTTACCCA-1_contig_2",
+            "CCACGGATCCAACCAA-1_contig_2",
+            "CGTCTACAGCATGGCA-1_contig_2",
+            "CTACACCTCTGAAAGA-1_contig_2",
+            "CTCACACGTCACAAGG-1_contig_2",
+            "CTCGAGGTCGTTGCCT-1_contig_2",
+            "CTCGGGACATGCGCAC-1_contig_2",
+            "GAAGCAGGTGCAGACA-1_contig_2",
+            "GATCTAGAGCCCAGCT-1_contig_2",
+            "GATGAGGCAGGGTTAG-1_contig_2",
+            "GCAAACTCAGACGCTC-1_contig_2",
+            "GCAATCACAAGGACTG-1_contig_2",
+            "GCAGTTACAAAGCGGT-1_contig_2",
+            "GCATACATCTCGCTTG-1_contig_2",
+            "GCGCGATGTCTCCACT-1_contig_2",
+            "GCTGCTTCAGCCTGTG-1_contig_2",
+            "GGACAGAAGACTTGAA-1_contig_2",
+            "GGCTCGAAGGACACCA-1_contig_2",
+            "GTGAAGGGTAGCTAAA-1_contig_2",
+            "TACAGTGGTATAGGTA-1_contig_2",
+            "TACGGATGTTCCGTCT-1_contig_2",
+            "TCAGCTCTCAGAGCTT-1_contig_3",
+            "TGTGTTTGTGTGGTTT-1_contig_2",
+            "TTAGTTCCAATGGTCT-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.967,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CATTATCGTTATGTGC-1_contig_2|GCATACATCTCGCTTG-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "CATTATCGTTATGTGC-1_contig_2",
+            "GCATACATCTCGCTTG-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.965,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "ACACCAACACGTCAGC-1_contig_2|ACGCCAGGTCGCTTTC-1_contig_2|CAACCTCGTGTAAGTA-1_contig_2|CCACGGATCCAACCAA-1_contig_2|GATCTAGAGCCCAGCT-1_contig_2|GATGAGGCAGGGTTAG-1_contig_2|GCAGTTACAAAGCGGT-1_contig_2|GCGCGATGTCTCCACT-1_contig_2|GGACAGAAGACTTGAA-1_contig_2|GTGAAGGGTAGCTAAA-1_contig_2",
+          "size": 10,
+          "leaves": [
+            "ACACCAACACGTCAGC-1_contig_2",
+            "ACGCCAGGTCGCTTTC-1_contig_2",
+            "CAACCTCGTGTAAGTA-1_contig_2",
+            "CCACGGATCCAACCAA-1_contig_2",
+            "GATCTAGAGCCCAGCT-1_contig_2",
+            "GATGAGGCAGGGTTAG-1_contig_2",
+            "GCAGTTACAAAGCGGT-1_contig_2",
+            "GCGCGATGTCTCCACT-1_contig_2",
+            "GGACAGAAGACTTGAA-1_contig_2",
+            "GTGAAGGGTAGCTAAA-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.952,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        }
+      ]
+    }
+  }
+}
