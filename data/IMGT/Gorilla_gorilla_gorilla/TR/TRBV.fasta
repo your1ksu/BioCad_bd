@@ -1,0 +1,560 @@
+>BK064850|TRBV1*01|Gorilla gorilla gorilla_Kamilah|P|V-REGION|10001..10284|284 nt|1| | | | |284+42=326| | |
+gatactggaattacccagacaccagaatacctggtcacagcaatggggagtaaaaggaca
+atgaaacgtgagcatctgggacat........................gattctatgtat
+tggtacggacagaaagctaagaaatccctggagttcatgttttactacaactgt......
+......aaggaattcattgaaagcaagactgtgcca...aatcacttcacacctgaatgc
+cct...gacagctctcgcttataccttcatgtggtcgcgctgcagcaagaagactcagct
+gtgtatctctgcaccagcagccaaga
+>BK064850|TRBV10-1*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|134235..134521|287 nt|1| | | | |287+39=326| | |
+gatgctgaaatcacccagagcccaagacacaagatcacagagacaggaaggcaggtgacc
+ttggcgtgttaccagacttggaaccac.....................aacaatatgttc
+tggtatcgacaagacctgggacatgggctgaggctgagccattactcatatggt......
+......gttcaagacactaacaaaggagaagtctca...gatggctgcagtgtctctaga
+tca...aacacagaggacttccccctcactctggagtctgctgcctcctcccagacatct
+gtatatttctgcgccagcagtgagtc
+>BK064850|TRBV10-3*01|Gorilla gorilla gorilla_Kamilah|ORF|V-REGION|253417..253703|287 nt|1| | | | |287+39=326| | |
+gatgctggaatcacccagagcccaagacacaaggtcacagagataggaacaccagtgact
+ctgagatgtcaccagactgagaaccac.....................cgctatatgtac
+tggtatcgacaagacccggggcatgggctgaggctgatccattactcatatggt......
+......gttaaagatactgacaaaggagaagtctca...gatggctacagtgtctctaga
+tca...aagacagaggacttcctcctcactctggagtccgctaccagctcccagacatct
+gtgtacttctgtgccatcagtgagtc
+>BK064850|TRBV11-2*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|141982..142271|290 nt|1| | | | |290+36=326| | |
+gaagctgaagttgcccagtcccccagatataagattacagagaaaagccaggctgtggct
+ttttggtgtgatcctatttctggccat.....................gctaccctttac
+tggtactggcagatcctgggacagggcccggagcttctggttcgatttcaggat......
+......gagagtgtagtggatgattcacagttgcctaaggatcgattttctgcagagaga
+ctc...aaaggagtagactccactctcaagatccagcttgcaaagcttgaggactcggcc
+gtgtatctctgtgccagcagcttaga
+>BK064851|TRBV11-2*02|Gorilla gorilla gorilla_Susie3|F|V-REGION|163447..163736|290 nt|1| | | | |290+36=326| | |
+gaagctgaagttgcccagtcccccagatataagattacagagaaaagccaggctgtggct
+ttttggtgtgatcctatttctggccat.....................gctaccctttac
+tggtaccggcagatcctgggacagggcccggagcttctggttcgatttcaggat......
+......gagagtgtagtggatgattcacagttgcctaaggatcgattttctgcagagaga
+ctc...aaaggagtagactccactctcaagatccagcttgcaaagcttgaggactcggcc
+gtgtatctctgtgccagcagcttaga
+>BK064850|TRBV11-3*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|264100..264389|290 nt|1| | | | |290+36=326| | |
+gaagctggagtggttcagtctcctagatataagattatagagaaaaaacagcctgtggct
+ttttggtgcaatcctatttctggccac.....................aataccctttac
+tggtaccggcagaacttgggacagggccccgagcttctgattcgatatgagaat......
+......gaggaagcagtagacgattcacagttgcctaaggatcgattttctgcagagagg
+ctc...aaaggagtagactccactctcaagatccagcctgcagagcttggggactcggct
+gtgtatctctgtgccagcagcttagt
+>BK064851|TRBV11-3*02|Gorilla gorilla gorilla_Susie3|F|V-REGION|285432..285721|290 nt|1| | | | |290+36=326| | |
+gaagctggagtggttcagtctcctagatataagattatagagaaaaaacagcctgtggct
+ttttggtgcaatcctatttctggccac.....................aataccctttac
+tggtaccggcagaacttgggacagggcccagagcttctgattcgatatgagaat......
+......gaggaagcagtagacgattcacagttgcctaaggatcgattttctgcagagagg
+ctc...aaaggagtagactccactctcaagatccagcctgcagagcttggggactcggcc
+gtgtatctctgtgccagcagcttagt
+>BK064852|TRBV11-3*03|Gorilla gorilla gorilla_KB3781|F|V-REGION|263985..264274|290 nt|1| | | | |290+36=326| | |
+gaagctggagtggttcagtctcctagatataagattatagagaaaaaacagcctgtggct
+ttttggtgcaatcctatttctggccac.....................aataccctttac
+tggtaccggcagaacttgggacagggcccggagcttctgattcgatacgagaat......
+......gaggaagcagtagacgattcacagttgcctaaggatcgattttctgcagagagg
+ctc...aaaggagtagactccactctcaagatccagcctgcagagcttggggactcggcc
+gtgtatctctgtgccagcagcttagt
+>BK064850|TRBV12-2*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|148870..149159|290 nt|1| | | | |290+36=326| | |
+gatcctggcattatccagtcacccaagcatgaggtgacagaaatgggacaaacagtgact
+ctgagatgtgagccaattttcggccac.....................aatctccttttc
+tggtacagagagaccttcgtgcagggactggaattgctgagttacttccggagc......
+......cgatctattatagataatgcaggtatgcccacagatcgattctcagctgagagg
+cct...gatggatcattctctactctgaagatccagcctgcagagcagggggactcggcc
+gtgtatgtctgtgcaagtcgcttagc
+>BK064851|TRBV12-2*02|Gorilla gorilla gorilla_Susie3|F|V-REGION|170331..170620|290 nt|1| | | | |290+36=326| | |
+gatgctggcattatccagtcacccaagcatgaggtgacagaaatgggacaaacagtgact
+ctgagatgtgagccaattttcggccac.....................aatctccttttc
+tggtacagagagaccttcgtgcagggactggaattgctgagttacttccggagc......
+......cgatctgttatagataatgcaggtatgcccacagatcgattctcagctgagagg
+cct...gatggatcattctctactctgaagatccagcctgcagagcagggggactcggcc
+gtgtatgtctgtgcaagtcgcttagc
+>BK064850|TRBV12-3*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|269702..269991|290 nt|1| | | | |290+36=326| | |
+gatgctggagttatccagtcaccccgccatgaggtgacagagatgggacaagaagtgact
+ctgagatgtaaaccaatttcaggccac.....................aactcccttttc
+tggtatagacagaccatgatgcggggactggagttgctcatttactttaacaac......
+......aacgttccgatagatgattcagggatgcccaaggatcgattctcagctaagatg
+cct...aatgcatcattctccactctgaagatccagccctcagaacccagggactcagct
+gtgtacttctgtgccagcagtttagc
+>BK064851|TRBV12-3*02|Gorilla gorilla gorilla_Susie3|F|V-REGION|291049..291338|290 nt|1| | | | |290+36=326| | |
+gatgctggagttatccagtcaccccgccatgaggtgacagagatgggacaagaagtgact
+ctgagatgtaaaccaatttcaggccac.....................aactcccttttc
+tggtacagacagaccatgatgcggggactggagttgctcatttactttaacaac......
+......aacgttccgatagatgattcagggatgcccaaggatcgattctcagctaagatg
+cct...aatgcatcattctccactctgaagatccagccctcagaacccagggactcagct
+gtgtacttctgtgccagcagtttagc
+>BK064850|TRBV12-4*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|273014..273303|290 nt|1| | | | |290+36=326| | |
+gatgctggagttatccagtcaccccgccatgaggtgacagagatgggacaagaagtgact
+ctgagatgtaaaccaatttcaggccac.....................aactcccttttc
+tggtacagacagaccatgatgcggggactggagttgctcatttactttaacaac......
+......aacgttccgatagatgattcagcgatgcccaaggatcgattctcagctaagatg
+cct...aatgcatcattctccactctgaagatccagccctcagaacccagggactcagct
+gtgtacttctgtgccagcagtttagc
+>BK064851|TRBV12-4*02|Gorilla gorilla gorilla_Susie3|F|V-REGION|294361..294650|290 nt|1| | | | |290+36=326| | |
+gatgctggagttatccagtcaccccgccatgaggtgacagagatgggacaagaagtgact
+ctgagatgtaaaccaatttcaggacac.....................gagtaccttttc
+tggtacagacagaccatgatgcggggactggagttgctcatttactttaacaac......
+......aacgttccgatagatgattcagcgatgcccaaggatcgattctcagctaagatg
+cct...aatgcatcattctccactctgaagatccagccctcagaacccagggactcagct
+gtgtacttctgtgccagcagtttagc
+>BK064850|TRBV12-5*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|289052..289341|290 nt|1| | | | |290+36=326| | |
+gatgctggagtcacccagacaccaaggcacaaggtgacagagatgggacaagaagtaact
+atgagatgtcagccaattttaggccac.....................aatactgttttc
+tggtacagacagaccatgatgcaaggactggagttgctggcttacttccgcaac......
+......cgggatcctctagatgattcagggatgcccaaggatagattctcagcggagata
+cct...gatgcaactttagccactctgaagatccagccctcaggacccagggactcagct
+gtgtatttttgtgctagtggtttggt
+>BK064851|TRBV12-5*02|Gorilla gorilla gorilla_Susie3|F|V-REGION|311742..312031|290 nt|1| | | | |290+36=326| | |
+gatgctggagtcacccagacaccaaggcacaaggtgacagagatgggacaagaagtaact
+atgagatgtcagccaattttaggccac.....................aatactgttttc
+tggtacagacagaccatgatgcaaggactggagttgctggcttacttccgcaac......
+......cgggctcctctagatgattcagggatgcccaaggatagattctcagcggagata
+cct...gatgcaactttagccactctgaagatccagccctcaggacccagggactcagct
+gtgtatttttgtgctagtggtttggt
+>BK064850|TRBV13*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|244238..244524|287 nt|1| | | | |287+39=326| | |
+gctgctggagtcatccagtccccaagacatctgatcaaagaaaagagggaaacagccact
+ctgaaatgctatcctatccctagacac.....................gacactgtctac
+tggtaccagcagggtccaggtcaggacccccagttcctcatttcgttttatgaa......
+......aagatgcagagcgataaaggaagcatccct...gatagattctcagctcaacag
+ttc...agtgactatcattctgaactgaacatgagctccttggagctgggggactcagcc
+ctgtacttctgtgccagcagcttagg
+>BK064853|TRBV13*02|Gorilla gorilla gorilla_KB3781|F|V-REGION|244106..244392|287 nt|1| | | | |287+39=326| | |
+gctgctggagtcatccagtccccaagacatctgatcaaagaaaagagcgaaacagccact
+ctgaaatgctatcctatccctagacac.....................gacactgtctac
+tggtaccagcagggtccaggtcaggacccccagttcctcatttcgttttatgaa......
+......aagatgcagagcgataaaggaagcatccct...gatagattctcagctcaacag
+ttc...agtgactatcattctgaactgaacatgagctccttggagctgggggactcagcc
+ctgtacttctgtgccagcagcttagg
+>BK064850|TRBV14*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|295967..296256|290 nt|1| | | | |290+36=326| | |
+gaagctggagttactcagttccccagccacagcgtaatagagaagggccagactgtgact
+ctgagatgtgacccaatttctggacat.....................gataatctttat
+tggtatcgacgtgttatgggaaaagaaataaaatttctgttacattttgtgaaa......
+......gagtctaaacaggatgagtccggtatgcccaacaatcgattcttagctgaaagg
+act...ggagggacgtattctactctgaaggtgcagcctgcagaactggaggattctgga
+gtttatttctgtgccagcagccaaga
+>BK064850|TRBV15*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|301093..301379|287 nt|1| | | | |287+39=326| | |
+gatgccatggtcatccagaacccaagataccaggttacccagtttggaaagccagtgacc
+ctgagttgttctcagaatctgaaccat.....................aacatcatgtac
+tggtaccagcagaagtcaagtcaggccccaaagctgctgtttcactactatgac......
+......aaagattttaacaatgaagcagacacccct...gataacttccaatccaggagg
+ccg...aacacttctttctgctttcttgacatcagctcaccaggcctgggggatgcagcc
+atgtacctgtgtgccaccagcagaga
+>BK064850|TRBV16*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|306088..306377|290 nt|1| | | | |290+36=326| | |
+ggtgaagaagtcacccagactccaaaacatcttgtcagacgggaaggacagaaagcaaaa
+ttatattgtgccccaataaaaggacac.....................agttatgttttt
+tggtaccaacaggtcctgaaaaaagagttcaagttcttgatttccttccagaat......
+......gaaaatgtctttgatgaaacaggtatgcccaaggaaagattttcagctaagtgc
+ctc...ccaaattcaccctgtagccttgagatccaggctacgaagctggaggattcagca
+gtgtatttttgtgccagcagccaatc
+>BK064851|TRBV16*02|Gorilla gorilla gorilla_Susie3|F|V-REGION|328778..329067|290 nt|1| | | | |290+36=326| | |
+ggtgaagaagtcacccagactccaaaacatcttgtcagaggggaaggacagaaagcaaaa
+ttatattgtgccccaataaaaggacac.....................agttatgttttt
+tggtaccaacaggtcctgaaaaaagagttcaagttcttgatttccttccagaat......
+......gaaaatgtctttgatgaaacaggtatgcccaaggaaagattttcagctaagtgc
+ctc...ccaaattcaccctgtagccttgagatccaggctacgaagctggaggattcagca
+gtgtatttttgtgccagcagccaatc
+>BK064850|TRBV18*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|323945..324234|290 nt|1| | | | |290+36=326| | |
+aatgccggcgtcatgcagaacccaagacatctggtcaggaggaggggacaggaggcaaga
+ctgagatgcagcccaatgaaaggacac.....................agtcatgtttac
+tggtatcggcagctcccagaggaaggtctgaaattcatggtttatctccagaaa......
+......gaaaatatcatagatgagtcaggaatgccaaaggaacgattttctgctgaattt
+ccc...aaagagggccccagcatcctgaggatccagcaggcagtgcgaggagattcggca
+gcttatttctgtgccagctcaccacc
+>BK064852|TRBV18*02|Gorilla gorilla gorilla_KB3781|F|V-REGION|325219..325508|290 nt|1| | | | |290+36=326| | |
+aatgccggcgtcacgcagaacccaagacacctagtcaggaggaggctacaggaggcaaga
+ctgagatgcagcccaatgaaaggacac.....................agtcatgtttac
+tggtatcggcagctcccagaggaaggtctgaaattcatggtttatctccagaaa......
+......gaaaatatcatagatgagtcaggaatgccaaaggaacgattttctgctgaattt
+ccc...aaagagggccccagcatcctgaggatccagcaggcagtgcaaggagattcggca
+gcttatttctgtgccagctcaccacc
+>BK064850|TRBV19*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|327075..327361|287 nt|1| | | | |287+39=326| | |
+gatggtggaatcactcagtccccaaagtacctgttcagaaaggaaggacagaatgtgacc
+ctgaattgtgaacagaatttgaaccac.....................gatgccatgtac
+tggtaccgacaggacccagggcaagggctgagattgatctactactcacagata......
+......gtaaatgactttcagaaaggagatatagct...gaagggtacagcgtctctcgg
+gag...aagaaggaatcctttcctctcactgtgacatcggcccaaaagaacccgacagct
+ttctatctctgtgccagtagtataga
+>BK064850|TRBV2*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|11963..12252|290 nt|1| | | | |290+36=326| | |
+gaacctgaagtcacccagactcccagccatcaggtcacacagatgggacaggaagtgatc
+ttgcgctgtgtccccatctctaatcac.....................ttatacttctat
+tggtacagacaaatcttggggcagaaagtcgagtttctggtttccttttataat......
+......aataaaatctcagagaaggctgaaatattcgatgatcaattctcagttgaaagg
+cct...gatggatcaaatttcactctgaagatccggtccacaaagctggaggactcagcc
+atgtacttctgtgccagcagtgaagc
+>BK064850|TRBV20-1*02|Gorilla gorilla gorilla_Kamilah|F|V-REGION|334940..335232|293 nt|1| | | | |293+30=323| | |
+ggtgctgtcgtctctcaacatccgagcagggttatctgtaagagtggaacctctgtgaag
+atcgagtgccgttgcctggactttcag..................gccacaactatgttt
+tggtatcgtcagttcccgaaacagagcctcatgctgatggcaacttccaatgagggc...
+......tccaaggccacatacgagcaaggcgtcgagaaggacaagtttctcatcaaccat
+cca...aacctgaccttgtccactctgacagtgaccagtgcccatcctgaagacagcagc
+ttctacatctgcagtgctagaga
+>BK064850|TRBV21-1*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|344922..345211|290 nt|1| | | | |290+36=326| | |
+gacaccaaggtcacccagagacctagacttctggtcaaagcaagtgaacagaaagcaaag
+atggattgtgttcctataaaaggacat.....................agttacgtttac
+tggtatcgtaagaagctggaagaagagctcaagtttttggtttactttcagaat......
+......gaagaaattattcagaaagcagaaataatcaatgagcgatttttagcccaatgc
+tcc...aaaaactcatcctgtaccttggagatccagtccacggagtcaggggacacagca
+ctgtatttctgtgccagcagcaaagc
+>BK064850|TRBV22-1*01|Gorilla gorilla gorilla_Kamilah|ORF|V-REGION|349734..350022|289 nt|1| | | | |289+36=325| | |
+gatgctgacatctatcagatgccattccagctcactggggctggatgggatgtgactctg
+gagtggaaacagaatttgagacacaat..................gacatgtactgctac
+tggtactggcaggacccaaagcaaaatctgagactgatctattactcaagggtt......
+......gaaaaggatattcagagaggagacctaact...gaaggctacagcgtctgccaa
+gag...gagaaggggctatttcttctcagggtgaagttggcccacaccagccaaacagct
+ttgtacttctgtcctgggagcgcac
+>BK064850|TRBV23-1*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|353982..354271|290 nt|1| | | | |290+36=326| | |
+catgccaaagtcacacagactccaggacatttggtcaaaggaaaaggacagaaaacaaag
+atggattgtacccccgaaaaaggacat.....................acttttgtttat
+tggtatcaacagaatcagaataaagagtttatgcttttgatttcctttcagaat......
+......gaacaagttcttcaagaaacggagatgcacaagaagcgattctcatctcaatgc
+ccc...agtaacacaccctgcagcctggcaatcctgtcctcagaaccgggagacacggca
+ctgtatctctgcgccagcagtcaatc
+>BK064852|TRBV23-1*02|Gorilla gorilla gorilla_KB3781|F|V-REGION|355249..355538|290 nt|1| | | | |290+36=326| | |
+catgccaaagtcacacagactccaggacatttggtcaaaggaaaaggacagaaaacaaag
+atggattgtacccccgaaaaaggacat.....................acttttgtttat
+tggtatcaacagaatcagaataaagagtttatgcttttgatttcctttcagaat......
+......gaacaagttcttcaagaaacggagatgcacaagaagcgattctcatctcaatgc
+ccc...agtaacacaccctgcagcctggcaatcctgtcctcagaaccgggagacacggcg
+ctgtatctctgcgccagcagtcaatc
+>BK064850|TRBV24-1*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|364734..365021|288 nt|1| | | | |288+39=327| | |
+gatgctgatgttacccagaccccaaggaatagaatcacaaagacaggaaagaggattatg
+ctggaatgttctcagactaagggtcat.....................gatagaatgtac
+tggtatcgacaagacccaggactgggcctacggttgatctattactcctttgat......
+......gtcaaagatataaacaaaggagagatctct...gatggatacagtgtctctcga
+cag...gcacaggctaaattctccctgtccctagagtctgccacccccaaccagacagct
+ctttacttctgtgccaccagtgatttg
+>BK064850|TRBV25-1*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|378772..379058|287 nt|1| | | | |287+39=326| | |
+gaagctgacatctaccagaccccaagataccttgttatagggacaggaaagaagatcact
+ctggaatgttctcaaaccatgggccat.....................gacaaaatgtac
+tggtatcaacaagatccaggaatggaactacacctcatccactattcctatgga......
+......gttaattccacagagaagggaggtctttcc...tctgagtcaacagtctccaga
+ata...aggacggagcattttcccctgaccctggagtctgccaggccctcacatacctct
+cagtacctctgcgccagcagtgaata
+>BK064850|TRBV27*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|423336..423622|287 nt|1| | | | |287+39=326| | |
+gaagcccaagtgacccagaacccaagatacctcatcacagtgactggaaagaagttaaca
+gtgacttgttctcagaatatgaaccat.....................gagtatatgtcc
+tggtatcgacaagacccagggctgggcttaaggcagatctactattcaattaat......
+......gttgaggcgattgataagggagatgttcct...gaagggtacaacgtctctcga
+aaa...gagaagaggaatttccccctgatcttggagtcgcccagccccaaccagacctct
+ctgtacttctgtgccagcagtttatc
+>BK064853|TRBV27*02|Gorilla gorilla gorilla_KB3781|F|V-REGION|424619..424905|287 nt|1| | | | |287+39=326| | |
+gaagcccaagtgacccagaacccaagatacctcatcacagtgactggaaagaagttaaca
+gtgacttgttctcagaatatgaaccat.....................gagtatatgtcc
+tggtatcgacaagaccaagggctgggcttaaggcagatctactattcaattaat......
+......gttgaggcgattgataagggagatgttcct...gaagggtacaacgtctctcga
+aaa...gagaagaggaatttccccctgatcttggagtcgcccagccccaaccagacctct
+ctgtacttctgtgccagcagtttatc
+>BK064850|TRBV28*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|428643..428929|287 nt|1| | | | |287+39=326| | |
+gatgtgaaagtaacccagagctcgagatatctagtcaaaaggatgggagagaaagttttt
+ctggaatgtgtccaggatatggaccat.....................gaaaacatgttc
+tggtatcgacaagacccaggtctggggctacggctgatctatttctcatctgat......
+......gttaaaatgaaagaaaaaggagatattcct...gaggggtacagtgtctctaga
+gag...aagaaggagcgcttctccctgattctggagtccaccagcaccaaccagacatct
+atgtacctctgtgccagcagtttatc
+>BK064852|TRBV28*02|Gorilla gorilla gorilla_KB3781|F|V-REGION|430048..430334|287 nt|1| | | | |287+39=326| | |
+gatgtgaaagtaacccagagctcgagatatctagtcaaaaggatgggagagaaagttttt
+ctggaatgtgtccaggatatggaccat.....................gaaaacatgttc
+tggtatcgacaagacccaggtctggggctacggctgatctatttctcatctgat......
+......gttaaaatgaaagaaaaaggagatattcct...gaggggtacagtgtctctaga
+gag...aagaaggagcgcttctccctgattctggagtccgccagcaccaaccagacatct
+atgtacctctgtgccagcagtttatc
+>BK064850|TRBV29-1*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|448387..448676|290 nt|1| | | | |290+33=323| | |
+agtgctgtcatctctcaaaagccaagcagggatatctgtcaacgtggaacttccctgacg
+atccagtgtcaagtcgatagccaagtc.....................accatgatgttc
+tggtaccgtcagcaacctggacagagcctgacactgattgcaactgcaaatcagggc...
+......tctgaggccacatatgagagtggatttatcattgacaagtttcccatcagccgc
+cca...aacctaacattctcaactctgactgtgagcaacatgagccctgaagacagcagc
+atatatctctgcagcgttgaaga
+>BK064851|TRBV29-1-1*01|Gorilla gorilla gorilla_Susie3|F|V-REGION|518110..518399|290 nt|1| | | | |290+33=323| | |
+agtgctgtcatctctcaaaagccaagcagggatatctgtcaacgtggaacttccctgacg
+atccagtgtcaagtcgatagccaagtc.....................accatgatgttc
+tggtaccgtcagcaacctggacagagcctgacactgattgcaactgcaaatcagggc...
+......tctgaggccacatatgagagtggatttatcattgacaagtttcccatcagccgc
+cca...aacctaacattctcaactctgactgtgagcaacatgagccctgaagacagcagc
+atatatctctgcagcgttgaaga
+>BK064850|TRBV3-1*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|19574..19860|287 nt|1| | | | |287+39=326| | |
+gacacagctgtttcccagactccaaaatacctggtcacacagatgggaaatgacaagtcc
+cttaaatgtgaacaaaatctgggccat.....................gatactatgtat
+tggtataaacaggactctaagaaatttctgaagataatgtttagctacaataat......
+......aaggagctcattataaatgaaacagttcca...aatcgcttctcacctaaatct
+cca...gacaaagctcatttagatcttcacatcaaatccctggagcttggtgactctgct
+gtgtatttctgtgccagcagctaaga
+>BK064850|TRBV3-2*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|71438..71724|287 nt|1| | | | |287+39=326| | |
+gacacagccgtttcccagactccaaaatacctggtcacacagatgggaaaaaaggagtct
+cttaaatgtgaacaaaatctgggccat.....................aatgctatgtat
+tggtataaacaggactctaagaaatttctgaagacaatgtttatctacagtaac......
+......aaggagccaattttaaatgaaacagttcca...aattgcttctcacctgactct
+cca...gacaaagctcatttaaatcttcacatcaattccctggagcttggtgactctgct
+gtgtatttctgtgccagcagccaaga
+>BK064850|TRBV30*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|551214..551497|284 nt|1| | | | |284+39=323| | |
+tctcagactattcatcaatggccagcgaccctggtgcagcctgtgggcagcccgctctct
+ctggagtgcactgtggagggaacatca..................aaccccaacctatac
+tggtaccgacaggctgcaggcaggggcctccagctgctcttctactctgctggt......
+.........attggccagatcagctctgaggtgccc...cagaatctctcagcctccaga
+ccc...caggaccggcagttcatcctgagttctaagaagctcctcctcagtgactctggc
+ttctatctctgtgcctggagtgt
+>BK064850|TRBV4-1*01|Gorilla gorilla gorilla_Kamilah|P|V-REGION|24197..24483|287 nt|1| | | | |287+39=326| | |
+gacactgaagttacccagacaccaaaacacctggtaatgggaatgacaaataagaagtct
+ttgaaatgtgaacaacatatggggcac.....................agggctatgtat
+tggtacaagcagaaagctaagaagccaccggagctcatgtttgtctacagctat......
+......gagaaactctctgtaaatgaaagtgtgcca...agtcgcttctcacctgaatgc
+ccc...aacaactctctcttaaaccttcacctacacgccctgcagccagaagactcggcc
+ctgtatctctgcgccagcagccaaga
+>BK064850|TRBV4-2*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|56476..56762|287 nt|1| | | | |287+39=326| | |
+gaaatgggagttacgcagacaccaagacacctggtcatgggaatgacaaataagaagtct
+ttgaaatgtgaacaacatctggggcat.....................aacgctatgtat
+tggtacaagcaaagtgctaagaagccactggagctcatgtttgtctacagtctt......
+......gaagaacgggttgaaaacaacagtgtgcca...agtcgcttttcacctgaatgc
+ccc...aacagctctcacttattccttcacctacacgccctgcagccagaagactcggcc
+ctgtatctctgtgccagcagccaaga
+>BK064850|TRBV4-3*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|74885..75171|287 nt|1| | | | |287+39=326| | |
+gaaacgggagttacacagacaccaagacacctggtcatgggaatgacaaataagaagtct
+ttgaaatgtgaacaacatctggggcat.....................aacgctatgtat
+tggtacaagcaaagtgctaagaagccactggagctcatgtttgtctacagcttt......
+......aaagaacagactgaaaacaacagtgtgcca...agtcgcttttcacctgaatgc
+ccc...aacagctctcacttattccttcacctacacgccctgcagccagaagactcggcc
+ctgtatctctgtgccagcagccaaga
+>BK064850|TRBV5-1*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|32049..32334|286 nt|1| | | | |286+39=325| | |
+gaggctggagtcactcaaactccaagatatctgatcaaaacgagaggacagcaagtgaca
+ctgagctgctcccctatctctgggcat.....................aggagtgtatcc
+tggtaccaacagaccctaggacagggccttcagttcctctttgaatacttcggt......
+......gagacacagagaaacaaaggaaacttccct...ggtcgattctcagggcgccag
+ttc...tctaactctcgctctgagatgaatgtgagcaccttggagctgggggactcggcc
+ctttatctttgcgccagcagcttgg
+>BK064850|TRBV5-3*01|Gorilla gorilla gorilla_Kamilah|ORF|V-REGION|123494..123779|286 nt|1| | | | |286+39=325| | |
+gaggctggagccacccaaagtcccacacaccttctcaaaacgagaggacagcaagtgact
+ctgagatgctctcctatctctgggcac.....................agcagtgtgtcc
+tggtaccaaaaggccccaggtcaggggccccagtttatctttgaatatgctaat......
+......gagttaaggagattagaaggaaacttccct...aatcgattctcagggcgccag
+ttc...catgactatcgctctgagatgaatgtgagtgccttggagctgggggactcggcc
+ctgtatctctgtgccagaagcttgg
+>BK064850|TRBV5-4*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|171117..171402|286 nt|1| | | | |286+39=325| | |
+gagactggagtcacccaaagtcccacacacctgatcaaaacgagaggacagcaagtgact
+ctgagatgctctcctcagtctgggcac.....................aacactgtgtcc
+tggtaccaacaggccctgggtcaggggccccagttgatctttcagtattatagg......
+......gaggaagagaatggcagaggaaacttctct...cctagattctcaggtcgccag
+ttc...cctaattatagctctgagctgaatgtgaacgccttggagctggatgactcggcc
+ctgtatctctgtgccagcagcttgg
+>BK064851|TRBV5-4*02|Gorilla gorilla gorilla_Susie3|F|V-REGION|192585..192870|286 nt|1| | | | |286+39=325| | |
+gagactggagtcacccaaagtcccacacacctgatcaaaacgagaggacagcaagtgact
+ctgagatgctctcctcagtctgggcac.....................aacactgtgtcc
+tggtaccaacaggccctgggtcaggggccccagttgatctttcagtattatagg......
+......gaggaagagaatggcagaggaaacttctct...cctagattctcaggtcgccag
+ttc...cctaattatagctctgagctgaatgtgaacaccttggagctggacgactcggcc
+ctgtatctctgtgccagcagcttgg
+>BK064850|TRBV5-5*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|190555..190840|286 nt|1| | | | |286+39=325| | |
+gacgctggagtcacccaaagtcccacacacctgatcaaaacgagaggacagcaagtgact
+ctgagatgctcgcctcagtctgggcac.....................aacactgtgtcc
+tggtaccaacaggccctgggtcaggggccccagtttatctttgagtattatgag......
+......aaagaagagagaggaagaggaaacttccct...gatcgattctcagctcgccag
+ttc...cctaactatagctctgagctgaatgtgaacgccttgttgctgggggactcggcc
+ctctatctctgtgccagcagcttgg
+>BK064851|TRBV5-5*02|Gorilla gorilla gorilla_Susie3|F|V-REGION|211989..212274|286 nt|1| | | | |286+39=325| | |
+gacgctggagtcacccaaagtcccacacacctgatcaaaacgagaggacagcaagtgact
+ctgagatgctcgcctcagtctgggcac.....................aacactgtgtcc
+tggtaccaacaggccctgggtcaggggccccagtttatctttcagtattatgag......
+......aaagaagagagaggaagaggaaacttccct...gatcgattctcagctcgccag
+ttc...cctaactatagctctgagctgaatgtgaacgccttgttgctgggggactcggcc
+ctctatctctgtgccagcagcttgg
+>BK064850|TRBV5-6*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|208063..208348|286 nt|1| | | | |286+39=325| | |
+gatgctggagtcacccaaagtcccacacacctgatcaaaacgagaggacagcaagtgact
+ctgagatgctctcctaagtctgggcat.....................gacactgtgtcc
+tggtaccaacaggccctgggtcaggggccccagtttatctttcagtattatgag......
+......gaggaagagagacagagaggcaacttccct...gatcgattctcaggtcaccag
+ttc...cctaactatagctctgagctgaatgtgaacgccttgttgctgggggattcggcc
+ctctatctctgtgccagcagcttgg
+>BK064850|TRBV5-7*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|228416..228701|286 nt|1| | | | |286+39=325| | |
+gacgctggagtcacccaaagtcccacacacctgatcaaaatgagaggacagcaagtgact
+ctgagatgctctcctaagtctgggcat.....................gacactgtgtcc
+tggtaccaacaggccctgggtcaggggccccagtttatctttgagtattatgag......
+......aaagaagagagaggaagaggaaacttccct...gatcgattctcagctcgccag
+ttc...cctaactatagctctgagctgaatgtgaaccccttgttgatgggggactcagcc
+ctgtatctctgtgccagcagcttgg
+>BK064851|TRBV5-7*02|Gorilla gorilla gorilla_Susie3|F|V-REGION|249820..250105|286 nt|1| | | | |286+39=325| | |
+gacgctggagtcacccaaagtcccacacacctgatcaaaatgagaggacagcacgtgact
+ctgagatgctctcctatctctgggcac.....................accagtgtgtcc
+tggtaccaacaggccctgggtcaggggccccagtttatctttgagtattatgag......
+......aaagaagagagaggaagaggaaacttccct...gatcgattctcagctcgccag
+ttc...cctaactatagctctgagctgaatgtgaaccccttgttgatgggggactcagcc
+ctgtatctctgtgccagcagcttgg
+>BK064852|TRBV5-7*03|Gorilla gorilla gorilla_KB3781|F|V-REGION|228281..228566|286 nt|1| | | | |286+39=325| | |
+gacgctggagtcacccaaagtcccacacacctgatcaaaatgagaggacagcacgtgact
+ctgagatgctctcctatctctgggcac.....................accagtgtgtcc
+tggtaccaacaggccctgggtcaggggccccagtttatctttgagtattatgag......
+......aaagaagagagaggaagaggaatcttccct...gatcgattctcagctcgccag
+ttc...cctaactatagctctgagctgaatgtgaaccccttgttgatgggggactcagcc
+ctgtatctctgtgccagcagcttgg
+>BK064850|TRBV6-1*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|39294..39580|287 nt|1| | | | |287+39=326| | |
+aatgctggtgtcgctcagaccccaaaattccaggtcctgaagacaggacagagcatgaca
+ctgcagtgtgcccaggatatgaaccat.....................aactccatgtac
+tggtatcgacaagacccaggcatgggactgaggctgatttattactcagctgct......
+......gagggtaccactgccaaaggagaagtcccc...gatggctacaatgtctccaga
+tta...aacaaacgggagttctcgctcaggctggagtcggctgctccctcccagacatct
+gtgtacttctgtgccagcagtgaagc
+>BK064851|TRBV6-1-1*01|Gorilla gorilla gorilla_Susie3|F|V-REGION|61667..61953|287 nt|1| | | | |287+39=326| | |
+gatgctggtgtcactcagaccccaaaattccaggtcctgaagacaggacagagcatgaca
+ctgcagtgtgctcaggatatgaaccat.....................aactacatgtac
+tggtatcgacaagacccaggcatggggctgaggctgattcattactcagctggt......
+......gagggtacaactgccaaaggagaagtcccc...gatggctacaatgtctccaga
+cta...aacacacagaatttcctgctcaggctggagttggctgctccctcccagacatct
+gtgtacttctgtgccaccagtgaagc
+>BK064850|TRBV6-2*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|61667..61953|287 nt|1| | | | |287+39=326| | |
+gatgctggtgtcactcagaccccaaaattccaggtcctgaagacaggacagagcatgaca
+ctgcagtgtgctcaggatatgaaccat.....................aactacatgtac
+tggtatcgacaagacccaggcaaggggctgaggctgattcattactcagctggt......
+......gagggtacaactgccaaaggagaagtcccc...gatggctacaatgtctccaga
+cta...aacacacagaatttcctgctcaggctggagttggctgctcgctcccagacatct
+gtgtacttctgtgccaccagtgaagc
+>BK064852|TRBV6-2*03|Gorilla gorilla gorilla_KB3781|F|V-REGION|61673..61959|287 nt|1| | | | |287+39=326| | |
+gatgctggtgtcactcagaccccaaaattccaggtcctgaagacaggacagagcatgaca
+ctgcagtgtgctcaggatatgaaccat.....................aactacatgtac
+tggtatcgacaagacccaggcatggggctgaggctgattcattactcagctggt......
+......gagggtacaactgccaaaggagaagtcccc...gatggctacaatgtctccaga
+cta...aacacacagaatttcctgctcaggctggagttggctgctccctcccagacatct
+gtgtacttctgtgccaccagtgaagc
+>BK064850|TRBV6-3*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|83188..83474|287 nt|1| | | | |287+39=326| | |
+aatgctggtgtcactcagaccccaaaattccacgtcctgaagacaggacagagcatgaca
+ctgctgtgtgcccaggatatgaaccat.....................gaatacatgtac
+tggtatcgacaagacccaggcatggggctgaggctgattcattactcagtcggt......
+......gagggtacaactgccaaaggagaggtccct...gatggctacaatgtctccaga
+tta...aaaaaacagaatttcctgctcgggttggagtcggctgctccctcccaaacatct
+gtgtacttctgtgccagcagttactc
+>BK064850|TRBV6-4*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|114779..115065|287 nt|1| | | | |287+39=326| | |
+attgctgggatcacccaggcaccaacatctcagatcctggcagcaggacggagcatgaca
+ctgagatgtacccaggatatgagacat.....................aatgctatgtac
+tggtatagacaagatctaggactggggctaaggctcatccattattcaaatact......
+......gcaggtaccactggcaaaggagaagtccct...gatggttatagtgtctccaga
+gca...aacacagatgatttccccctcatgttggcgtctgctgtaccctctcagacatct
+gtgtacttctgtgccagcagtgactc
+>BK064851|TRBV6-4*02|Gorilla gorilla gorilla_Susie3|F|V-REGION|135992..136278|287 nt|1| | | | |287+39=326| | |
+attgctgggatcacccaggcaccaacatctcagatcctggcagcaggacggagcatgaca
+ctgagatgtacccaggatatgagacat.....................aatgctatgtac
+tggtatagacaagatctaggactggggctaaggctcatccattattcaaatact......
+......gcaggtaccactggcaaaggagaagtccct...gatggttatagtgtctccaga
+gca...aacacagatgatttccccctcatgttggcatctgctgtaccctctcagacatct
+gtgtacttctgtgccagcagtgactc
+>BK064850|TRBV6-5*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|158991..159277|287 nt|1| | | | |287+39=326| | |
+aatgctggtgtcactcagaccccaaaattccaggtcctgaagacaggacagagcatgaca
+ctgcagtgtgcccaggatatgaaccat.....................gactacatgtac
+tggtatcgacaagacccaggcatggggctgaggctgattcattactcagttggt......
+......gctggtatcactgacaaaggagaagtcccc...aatggctacaatgtctccaga
+tca...aacacagaggatttcccgctcaggctgcagtcggctgctccctcccagacatct
+gtgtacttctgtgccagcagttactc
+>BK064851|TRBV6-5*02|Gorilla gorilla gorilla_Susie3|F|V-REGION|180458..180744|287 nt|1| | | | |287+39=326| | |
+aatgctggtgtcactcagaccccaaaattccaggtcctgaagacaggacagagcatgaca
+ctgcagtgtgcccaggatatgaaccat.....................gactacatgtac
+tggtatcgacaagacccaggcatggggctgaggctgattcattactcagttggt......
+......gctggtatcactgacaaaggagaagtcccc...aatggctacaatgtctccaga
+tca...aacacagaggatttcccgctcaggctgcagtcagctgctccctcccagacatct
+gtgtacttctgtgccagcagttactc
+>BK064850|TRBV6-6*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|177575..177861|287 nt|1| | | | |287+39=326| | |
+aatgctggtgtcactcagaccccaaaattccgcatcctgaagataggacagagcatgaca
+ctgcagtgtgcccaggatatgaaccat.....................aactacatgtac
+tggtatcaacaagacccaggcatggggctgaagctgatttattactcagttact......
+......gctggtatcactgataaaggagaagtcccg...aatggctacaatgtctccaga
+tca...accacagaggatttcccgctcaggctggagtcggctgctccctcccagacatct
+gtgtacttctgtgccagcagttactc
+>BK064851|TRBV6-6*02|Gorilla gorilla gorilla_Susie3|F|V-REGION|199020..199306|287 nt|1| | | | |287+39=326| | |
+aatgctggtgtcactcagaccccaaaattccgcatcctgaagataggacagagcatgaca
+ctgcagtgtgcccaggatatgaaccat.....................aactacatgtcc
+tggtatcaacaagacccaggcatggggctgaagctgatttattactcagttact......
+......gctggtatcactgataaaggagaagtcccg...aatggctacaatgtctccaga
+tca...accacagaggatttcccgctcaggctggagtcggctgctcgctcccagacatct
+gtgtacttctgtgccagcagttactc
+>BK064850|TRBV6-7*01|Gorilla gorilla gorilla_Kamilah|ORF|V-REGION|195823..196109|287 nt|1| | | | |287+39=326| | |
+aatgctggtgtcactcagaccccaaaattccatgtcgtgaagacaggacagagcatgaca
+ctgctgtgtgcccaggatatgaaccat.....................gaatacatgtat
+cggtatcgacaagacccaggcaaggggctgaggctgatttactactcagttgct......
+......gctgctctcactgacaaaggagaagttcct...aatggctacaatgtctccaga
+tca...aacacagaggatttcccgctcaagctggagtcagctgctccctctcagacttct
+gtttacttctgtggcagcagttactc
+>BK064850|TRBV6-8*01|Gorilla gorilla gorilla_Kamilah|ORF|V-REGION|215354..215640|287 nt|1| | | | |287+39=326| | |
+aatgctggtgtcactcagaccccaaaattccacatcctgaagacaggacagagcatgaca
+ctgcagtgtgcccaggatatgaaccat.....................ggatacatgtcc
+tggtatcgacaagacccaggcatggggctgagactgatttactactcagctgct......
+......gctggtactattgacaaaggagaagtcccc...aatggctacaatgtctccaga
+tta...aacacagaggatttcctgctcaggccggtgtcggctgctccctcccagacatct
+gtgtacttctgtgccagcagttactc
+>BK064852|TRBV6-8*02|Gorilla gorilla gorilla_KB3781|F|V-REGION|215554..215840|287 nt|1| | | | |287+39=326| | |
+aatgctggtgtcactcagaccccaaaattccacatcctgaagacaggacagagcatgaca
+ctgcagtgtgcccaggatatgaaccat.....................gaatacatgtcc
+tggtatcgacaagacccaggcatggggctgagactgatttactactcagctgct......
+......gctggtactattgacaaaggagaagtcccc...aatggctacaatgtctccaga
+tta...aacacagaggatttcctgctcaggccggtgtcggctgctccctcccagacatct
+gtgtacttctgtgccagcagttactc
+>BK064850|TRBV7-1*01|Gorilla gorilla gorilla_Kamilah|ORF|V-REGION|43214..43503|290 nt|1| | | | |290+36=326| | |
+ggtgctggagtctcccagtccctgagacacaaggtagcaaagaagggaaaggatgtagct
+ctcagatatgatccaatttcaggtcat.....................aatgccctttat
+tggtaccgacagagcctggggcagggcctggagtttccaatttacttccaaggc......
+......aaggatgcagcagacaaatcggggcttccccgtgatcggttctctgcagagagg
+cct...gaggcatccatctctactctgaagttccagcgcacacagcagggggacttggcc
+gtgtatctctgtgccagcagctcagc
+>BK064850|TRBV7-2*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|86875..87164|290 nt|1| | | | |290+36=326| | |
+agagctggagtctcccagtcccccagtaacaaggtcacagagaagggaaaggatgtagtg
+ttcaggtgtgatccaatttcaggtcat.....................agtgtcctttat
+tggtaccaacagagcctggggcagggcctggagtttttaatttacttccaaggc......
+......aacagtgcaccagacaaatcagggctgcccagtgatcgcttctctgcagagagg
+act...gggggatccgtctccactctgacgatccagcgcacacagcaggaggactcggcc
+atgtatctctgtgccagcagcttagc
+>BK064850|TRBV7-3*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|118590..118879|290 nt|1| | | | |290+36=326| | |
+ggtgctggagtctcccagacccccagtaacaaggtcacagagaagggaaaagatgtagag
+ctcaggtgtgatccgatttcaggtcat.....................actgccctttac
+tggtaccgacaaagcctggggcagggcccagagtttctaatttacttccaaggc......
+......acgggtgcgacagatgactcagggctgcccaacgatcggttctttgcagtgagg
+cct...gagggatccgtctctactctgaagatccagcgcacagagcagggggactcagcc
+gtgtatctctgtgccagcagcttaac
+>BK064850|TRBV7-4*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|163183..163472|290 nt|1| | | | |290+36=326| | |
+ggtgctggagtctcccagtccccaaggtacaaagtcgcaaagaggggacgggatgtagct
+ctcaggtgtgattcaatttcaggtcat.....................gtaaccctttat
+tggtaccgacagaccctggggcagggctcagaggttctgacttacttccggagt......
+......gatgctcaacgagacaaatcagggcggcccagtggtcggttctctgcagagagg
+cct...gagagatccgtctccactctgaagatccagcgcacagagcagggggactcagct
+gtgtatctctgtgccagcagcttagc
+>BK064850|TRBV7-6*01|Gorilla gorilla gorilla_Kamilah|ORF|V-REGION|200194..200483|290 nt|1| | | | |290+36=326| | |
+ggtgctggagtctcccaggctcccaggttcaaagtcacaaagaggggacaggatgtagct
+ctcaggtgtgatccaatttcgggtcat.....................gtagccctttat
+tggtaccgacaggccctggggcagggcccagagtttctgacttacttcaatgat......
+......gaagctcaaccagacaaatcaggaatgcccaatgatcggttctctgcagagagg
+cct...gagggatccatctccactctgacgatccagcgcacagagcagcgggactcggcc
+atgtatctctgtgccagcagcttagc
+>BK064852|TRBV7-6*03|Gorilla gorilla gorilla_KB3781|F|V-REGION|200395..200684|290 nt|1| | | | |290+36=326| | |
+ggtgctggagtctcccaggctcccaggtacaaagtcacaaagaggggacaggatgtagct
+ctcaggtgtgatccaatttcgggtcat.....................gtagccctttat
+tggtaccgacaggccctggggcagggcccagagtttctgacttacttcaatgat......
+......gaagctcaaccagacaaatcaggaatgcccaatgatcggttctctgcagagagg
+cct...gagggatccaactccactctgacgatccagcgcacagagcagcgggactcggcc
+atgtatctctgtgccagcagcttagc
+>BK064850|TRBV7-7*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|219669..219958|290 nt|1| | | | |290+36=326| | |
+ggagctggagtctcccagtctcccaggtacaaagtcacaaagaggggacaggatgtaact
+ctcaggtgtgatccaatttcgagtcat.....................gcaaccctttat
+tggtatcaacaggccctggggcagggcccagagtttctgacttacttcaattat......
+......gaagctcaaccagacaaatcagggctgcccaatgatcggttctctgcagagagg
+cct...gagggatccaactccactctgacgattcagcgcacagagcagcgggactcggcc
+atgtatctctgtgccagcagcttagc
+>BK064852|TRBV7-7*03|Gorilla gorilla gorilla_KB3781|F|V-REGION|219860..220149|290 nt|1| | | | |290+36=326| | |
+ggtgctggagtctcccagtctcccaggtacaaagtcacaaagaggggacaggatgtaact
+ctcaggtgtgatccaatttcgagtcat.....................gcaccccttaat
+tggtatcaacaggccctggggcagggcccagagtttctgacttacttcaattat......
+......gaagctcaaccagacaaatcagggctgcccaatgaccggttctctgcagagagg
+cct...gagggatccaactccactctgacgatccagcgcacagagcagcgggactcggcc
+atgtatctctgtgccagcagcttagc
+>BK064850|TRBV7-9*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|237683..237972|290 nt|1| | | | |290+36=326| | |
+gatactggagtctcccaggaccccagacacaagatcacaaagaggggacagaatgtaact
+ttcaggtgtgatccaatttctgaacac.....................aaccagctttat
+tggtaccgacagaccctagggcagggcccagagtttctgacttacttccagaat......
+......gaagctcaactagaaaaatcaaggctgctcagtgatcggttctctgcagagagg
+cct...aagggatctttctccaccttggagatccagcgcacagagcagggggactcggcc
+atgtatctctgtgccagcagcttagc
+>BK064851|TRBV7-9*02|Gorilla gorilla gorilla_Susie3|F|V-REGION|259083..259372|290 nt|1| | | | |290+36=326| | |
+gatactggagtctcccaggaccccagacacaagatcacaaagaggggacagaatgtaact
+ttcaggtgtgatccaatttctgaacac.....................aaccagctttat
+tggtaccgacagaccctagggcagggcgcagagtttctgacttacttccagaat......
+......gaagctcaactagaaaaatcaaggctgctcagtgatcggttctctgcagagagg
+cct...aagggatctttctccaccttggagatccagcgcacagagcagggggactcggcc
+atgtatctctgtgccagcagcttagc
+>BK064850|TRBV9*01|Gorilla gorilla gorilla_Kamilah|F|V-REGION|126226..126511|286 nt|1| | | | |286+39=325| | |
+gattctggagtcacacaaaccccaaagcacctgatcacagcaactggacagcgagtgacg
+ctgagatgctcccctaggtctggagac.....................ctctctgtgtac
+tggtaccaacagagcctggaccagggcctccagttcctcattcagtattataat......
+......ggagaagagagagcaaaaggaaacattctt...gaacgattctccgcacaacag
+ttc...cctgattcacactctgaactaaacctgagctctctggagctgggggactcggct
+ttgtatttgtgtgccagcagcgtag

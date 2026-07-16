@@ -1,0 +1,56 @@
+>BK068011|TRGV2-1*01|Mustela putorius furo|F|V-REGION|105433..105732|300 nt|1| | | | |300+27=327| | |
+gcagggctcaagctgagtcagactgctttgttggtggcacgcgtgggcagttcaactcct
+ctggattgcaaagtggacgcctgggtc.....................aagtacatccac
+tggtaccgccaccaggagggtacggcaccgaagaggctcctctacctagacatgtcc...
+...acatcccttgtacaacgggattttgtcctgaaagcggacaaagtcaatgccaataag
+ggcagggatagctacagctgcactctgtcactgctgaaactagagaaaagcgacgaaggc
+gtgtactactgtgctgcctgggcatac
+>BK068011|TRGV2-2*01|Mustela putorius furo|F|V-REGION|170640..170939|300 nt|1| | | | |300+27=327| | |
+gcagggctcaagctgagtcagactgctttattggtggcgcgcgtgggcagttcacgtact
+ctggattgcaaagtggacacctgggtc.....................agttacatccac
+tggtaccgccaacaggagggtacggcaccgaagaggctcctccacctagacatgtcc...
+...aggtcccttgtgcaacgggattttgtcctgaatgcgaacaaagtcaatgccgaaaag
+ggcaaggatagctacagctgcactctgtcactgctgaaagtggagaaaaacgatgagggc
+gtgtactactgcgctgcctgggagcac
+>BK068011|TRGV2-3*01|Mustela putorius furo|F|V-REGION|237583..237882|300 nt|1| | | | |300+27=327| | |
+gcagggctcaagctgagtcagactgctttgttggtggcacgtgtgggcagttcatgttct
+ctggattgccaagtggacagctcagtc.....................agctacatccac
+tggtaccgccaccaggagggtacggcaccgaagaggctcctctacctagacatgtcc...
+...aggtcccttgtgcaacgggattttgtcctgaaagcagacaaagtttatgcccagaag
+ggcaaggatagctacagctgcactctgtcactgctgaaactagagaaaagcgacgaaggc
+ctgtactactgcgctgcctgggtatac
+>BK068011|TRGV5-1*01|Mustela putorius furo|F|V-REGION|411610..411916|307 nt|1| | | | |307+18=325| | |
+gactttttaataacgcaacttgtaccatccattaccaagaaacaaggaaacacagcattt
+ttagaatgccacataaaagcaggtggcttaagg.........aataatgtatatattcac
+tggtatcaacagaagccagaccagcctctaaaacgaattctgtatatctcctcaaat...
+......gaaaatgtggtccacgaacaaggggttaatgaggaaagatatgaagccaggaaa
+tggcagagggatttgccagcgagtcttaggatacaccgagttaatgaggaagacgctggg
+ctatattactgtgcctgctgggata
+>BK068011|TRGV6-1*01|Mustela putorius furo|F|V-REGION|389504..389803|300 nt|1| | | | |300+27=327| | |
+acagtgatgaggctggagcagccagctgtagtcgtggcatgtgagagcacctcagctatc
+ctgtcttgcacagccaacaccaaggtc.....................aactacatccac
+tggtaccgccaccaggagggaaagtccctccagcggatcctccatctgaccatggac...
+...caatctgtcgtccactgggatttggttgagaaagcagaaaaagtcaccgccataggg
+gccaaggatggttatagctgtaccctgttagtgttgaagctggagaagagtgacgaggac
+atgtactactgcgctttctgggaatac
+>BK068011|TRGV7-1*01|Mustela putorius furo|F|V-REGION|402347..402652|306 nt|1| | | | |306+24=330| | |
+caggcgacattgaagcaacatgaaatatcagtttccagagcaagagataagagtgcccac
+atatcatgcaacgtgtctgctaagaacttc............aacagtgaaaccatatac
+tggtaccggcagaaaccagatcaggagatagaatatctaacagatgtcataaca......
+......gaccgtgttcaagttcccttagacgggaagaacaacaaatttgaggcaagtaaa
+aacactcatacttccacttcaacactgaaaataaatttcctagagaaagaagatgaggcc
+atttactactgtggcagctggaattggatc
+>BK068011|TRGV7-2*01|Mustela putorius furo|F|V-REGION|461258..461562|305 nt|1| | | | |305+24=329| | |
+caggtgatattagagcaacctgaaatatcaatttccagaacaagagatgagagtgcccac
+atattatgcaaggtgtccactaaggacttt............accaatgcagtcatacac
+tggtaccggaagaaaccacatcaggagatagaacatctaggattggtccaatca......
+......atctctattcaagtttctttaggtgggaagaaaaccaaacttgaagcaactaaa
+aatgctattacttctacttcaaccttgaaggtaaatttcttagagcaagaagatgaggcc
+atgtactactgtgcctgctggaggggaac
+>BK068011|TRGV7-3*01|Mustela putorius furo|ORF|V-REGION|472540..472845|306 nt|1| | | | |306+24=330| | |
+caggtgaagttggagcaacctgaaatatcaatttccagagaaagatataagagtgcccac
+atattatgcaaggtgtcctctaaggacttt............accaatgaagtcatacac
+tggtaccggcagaaaccacatcaggagatagaacatctaacatatatcttgaca......
+......agctatactcaagtttctttaggtgggaagaaaaccaaacttgaagcaactaaa
+aatgctattacttctacttcaaccttgaaggtaaatttcttagagcaagaagatgaggcc
+atgtactactgtgcctgctgggattggatc

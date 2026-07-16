@@ -1,0 +1,784 @@
+>IMGT000082|TRAV1*02|Mus musculus|F|V-REGION|10635..10909|275 nt|1|||||275+0=275||
+ggacagggtgtggagcag...cct...gccaaattgatgtctgtggagggaacctttgct
+cgggtcaactgcacatacagcacctcaggg..................ttcaacgggtta
+tcctggtaccagcaacgtgaaggccaagcccctgtatttctttcttatgttgttttg...
+.........gatggtttgaaggacagt...............gggcatttctccactttc
+ctgagccgctcgaat...gggtacagttacctgcttctgacagagctccagatcaaagac
+tctgcctcatacctctgtgctgtgaggga
+>IMGT000082|TRAV10*02|Mus musculus|F|V-REGION|1088040..1088319|280 nt|1|||||280+0=280||
+ggagagaaggtcgagcaacatgag...tctacactgagtgttcgagagggagacagcgct
+gtcatcaactgcacttacacagatactgct..................tcatcatacttc
+ccttggtacaagcaagaagctggaaagagtctccactttgtgatagacattcgttcaaat
+.........gtggacagaaaacagagc...............caaagacttatagttttg
+ttggataagaaagcc...aaacgattctccctgcacatcacagccacacagcctgaagat
+tcagccatctacttctgtgcagcaagca
+>IMGT000082|TRAV10D*03|Mus musculus|F|V-REGION|393250..393529|280 nt|1|||||280+0=280||
+ggagagaaggtcgagcaacacgag...tctacactgagtgttcgagagggagacagcgct
+gtcatcaactgcacttacacagatactgcc..................tcatcatacttc
+ccttggtacaagcaagaagctggaaagagtctccactttgtgatagacattcgttcaaat
+.........gtggacagaaaacagagc...............caaagacttatagttttg
+ttggataagaaagcc...aaacgattctccctgcacatcacagccacacagcctgaagat
+tcagccatctacttctgtgcagcaagca
+>IMGT000082|TRAV10N*01|Mus musculus|F|V-REGION|704364..704643|280 nt|1|||||280+0=280||
+ggagagaaggtcgagcaacacgag...tctacactgagtgttcgagagggagacagcgct
+gtcatcaactgcacttacacagatactgcc..................tcatcatacttc
+ccttggtacaagcaagaagctggaaagagtctccactttgtgatagacattcgttcaaat
+.........gtggacagaaaacagagc...............caaagacttacagtttta
+ttggataagaaagcc...aaacgattctccctgcacatcacagccacacagcctgaagat
+tcagccatctacttctgtgcagcaagca
+>IMGT000082|TRAV11*02|Mus musculus|F|V-REGION|1101613..1101892|280 nt|1|||||280+0=280||
+aagacccaagtggagcagagtcct...cagtccctggttgtccgtcagggagagaactgc
+gtccttcaatgtaattacagtgtgaccccc..................gacaaccactta
+aggtggttcaaacaggacacaggcaaaggtcttgtgtccctgacagtcctggttgaccaa
+.........aaagacaaaacgtcaaat...............gggagatactcagcaact
+ctggataaagatgct...aagcacagcacgctgcacatcacagccaccctgctggatgac
+actgccacctacatctgtgtggtgggcg
+>IMGT000082|TRAV11D*02|Mus musculus|ORF|V-REGION|406667..406946|280 nt|1|||||280+0=280||
+aagacccaagtggagcagagtcct...cagtccctggttgtccgtcagggagagaactgc
+gtccttcaatgtaattacagtgtgaccccc..................gacaaccactta
+aggtggttcaaacaggacacaggcaaaggtcttgtgtccctgacagtcctggttgaccaa
+.........aaagacaaaacgtcaaat...............gggagatactcagcaact
+ctggataaagatgct...aagcacagcacgctgcacatcacagccaccctgctggatgac
+actgccacctacatctgtgtggtgggcg
+>IMGT000082|TRAV11N*01|Mus musculus|P|V-REGION|717432..717711|280 nt|1|||||280+0=280||
+aagacccaagtggagcagagtcct...cagtccctggttgtccgccagggagagaactgc
+gtccttcaatgtaattagagtgtgaccccc..................gacaaccactta
+aggtggttcaaacaggacacaggcaaaggtcttgtgtcactgacagtcctggttcaccaa
+.........aaagacaaaacgtcaaac...............gggagatactcagcaact
+ctggatagagatgct...aagcacagcacgctgcacatcacagccaccctgctggatgac
+actgccacctacatctgtgtggtgggcg
+>IMGT000082|TRAV12-1*06|Mus musculus|F|V-REGION|1120488..1120771|284 nt|1|||||284+0=284||
+ggagactccgtgacccagacagaa...ggcctggtcactgtcaccgaggggttgcctgtg
+aagctgaactgcacctatcagactacttattta...............actattgccttt
+ttctggtatgtgcaatatctcaacgaagcccctcaggtactcctgaagagctccacagac
+.........aacaagaggaccgagcac...............caagggttccacgccact
+ctccataagagcagc...agctccttccatctgcagaagtcctcagcgcagctgtcagac
+tctgccctgtactactgtgctctgagtga
+>IMGT000082|TRAV12-2*02|Mus musculus|F|V-REGION|1198667..1198947|281 nt|1|||||281+0=281||
+ggagactctgtgacccagacagaa...ggcctggtcactctcaccgaggggttgcctgtg
+atgctgaactgcacctatcagagtacttac..................tcacctttcctt
+ttctggtatgtgcaacatctcaacgaagcccctaagctacttttgaagagcttcacagac
+.........aacaagaggcccgagcac...............caagggttccacgccact
+ctccataagagcagc...agctccttccatctgcagaagtcctcagcgcagctgtcagac
+tctgccctgtactactgtgctttgagtga
+>IMGT000082|TRAV12-3*05|Mus musculus|F|V-REGION|1203995..1204278|284 nt|1|||||284+0=284||
+ggagactcagtgacccagaaggaa...ggcctggtcactctcaccgaggggttgcctgtg
+atgctgaactgcacctatcagactatttactca...............aatgctttcctt
+ttctggtatgtgcactatctcaatgaatcccctcggctactcctgaagagctccacagac
+.........aacaagaggaccgagcac...............caagggttccacgccact
+ctccataagagcagc...agctccttccatctgcagaagtcctcagcgcagctgtcagac
+tctgccctgtactactgtgctctgagtga
+>IMGT000082|TRAV12D-1*06|Mus musculus|F|V-REGION|426791..427074|284 nt|1|||||284+0=284||
+ggagactccgtgacccagacagaa...ggcctggtcactgtcacagaagggttgcctgtg
+atgctgaactgcacctatcagactgcttactca...............gatgttgccttt
+ttctggtatgtgcaatatctcaacgaagcccctaaactactcctgcggagctccacagac
+.........aacaagaggaccgagcac...............caagggttccacgccact
+ctccataagagcagc...agctccttccatctgcagaagtcctcagtgcagctgtcagac
+tctgccctgtactactgtgctctgagtga
+>IMGT000082|TRAV12D-2*02|Mus musculus|F|V-REGION|498179..498459|281 nt|1|||||281+0=281||
+ggagactcagtgacccagacagaa...ggcctggtcactctcaccaaggggttgcctgtg
+atgctgaactgcacctatcagactacttac..................tcacctttcctt
+ttctggtatgtgcaacatctcaacgaagcccctaagctactcctgaagagctccacagac
+.........aacaagaggaccgagcac...............caagggttctacgccact
+ctccataagagcagc...agctccttccatctgcagaagtcctcagtgcagctgtcagac
+tctgccctgtacttctgtgctttgagtga
+>IMGT000082|TRAV12D-3*04|Mus musculus|F|V-REGION|512032..512315|284 nt|1|||||284+0=284||
+ggagactccgtgacccagacagaa...ggcctggtcactctcacagaagggttgcctgtg
+atgctgaactgcacctatcagactatttactca...............aatcctttcctt
+ttctggtatgtgcaacatctcaatgaatcccctcggctactcctgaagagcttcacagac
+.........aacaagaggaccgagcac...............caagggttccacgccact
+ctccataagagcagc...agctccttccatctgcagaagtcctcagcgcagctgtcagac
+tctgccctgtactactgtgctctgagtga
+>IMGT000082|TRAV12N-1*01|Mus musculus|F|V-REGION|737838..738121|284 nt|1|||||284+0=284||
+ggagactccgtgacccagacagaa...ggcctggtcactgtcacagaagggttgcctgtg
+atgctgaactgcacctatcagactgcttactca...............gatgttgccttt
+ttctggtatgtgcaatatctcaacgaagcccctaaactactcctgcggagctccacagac
+.........aacaagaggaccgagcac...............caagggttccacgccact
+ctccataagagcagc...agctccttccatctgcagaagtcctcagtgcagctgtcagac
+tctgccctgtactactgtgctctgagtga
+>IMGT000082|TRAV12N-2*01|Mus musculus|F|V-REGION|809153..809433|281 nt|1|||||281+0=281||
+ggagactcagtgacccagacagaa...ggcctggtcactctcaccaaggggttgcctgtg
+atgctgaactgcacctatcagactacttac..................tcacctttcctt
+ttctggtatgtgcaacatctcaacgaagcccctaagctactcctgaagagctccacagac
+.........aacaagaggaccgagcac...............caagggttctacgccact
+ctccataagagcagc...agctccttccatctgcagaagtcctcagtgcagctgtcagac
+tctgccctgtacttctgtgctttgagtga
+>IMGT000082|TRAV12N-3*01|Mus musculus|F|V-REGION|822994..823277|284 nt|1|||||284+0=284||
+ggagactccgtgacccagacagaa...ggcctggtcactctcacagaagggttgcctgtg
+atgctgaactgcacctatcagactatttactca...............aatcctttcctt
+ttctggtatgtgcaacatctcaatgaatcccctcggctactcctgaagagcttcacagac
+.........aacaagaggaccgagcac...............caagggttccacgccact
+ctccataagagcagc...agctccttccatctgcagaagtcctcagcgcagctgtcagac
+tctgccctgtactactgtgctctgagtga
+>IMGT000082|TRAV13-1*02|Mus musculus|F|V-REGION|1127288..1127558|271 nt|1|||||271+0=271||
+ggacagcaagtgcagcagagcccc...gcgtccttggttctgcaggagggggagaacgca
+gagctgcagtgtaacttttccacatctttg.....................aacagtatg
+cagtggttttaccaacgtcctgggggaagtctcgtcagcctgttctacaatccttct...
+............gggacaaagcatagt...............gggagactgacatccact
+acagtcatcaaagaa...cgtcgcagctctttgcacatttcctcctcccagacaacagac
+tcaggcacttatctctgtgctttggaac
+>IMGT000082|TRAV13-2*03|Mus musculus|F|V-REGION|1217162..1217432|271 nt|1|||||271+0=271||
+ggacagcaagtgcagcagagtccc...gcatccttggttctgcaggagggggagaacgca
+gagctgcagtgtaacttttcctccacagca.....................acccggctg
+cagtggttttaccaacatcctgggggaagactcgtcagcctgttctacaatccttct...
+............gggacaaagcacact...............ggaagactgacatccacc
+acagtcactaacgaa...cgtcgcagctctttgcacatttcctcctcccagacaacagac
+tcaggcacttatttctgtgctatagatc
+>IMGT000082|TRAV13-4/DV7*02|Mus musculus|F|V-REGION|1339684..1339954|271 nt|1|||||271+0=271||
+ggacagcaagtgcagcagagtcct...gcatccttggttctgcaggagggggagaacgca
+gagctgcagtgtaacttttcctccacagca.....................acccggctg
+cagtggttttaccaacgtcctgggggaagcctcgtcagcctgttgtccaatccttct...
+............gggacaaagcacact...............ggaagactgacatccacc
+acagtcactaaagaa...cgtcgcggctctttgcacatttcctcctcccagatcacagac
+tcaggcacttatctctgtgctatggaac
+>IMGT000082|TRAV13-5*01|Mus musculus|F|V-REGION|1377729..1377996|268 nt|1|||||268+0=268||
+ggtcagcaagtgcagcagagtccc...gcgtccttggttctgcaggagggggagaacgca
+gagctgcagtgtagcttttccatctctaca.....................aaccaggtg
+cagtggttttaccaacgtcctgggggacgcctcatcggcctgtcctacattcct......
+............ggaatgaagcctact...............ggaaaacagacatcctca
+acagtcactaaggga...cgtcacagctctttgactatatcctcctcccagaccacagac
+tcaggcacttatttctgtgttctgagta
+>IMGT000082|TRAV13D-1*04|Mus musculus|F|V-REGION|433629..433899|271 nt|1|||||271+0=271||
+ggacagcaagtgcagcagagtccc...acgtccttggttctgcaggagggggaaaacgca
+gagctgcagtgtaacttttccacatctttg.....................aacagtatg
+cagtggttttaccaacgtcctgggggaagtctcgtcagcgtgttctacaatccttct...
+............gggacaaagcagagt...............gggagactgacatccaca
+acagtcattaaagaa...cgccgcagctctttgcacatttcctcctcccagatcacagac
+tcaggcacttatctctgtgctatggaac
+>IMGT000082|TRAV13D-2*03|Mus musculus|F|V-REGION|525052..525322|271 nt|1|||||271+0=271||
+ggacagcaagtgcagcagagcccc...gcgtccttggttctgcaggagggggagaacgca
+gagctgcagtgtaacttttcctccacagca.....................acccagctg
+cagtggttttaccaaagtcctgggggaagcctcgtcagcctgttgtccaatccttct...
+............gggacaaagcacact...............ggaagactgacatccacc
+acagtcactaaggaa...cgtcgcagctctttgcacatttcctcctcccagacaacagac
+tcaggcacttatctctgtgctatagatc
+>IMGT000082|TRAV13D-3*02|Mus musculus|F|V-REGION|615176..615452|277 nt|1|||||277+0=277||
+ggacagcaagtgcagcagagcccccccgcgtccttggttctgcaggagggggagaacgca
+gagctgcagtgcacctattccacaactttg.....................aacagtatg
+cagtggttttaccaacgtcctgggggaagactcgtcagcctgttgtacagtccttct...
+.........tgggcagagcagagaggt...............ggaagactgacatcctcc
+gcagccagtaatgaa...agtcgcagctctttgcacatttcctcctcccagatcacagac
+tcaggcacttatctctgtgctatggaac
+>IMGT000082|TRAV13D-4*03|Mus musculus|F|V-REGION|655037..655307|271 nt|1|||||271+0=271||
+ggacagcaagtgcagcagagtcct...gcatccttggttctgcaggagggggagaacgca
+gagctgcagtgtaacttttcctccacagca.....................acccggctg
+cagtggttttaccaacgtcctgggggaagcctcgtcagcctgttgtacaatccttct...
+............gggacaaagcacact...............ggaagactgacatccacc
+acagtcactaaagaa...cgtcgcagctctttgcacatttcctcctcccagacaacagac
+tcaggcacttatttctgtgctatggaac
+>IMGT000082|TRAV13N-1*01|Mus musculus|F|V-REGION|744673..744943|271 nt|1|||||271+0=271||
+ggacagcaagtgcagcagagtccc...acgtccttggttctgcaggagggggaaaacgca
+gagctgcagtgtaacttttccacatctttg.....................aacagtatg
+cagtggttttaccaacgtcctgggggaagtctcatcagcgtgttctacaatccttct...
+............gggacaaagcagagt...............gggagactgacatccaca
+acagtcattaaagaa...cgccgcagctctttgcacatttcctcctcccagatcacagac
+tcaggcacttatctctgtgctatggaac
+>IMGT000082|TRAV13N-2*01|Mus musculus|F|V-REGION|836080..836350|271 nt|1|||||271+0=271||
+ggacagcaagtgcagcagagcccc...gcgtccttggttctgcaggagggggagaacgca
+gagctgcagtgtaacttttcctccacagca.....................acccagctg
+cagtggttttaccaaagtcctgggggaagcctcgtcagcctgttgtccaatccttct...
+............gggacaaagcacact...............ggaagactgacatccacc
+acagtcactaaggaa...cgtcgcagctctttgcacatttcctcctcccagacaacagac
+tcaggcacttatctctgtgctatagatc
+>IMGT000082|TRAV13N-3*01|Mus musculus|F|V-REGION|919396..919672|277 nt|1|||||277+0=277||
+ggacagcaagtgcagcagagcccccccgcgtccttggttctgcaggagggggagaacgca
+gagctgcagtgcacctattccacaactttg.....................aacagtatg
+cagtggttttaccaacgtcctgggggaagactcgtcagcctgttgtacagtccttct...
+.........tgggcagagcagagaggt...............ggaagactgacatcctcc
+gcagccagtaacgaa...agtcgcagctctttgcacatttcctcctcccagatcacagac
+tcaggcacttatctctgtgctatggaac
+>IMGT000082|TRAV13N-4*01|Mus musculus|F|V-REGION|945869..946139|271 nt|1|||||271+0=271||
+gaacagcaagtgcagcagagtccc...gcatccttggttctgcaggaggcggagaacgca
+gagctccagtgtagcttttccatctttaca.....................aaccaggtg
+cagtggttttaccaacgtcctgggggaagactcgtcagcctgttgtacaatccttct...
+............gggacaaagcagagt...............gggagactgacatccaca
+acagtcattaaagaa...cgtcgcagctctttgcacatttcctcctcccagatcacagac
+tcaggcacttatctctgtgctatggaac
+>IMGT000082|TRAV14-1*01|Mus musculus|F|V-REGION|1136312..1136591|280 nt|1|||||280+0=280||
+cagcagcaggtgagacaaagtccc...caatctctgacagtctgggaaggaggaaccaca
+gttctgacctgcagttatgaggacagcact..................tttaactacttc
+ccatggtaccaacagttccctggggaaggccctgcacttctgatatccatactttcagtg
+.........tccgataaaaaggaagat...............ggacgattcacaaccttc
+ttcaataaaagggag...aaaaagctctccttgcacatcatagactctcagcctggagac
+tcagccacctacttctgtgcagcaagtg
+>IMGT000082|TRAV14-2*02|Mus musculus|F|V-REGION|1222979..1223258|280 nt|1|||||280+0=280||
+cagcagcaggtgagacaaagtccc...caatctctgacagtctgggaaggagagacagca
+attctgaactgcagttatgaggacagcact..................tttgactacttc
+ccatggtaccatcagttccctggggaaagccctgcactcctgatagccatacgtccagtg
+.........tccaataaaaaggaagat...............ggacgattcacaatcttc
+ttcaataaaagggag...aaaaagttctccttgcacatcgcagactctcagcctggagac
+tcagccacctacttctgtgcagcaagtg
+>IMGT000082|TRAV14-3*04|Mus musculus|F|V-REGION|1345448..1345727|280 nt|1|||||280+0=280||
+cagcagcaggtgagacaaagtccc...caatctctgacagtctgggaaggagagaccgca
+attctaaactgcagttatgagaacagtgct..................tttgactacttc
+ccatggtaccagcagttccctggggaaggccctgctctcctgatagccatacgttcagtg
+.........tccgataaaaaggaagat...............ggacgattcacaatcttc
+ttcaataaaagggag...aaaaagctctccttgcacatcacagactctcagcctggagac
+tcagccacttacttctgtgcagcaagtg
+>IMGT000082|TRAV14D-1*01|Mus musculus|F|V-REGION|437920..438199|280 nt|1|||||280+0=280||
+cagcagcaggtgagacaaagtccc...caatctctgacagtctgggaaggagagaccgca
+attctgaactgcagttatgaggacagcact..................tttaactacttc
+ccatggtaccagcagttccctggggaaggccctgcactcctgatatccatacgttcagtg
+.........tccgataaaaaggaagat...............ggacgattcacaatcttc
+ttcaataaaagggag...aaaaagctctccttgcacatcacagactctcagcctggagac
+tcagctacctacttctgtgcagcaagtg
+>IMGT000082|TRAV14D-2*03|Mus musculus|F|V-REGION|530923..531202|280 nt|1|||||280+0=280||
+cagcagcaggtgagacaaagtccc...caatctctgacagtctgggaaggagagacagca
+attctgaactgcagttatgaggacagcact..................tttgactacttc
+ccatggtactggcagttccctagggaaagccctgcactcctgatagccatacgtccagtg
+.........tccaataaaaaggaagat...............ggacgattcacaatcttc
+ttcaataaaagggag...aaaaagctctccttgcacatcacagactctcagcctggagac
+tcagctacctacttctgtgcagcaagtg
+>IMGT000082|TRAV14D-3/DV8*08|Mus musculus|F|V-REGION|660799..661078|280 nt|1|||||280+0=280||
+cagcagcaggtgagacaaagtccc...caatctctgacagtctgggaaggagagaccgca
+attctgaactgcagttatgagaacagtgct..................tttgactacttc
+ccatggtaccagcagttccctggggaaggtcccgctctcctgatatccatactttcagtg
+.........tccgataaaaaggaagat...............ggacgattcacaatcttc
+ttcaataaaagggag...aaaaagctctccttgcacattgcagactctcagcctggagac
+tcagccacctacttctgtgcagcaagtg
+>IMGT000082|TRAV14N-1*01|Mus musculus|F|V-REGION|748932..749211|280 nt|1|||||280+0=280||
+cagcagcaggtgagacaaagtccc...caatctctgacagtctgggaaggagagaccgca
+attctgaactgcagttatgaggacagcact..................tttaactacttc
+ccatggtaccagcagttccctggggaaggccctgcactcctgatatccatacgttcagtg
+.........tccgataaaaaggaagat...............ggacgattcacaatcttc
+ttcaataaaagggag...aaaaagctctccttgcacatcacagactctcagcctggagac
+tcagctacctacttctgtgcagcaagtg
+>IMGT000082|TRAV14N-2*01|Mus musculus|F|V-REGION|841933..842212|280 nt|1|||||280+0=280||
+cagcagcaggtgagacaaagtccc...caatctctgacagtctgggaaggagagacagca
+attctgaactgcagttatgaggacagcact..................tttgactacttc
+ccatggtactggcagttccctagggaaagccctgcactcctgatagccatacgtccagtg
+.........tccaataaaaaggaagat...............ggacgattcacaatcttc
+ttcaataaaagggag...aaaaagctctccttgcacatcacagactctcagcctggagac
+tcagctacctacttctgtgcagcaagtg
+>IMGT000082|TRAV14N-3*01|Mus musculus|F|V-REGION|952329..952608|280 nt|1|||||280+0=280||
+cagcagcaggtgagacaaagttcc...caatctctgacagtctgggaaggagagaccgca
+attctgaactgcagttatgagaacagtgct..................tttgactacttc
+ccatggtaccagcagttccctggggaaggccctgctctcctgatagccatacgttcagtg
+.........tccgataaaaaggaagat...............ggacgattcacaatcttc
+ttcaataaaagggag...aaaaatctctccttgcacatcaaagactctcagcctggagac
+tcagccacctacttctgtgcagcaagtg
+>IMGT000082|TRAV15-1/DV6-1*01|Mus musculus|F|V-REGION|1141989..1142280|292 nt|1|||||292+0=292||
+gcccagaaagtgattcaggtctgg...tcaacaacaagcaggcaggagggcgaaaaactc
+acactggactgttcatataagacaagtcaggtc...............ttataccatctt
+ttctggtacaagcaccttcttagtggagagatggttttgcttattcgacaaatgccttct
+......actattgcaatagagaggagc...............ggccgctattctgtagtc
+ttccagaaatcacgc...aaatccatcagccttgtcatttcaaccttacaaccagacgat
+tcgggaaagtatttctgtgctctctgggagctgg
+>IMGT000082|TRAV15-2/DV6-2*02|Mus musculus|F|V-REGION|1231739..1232027|289 nt|1|||||289+0=289||
+gcccagagagtgactcaggtccag...tcaacaggcagcagtcagtgggga...gaagtc
+accctggactgttcatatgagacaagtgaatac...............tcctaccttatt
+ctttggtacaggcagctttttagtggagagatggttttccttatttaccaaccttctttt
+......gatactcagaaccagaggagc...............ggccactactctgtagtc
+ttccagaaatcattc...aagtccatcagccttgtcatttcagcctcacagccagaggat
+tcagggacgtacttctgcgctctctcggaactga
+>IMGT000082|TRAV15D-1/DV6D-1*07|Mus musculus|F|V-REGION|445678..445969|292 nt|1|||||292+0=292||
+gccgagaaagtgattcaggtctgg...tcaacagcaagcaggcaggagggcgaagaactc
+accctggactgttcatatgagacaagtcaggtc...............ttataccatctt
+ttctggtacaagcaccttcttagtggagagatggttttccttattcgacaaacgtcttct
+......tctactgcaaaagagaggagc...............ggccgctattctgtagtc
+ttccagaaatcactc...aaatccatcagccttatcatttcagctttacaaccagacgat
+tcgggaaagtatttctgtgctctctgggagctgg
+>IMGT000082|TRAV15D-2/DV6D-2*03|Mus musculus|F|V-REGION|539142..539433|292 nt|1|||||292+0=292||
+gcccagagagtgactcaggtccag...ccaacaggcagcagtcagtggggagaagaagtc
+accctggactgttcatatgagacaagtgaatac...............ttctaccgtatt
+ttttggtacaggcagctttttagtggagagatggttttccttatttaccaaccttctttt
+......gacactcagaaccagaggagc...............ggccgctactctgtagtc
+ttccagaaatcattc...aagtccatcagccttgtcatttcagcctcacagccagaggat
+tcagggacgtacttctgcgctctctcggaactga
+>IMGT000082|TRAV15N-1*01|Mus musculus|F|V-REGION|756638..756929|292 nt|1|||||292+0=292||
+gccgagaaagtgattcaggtctgg...tcaacagcaagcaggcaggagggcgaagaactc
+accctggactgttcatatgagacaagtcaggtc...............ttataccatctt
+ttctggtacaagcaccttcttagtggagagatggttttccttattcgacaaacgtcttct
+......tctactgcaaaagagaggagc...............ggccgctattctgtagtc
+ttccagaaatcactc...aaatccatcagccttatcatttcagctttacaaccagacgat
+tcgggaaagtatttctgtgctctctgggagctgg
+>IMGT000082|TRAV15N-2*01|Mus musculus|F|V-REGION|850277..850568|292 nt|1|||||292+0=292||
+gcccagagagtgactcaggtccag...ccaacaggcagcagtcagtggggagaagaagtc
+accctggactgttcatatgagacaagtgaatac...............ttctaccgtatt
+ttttggtacaggcagctttttagtggagagatggttttccttatttaccaaccttctttt
+......gacactcagaaccagaggagc...............ggccgctactctgtagtc
+ttccagaaatcattc...aagtccatcagccttgtcatttcagcctcacagccagaggat
+tcagggacgtacttctgcgctctctcggaactga
+>IMGT000082|TRAV16*06|Mus musculus|F|V-REGION|1325449..1325738|290 nt|1|||||290+0=290||
+gcccagaaggtaacacagactcag...acttcaatttctgtgatggagaagacaacggtg
+acaatggactgtgtgtatgaaacccgggacagt...............tcttacttctta
+ttctggtacaagcaaacagcaagtggggaaatagttttccttattcgtcaggactcttac
+......aaaaaggaaaatgcaacagaa...............ggtcattattctctgaac
+tttcagaagccaaaa...agttccatcggactcatcatcactgccacacagattgaggac
+tcagcagtatatttctgtgctatgagagaggg
+>IMGT000082|TRAV16D/DV11*02|Mus musculus|F|V-REGION|629565..629854|290 nt|1|||||290+0=290||
+gcccagaaggtaacacagactcag...acttcaatttctgtgatggagaagacaacggtg
+acaatggactgtgtgtatgaaacccaggacagt...............tcttacttctta
+ttctggtacaagcaaacagcaagtggggaaatagttttccttattcgtcaggactcttac
+......aaaaaggaaaatgcaacagtg...............ggtcattattctctgaac
+tttcagaagccaaaa...agttccatcggactcatcatcaccgccacacagattgaggac
+tcggcagtatatttctgtgctatgagagaggg
+>IMGT000082|TRAV16N*01|Mus musculus|F|V-REGION|933365..933654|290 nt|1|||||290+0=290||
+gcccagaaggtaacacagactcag...acttcaatttctgtggtggagaagacaacggtg
+acaatggactgtgtgtatgaaacccgggacagt...............tcttacttctta
+ttctggtacaagcaaacagcaagtggggaaatagttttccttattcgtcaggactcttac
+......aaaaaggaaaatgcaacagtg...............ggtcattattctctgaac
+tttcagaagccaaaa...agttccatcggactcatcatcaccgccacacagattgaggac
+tcagcagtatatttctgtgctatgagagaggg
+>IMGT000082|TRAV17*02|Mus musculus|F|V-REGION|1388865..1389148|284 nt|1|||||284+0=284||
+gcccagtccgtggaccagcctgat...gctcatgtcacgctctctgaaggagcctccctg
+gagctcagatgcagttattcatacagtgca..................gcaccttacctc
+ttctggtacgtgcagtatcctggccagagcctccagtttctcctcaaatacatcacagga
+......gacaccgttgttaaaggcacc...............aagggctttgaggccgag
+tttaggaagagtaac...tcctctttcaacctgaagaaatccccagcccattggagcgac
+tcagccaagtacttctgtgcactggaggg
+>IMGT000082|TRAV18*02|Mus musculus|ORF|V-REGION|1413587..1413860|274 nt|1|||||274+0=274||
+actcaacggctggagcagagtcct...cggtttctgagtatccaggaggggcaagatttc
+actgcacgctgcagctcctcaaccaccttc.....................ccccaactt
+tactggtaccgacaggtccccagggaaggtcctgtcatcctggtgacattggtcaagagt
+.........ggagaggtaaaggagcag...............aggaggatgactgctaag
+tttggtgaagcaaga...aagaacagctccctattcatcgccagagctcagcctggagac
+gcaggcatctacttctgtacaggaa
+>IMGT000082|TRAV19*03|Mus musculus|F|V-REGION|1427581..1427860|280 nt|1|||||280+0=280||
+ggccagcaagttaaacaaagctct...ccatcgctgactgttcaagagggagggatatcg
+atcctgaattgtgactacgagaatgatatg..................tttgactatttt
+gcctggtacaaaaaataccctgacaacagccccacactcctgatatccgtacgctcaaat
+.........gtggataagagggaagac...............ggaagactcacagttttc
+ttgaacaaaagcggc...aaacacttctcactgcacatcacagcctcccagcctgaagac
+acagcagtgtacctctgcgcagcaggtg
+>IMGT000082|TRAV2*01|Mus musculus|F|V-REGION|149808..150084|277 nt|1|||||277+0=277||
+cttgccaagaccacccag...ccc...ccctccatggaggcctatgaagggcaagaagtg
+aacgtgtcctgcagccatacaaacattgctaca...............agcgagtacatc
+tactggtaccgacaggttccccaccagggaccacagtttatcattcaaggatataag...
+............gactatgtggtaaat...............gaagtggcatctctgttt
+atctctgctgaccgg...aagctcagcactctgagcctgccctgggtttccctgagagat
+gctgctgtgtattactgcattgtgactgaca
+>IMGT000082|TRAV20*01|Mus musculus|P|V-REGION|1445415..1445694|280 nt|1|||||280+0=280||
+caaacactgtagtgcagagccctt...ccatcctgaatgtcggggaaaaaagaaactgca
+cttatcaactgcagttatacgaatgcagca..................actaattatttc
+ccctggtataagaaggaagaacagaaagttttcacgctcctaatagacattcgctcaaat
+.........gtgaacagaaagaaggag...............ggaagattcgaggtgata
+ttggatagaaatgtt...aaacgcgtctccttacatataacagctgcacgaacagaagat
+tcagccttgtacctctgtgcaccaggca
+>IMGT000082|TRAV21/DV12*03|Mus musculus|ORF|V-REGION|1458509..1458785|277 nt|1|||||277+0=277||
+gatgctaagactacacaa...cca...gattcaatggaaagtactgaaggagaaacggtg
+cacttgccttgtagccacgccacaatcagtgga...............aacgagtacatc
+tattggtaccgacaggttcctcttcagggtccagaatatgtgactcacggtctacaa...
+............caaaatacaaccaat...............agtatggctttcctggct
+attgcctctgacaga...aagtcaagcaccttgatcctgcctcatgtcagcctgagagac
+gcggctgtgtaccactgtatcctgagagtag
+>IMGT000082|TRAV3-1*03|Mus musculus|F|V-REGION|162967..163246|280 nt|1|||||280+0=280||
+ggcgagcaggtggagcagcgccct...cctcacctgagtgtccgggagggagacagcgcc
+attatcatctgcacctacacagacagtgcc..................actgcttacttc
+tcctggtacaagcaagaggcgggggcaggtcttcagttgcttatgagtgtcctttcaaat
+.........gtggacagaaaagaagaa...............caaggactcactgtctta
+ctgaacaagaaagac...aaacgactctctctgaacctcacagctgcccatcctggggac
+tcagccgtgtacttctgcgcagtcagtg
+>IMGT000082|TRAV3-3*01|Mus musculus|F|V-REGION|1248260..1248539|280 nt|1|||||280+0=280||
+ggcgagcaggtggagcagcgccct...cctcacctgagtgtccgggagggagacagtgcc
+gttatcacctgcacctacacagaccctaac..................agttattacttc
+ttctggtacaagcaagagccgggggcaagtcttcagttgcttatgaaggttttctcaagt
+.........acggaaataaacgaagga...............caaggattcactgtccta
+ctgaacaagaaagac...aaacgactctctctgaacctcacagctgcccatcctggggac
+tcagccgcgtacttctgcgcagtcagtg
+>IMGT000082|TRAV3-4*02|Mus musculus|F|V-REGION|1359330..1359609|280 nt|1|||||280+0=280||
+ggcgagcaggtggagcagcgccct...cctcacctgagtgtccgggagggagacagcgcc
+tttatcatctgcacctacacagacagtgcc..................actgcttacttc
+tactggtacaagcaagagccaggggcaggtcttcagttgcttatgagtgtcttttcaaat
+.........gtggacagaaaagaagaa...............caaggactcactgtctta
+ctgaacaagaaagac...aaacgactctctctgaacctcacagctgcccatcctggggac
+tcagctgtgtacttctgcgcagtcagtg
+>IMGT000082|TRAV3D-3*02|Mus musculus|F|V-REGION|554792..555071|280 nt|1|||||280+0=280||
+ggcgagcaggtggagcagcgccct...cctcacctgagtgtccgggagggagacagtgcc
+gttatcatctgcacctacacagaccctaac..................agttattacttc
+ttctggtacaagcaagagccgggggcaggtcttcagttgcttatgaaggttttctcaagt
+.........acggaaataaacgaagga...............caaggattcactgtccta
+ctgaacaagaaagac...aaacaactctctctgaacctcacagctgcccatcctggggac
+tcagccgtgtacttctgcgcagtcagtg
+>IMGT000082|TRAV3N-3*01|Mus musculus|F|V-REGION|865929..866208|280 nt|1|||||280+0=280||
+ggcgagcaggtggagcagcgccct...cctcacctgagtgtccgggagggagacagtgcc
+gttatcatctgcacctacacagaccctaac..................agttattacttc
+ttctggtacaagcaagagccgggggcaggtcttcagttgcttatgaaggttttctcaagt
+.........acggaaataaacgaagga...............caaggattcactgtccta
+ctgaacaagaaagac...aaacaactctctctgaacctcacagctgcccatcctggggac
+tcagccgtgtacttctgcgcagtcagtg
+>IMGT000082|TRAV4-2*02|Mus musculus|F|V-REGION|1000636..1000906|271 nt|1|||||271+0=271||
+ggaatgccggtggaacagaatcct...ccagccctgagtctttatgaaggagctgagtct
+ggtctgagatgcaatttttctaccaccatg.....................aaaggtgtc
+cagtggtttcaacaaaatcacagaggcagacttatcactctgttttacctggctcaa...
+............ggaacaaaggagaat...............ggaaggttaaagtcaaca
+ttcaattctaaggag...cgctacagcaccctgcacatcaaggatgcacagctggaggac
+tcaggcacttacttctgtgctgttgagg
+>IMGT000082|TRAV4-3*03|Mus musculus|F|V-REGION|1181173..1181443|271 nt|1|||||271+0=271||
+ggagataaggtgaaacaaagtccc...tcagcgctgagtctccaagaaggaaccaattct
+gctctgagatgcaatttttctatcgccgcg.....................acaactgtg
+cagtggttcctacagaatcccaggggcagcctcatcaatcttttttacctggttcca...
+............ggaacaaaggagaat...............gggaggttaaagtcagca
+ttcgattctaaggag...agctacagcaccctgcacatcagggatgcccagctggaggac
+tcaggcacttacttctgtgctgctgagg
+>IMGT000082|TRAV4-4/DV10*02|Mus musculus|F|V-REGION|1265940..1266210|271 nt|1|||||271+0=271||
+ggagatcaggtggagcagagtcct...tcagccctgagcctccacgagggaaccggttct
+gctctgagatgcaattttacgaccaccatg.....................agggctgtg
+cagtggttccaacagaattccaggggcagcctcatcaatctgttctacttggcttca...
+............ggaacaaaggagaat...............gggaggttaaagtcaaca
+ttcaattctaaggag...agctacagcaccctgcacatcagggatgcccagctggaggac
+tcaggcacttacttctgtgctgctgagg
+>IMGT000082|TRAV4D-2*02|Mus musculus|P|V-REGION|293165..293435|271 nt|1|||||271+0=271||
+ggaatgccggtggaacagaatcct...ccagccctgagtctttatgaaggagctgagtct
+ggtctgagatgcaatttttctaccaccatg.....................aaaggtgtc
+cagtggtttcaacaaaatcacagaggcagatttatcactctcttttacctggctcaa...
+............ggaacaaaggagaat...............ggaaggttaaagtcaaca
+ttcaattcttaggag...cgctacagcaccctgcacatcagggatgcacagctggaggac
+tcaggaacttacttctgcgctgctgagg
+>IMGT000082|TRAV4D-3*06|Mus musculus|F|V-REGION|482233..482503|271 nt|1|||||271+0=271||
+ggagataaggtgaagcaaagtccc...tcagcgctgagtctccaagagggaaccaattct
+gctctgagatgcaatttttctatcgctgcg.....................acaactgtg
+cagtggttcctacagaatcccaggggcagcctcatgaatcttttttacctggtgcca...
+............ggaacaaaggagaat...............gggaggttaaagtcagca
+tttgattctaaggag...agctacagcaccctgcacattagggatgcccagctggaggac
+tcaggcacttacttctgtgctgctgagg
+>IMGT000082|TRAV4D-4*03|Mus musculus|F|V-REGION|573152..573422|271 nt|1|||||271+0=271||
+ggagatcaggtggagcagagtcct...tcagccctgagcctccacgagggaaccggttct
+gctctgagatgcaattttactaccaccatg.....................agggctgtg
+cagtggttccgaaagaattccaggggcagcctcatcaatctgttctacttggcttca...
+............ggaacaaaggagaat...............gggaggctaaagtcagca
+tttgattctaaggag...cgctacagcaccctgcacatcagggatgcccagctggaggac
+tcaggcacttacttctgtgctgctgagg
+>IMGT000082|TRAV4N-3*01|Mus musculus|F|V-REGION|793170..793440|271 nt|1|||||271+0=271||
+ggagataaggtgaagcaaagtccc...tcagcgctgagtctccaagagggaaccaattct
+gctctgagatgcaatttttctatcgctgcg.....................acaactgtg
+cagtggttcctacagaatcccaggggcagcctcatgaatcttttttacctggtgcca...
+............ggaacaaaggagaat...............gggaggttaaagtcagca
+tttgattctaaggag...agctacagcaccctgcacattagggatgcccagctggaggac
+tcaggcacttacttctgtgctgctgagg
+>IMGT000082|TRAV4N-4*01|Mus musculus|F|V-REGION|884322..884592|271 nt|1|||||271+0=271||
+ggagatcaggtggagcagagtcct...tcagccctgagcctccacgagggaaccggttct
+gctctgagatgcaattttactaccaccatg.....................agggctgtg
+cagtggttccgaaagaattccaggggcagcctcatcaatctgttctacttggcttca...
+............ggaacaaaggagaat...............gggaggctaaagtcagca
+tttgattctaaggag...cgctacagcaccctgcacatcagggatgcccagctggaggac
+tcaggcacttacttctgtgctgctgagg
+>IMGT000082|TRAV5-1*02|Mus musculus|F|V-REGION|204836..205115|280 nt|1|||||280+0=280||
+ggtgagcaggtggaacagctccct...tcctccctgattgtccaggagggagccagtgtt
+ctgatcaactgctcctacacagacagtgcc..................tctgtctacttc
+ccttggtataagcaagagcctgggaagcgtcttcagttcatcatagacatccgttcaaat
+.........atggaaagaaagcagact...............caaagactcaccctttta
+tttgataagaaaacc...aaacacctttccctgcacattacagccactcagcctggagac
+tcagccatctacttctgctcagcaagta
+>IMGT000082|TRAV5-4*02|Mus musculus|F|V-REGION|1286268..1286547|280 nt|1|||||280+0=280||
+ggcgagcaggtggagcagcttcct...tccatcctgagagtccaggagggatccagtgcc
+agcatcaactgcagttatgaagacagtgcc..................tccaactacttc
+ccttggtataagcaagaacctggagagaatcctaagctcatcattgacattcgttcaaat
+.........atggaaagaaagcagatc...............caagaactcatcgtttta
+ctggataagaaagcc...aaacgcttctccctgcacatcacagacacccagcctggagac
+tcagccatgtacttctgtgctgcaagtg
+>IMGT000082|TRAV5D-4*05|Mus musculus|F|V-REGION|583986..584265|280 nt|1|||||280+0=280||
+ggtgagcaggtggagcagcttcct...tccatcctgagagtccaggagggatccagtgcc
+agcatcaactgcacttatgagaacagtgcc..................tccaactacttc
+ccttggtataagcaagaacctggagagaatcctaagctcatcattgacattcgttcaaat
+.........atggaaagaaagcagacc...............caaggactcatcgtttta
+ctggataagaaagcc...aaacgcttctccctgcacatcacagacacccagcctggagac
+tcagccatgtacttctgtgctgcaagtg
+>IMGT000082|TRAV5N-4*01|Mus musculus|F|V-REGION|895176..895455|280 nt|1|||||280+0=280||
+ggtgagcaggtggagcagcttcct...tccatcctgagagtccaggagggatccagtgcc
+agcatcaactgcacttatgagaacagtgcc..................tccaactacttc
+ccttggtataagcaagaacctggagagaatcctaagctcatcattgacattcgttcaaat
+.........atggaaagaaagcagacc...............caaggactcatcgtttta
+ctggataagaaagcc...aaacgcttctccctgcacatcacagacacccagcctggagac
+tcagccatgtacttctgtgctgcaagtg
+>IMGT000082|TRAV6-1*03|Mus musculus|F|V-REGION|220715..220995|281 nt|1|||||281+0=281||
+ggagactcagtaacccagatgcaa...ggtcaagtgaccctctcagaagacgacttccta
+tttataaactgtacttattcaaccacatgg..................tacccgactctt
+ttctggtatgtccaatatcctggagaaggtccacagctccttttgaaagtcacaacagcc
+.........aacaacaagggaatcagc...............agaggttttgaagctaca
+tatgataaaggaaca...acgtccttccacttgcagaaagcctcagtgcaggagtcagac
+tctgctgtgtactactgtgttctgggtga
+>IMGT000082|TRAV6-2*02|Mus musculus|F|V-REGION|249617..249897|281 nt|1|||||281+0=281||
+ggaaattcagtgacccagatgcaa...ggtcaagtgaccctttcagaagaggagtttcta
+tttataaactgtacctattcaaccacaggg..................tacccgactctt
+ttctggtatgtccaatatcctggagaaggtccacagctccttttgaaagtcacaacagcc
+.........aacaataagggaagcagc...............agaggttttgaagctaca
+tatgataaagggacc...acgtccttccacttgcagaaagcctcagtgcaggagtcagac
+tcggctgtgtactactgtgttctgggtga
+>IMGT000082|TRAV6-3*02|Mus musculus|F|V-REGION|1012130..1012410|281 nt|1|||||281+0=281||
+ggagactcagtgatccagatgcaa...ggtcaagtgaccctttcagaaaacgacttctta
+tttataaactgcacttattcaaccacaggg..................tacccgactctt
+ttctggtatgtccaatattctggagaaggtccacagctccttctgcaagtcacaactgcc
+.........aacaacaagggaagcagc...............agaggttttgaagctaca
+tatgataaaggaacc...acttccttccacttgcagaaaacctcagtgcaagagatagat
+tcggctgtgtactactgtgctatgagaga
+>IMGT000082|TRAV6-4*03|Mus musculus|F|V-REGION|1036537..1036817|281 nt|1|||||281+0=281||
+ggagattcagtgacccagaaacaa...ggtcaagtgaccctttcagaagatgacttccta
+tttataaattgcacttattctaccacaaca..................tacccaactctt
+ttgtggtatgtccaatatcttggacaaggtccacagctccttctgaaagtgacaactgcc
+.........aacaataagggaatcagc...............agaggctttgaagctaca
+tatgacaaagggacc...acgtccttccacttgcagaaagcctcagtgcaggagtcagac
+tcagccgtgtacttctgtgctctggttga
+>IMGT000082|TRAV6-5*04|Mus musculus|F|V-REGION|1073375..1073655|281 nt|1|||||281+0=281||
+ggagactcagtgactcagacagaa...ggcccagtgacactgtctgaagggacttctctg
+actgtgaactgttcctatgaaaccaaacag..................tacccaaccctg
+ttctggtatgtgcagtatcccggagaaggtccacagctcctctttaaagtcccaaaggcc
+.........aacgagaagggaagcaac...............agaggttttgaagctaca
+tacaataaagaagcc...acctccttccacttgcagaaagcctcagtgcaagagtcagac
+tcggctgtgtactactgtgctctgagtga
+>IMGT000082|TRAV6-6*04|Mus musculus|F|V-REGION|1099113..1099399|287 nt|1|||||287+0=287||
+ggagattccgtgactcaaacagaa...ggcccagtgaccgtctcagaaagcgagtccctg
+ataataaattgcacgtattcagccacaagcata............gcttaccctaatctt
+ttctggtatgttcgatatcctggagaaggtctacaactcctcctgaaagtcattacggct
+.........ggccagaagggaagcagc...............agagggtttgaagccaca
+tacaataaagaaacc...acctccttccacttgcagaaagcctcagtgcaagagtcagac
+tcggctgtgtactactgtgctctgggtga
+>IMGT000082|TRAV6-7/DV9*04|Mus musculus|F|V-REGION|1292172..1292452|281 nt|1|||||281+0=281||
+ggagactcagtgactcagacggaa...ggtcaagtggccctctcagaagaggactttctt
+acgatacactgcaactactcagcctcaggg..................tacccaaccctg
+ttctggtatgtgcagtatcccggagaagggccacagctcctctttagagcctcaagggac
+.........aaagagaaaggaagcagc...............agaggttttgaagctaca
+tatgataaagggacc...acctccttccacttgcggaaagcttcagtgcaagagtcagac
+tcggctgtgtactactgtgctctgagtga
+>IMGT000082|TRAV6D-3*03|Mus musculus|F|V-REGION|308672..308952|281 nt|1|||||281+0=281||
+ggagactcagtgatccagatgcaa...ggtcaagtgaccctttcagaaaacgacttctta
+tttataaactgcacttattcaaccacaggg..................tacccgactctt
+ttctggtatgtccaatattctggagaaggtccacagctccttctgcaagtcacaactgcc
+.........aacaacaagggaagcagc...............agaggttttgaagctaca
+tatgataaaggaacc...acttccttccacttgcagaaaacctcagtgcaagagatagat
+tcggctgtgtactactgtgctatgagtga
+>IMGT000082|TRAV6D-4*01|Mus musculus|F|V-REGION|335599..335879|281 nt|1|||||281+0=281||
+ggagattcagtgacccagaaacaa...ggtcaagtgaccctttcagaagatgacttccta
+tttataaattgcacttattctaccacaacg..................tacccaactctt
+ttctggtatgtccaatatcctggacaaggtccacagctccttctgaaagtcacaactgcc
+.........aacaacaagggaatcagc...............agaggctttgaagctaca
+tatgacaaagggacc...acctccttccacttacagaaagcctcagtgcaggagtcagac
+tcagccgtgtacttctgtgctctggttga
+>IMGT000082|TRAV6D-5*02|Mus musculus|F|V-REGION|377386..377666|281 nt|1|||||281+0=281||
+ggagactcggtgactcagacaaaa...ggtccagtgacattgtctgaagggacttctctg
+actgtgaactgttcctatgaaaccaaacag..................tacccaaccctg
+ttctggtatgtgcagtatcccggagaaggtccacagctcctctttaaagtcccaaaggcc
+.........aacgagaagggaagcaac...............agaggttttgaagctacg
+tatgataaagggacc...acctccttccacttgcagaaagcctcagtgcaggagtcagac
+tcggctgtgtactactgtgttctgggtga
+>IMGT000082|TRAV6D-6*02|Mus musculus|F|V-REGION|404106..404392|287 nt|1|||||287+0=287||
+ggagattccgtgactcaaacagaa...ggcccagtgaccgtctcagaaagcgagtccctg
+ataataaattgcacgtattcagccacaagcata............gcttaccctaatctt
+ttctggtatgttcgatatcctggagaaggtctacaactcctcctgaaagtcattacggct
+.........ggccagaagggaagcagc...............agagggtttgaagccaca
+tacaataaagaaacc...acctccttccacttgcagaaagcctcagtgcaagagtcagac
+tcggctgtgtactactgtgctctgggtga
+>IMGT000082|TRAV6D-7*04|Mus musculus|F|V-REGION|589851..590131|281 nt|1|||||281+0=281||
+ggagactcagtgactcagacggaa...ggtcaagtggccctctcagaagaggactttctt
+acgatacactgcaactactcagcctcaggg..................tacccagctctg
+ttctggtatgtgcagtatcccggagaaggtccacagttcctctttagagcctcaagggac
+.........aaagagaaaggaagcagc...............agaggttttgaagctaca
+tatgataaagggacc...acctccttccacttgcggaaagcctcagtgcaagagtcagac
+tcggctgtgtactactgtgctctgggtga
+>IMGT000082|TRAV6N-5*01|Mus musculus|F|V-REGION|687097..687377|281 nt|1|||||281+0=281||
+ggagactcagtgactcagacagaa...ggcccagtgacactgtctgaagggacttctctg
+actgtgaactgttcctatgaaaccaaacag..................tacccaaccctg
+ttctggtatgtgcagtatcccggagaaggtccacagctcctctttaaagtcccaaaggcc
+.........aacgagaagggaagcaac...............agaggttttgaagctaca
+tacaataaagaagcc...acctccttccacttgcagaaagcctcagtgcaagagtcagac
+tcggctgtgtactactgtgctctgggtga
+>IMGT000082|TRAV6N-6*01|Mus musculus|F|V-REGION|714884..715170|287 nt|1|||||287+0=287||
+ggagattccgtgactcaaacagaa...ggccaagtgactgtctcagaaagcaagtccctg
+ataataaattgcacgtattcagccacaagcata............ggttaccctaatctt
+ttctggtatgttcgatatcctggagaaggtctacaactcctcctgaaagtcattacggct
+.........ggccagaagggaagcagc...............agagggtttgaagccaca
+tacaataaagaagcc...acctccttccacttgcagaaagcctcagtgcaagagtcagac
+tcggctgtgtactactgcgctctgagtga
+>IMGT000082|TRAV6N-7*01|Mus musculus|F|V-REGION|901037..901317|281 nt|1|||||281+0=281||
+ggagactcagtgactcagacggaa...ggtcaagtggccctctcagaagaggactttctt
+acgatacactgcaactactcagcctcaggg..................tacccagctctg
+ttctggtatgtgcagtatcccggagaaggtccacagttcctctttagagcctcaagggac
+.........aaagagaaaggaagcagc...............agaggttttgaagctaca
+tatgataaagggacc...acctccttccacttgcggaaagcctcagtgcaagagtcagac
+tcggctgtgtactactgtgctctgggtga
+>IMGT000082|TRAV7-1*02|Mus musculus|F|V-REGION|237085..237361|277 nt|1|||||277+0=277||
+cagcagaaggtgcagcagagccca...gaatccctcattgttccagagggaggcatggcc
+tctctcaactgcactttcagtgatcgtaat..................tctcagtatttc
+tggtggtacagacagcattctggggaaggccccaaggcactgatgtccatcttctcc...
+.........aatggtgacaagaaggaa...............ggcagattcacagctcac
+ctcaataaggccagc...ctgcatgtatccctgcacatcaaagactcccaacccagtgac
+tctgctctctacttctgtgcagtgagca
+>IMGT000082|TRAV7-2*02|Mus musculus|F|V-REGION|972900..973176|277 nt|1|||||277+0=277||
+caacagaaggtgcagcagagccca...gaatccctcattgttccagagggaggcatggcc
+tctctcaactgcacttccagtgatcgtaat..................gttgactacttc
+tggtggtacagacagcactctgggaaaagccccaagatgctgatgtctatcttctcc...
+.........aatggtgaaaaggaagaa...............ggcagattcacagttcac
+ctcaataaagccagc...ctgcatacttccctgcacatcagagactcccagcccagtgac
+tctgctctctacctctgtgcagcaagca
+>IMGT000082|TRAV7-3*04|Mus musculus|F|V-REGION|1025596..1025872|277 nt|1|||||277+0=277||
+cagcagaaggtgcagcagagccca...gaatccctcattgtcccagagggagccatgacc
+tctctcaactgcactttcagcgacagtgct..................tctcagtatttt
+gcatggtacagacagcattctgggaaagcccccaaggcactgatgtccatcttctcc...
+.........aatggtgaaaaagaagaa...............ggcagattcacaattcac
+ctcaataaagccagt...ctgcatttctccctgcacatcagagactcccagcccagtgac
+tctgctctctacctctgtgcagtgagca
+>IMGT000082|TRAV7-4*02|Mus musculus|F|V-REGION|1043491..1043771|281 nt|1|||||281+0=281||
+cagcagaaggtgcagcagagccca...gaatccctcagtgtcccagagggaggcatggcc
+tctctcaactgcacttcaagtgatcgtaat..................tttcagtacttc
+tggtggtacagacagcattctggagaaggccccaaggcactgatgtcaatcttctct...
+.........gatggtgacaagaaagaa...............ggcagattcacagctcac
+ctcaataaggccagc...ctgcatgtttccctgcacatcagagactcccagcccagtgac
+tccgctctctacttctgtgcagctagtgagca
+>IMGT000082|TRAV7-5*03|Mus musculus|F|V-REGION|1113070..1113346|277 nt|1|||||277+0=277||
+cagcagaaggtgcagcagagccca...gaatccctcactgtctcagagggagccatggcc
+tctctcaactgcacgttcagtgatggtact..................tctaacaacttc
+aggtggtacagacagcattctgcgaaaggccttgaggtgctagtgtccatcttctct...
+.........gatggtgaaaaggaagaa...............ggcagatttacagctcac
+ctcaatagagccaac...ttgcatgtttccctacacatcagagaaccacaacccagtgac
+tctgctgtctacctctgtgcagtgagca
+>IMGT000082|TRAV7-6*02|Mus musculus|F|V-REGION|1299048..1299324|277 nt|1|||||277+0=277||
+caggagaaggtacagcagagccca...gaatccctcattgtcccagagggagccatggtc
+tccctcaactgcagtttcagcgacagtgct..................tctcagtccatc
+tggtggtaccaacagcatcctgggaaaggccccaaagcactaatatccatcttctct...
+.........aatggcaacaagaaagaa...............ggcagattgacagtttac
+ctcaatagagccagc...ctgcatgtttccctgcacatcaaagactcccagcccagtgac
+tccgctgtctacctctgtgcagtgagca
+>IMGT000082|TRAV7D-2*02|Mus musculus|F|V-REGION|266229..266505|277 nt|1|||||277+0=277||
+caacagaaggtgcagcagagccca...gaatccctcattgttccagagggaggcatggcc
+tctctcaactgcacttccagtgatcgtaat..................gttgactacttc
+tggtggtacagacagcactctgggaaaagccccaagatgctgatgtctatcttctcc...
+.........aatggtgaaaaggaagaa...............ggcagattcacagttcac
+ctcaataaagccagc...ctgcatacttccctgcacatcagagactcccagcccagtgac
+tctgctctctacctctgtgcagcaagca
+>IMGT000082|TRAV7D-3*03|Mus musculus|F|V-REGION|326597..326873|277 nt|1|||||277+0=277||
+cagcagaaggtgcagcagagccca...gaatccctcattgtcccagagggagccatgacc
+tctctcaactgcactttcagcgacagtgct..................tctcagtatttt
+gcatggtacagacagcattctgggaaagcccccaaggcactgatgtccatcttctcc...
+.........aatggtgaaaaagaagaa...............ggcagattcacaattcac
+ctcaataaagccagt...ctgcatttctcgctacacatcagagactcccagcccagtgac
+tctgctctctacctctgtgcagtgagca
+>IMGT000082|TRAV7D-4*02|Mus musculus|F|V-REGION|352145..352425|281 nt|1|||||281+0=281||
+cagcagaaggtgcagcagagccca...gaatccctcagtgtcccagagggaggcatggcc
+tctctcaactgcacttcaagtgatcgtaat..................tttcagtacttc
+tggtggtacagacagcattctggagaaggccccaaggcactgatgtccatcttctct...
+.........gatggtgacaagaaagaa...............ggcagattcacagctcac
+ctcaataaggccagc...ctgcatgtttccctgcacatcagagactcccagcccagtgac
+tccgctctctacttctgtgcagctagtgagca
+>IMGT000082|TRAV7D-5*02|Mus musculus|F|V-REGION|418144..418420|277 nt|1|||||277+0=277||
+cagcagaaggtgcagcagagccca...gaatccctcactgtctcagagggagccatggcc
+tctctcaactgcactttcagtgatcgttct..................tctgacaacttc
+aggtggtacagacagcattctgggaaaggccttgaggtgctggtgtccatcttctct...
+.........gatggtgaaaaggaagaa...............ggcagttttacagctcac
+ctcaatagagccagc...ctgcatgttttcctacacatcagagagccgcaacccagtgac
+tctgctctctacctctgtgcagtgagca
+>IMGT000082|TRAV7D-6*02|Mus musculus|F|V-REGION|602748..603024|277 nt|1|||||277+0=277||
+caggagaaggtacagcagagccca...gaatccctcattgtcccagagggagccatgtcc
+tccctcaactgcactttcagcaacagtgct..................tctcagtccatc
+tggtggtaccaacagcatcctgggaaaggccccgaagcactaatatccatattctct...
+.........aatggcaacaagaaagaa...............ggcagattgacagtttac
+ctcaatagagccagc...ctgcatgtttccctgcacatcagagactcccagcccagtgac
+tctgccgtctacctctgtgcagtgagca
+>IMGT000082|TRAV7N-4*01|Mus musculus|F|V-REGION|673628..673908|281 nt|1|||||281+0=281||
+cagcagaaggtgcagcagagccca...gaatccctcagtgtcccagagggaggcatggcc
+tctctcaactgcacttcaagtgatcgtaat..................tttcagtatttc
+tggtggtacagacagcattctggagaaggccccaaagcactgatgtccatcttctct...
+.........gatggtgacaagaaagaa...............ggcagattcacagctcac
+ctcaataaggccagc...ctgcatgtttccctgcacatcagagactcccagcccagtgac
+tccgctctctacttctgtgcagttagtgagca
+>IMGT000082|TRAV7N-5*01|Mus musculus|F|V-REGION|729205..729481|277 nt|1|||||277+0=277||
+cagcagaaggtgcagcagagccca...gaatccctcactgtctcagagggagccatggcc
+tctctcaactgcactttcagtgatcgttct..................tctgacaacttc
+aggtggtacagacagcattctgggaaaggccttgaggtgctggtgtccatcttctct...
+.........gatggtgaaaaggaagaa...............ggcagttttacagctcac
+ctcaatagagccagc...ctgcatgttttcctacacatcagagagccgcaacccagtgac
+tctgctctctacctctgtgcagtgagca
+>IMGT000082|TRAV7N-6*01|Mus musculus|F|V-REGION|906965..907241|277 nt|1|||||277+0=277||
+caggagaaggtacagcagagccca...gaatccctcattgtcccagagggagccatgtcc
+tccctcaactgcactttcagcaacagtgct..................tctcagtccatc
+tggtggtaccaacagcatcctgggaaaggccccgaagcactaatatccatattctct...
+.........aatggcaacaagaaagaa...............ggcagattgacagtttac
+ctcaatagagccagc...ctgcatgtttccctgcacatcagagactcccagcccagtgac
+tctgccgtctacctctgtgcagtgagca
+>IMGT000082|TRAV8-1*03|Mus musculus|F|V-REGION|1051989..1052265|277 nt|1|||||277+0=277||
+agtcaactagcagaagagaattcg...tgggccctgagcgtccacgagggtgaaagtgtc
+acggtgaattgtagttacaagacatccata.....................actgcccta
+cagtggtacagacagaagtcaggcaaaggccctgcccagctaatcttaatacgttcaaat
+.........gagagagagaagcgcaat...............ggaagactcagagccacc
+cttgacacctccagc...cagagcagctccttgtccatcactgctactcggtgtgaagac
+accgctgtgtacttctgtgctactgatg
+>IMGT000082|TRAV8-2*02|Mus musculus|P|V-REGION|1320595..1320871|277 nt|1|||||277+0=277||
+agccaatggggagaagagaatctt...caggctctgagcatccaggagggtgaagatgtc
+accatgaactgcagttacaagacttacaca.....................actgttgtt
+cagtggtacagacagaagtcaggcgaaggccctaccctggtaatcttaatacgttcaaat
+.........gagcgagagaagcgcagt...............ggaagactaagagccacc
+cttgacacctccagc...cagagcagctccctgtccatcactgctgctcagtgtgaagac
+actgctgtgtacttctgtgctactgatg
+>IMGT000082|TRAV8D-1*01|Mus musculus|F|V-REGION|360752..361028|277 nt|1|||||277+0=277||
+agtcaactagcagaagagaatctg...tgggccctgagcgtccacgagggtgaaagtgtc
+acggtgaattgtagttacaagacatccata.....................actgcccta
+cagtggtacagacagaagtcaggcgaaggccctgcccagctaatcttaatacgttcaaat
+.........gagagagagaagcgcaat...............ggaagactcagagccacc
+cttgacacctccagc...cagagcagctccttgtccatcactgctactcggtgtgaagac
+accgctgtgtacttctgtgctactgatg
+>IMGT000082|TRAV8D-2*03|Mus musculus|F|V-REGION|624648..624924|277 nt|1|||||277+0=277||
+agccaatggggagaagagaatctt...caggctctgagcatccaggagggtgaagatgtc
+accatgaactgcagttacaagacttataca.....................actgttgta
+cactggtacaggcaagactcaggcagaggccctgccctgataatcttaatacgttcaaat
+.........gagcgagagaagcgcagt...............ggaagactaagagccacc
+cttgacacctccagc...caaagtagctctctgtccatcactgctgctcagtgtgaagac
+actgctgtgtacttctgtgctacagatg
+>IMGT000082|TRAV8N-2*01|Mus musculus|F|V-REGION|928181..928457|277 nt|1|||||277+0=277||
+agccaatggggagaagagaatctt...caggctctgagcatccaggagggtgaagatgtc
+accatgaactgcagttacaagacttacaca.....................actgttgtt
+cagtggtacagacagaagtcaggcaaaggccctgcccagctaatcttaatacgttcaaat
+.........gagcgagagaagcgcagt...............ggaagactcagagccacc
+cttgacacttccagc...cagagcagctccctgtccatcactggtactctagctacagac
+actgctgtgtacttctgtgctactgatg
+>IMGT000082|TRAV9-1*02|Mus musculus|F|V-REGION|1070318..1070600|283 nt|1|||||283+0=283||
+acacagacagtttcccagtctgat...gcccatgtcactgtcttcgaaggagactcggtg
+gagctgagatgcaactattcctatggtgga..................tccatttacctc
+tcctggtacatccagcaccatggccatggcctccagtttctcctcaagtactattcggga
+......aacccagtggttcaaggagtg...............aacggcttcgaggctgag
+ttcagcaagagcgac...tcttccttccaccttcggaaagcctctgtgcactggagcgac
+tcggctgtgtacttctgtgctgtgagcg
+>IMGT000082|TRAV9-2*02|Mus musculus|F|V-REGION|1173265..1173547|283 nt|1|||||283+0=283||
+gctcagtcagtgacgcagcccgat...gctcgcgtcactgtctctgaaggagcctctctg
+cagctgagatgcaagtattcctactctggg..................acaccttatctg
+ttctggtatgtccagtacccgcggcaggggctgcagctgctcctcaagtactattcagga
+......gacccagtggttcaaggagtg...............aatggcttcgaggctgag
+ttcagcaagagtaac...tcttccttccacctgcggaaagcctctgtgcactggagcgac
+tctgctgtgtacttctgtgttttgagcg
+>IMGT000082|TRAV9-4*02|Mus musculus|F|V-REGION|1258381..1258663|283 nt|1|||||283+0=283||
+gctcagtcagtgacacagcccgat...gctcgcgtcactgtctctgaaggagcctctctg
+cagctgagatgcaagtattcctactctggg..................acgccttatctg
+ttctggtatgtccagtacccgcggcaggggctgcagctgctcctcaagtactattccgga
+......gacccagtggttcaaggagtg...............aatggctttgaggctgag
+ttcatcaagagtaac...tcttccttccacctgcggaaagcctctgtgcactggagcgac
+tcggctgtgtacttctgtgctgtgagcg
+>IMGT000082|TRAV9D-1*03|Mus musculus|F|V-REGION|374528..374810|283 nt|1|||||283+0=283||
+acacagacagtttcccagtctgat...gcccatgtcactgtcttcgaaggagactcggtg
+gagctgagatgcaactattcctatggtgga..................tccatttacctc
+tcctggtacatccagcaccatggccgtggcctccagtttctcctcaagtactattcggga
+......aacccagtggttcaaggagtg...............aacggcttcaaggctgag
+ttcagcaagagcgac...tcttccttccaccttcggaaagcctctgtgcactggagcgac
+tcggctgtgtacttctgtgctgtgagcg
+>IMGT000082|TRAV9D-2*05|Mus musculus|ORF|V-REGION|474369..474651|283 nt|1|||||283+0=283||
+gctcagtcagtgacgcagcccgat...gctcgcgtcactgtctctgaaggagcctctctg
+cagctgagatgcaagtattcctcctctggg..................acaccttatctg
+ttctggtatgtccagtacccgcggcaggggctgcagctgctcctcaagtactattccgga
+......gacccagtggttcaaggagtg...............aatggctttgaggctgag
+ttcagcaagagtaac...tcttccttccacctgcggaaagcctctgtgcactggagcgac
+tcggctgtgtacttctgtgttctgagcg
+>IMGT000082|TRAV9D-3*03|Mus musculus|F|V-REGION|502863..503145|283 nt|1|||||283+0=283||
+gctcagtcagtgacgcagcccgat...gctcgcgtcactgtctctgaaggagcctctctg
+cagctgagatgcaagtattcctactttggg..................acaccttatctg
+ttctggtatgtccagtacccgcggcaggggctgcagctgctcctcaagtactatccagga
+......gacccagtggttcaaggagtg...............aatggctttgaggctgag
+ttcagcaagagtaac...tcttccttccacctgcggaaagcctctgtgcactggagcgac
+tgggctgtgtacttctgtgctgtgagca
+>IMGT000082|TRAV9N-2*01|Mus musculus|F|V-REGION|785305..785587|283 nt|1|||||283+0=283||
+gctcagtcagtgacgcagcccgat...gctcgcgtcactgtctctgaaggagcctctctg
+cagctgagatgcaagtattcctcctctggg..................acaccttatctg
+ttctggtatgtccagtacccgcggcaggggctgcagctgctcctcaagtactattccgga
+......gacccagtggttcaaggagtg...............aatggctttgaggctgag
+ttcagcaagagtaac...tcttccttccacctgcggaaagcctctgtgcactggagcgac
+tcggctgtgtacttctgtgttctgagcg
+>IMGT000082|TRAV9N-3*01|Mus musculus|F|V-REGION|813853..814135|283 nt|1|||||283+0=283||
+gctcagtcagtgacgcagcccgat...gctcgcgtcactgtctctgaaggagcctctctg
+cagctgagatgcaagtattcctactttggg..................acaccttatctg
+ttctggtatgtccagtacccgcggcaggggctgcagctgctcctcaagtactatccagga
+......gacccagtggttcaaggagtg...............aatggctttgaggctgag
+ttcagcaagagtaac...tcttccttccacctgcggaaagcctctgtgcactggagcgac
+tgggctgtgtacttctgtgctgtgagca
+>IMGT000082|TRAV9N-4*01|Mus musculus|F|V-REGION|876781..877063|283 nt|1|||||283+0=283||
+gctcagtcagtgacacagcccgat...gctcgcgtcactgtctctgaaggagcctctctg
+cagctgagatgcaagtattcctactctgcg..................acaccttatctg
+ttctggtatgtccagtacccgcggcaggggctgcagctgctcctcaagtactattcagga
+......gacccagtggttcaaggagtg...............aacagcttcgaggctgag
+ttcagcaagagtaac...tcttccttccacctgcagaaagcctctgtgcactggagcgac
+tcggctgtgtacttctgtgctctgagca

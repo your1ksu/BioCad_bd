@@ -1,0 +1,908 @@
+>IMGT000068|IGKV1-108*02|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+............................................................
+............tctagtaagagccttgtacacagt...aatggaaattcctatttggat
+tggcacctgcagaagccaggccagtctctacaactcctgatctatgaggtt.........
+............tccaaacgaaattctggggttcca...gacaggttcagtggcagtgga
+......tcagggacagatttcacacttaagatcagcagagtagagcctgaggatttggga
+gtttattattgcttccaaggtacacatttacctcc
+>IMGT000068|IGKV1-110*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatgttgtgatgacccaaactccactctccctgcctgtcagtcttggagatcaagcctcc
+atctcttgcagatctagtcagagccttgtacacagt...aatggaaacacctatttacat
+tggtacctgcagaagccaggccagtctccaaagctcctgatctacaaagtt.........
+............tccaaccgattttctggggtccca...gacaggttcagtggcagtgga
+......tcagggacagatttcacactcaagatcagcagagtggaggctgaggatctggga
+gtttatttctgctctcaaagtacacatgttcctcc
+>IMGT000068|IGKV1-115*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+gatgttctgttgacccaaactccacttttcctgcctgtcagccttggagatcaagcatct
+atctcttgctcatcaagtcagagccttgttcacagt...aatggaaattcctatttggaa
+tggcacctgcagaagtcaggccagtctctacaactcctgatctatgaggtt.........
+............tccaaacgacattctggtgttcca...gacaggttcagtggcagtgga
+......tcagggacagatttcacacttaagatcagcagagtagagcctgaggatttggga
+gtttattactgcttccaaggtacacatttacctcc
+>IMGT000068|IGKV1-117*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatgttttgatgacccaaactccactctccctgcctgtcagtcttggagatcaagcctcc
+atctcttgcagatctagtcagagcattgtacatagt...aatggaaacacctatttagaa
+tggtacctgcagaaaccaggccagtctccaaagctcctgatctacaaagtt.........
+............tccaaccgattttctggggtccca...gacaggttcagtggcagtgga
+......tcagggacagatttcacactcaagatcagcagagtggaggctgaggatctggga
+gtttattactgctttcaaggttcacatgttcctcc
+>IMGT000068|IGKV1-122*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatgctgtgatgacccaaactccactctccctgcctgtcagtcttggagatcaagcctcc
+atctcttgcaggtctagtcagagccttgaaaacagt...aatggaaacacctatttgaac
+tggtacctccagaaaccaggccagtctccacagctcctgatctacagggtt.........
+............tccaaccgattttctggggtccta...gacaggttcagtggtagtgga
+......tcagggacagatttcacactgaaaatcagcagagtggaggctgaggatttggga
+gtttatttctgcctccaagttacacatgtccctcc
+>IMGT000068|IGKV1-131*01|Mus musculus_C57BL/6J|ORF|V-REGION| | | | | | | | | | |
+gatgttgtgatgacccagactccactcactttgtcggttaccattggacaaccagcctcc
+atctcttgcaagtcaagtcagagcctcttacatagt...aatggaaagacatatttgaat
+tggttacaacagaggcctggccaggctccaaagcgcctattctatctggta.........
+............tccaaactggaccctggcatccct...gacagtttcagtggcagtgga
+......tcagagacagattttacactgaaaatcagcagagtggaggctgaagatttggga
+gtttattactgcctgcaaggtacacattttcctct
+>IMGT000068|IGKV1-132*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatgttgtgatgacccagactccactgtctttgtcggttaccattggacaaccagcctct
+atctcttgcaagtcaagtcagagcctcttatatagt...aatggaaagacatatttgaat
+tggttacaacagaggcctggccaggctccaaagcacctaatgtatcaggtg.........
+............tccaaactggaccctggcatccct...gacaggttcagtggcagtgga
+......tcagaaacagattttacacttaaaatcagcagagtggaggctgaagatttggga
+gtttattactgcttgcaaggtacatattatcctca
+>IMGT000068|IGKV1-133*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatgttgtgatgacccagactccactcactttgtcggttaccattggacaaccagcctct
+atctcttgcaagtcaagtcagagcctcttatatagt...aatggaaaaacctatttgaat
+tggttattacagaggccaggccagtctccaaagcgcctaatctatctggtg.........
+............tctaaactggactctggagtccct...gacaggttcactggcagtgga
+......tcaggaacagattttacactgaaaatcagcagagtggaggctgaggatttggga
+gtttattactgcgtgcaaggtacacattttcctca
+>IMGT000068|IGKV1-135*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatgttgtgatgacccagactccactcactttgtcggttaccattggacaaccagcctcc
+atctcttgcaagtcaagtcagagcctcttagatagt...gatggaaagacatatttgaat
+tggttgttacagaggccaggccagtctccaaagcgcctaatctatctggtg.........
+............tctaaactggactctggagtccct...gacaggttcactggcagtgga
+......tcagggacagatttcacactgaaaatcagcagagtggaggctgaggatttggga
+gtttattattgctggcaaggtacacattttcctca
+>IMGT000068|IGKV1-35*01|Mus musculus_C57BL/6J|ORF|V-REGION| | | | | | | | | | |
+gacgttgtgatgacccagactccactcactttatcagctaccattggacaatcagcctcc
+gtctcttgcaggtcaagtcagagtctcttacatagt...aatggaaacacatacttgaat
+tggtttgtacaaaggccaggcccatctccacagcttctaatttatggggtg.........
+............tttgaacaggaatctggggttcct...gacaggttcagtggcagtggg
+......tctggaacagatttcacactcaagatcagcagagtggaggctgaggatttggga
+gtttattactgcatgcaagctacctatgaacctcc
+>IMGT000068|IGKV1-88*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatgttgtggtgactcaaactccactctccctgcctgtcagctttggagatcaagtttct
+atctcttgcaggtctagtcagagtcttgcaaacagt...tatgggaacacctatttgtct
+tggtacctgcacaagcctggccagtctccacagctcctcatctatgggatt.........
+............tccaacagattttctggggtgcca...gacaggttcagtggcagtggt
+......tcagggacagatttcacactcaagatcagcacaataaagcctgaggacttggga
+atgtattactgcttacaaggtacacatcagcctcc
+>IMGT000068|IGKV1-99*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatgttgttctgacccaaactccactctctctgcctgtcaatattggagatcaagcctct
+atctcttgcaagtctactaagagtcttctgaatagt...gatggattcacttatttggac
+tggtacctgcagaagccaggccagtctccacagctcctaatatatttggtt.........
+............tctaatcgattttctggagttcca...gacaggttcagtggcagtggg
+......tcaggaacagatttcacactcaagatcagcagagtggaggctgaggatttggga
+gtttattattgcttccagagtaactatcttcctct
+>IMGT000068|IGKV10-94*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatatccagatgacacagactacatcctccctgtctgcctctctgggagacagagtcacc
+atcagttgcagtgcaagtcagggcatt..................agcaattatttaaac
+tggtatcagcagaaaccagatggaactgttaaactcctgatctattacaca.........
+............tcaagtttacactcaggagtccca...tcaaggttcagtggcagtggg
+......tctgggacagattattctctcaccatcagcaacctggaacctgaagatattgcc
+acttactattgtcagcagtatagtaagcttcctcc
+>IMGT000068|IGKV10-95*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatatccagatgacacagactacttcctccctgtctgcctctctgggagacagagtcacc
+atcagttgcagggcaagtgaggacatt..................agcacttatttaaac
+tggtatcagcagaaaccagatggaactgttaaactcctgatctattacaca.........
+............tcaggattacactcaggagtccca...tcaaggttcagtggcagtggg
+......tctggggcagattattctctcaccatcagcaacctggaacctgaagatattgcc
+acttactattgtcagcagtatagtaagcttcctcc
+>IMGT000068|IGKV10-96*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatatccagatgacacagactacatcctccctgtctgcctctctgggagacagagtcacc
+atcagttgcagggcaagtcaggacatt..................agcaattatttaaac
+tggtatcagcagaaaccagatggaactgttaaactcctgatctactacaca.........
+............tcaagattacactcaggagtccca...tcaaggttcagtggcagtggg
+......tctggaacagattattctctcaccattagcaacctggagcaagaagatattgcc
+acttacttttgccaacagggtaatacgcttcctcc
+>IMGT000068|IGKV11-106*02|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatgttctaatgacccagtctccatcctccctgtctgcatctttgggagagagagtctcc
+ctgacttgccaggcaagtcagggcatt..................agcaataatttaaac
+tggtatcaacaaacaccagggaaagctcctaggctcttgatctatgatgca.........
+............agcaaattggaagatggggtccct...tcaaggttcagtggcactgga
+......tatcggacagatttcaatttcaccatcagcagcctggaggaagaagatgtggca
+acttatttctgtctacagcataggtatctccctcc
+>IMGT000068|IGKV11-125*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatgtccagatgattcagtctccatcctccctgtctgcatctttgggagacatagtcacc
+atgacttgccaggcaagtcagggcact..................agcattaatttaaac
+tggtttcagcaaaaaccagggaaagctcctaagctcctgatctatggtgca.........
+............agcaacttggaagatggggtccca...tcaaggttcagtggcagtaga
+......tatgggacagatttcactctcaccatcagcagcctggaggatgaagatatggca
+acttatttctgtctacagcatagttatctccctcc
+>IMGT000068|IGKV12-104-2*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattaggatgatccagacaccagcctccctttctggatctctgggagaaagtgttacc
+atcacatgccaggcaagccaggacatt..................ggcaaaagtttatta
+tggtatcagcagaagactggaaatccccctaagattctgatctatactaca.........
+............tccaacttggcagatgggatttca...tcaagggtcagtggcagtgga
+......tcaggtacacagttttttctcaagttcagcagcctgaagcctgaagatactgca
+acctattactgttgtcagggttactggttattcc
+>IMGT000068|IGKV12-38*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacatccagatgactcagtctccagcctccctggctgcatctgtgggagaaactgtcacc
+atcacatgtcgagcaagtgagaacatt..................tactacagtttagca
+tggtatcagcagaagcaagggaaatctcctcagctcctgatctataatgca.........
+............aacagcttggaagatggtgtccca...tcgaggttcagtggcagtgga
+......tctgggacacagtattctatgaagatcaacagcatgcagcctgaagataccgca
+acttatttctgtaaacaggcttatgacgttcctcc
+>IMGT000068|IGKV12-40*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+gacattcagatgactcagtctccagcctccctatctgcatctgtgggagaaactgtcacc
+atcacatgtcaagcaagtgagaatatt..................gccagtgatttagca
+tggtattagcagaaacagggaaaatctcctcagctcctggtctatgatgcg.........
+............agaaacttagcagatggtgtgcca...tcaaggttcagtggcagtgga
+......tcaggcacacactattctctcaatatccacagcctgcagtctgaagatgttgcg
+agatattactgtcaacattattatggtactcctcc
+>IMGT000068|IGKV12-41*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacatccagatgactcagtctccagcctccctatctgcatctgtgggagaaactgtcacc
+atcacatgtcgagcaagtgggaatatt..................cacaattatttagca
+tggtatcagcagaaacagggaaaatctcctcagctcctggtctataatgca.........
+............aaaaccttagcagatggtgtgcca...tcaaggttcagtggcagtgga
+......tcaggaacacaatattctctcaagatcaacagcctgcagcctgaagattttggg
+agttattactgtcaacatttttggagtactcctcc
+>IMGT000068|IGKV12-44*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacatccagatgactcagtctccagcctccctatctgcatctgtgggagaaactgtcacc
+atcacatgtcgagcaagtgagaatatt..................tacagttatttagca
+tggtatcagcagaaacagggaaaatctcctcagctcctggtctataatgca.........
+............aaaaccttagcagaaggtgtgcca...tcaaggttcagtggcagtgga
+......tcaggcacacagttttctctgaagatcaacagcctgcagcctgaagattttggg
+agttattactgtcaacatcattatggtactcctcc
+>IMGT000068|IGKV12-46*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacatccagatgactcagtctccagcctccctatctgtatctgtgggagaaactgtcacc
+atcacatgtcgagcaagtgagaatatt..................tacagtaatttagca
+tggtatcagcagaaacagggaaaatctcctcagctcctggtctatgctgca.........
+............acaaacttagcagatggtgtgcca...tcaaggttcagtggcagtgga
+......tcaggcacacagtattccctcaagatcaacagcctgcagtctgaagattttggg
+agttattactgtcaacatttttggggtactcctcc
+>IMGT000068|IGKV12-47*01|Mus musculus_C57BL/6J|ORF|V-REGION| | | | | | | | | | |
+gacatccaggtgactcagtctccagcgtccctgtctgcacctgtgggagaaagtgtctcc
+atcacatgtaaagcaagtgaagaaatt..................tatagtgctttaaat
+tggtatcagcagaaaccagggaaatctccacagctcctgatctattatgca.........
+............accagcttgggagatgatgtgccc...tcaaggttcagtggcagtaaa
+......tctggcacacagtattccctcaagatcagcagcctgcagcctgaagatcttgca
+acttattactgtgaacagagtta
+>IMGT000068|IGKV12-49*02|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+gacatccagttgactcactctccagcctccctgtctttgtctgtgagagaaagcatcata
+gtcagatgtctaaaaagtgagaaaatt..................tatagtgaattacat
+tggtatcagcagaaacagggaaaatcttctcagctcctgatctacagtaca.........
+............accagcttggcagatgatgtgcca...tcacggttcagtggcagcgga
+......tctggtacacaatattctctgagt
+>IMGT000068|IGKV12-89*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacatccagatgactcagtctccagcttcactgtctgcatctgtgggagaaactgtcacc
+atcacatgtggagcaagtgagaatatt..................tacggtgctttaaat
+tggtatcagcggaaacagggaaaatctcctcagctcctgatctatggtgca.........
+............accaacttggcagatggcatgtca...tcgaggttcagtggcagtgga
+......tctggtagacagtattctctcaagatcagtagcctgcatcctgacgatgttgca
+acgtattactgtcaaaatgtgttaagtactcctcc
+>IMGT000068|IGKV12-98*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattcagatgacccagtctcctgcctcccagtctgcatctctgggagaaagtgtcacc
+atcacatgcctggcaagtcagaccatt..................ggtacatggttagca
+tggtatcagcagaaaccagggaaatctcctcagctcctgatttatgctgca.........
+............accagcttggcagatggggtccca...tcaaggttcagtggtagtgga
+......tctggcacaaaattttctttcaagatcagcagcctacaggctgaagattttgta
+agttattactgtcaacaactttacagtactcctct
+>IMGT000068|IGKV13-50-1*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+gacatcagcatgacacaatcaccatcc...ttgtctgcatctctaggagacagagtcatc
+cttacctgcaggccatatgagggtatt..................aatgattggttagcc
+tgatgtcagtagaaactagggaatgttcataaacttctaatataccatcct.........
+............atcagtgcggaatctggagtttct...tcaaggttcagtggcagtggt
+......tttgggaaagattttacttttaccattatcaatctgcagcctgaagagatcgct
+acttattactgtcaacagtattttagtattttgttttgttgtctac
+>IMGT000068|IGKV13-57-2*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+gacatcagcatgacacaatcaccatcc...ttgtctgcatctctaggagacagagtcatc
+cttacctgcaggccatataagggtatt..................aatgattggttagcc
+tgatgtcagtagaaactacggaatgttcataaacttctaatataccatcct.........
+............atcagtgtggaatgaggagtttct...tcaaggatcagtggcagtggt
+......tttgggaaagattttacttttaccattagcaacctgtagcctgaagatatagct
+acttattactgtcaacagtattttagtattttgttttgttgtctac
+>IMGT000068|IGKV13-76*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+gacatccaaatgacataaccttcatcctccttgtcttcatctctaggagacagagtcaca
+attacttgcaggccagatgagggtatt..................aatgattggtgagcc
+tggtatcagtggaaaccagggaatgttcctaaactcctaatataccattgt.........
+............accagtgttgaatctggagtttct...tcaaggttcagtggcagtgaa
+......tttgggaaagattttactcttgctgttagcaaactgcagtgtgaaaatattgat
+acttattactgtcaacagtgttttagtatacctat
+>IMGT000068|IGKV13-77-1*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+gacatccagatgacacaatctccatcctccttgtctgtatctctaggagacagagttacc
+atttcttgcaggccagatgtgagtatt..................aatgattggtgaccc
+tgatttcagtagaaaccagggaatgctcataaacacctaatataccattct.........
+............accagtgtggaatctggaattcct...tcaaggttcagtggcagtgaa
+......tttgggaaagattttactctaactgttaacaaactgaagtgtgaaaatattgct
+acttattactgtcaacagtatttttttataactac
+>IMGT000068|IGKV13-82*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+gacatccaaatggcataatcttcatcctccttgtattcatctctaggagacagagtcacc
+attacttgcaggccagatgaaggtatt..................aatgattggtgagcc
+tggtatcagcagaaaccagggaatgttcctaaattcctaatataccattct.........
+............accagtgttgaatctggagtttct...tcaaggttcagtggcagtgaa
+......tatgggaaagattttactcttgctgttagcaatctgcagcatgaaaatattgct
+acttattactgtgaacagtacttagtatacctac
+>IMGT000068|IGKV13-84*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacatccagatgacacaatcttcatcctccttttctgtatctctaggagacagagtcacc
+attacttgcaaggcaagtgaggacata..................tataatcggttagcc
+tggtatcagcagaaaccaggaaatgctcctaggctcttaatatctggtgca.........
+............accagtttggaaactggggttcct...tcaagattcagtggcagtgga
+......tctggaaaggattacactctcagcattaccagtcttcagactgaagatgttgct
+acttattactgtcaacagtattggagtactcctcc
+>IMGT000068|IGKV13-85*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacatccagatgacacaatcttcatcctacttgtctgtatctctaggaggcagagtcacc
+attacttgcaaggcaagtgaccacatt..................aataattggttagcc
+tggtatcagcagaaaccaggaaatgctcctaggctcttaatatctggtgca.........
+............accagtttggaaactggggttcct...tcaagattcagtggcagtgga
+......tctggaaaggattacactctcagcattaccagtcttcagactgaagatgttgct
+acttattactgtcaacagtattggagtactcctcc
+>IMGT000068|IGKV14-100*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacatcctgatgacccaatctccatcctccatgtctgtatctctgggagacacagtcagc
+atcacttgccatgcaagtcagggcatt..................agcagtaatataggg
+tggttgcagcagaaaccagggaaatcatttaagggcctgatctatcatgga.........
+............accaacttggaagatggagttcca...tcaaggttcagtggcagtgga
+......tctggagcagattattctctcaccatcagcagcctggaatctgaagattttgca
+gactattactgtgtacagtatgctcagtttcctcc
+>IMGT000068|IGKV14-111*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacatcaagatgacccagtctccatcttccatgtatgcatctctaggagagagagtcact
+atcacttgcaaggcgagtcaggacatt..................aatagctatttaagc
+tggttccagcagaaaccagggaaatctcctaagaccctgatctatcgtgca.........
+............aacagattggtagatggggtccca...tcaaggttcagtggcagtgga
+......tctgggcaagattattctctcaccatcagcagcctggagtatgaagatatggga
+atttattattgtctacagtatgatgagtttcctcc
+>IMGT000068|IGKV14-126*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacatcaagatgacccagtctccatcctccatgtatgcatcgctgggagagagagtcact
+atcacttgcaaggcgagtcaggacatt..................aaaagctatttaagc
+tggtaccagcagaaaccatggaaatctcctaagaccctgatctattatgca.........
+............acaagcttggcagatggggtccca...tcaagattcagtggcagtgga
+......tctgggcaagattattctctaaccatcagcagcctggagtctgacgatacagca
+acttattactgtctacagcatggtgagagccctcc
+>IMGT000068|IGKV14-130*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gaaatccagatgacccagtctccatcctctatgtctgcatctctgggagacagaataacc
+atcacttgccaggcaactcaagacatt..................gttaagaatttaaac
+tggtatcagcagaaaccagggaaacccccttcattcctgatctattatgca.........
+............actgaactggcagaaggggtccca...tcaaggttcagtggcagtggg
+......tctgggtcagactattctctgacaatcagcaacctggagtctgaagattttgca
+gactattactgtctacagttttatgagtttcctcc
+>IMGT000068|IGKV14-87-2*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacatccaaatgacccagtcctcatcatttctctctgcatctctaggagatcatcttaca
+atcaactgcagggccagtaaggatatt..................aacaagtattttgct
+tgggttcaacagaagccaaggaaggctccaaggatgttgattcattttgct.........
+............tccaccttgctacctggggttcca...gaaaagttcagtgggagtgga
+......tctgggacagatttttctctcactatcagaaacatagagtctgaagatattgca
+atgtattactgtctacagtattctgagcatcctcc
+>IMGT000068|IGKV15-101*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+aatacccagatgaaccagactccatccactctatctgcatctagtggagaacaagtaatt
+atcaattgttgagccagtgagaacatt..................aatagttggtcttcc
+tggcaccagcagataccagggaatgctcctcaaatattgatctataaggca.........
+............tccaccttgcatacttgggtccca...tcgaggttcagtggcagttga
+......tctggggcagattactctctcatcagcagcagcctgcagcctgaagacattgac
+acttactattgtgtacagactaagagttttcccct
+>IMGT000068|IGKV15-102*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+gatacctagatgaaccagtctccatgcactctatctgcatctattagagaatgaatagtt
+atcaattatcataccagtgagaaagtt..................aatacttggttatcc
+tgtaatcagtagaaactagggaattatcctaaactactgatctataacata.........
+............tccaacttgcatactggggtccca...tcaaggttaagtggcagtaga
+......tctgggacagattactctctcttcatcagcagcctgcagctagaagatattgcc
+acttactactgtgtacagtctagcagtctttctct
+>IMGT000068|IGKV15-103*01|Mus musculus_C57BL/6J|ORF|V-REGION| | | | | | | | | | |
+gacatccagatgaaccagtctccatccagtctgtctgcatcccttggagacacaattacc
+atcacttgccatgccagtcagaacatt..................aatgtttggttaagc
+tggtaccagcagaaaccaggaaatattcctaaactattgatctataaggct.........
+............tccaacttgcacacaggcgtccca...tcaaggtttagtggcagtgga
+......tctggaacaggtttcacattaaccatcagcagcctgcagcctgaagacattgcc
+acttactactgtcaacagggtcaaagttatcctct
+>IMGT000068|IGKV15-97*02|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+gacatccagatgacccagtctccatccactctgtctgcatctcttggagacagagtcacc
+atcacttgccatgccagtcagaacatc..................aagagttggttagcc
+tggtgccagcagaaaccagggaattctcctaaactattgatctatgaggca.........
+............accaaacttcaaatagga...............ttcagtggcagtgga
+......tatgggacagattttactatctctattagcagcctgcagtctgaagacattgtg
+atttaccattgtctatagcatgagacctgttga
+>IMGT000068|IGKV16-104*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatgtccagataacccagtctccatcttatcttgctgcatctcctggagaaaccattact
+attaattgcagggcaagtaagagcatt..................agcaaatatttagcc
+tggtatcaagagaaacctgggaaaactaataagcttcttatctactctgga.........
+............tccactttgcaatctggaattcca...tcaaggttcagtggcagtgga
+......tctggtacagatttcactctcaccatcagtagcctggagcctgaagattttgca
+atgtattactgtcaacagcataatgaatacccgtac
+>IMGT000068|IGKV17-121*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gaaacaactgtgacccagtctccagcatccctgtccatggctataggagaaaaagtcacc
+atcagatgcataaccagcactgatatt..................gatgatgatatgaac
+tggtaccagcagaagccaggggaacctcctaagctccttatttcagaaggc.........
+............aatactcttcgtcctggagtccca...tcccgattctccagcagtggc
+......tatggtacagattttgtttttacaattgaaaacatgctctcagaagatgttgca
+gattactactgtttgcaaagtgataacttgcctct
+>IMGT000068|IGKV17-127*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gaaacaactgtgacccagtctccagcatccctgtccgtggctacaggagaaaaagtcact
+atcagatgcataaccagcactgatatt..................gatgatgatatgaac
+tggtaccagcagaagccaggggaacctcctaagctccttatttcagaaggc.........
+............aatactcttcgtcctggagtccca...tcccgattctccagcagtggc
+......tatggcacagattttgtttttacaattgaaaacacgctctcagaagatgttgca
+gattactactgtttgcaaagtgataacatgcctct
+>IMGT000068|IGKV18-36*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+actggagaaacaacacaggctccagcttctctgagtttttctcttggtgaaacagcaaca
+ctgtcatgcaggtccagtgagagtgtt..................ggcagctacttagcc
+tggtaccagcagaaagcagagcaagttccccggctccttatccatagtgcc.........
+............tccactagggccggtggtgtccca...gtccggttcagtggcactggg
+......tctgggacagacttcactctcaccatcagcagtctagaacctgaagatgctgca
+gtttactactgtcaacctttcaaaagttggtcata
+>IMGT000068|IGKV19-93*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacatccagatgacacagtctccatcctcactgtctgcatctctgggaggcaaagtcacc
+atcacttgcaaggcaagccaagacatt..................aacaagtatatagct
+tggtaccaacacaagcctggaaaaggtcctaggctgctcatacattacaca.........
+............tctacattacagccaggcatccca...tcaaggttcagtggaagtggg
+......tctgggagagattattccttcagcatcagcaacctggagcctgaagatattgca
+acttattattgtctacagtatgataatcttctacc
+>IMGT000068|IGKV2-109*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatattgtgatgacgcaggctgcattctccaatccagtcactcttggaacatcagcttcc
+atctcctgcaggtctagtaagagtctcctacatagt...aatggcatcacttatttgtat
+tggtatctgcagaagccaggccagtctcctcagctcctgatttatcagatg.........
+............tccaaccttgcctcaggagtccca...gacaggttcagtagcagtggg
+......tcaggaactgatttcacactgagaatcagcagagtggaggctgaggatgtgggt
+gtttattactgtgctcaaaatctagaacttcctcc
+>IMGT000068|IGKV2-112*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatattgtgataacccaggatgaactctccaatcctgtcacttctggagaatcagtttcc
+atctcctgcaggtctagtaagagtctcctatataag...gatgggaagacatacttgaat
+tggtttctgcagagaccaggacaatctcctcagctcctgatctatttgatg.........
+............tccacccgtgcatcaggagtctca...gaccggtttagtggcagtggg
+......tcaggaacagatttcaccctggaaatcagtagagtgaaggctgaggatgtgggt
+gtgtattactgtcaacaacttgtagagtatcctc
+>IMGT000068|IGKV2-116*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatattgtgatgacgcaggctgccttctccaatccagtcactcttggaacatcagcttcc
+atctcctgcaggtctagtaagaatctcctacatagt...aatggcatcacttatttgtat
+tggtatctgcagaggccaggccagtctcctcagctcctgatatatcgggtg.........
+............tccaatctggcctcaggagtccca...aacaggttcagtggcagtgag
+......tcaggaactgatttcacactgagaatcagcagagtggaggctgaggatgtgggt
+gtttattactgtgctcaactgctagaactccctcc
+>IMGT000068|IGKV2-137*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatattgtgatgactcaggctgcaccctctgtacctgtcactcctggagagtcagtatcc
+atctcctgcaggtctagtaagagtctcctgcatagt...aatggcaacacttacttgtat
+tggttcctgcagaggccaggccagtctcctcagctcctgatatatcggatg.........
+............tccaaccttgcctcaggagtccca...gacaggttcagtggcagtggg
+......tcaggaactgctttcacactgagaatcagtagagtggaggctgaggatgtgggt
+gtttattactgtatgcaacatctagaatatccttt
+>IMGT000068|IGKV20-101-2*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+aatatccaggtgatccagtcaccattt...ctgtctgcatctgtgggagagagggtcaca
+atcagctgcaagacacatcagcatatt..................aacagttccatagcc
+tggtaccagcaaaaagttggaaaagctcccatactcctgataagagatgca.........
+............agtttttctctaacagacacccca...tcaaggttcactgggaatgga
+......tttggcacagatttcacactcagcatcagcagtatgcagtctcaagatggtgcc
+acatatttctgccagcagcattttcactattac
+>IMGT000068|IGKV3-1*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgctcacccaatctccagcttctttggctgtgtctctagggcagagagccacc
+atctcctgcagagccagtgaaagtgttgaatat......tatggcacaagtttaatgcag
+tggtaccaacagaaaccaggacagccacccaaactcctcatctatgctgca.........
+............tccaacgtagaatctggggtccct...gccaggtttagtggcagtggg
+......tctgggacagacttcagcctcaacatccatcctgtggaggaggatgatattgca
+atgtatttctgtcagcaaagtaggaaggttccttc
+>IMGT000068|IGKV3-10*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+aacattgtgctgacccaatctccagcttctttggctgtgtctctagggcagagggccacc
+atatcctgcagagccagtgaaagtgttgatagt......tatggcaatagttttatgcac
+tggtaccagcagaaaccaggacagccacccaaactcctcatctatcttgca.........
+............tccaacctagaatctggggtccct...gccaggttcagtggcagtggg
+......tctaggacagacttcaccctcaccattgatcctgtggaggctgatgatgctgca
+acctattactgtcagcaaaataatgaggatcctcc
+>IMGT000068|IGKV3-12*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgctgacacagtctcctgcttccttagctgtatctctggggcagagggccacc
+atctcatgcagggccagcaaaagtgtcagtaca......tctggctatagttatatgcac
+tggtaccaacagaaaccaggacagccacccaaactcctcatctatcttgca.........
+............tccaacctagaatctggggtccct...gccaggttcagtggcagtggg
+......tctgggacagacttcaccctcaacatccatcctgtggaggaggaggatgctgca
+acctattactgtcagcacagtagggagcttcctcc
+>IMGT000068|IGKV3-2*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgctgacccaatctccagcttctttggctgtgtctctagggcagagggccacc
+atctcctgcagagccagcgaaagtgttgataat......tatggcattagttttatgaac
+tggttccaacagaaaccaggacagccacccaaactcctcatctatgctgca.........
+............tccaaccaaggatccggggtccct...gccaggtttagtggcagtggg
+......tctgggacagacttcagcctcaacatccatcctatggaggaggatgatactgca
+atgtatttctgtcagcaaagtaaggaggttcctcc
+>IMGT000068|IGKV3-25-1*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+gacattgtgctgacccagacttcagcttgttttgttgtgtctctgggacaaagagacaac
+atatcctgcaagtcctgtgagagcgtcactgacaca...ctgtgcaacaacagtatgcag
+tggtatcagcagaacccagaacagcttcccatagtcctgatttatgaagca.........
+............tacagtgtagagtctggtgtttat...gtcagattctgtggtagctgg
+......tgtgagacagatttcaaactcacaatttatcctgtagaggacagcaatgctgca
+agctattattgtcagcagagtaaggaattttttca
+>IMGT000068|IGKV3-3*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgctgacccaatctccagcttctttggctgtgtctctaggacagagagccact
+atcttctgcagagccagccagagtgtcgattat......aatggaattagttatatgcac
+tggttccaacagaaaccaggacagccacccaaactcctcatctatgctgca.........
+............tccaacctagaatctgggatccct...gccaggttcagtggcagtggg
+......tctgggacagacttcaccctcaacatccatcctgtggaggaggaagatgctgca
+acctattactgtcagcaaagtattgaggatcctcc
+>IMGT000068|IGKV3-4*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgctgacccaatctccagcttctttggctgtgtctctagggcagagggccacc
+atctcctgcaaggccagccaaagtgttgattat......gatggtgatagttatatgaac
+tggtaccaacagaaaccaggacagccacccaaactcctcatctatgctgca.........
+............tccaatctagaatctgggatccca...gccaggtttagtggcagtggg
+......tctgggacagacttcaccctcaacatccatcctgtggaggaggaggatgctgca
+acctattactgtcagcaaagtaatgaggatcctcc
+>IMGT000068|IGKV3-5*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgctgacccaatctccagcttctttggctgtgtctctagggcagagggccacc
+atatcctgcagagccagtgaaagtgttgatagt......tatggcaatagttttatgcac
+tggtaccagcagaaaccaggacagccacccaaactcctcatctatcgtgca.........
+............tccaacctagaatctgggatccct...gccaggttcagtggcagtggg
+......tctaggacagacttcaccctcaccattaatcctgtggaggctgatgatgttgca
+acctattactgtcagcaaagtaatgaggatcctcc
+>IMGT000068|IGKV3-7*02|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgctgacacagtctcctgcttccttagctgtatctctggggcagagggccacc
+atctcatgcagggccagccaaagtgtcagtaca......tctagctatagttatatgcac
+tggtaccaacagaaaccaggacagccacccaaactcctcatcaagtatgca.........
+............tccaacctagaatctggggtccct...gccaggttcagtggcagtggg
+......tctgggacagacttcaccctcaacatccatcctgtggaggaggaggatactgca
+acatattactgtcagcacagttgggagattcctcc
+>IMGT000068|IGKV3-8*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+gacattgtgctgacccaggcccctccttccttggatgtttctcaagggtagagggccacc
+atctcctgcaggaccagcaaaagtgtcagaaca......tctagctatagttatatgcac
+tggtaccaacagaaaccaggtcagccgcccaaactcctcaatctatgtgca.........
+............tccaaccaagtatctagggtccca...gccaggttcagtggcagtgga
+......tctgggacagacttcaccctcaaaatccatcctgtggaggaggaggatgctgca
+acctatttctgtcagcaaagtaatgagaatcctcc
+>IMGT000068|IGKV3-9*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgctgacccaatctccagcttctttggctgtgtctctaggacagagggccacc
+atatcctgccaagccagcgaaagtgtcagtttt......gctggtacaagtttaatgcac
+tggtaccaacagaaaccaggacagccacccaaactcctcatctatcgtgca.........
+............tccaacctagaatctggagtccct...gccaggttcagtggcagtggg
+......tctgagtcagacttcactctcaccatcgatcctgtggaggaagatgatgctgca
+atgtattactgtatgcaaagtatggaagatcctcc
+>IMGT000068|IGKV4-50*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gaaaatgtgctcacccagtctccagcaatcatgtctgcatctctaggggagaaggtcacc
+atgagctgcagggccagctcaagtgta.....................aattacatgtac
+tggtaccagcagaagtcagatgcctcccccaaactatggatttattacaca.........
+............tccaacctggctcctggagtccca...gctcgcttcagtggcagtggg
+......tctgggaactcttattctctcacaatcagcagcatggagggtgaagatgctgcc
+acttattactgccagcagtttactagttccccatcca
+>IMGT000068|IGKV4-51*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gaaaatgtgctcacccagtctccagcaataatggctgcctctctgggggagaaggtcacc
+atgacctgcagtgccagctcaagtgtaagt...............tccagctacttgcac
+tggtaccagcagaagtcaggcacttcccccaaactctggatttatggcaca.........
+............tccaacctggcttctggagtccca...gctcgcttcagtggcagtggg
+......gctgggatctcttactctctcacaatcagcagcatggaggctgaaaatgatgca
+acttattactgccagcagtggagtggttacccattca
+>IMGT000068|IGKV4-53*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gaaattgtgctcacccagtctccagcactcatggctgcatctccaggggagaaggtcacc
+atcacctgcagtgtcagctcaagtataagt...............tccagcaacttgcac
+tggtaccagcagaagtcagaaacctcccccaaaccctggatttatggcaca.........
+............tccaacctggcttctggagtccct...gttcgcttcagtggcagtgga
+......tctgggacctcttattctctcacaatcagcagcatggaggctgaagatgctgcc
+acttattactgtcaacagtggagtagttacccactca
+>IMGT000068|IGKV4-54*01|Mus musculus_C57BL/6J|ORF|V-REGION| | | | | | | | | | |
+caaattgttctcacccagtctccagcaatcctgtctgcatctccaggggagaaggtcacc
+atgacctgcagtgccagctcaagtgta.....................agttacatgtac
+aggtaccagcagaagccaggatcctcacccaaaccctggatttatggcaca.........
+............tccaacctggcttctggagtccct...gctcgcttcagtggcagtgga
+......tctgggacctcttattctctcacaatcagcagcatggaggctgaagatgctgcc
+acttattactgccagcaatatcatagttacccaccca
+>IMGT000068|IGKV4-55*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+caaattgttctcacccagtctccagcaatcatgtctgcatctccaggggagaaggtcacc
+atgacctgcagtgccagctcaagtgta.....................agttacatgtac
+tggtaccagcagaagccaggatcctcccccagactcctgatttatgacaca.........
+............tccaacctggcttctggagtccct...gttcgcttcagtggcagtggg
+......tctgggacctcttactctctcacaatcagccgaatggaggctgaagatgctgcc
+acttattactgccagcagtggagtagttacccaccca
+>IMGT000068|IGKV4-56*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+caaattgttctcacccagtctccagcaatcatgtctgcatctccagggcagaaagtcacc
+ataacctgcagtgccatctcaagtgta.....................aattacatgcac
+tggtaccagcagaagccaggatcctcccccaaactctggatttatgcaaca.........
+............tccaaactggctcttggagtccct...gcttgcttcagtggcagtggg
+......tctgggacctcttactctctcacaatcagcagcatggtggctgaagatgccacc
+tcttatttctgtcatcagtggagtagttacccaccca
+>IMGT000068|IGKV4-57*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+caaattgttctcacccagtctccagcaatcatgtctgcatctccaggggagaaggtcacc
+ataacctgcagtgccagctcaagtgta.....................agttacatgcac
+tggttccagcagaagccaggcacttctcccaaactctggatttatagcaca.........
+............tccaacctggcttctggagtccct...gctcgcttcagtggcagtgga
+......tctgggacctcttactctctcacaatcagccgaatggaggctgaagatgctgcc
+acttattactgccagcaaaggagtagttacccaccca
+>IMGT000068|IGKV4-57-1*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gaaaatgtgctcacccagtctccagcaatcatgtctgcatctccaggggaaaaggtcacc
+atgacctgcagggccagctcaagtgtaagt...............tccagttacttgcac
+tggtaccagcagaagtcaggtgcctcccccaaactctggatttatagcaca.........
+............tccaacttggcttctggagtccct...gctcgcttcagtggcagtggg
+......tctgggacctcttactctctcacaatcagcagtgtggaggctgaagatgctgcc
+acttattactgccagcagtacagtggttacccactca
+>IMGT000068|IGKV4-58*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gaaaatgtgctcacccagtctccagcaataatggctgcctctctggggcagaaggtcacc
+atgacctgcagtgccagctcaagtgtaagt...............tccagttacttgcac
+tggtaccagcagaagtcaggcgcttcccccaaacccttgattcataggaca.........
+............tccaacctggcttctggagtccca...gctcgcttcagtggcagtggg
+......tctgggacctcttactctctcacaatcagcagcgtggaggctgaagatgatgca
+acttattactgccagcagtggagtggttacccattca
+>IMGT000068|IGKV4-59*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+caaattgttctcacccagtctccagcaatcatgtctgcatctccaggggagaaggtcacc
+atgacctgcagtgccagctcaagtgta.....................agttacatgcac
+tggtaccagcagaagtcaggcacctcccccaaaagatggatttatgacaca.........
+............tccaaactggcttctggagtccct...gctcgcttcagtggcagtggg
+......tctgggacctcttactctctcacaatcagcagcatggaggctgaagatgctgcc
+acttattactgccagcagtggagtagtaacccaccca
+>IMGT000068|IGKV4-60*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+gaaattgtgctcacccagtctccagcactcatggctgcatctccaggggagaaggtcacc
+atcacctgcagtgtcagctcaagtataagt...............tccagctacttgcac
+tggtaccagcagaagtcaggaatctcccccaaaccctggatttatggcaca.........
+............tccaacctggcttctggagtccct...gctcgcttcagtggcagtgga
+......tctgggacctcttactctctcacaatcagcagcatggaggctgaagatgctgcc
+acttattactgtcaacagtggagtagttccccaccca
+>IMGT000068|IGKV4-61*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+caaattgttctcacccagtctccagcaatcatgtctgcatctccaggggagaaggtcacc
+atatcctgcagtgccagctcaagtgta.....................agttacatgtac
+tggtaccagcagaagccaggatcctcccccaaaccctggatttatcgcaca.........
+............tccaacctggcttctggagtccct...gctcgcttcagtggcagtggg
+......tctgggacctcttactctctcacaatcagcagcatggaggctgaagatgctgcc
+acttattactgccagcagtatcatagttacccaccca
+>IMGT000068|IGKV4-62*01|Mus musculus_C57BL/6J|ORF|V-REGION| | | | | | | | | | |
+caaattgttctcacccagtctccagcaatcatgtctgcatctccaggggaaaaggtcacc
+atgacctgcagtgccagctcaagtgta.....................agttacatgtac
+tggtaccagcagaagccaggctcctcccccagactctggatttatgacaca.........
+............tccaacctggtttctggagtccct...gctcgcttcagtggcagtagg
+......tctgggacctcttattctctcacaatcagcagcatggaggctgaagatgctgcc
+acttattactgccagcagtacagtggttacccatcca
+>IMGT000068|IGKV4-63*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gaaaatgttctcacccagtctccagcaatcatgtctgcatctccaggggaaaaggtcacc
+atgacctgcagtgccagctcaagtgta.....................agttacatgcac
+tggtaccagcagaagtcaagcacctcccccaaactctggatttatgacaca.........
+............tccaaactggcttctggagtccca...ggtcgcttcagtggcagtggg
+......tctggaaactcttactctctcacgatcagcagcatggaggctgaagatgttgcc
+acttattactgttttcaggggagtgggtacccactca
+>IMGT000068|IGKV4-65*02|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+gaaattgggctcattcagtcttcaacaatcatggctgcatctccaggggagaaggtcact
+atcacctgcagtgtcagctcaagtgtaagt...............tccagctactagcac
+tggtaccagcagaagtcaggagcctcccccaaactctggatttatggctca.........
+............ttcaacctggcttctgaagtttca...gctcacttcagtggtagtggg
+......tctgggacctcttactctctcacaatcagcagcatggaggctgaagatgctgcc
+acttattactgccagcaggttacttgttccctaccca
+>IMGT000068|IGKV4-68*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+caaattgttctcacccagtctccagcactcatgtctgcatctccaggggagaaggtcacc
+atgacctgcagtgccagctcaagtgta.....................agttacatgtac
+tggtaccagcagaagccaagatcctcccccaaaccctggatttatctcaca.........
+............tccaacctggcttctggagtccct...gctcgcttcagtggcagtggg
+......tctgggacctcttactctctcacaatcagcagcatggaggctgaagatgctgcc
+acttattactgccagcagtggagtagtaacccaccca
+>IMGT000068|IGKV4-69*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+caaattcttctcacccagtctccagcaatcatgtctgcatctccaggggagaaggtcacc
+atgacctgcagtgccagctcaagtgta.....................agttacatgcac
+tggtaccagcagaagccaggatcctcgcccaaaccctggatttatgacaca.........
+............tccaacctggcttctggattccct...gctcgcttcagtggcagtggg
+......tctgggacctcttactctctcataatcagcagcatggaggctgaagatgctgcc
+acttattactgccatcagcggagtagttaccca
+>IMGT000068|IGKV4-70*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+caaattgttctcacccagtctccagcaatcatgtctgcatctccaggggagaaggtcacc
+atgacctgcagtgccagctcaagtata.....................agttacatgcac
+tggtaccagcagaagccaggcacctcccccaaaagatggatttatgacaca.........
+............tccaaactggcttctggagtccct...gctcgcttcagtggcagtggg
+......tctgggacctcttattctctcacaatcagcagcatggaggctgaagatgctgcc
+acttattactgccatcagcggagtagttaccca
+>IMGT000068|IGKV4-71*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+caaattgttctcacccagtctccagcaatcatgtctgcatctccaggggagaaggtcacc
+atgacctgcagtgccagctcaagtgta.....................agttacatgcac
+tggtaccagcagaagccaggatcctcccccagactctggatttatttaaca.........
+............ttcaacttggcttctggagtccct...gctcgcttcagtggcagtggg
+......tctgggacctcttactctctctcaatcagcagcatggaggctgaagatgctgcc
+acttattactgccagcagtggagtagtaacccaccca
+>IMGT000068|IGKV4-72*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+caaattgttctctcccagtctccagcaatcctgtctgcatctccaggggagaaggtcaca
+atgacttgcagggccagctcaagtgta.....................agttacatgcac
+tggtaccagcagaagccaggatcctcccccaaaccctggatttatgccaca.........
+............tccaacctggcttctggagtccct...gctcgcttcagtggcagtggg
+......tctgggacctcttactctctcacaatcagcagagtggaggctgaagatgctgcc
+acttattactgccagcagtggagtagtaacccaccca
+>IMGT000068|IGKV4-73*01|Mus musculus_C57BL/6J|ORF|V-REGION| | | | | | | | | | |
+caaattgttctcacccagtctccagcaatcatgtctgcatctcctggggaacgggtcacc
+atgacctgcagtgccagctcaagtgtaagt...............tccagctacttgtac
+tggtaccagcagaagtcaggatcctccccaaaactctggatttatagcata.........
+............tccaacctggcttctggagtccca...gctcgcttcagtggcagtggg
+......tctgggacctcttactctctcacaatcaacagcatggaggctgaagatgctgcc
+acttattactgccagcagtggagtagtaacccaccca
+>IMGT000068|IGKV4-74*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+caaattgttctcacccagtctccagcaatcatgtctgcatctctaggggaacgggtcacc
+atgacctgcactgccagctcaagtgtaagt...............tccagttacttgcac
+tggtaccagcagaagccaggatcctcccccaaactctggatttatagcaca.........
+............tccaacctggcttctggagtccca...gctcgcttcagtggcagtggg
+......tctgggacctcttactctctcacaatcagcagcatggaggctgaagatgctgcc
+acttattactgccaccagtatcatcgttccccaccca
+>IMGT000068|IGKV4-75*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+aaaaatgtgctgacccagtctccggcaatcatggctacatctccaggggagaatgtcacc
+atgacctgcagtgctagctcaaatgtaagt...............tctggtaagttgcac
+tggtaaaagcagtagtcaggcacttctcccaaactctggatttatagcaca.........
+............tccaacctggcttctggagttcca...gctcgcttcagtggcagtggg
+......tctgggacctcttactctctcacaatcagcagcgtggaggctgaagatgatgcc
+aattattactgccagaagtggagtggttacccaccca
+>IMGT000068|IGKV4-77*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+caaattgttctcacccagtctccagcaatcctgtctgcatctccaggggagaaggtcacc
+atgacctgcagtgccagctcaagtgta.....................agttacatgtaa
+tggttccagcagaagccaggatcctcccccaaactctggatttatagcata.........
+............tccaacctggcttctggagtccct...gctcgcttcagtggcagtggg
+......tctgggacctcttattctctcacaatcagcagcgtgaaggctgaagatgctgcc
+acttattactgccagcagtggagtagttccccaccca
+>IMGT000068|IGKV4-78*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+caaattgttctcacccagtctccagcaatcatgtctgcatctcctggggagaaggtcacc
+atgacctgcagtgccagatcaagtgtaagt...............tccagctacttgtac
+tggtaccagcagaagccaggatcctcccccaaactctggatttatagcaca.........
+............tccaacctggcttctggagtccct...gctcgcttcagtggcagtggg
+......tctgggacctcttattctctcacaatcagcagcatggaggctgaagatgctgcc
+actttttactgccagcagtacagtggttacccatcca
+>IMGT000068|IGKV4-79*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+caaattgttctcacccagtctccagcaatcatgtctgcatctcctggggagaaggtcacc
+ttgacctgcagtgccagctcaagtgtaagt...............tccagctacttgtac
+tggtaccagcagaagccaggatcctcccccaaactctggatttatagcaca.........
+............tccaacctggcttctggagtccct...gctcgcttcagtggcagtggg
+......tctgggacctcttactctctcacaatcagcagcatggaggctgaagatgctgcc
+tcttatttctgccatcagtggagtagttacccacccc
+>IMGT000068|IGKV4-80*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+caaattgttctcacccagtctccagcaatcatgtctgcatctctaggggaggagatcacc
+ctaacctgcagtgccagctcgagtgta.....................agttacatgcac
+tggtaccagcagaagtcaggcacttctcccaaactcttgatttatagcaca.........
+............tccaacctggcttctggagtccct...tctcgcttcagtggcagtggg
+......tctgggaccttttattctctcacaatcagcagtgtggaggctgaagatgctgcc
+gattattactgccatcagtggagtagttatcca
+>IMGT000068|IGKV4-81*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gaaaatgtgctgacccagtctccagcaatcatggctgcatctccaggggagaaggtcacc
+atgacctgcagtgccagctcaagtgtaagt...............tctagtaacttgcac
+tggtaccagcagaagtcaggcacttctaccaaattctggatttataggaca.........
+............tccaacctggcttcagaagtccca...gctcccttcagtggcagtggg
+......tctgggacctcttactctcttacaatcagcagcgtggaggccgaagatgctgcc
+acttattactgccagcagtggagtggttacccaccca
+>IMGT000068|IGKV4-83*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+ggaattgtgctcacccaatctccaacaaccatgactgcatttccaggggaaaatgtcacc
+atcacctgcagtgccagctcaagtata.....................aattacattcac
+tggtaccagcagaagtcaggaaatacccccaaacaatgaatttataagaca.........
+............tccgacctgccttctggagtccca...actctcttcagtggcagtggg
+......tctgggacctcttactctctcacaatcagcagtgtggaggctgaagatgctgcc
+acttattactgccagcagtggagtggttaccaaccca
+>IMGT000068|IGKV4-86*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gaaattgtgctcactcagtctccagccatcacagctgcatctctggggcaaaaggtcacc
+atcacctgcagtgccagctcaagtgta.....................agttacatgcac
+tggtaccagcagaagtcaggcacctcccccaaaccatggatttatgaaata.........
+............tccaaactggcttctggagtccca...gctcgcttcagtggcagtggg
+......tctgggacctcttactctctcacaatcagcagcatggaggctgaagatgctgcc
+atttattactgccagcagtggaattatcctctta
+>IMGT000068|IGKV4-90*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gaaattttgctcacccagtctccagcaatcatagctgcatctcctggggagaaggtcacc
+atcacctgcagtgccagctcaagtgta.....................agttacatgaac
+tggtaccagcagaaaccaggatcctcccccaaaatatggatttatggtata.........
+............tccaacctggcttctggagttcct...gctcgcttcagtggcagtggg
+......tctgggacatctttctctttcacaatcaacagcatggaggctgaagatgttgcc
+acttattactgtcagcaaaggagtagttacccaccca
+>IMGT000068|IGKV4-91*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gaaattgtgctcacccagtctccaaccaccatggctgcatctcccggggagaagatcact
+atcacctgcagtgccagctcaagtataagt...............tccaattacttgcat
+tggtatcagcagaagccaggattctcccctaaactcttgatttataggaca.........
+............tccaatctggcttctggagtccca...gctcgcttcagtggcagtggg
+......tctgggacctcttactctctcacaattggcaccatggaggctgaagatgttgcc
+acttactactgccagcagggtagtagtataccacgca
+>IMGT000068|IGKV4-92*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gaaatggttctcacccagtctccagtatccataactgcatctcgaggggagaaggtcacc
+atcacctgccgtgccagctcaagtataagt...............tccaattacttacac
+tggtaccagcagaagccaggatcctcccctaaacttttgatttataggaca.........
+............tccatcctggcatctggagtccta...gacagcttcagtggcagtggg
+......tctgagagctcttacactctgacaatcagctgcatgcaggacgaagttgctgcc
+acttactattgtcagcaggggagtagtagcccacca
+>IMGT000068|IGKV5-37*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacatcctgctgacccagtctccagccaccctgtctgtgactccaggagaaacagtcagt
+ctttcctgtagggccagccagagtatt..................tacaagaacctacac
+tggtatcaacagaaatcacatcggtctccaaggcttctcatcaagtatgct.........
+............tctgattccatctctgggatcccc...tccaggttcactggcagtgga
+......tcagggacagattacactctcagtatcaacagtgtgaagcccgaagatgaagga
+atatattactgtcttcaaggttacagcacaccttc
+>IMGT000068|IGKV5-39*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgatgactcagtctccagccaccctgtctgtgactccaggagatagagtctct
+ctttcctgcagggccagccagagtatt..................agcgactacttacac
+tggtatcaacaaaaatcacatgagtctccaaggcttctcatcaaatatgct.........
+............tcccaatccatctctgggatcccc...tccaggttcagtggcagtgga
+......tcagggtcagatttcactctcagtatcaacagtgtggaacctgaagatgttgga
+gtgtattactgtcaaaatggtcacagctttcctcc
+>IMGT000068|IGKV5-43*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatattgtgctaactcagtctccagccaccctgtctgtgactccaggagatagcgtcagt
+ctttcctgcagggccagccaaagtatt..................agcaacaacctacac
+tggtatcaacaaaaatcacatgagtctccaaggcttctcatcaagtatgct.........
+............tcccagtccatctctgggatcccc...tccaggttcagtggcagtgga
+......tcagggacagatttcactctcagtatcaacagtgtggagactgaagattttgga
+atgtatttctgtcaacagagtaacagctggcctca
+>IMGT000068|IGKV5-45*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gatattgtgctaactcagtctccagccaccctgtctgtgactccaggagatagagtcagt
+ctttcctgcagggccagtcaaagtatt..................agcaactacctacac
+tggtatcaacaaaaatcacatgagtctccaaggcttctcatcaagtatgct.........
+............tcccagtccatctctgggatcccc...tccaggttcagtggcagtgga
+......tcagggacagatttcactctcagtatcaacagtgtggagactgaagattttgga
+atgtatttctgtcaacagagtaacagctggcctca
+>IMGT000068|IGKV5-48*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacatcttgctgactcagtctccagccatcctgtctgtgagtccaggagaaagagtcagt
+ttctcctgcagggccagtcagagcatt..................ggcacaagcatacac
+tggtatcagcaaagaacaaatggttctccaaggcttctcataaagtatgct.........
+............tctgagtctatctctgggatccct...tccaggtttagtggcagtgga
+......tcagggacagattttactcttagcatcaacagtgtggagtctgaagatattgca
+gattattactgtcaacaaagtaatagctggccaac
+>IMGT000068|IGKV6-13*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgatgacccagtctcaaaaattcatgtccacatcagtaggagacagggtcagc
+atcacctgcaaggccagtcagaatgtg..................ggtactgctgtagcc
+tggtatcaacagaaaccaggacaatctcctaaactactgatttactcggca.........
+............tccaatcggtacactggagtccct...gatcgcttcacaggcagtgga
+......tctgggacagatttcactctcaccatcagcaatatgcagtctgaagacctggca
+gattatttctgccagcaatatagcagctatcctct
+>IMGT000068|IGKV6-14*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgatgacccagtctcaaaaattcatgtccacatcagtaggagacagggtcagc
+atcacctgcaaggccagtcagaatgtt..................cgtactgctgtagcc
+tggtatcaacagaaaccagggcagtctcctaaagcactgatttacttggca.........
+............tccaaccggcacactggagtccct...gatcgcttcacaggcagtgga
+......tctgggacagatttcactctcaccattagcaatgtgcaatctgaagacctggca
+gattatttctgtctgcaacattggaattatcctct
+>IMGT000068|IGKV6-15*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgatgacccagtctcaaaaattcatgtccacatcagtaggagacagggtcagc
+gtcacctgcaaggccagtcagaatgtg..................ggtactaatgtagcc
+tggtatcaacagaaaccagggcaatctcctaaagcactgatttactcggca.........
+............tcctaccggtacagtggagtccct...gatcgcttcacaggcagtgga
+......tctgggacagatttcactctcaccatcagcaatgtgcagtctgaagacttggca
+gagtatttctgtcagcaatataacagctatcctct
+>IMGT000068|IGKV6-15-1*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+gacattgtgatgacccagtctcaaaaatttatgtccacttcagtaggagagagggtcatc
+atcacctgcaaggccagtcagaatgta..................ggtactgctgtagcc
+tggtatcaacaaaaaccagggcaatctcctaaagcactgatttactgggca.........
+............tccaactggtacactggagtccct...gatcgcttcacaggcagtgga
+......tctgga
+>IMGT000068|IGKV6-17*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgatgacccagtctcacaaattcatgtccacatcagtaggagacagggtcagc
+atcacctgcaaggccagtcaggatgtg..................agtactgctgtagcc
+tggtatcaacagaaaccaggacaatctcctaaactactgatttactcggca.........
+............tcctaccggtacactggagtccct...gatcgcttcactggcagtgga
+......tctgggacggatttcactttcaccatcagcagtgtgcaggctgaagacctggca
+gtttattactgtcagcaacattatagtactcctcc
+>IMGT000068|IGKV6-20*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+aacattgtaatgacccaatctcccaaatccatgtccatgtcagtaggagagagggtcacc
+ttgagctgcaaggccagtgagaatgtg..................ggtacttatgtatcc
+tggtatcaacagaaaccagagcagtctcctaaactgctgatatacggggca.........
+............tccaaccggtacactggggtcccc...gatcgcttcacaggcagtgga
+......tctgcaacagatttcactctgaccatcagcagtgtgcaggctgaagaccttgca
+gattatcactgtggacagagttacagctatcctcc
+>IMGT000068|IGKV6-23*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgatgacccagtctcacaaattcatgtccacatcagtaggagacagggtcagc
+atcacctgcaaggccagtcaggatgtg..................ggtactgctgtagcc
+tggtatcaacagaaaccagggcaatctcctaaactactgatttactgggca.........
+............tccacccggcacactggagtccct...gatcgcttcacaggcagtgga
+......tctgggacagatttcactctcaccattagcaatgtgcagtctgaagacttggca
+gattatttctgtcagcaatatagcagctatcctct
+>IMGT000068|IGKV6-25*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgatgacccagtctcacaaattcatgtccacatcagtaggagacagggtcagc
+atcacctgcaaggccagtcaggatgtg..................agtactgctgtagcc
+tggtatcaacaaaaaccagggcaatctcctaaactactgatttactgggca.........
+............tccacccggcacactggagtccct...gatcgcttcacaggcagtgga
+......tctgggacagattatactctcaccatcagcagtgtgcaggctgaagacctggca
+ctttattactgtcagcaacattatagcactcctcc
+>IMGT000068|IGKV6-29*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+aacattgtaatgacccaatctcccaaatccatgtccatgtcagtaggagagagggtcacc
+ttgagctgcaaggccagtgagaatgtg..................ggtacttatgtatcc
+tggtatcaacagaaaccagagcagtctcctaaactgctgatatacggggca.........
+............tccaaccggtaccctggggtccct...gatcgcttcacaggcagtgga
+......tctgcaacagatttcactctgaccatcagcagtctgcaggctgaagaccttgca
+gattatcactgtggacagggttacagctatcttcc
+>IMGT000068|IGKV6-32*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+agtattgtgatgacccagactcccaaattcctgcttgtatcagcaggagacagggttacc
+ataacctgcaaggccagtcagagtgtg..................agtaatgatgtagct
+tggtaccaacagaagccagggcagtctcctaaactgctgatatactatgca.........
+............tccaatcgctacactggagtccct...gatcgcttcactggcagtgga
+......tatgggacggatttcactttcaccatcagcactgtgcaggctgaagacctggca
+gtttatttctgtcagcaggattatagctctcctcc
+>IMGT000068|IGKV7-33*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgatgactcagtctccaactttccttgctgtgacagcaagtaagaaggtcacc
+attagttgcacggccagtgagagcctttattcaagcaaacacaaggtgcactacttggct
+tggtaccagaagaaaccagagcaatctcctaaactgctgatatacggggca.........
+............tccaaccgatacattggggtccct...gatcgcttcacaggcagtgga
+......tctgggacagatttcactctgaccatcagcagtgtacaggttgaagacctcaca
+cattattactgtgcacagttttacagctatcctct
+>IMGT000068|IGKV8-16*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gaaattgtgttgacccagtctataccatccctgactgtgtcagcaggagagagggtcact
+atcagctgcaaatccaatcagaatcttttatggagtggaaaccaaaggtactgtttggtc
+tggcaccagtggaaaccagggcaaactcctacaccgttgatcacctggaca.........
+............tctgataggtactctggagtccct...gatcgtttcataggcagtgga
+......tctgtgacagatttcactctgaccatcagcagtgtgcaggctgaagatgtggca
+gtttatttctgtcagcagcatttacacattcctcc
+>IMGT000068|IGKV8-18*01|Mus musculus_C57BL/6J|ORF|V-REGION| | | | | | | | | | |
+gacattgtgatgacccagtctccatcctccctggctgtgacagcaggagagaaggtcact
+atgagatgcaagtccagtcagagtcttttgtggagtgtaaaccaaaataactacttatcc
+tggtaccagcagaaacaagggcagcctcctaaactgcttatctatggggca.........
+............tccattagagaatcttgggtccct...gatcgattcacaggaagtgga
+......tctgggacagacttcactctcaccattagcaatgtgcatgctgaagacctagca
+gtttattactgtcagcacaatcatggcagctttctccccc
+>IMGT000068|IGKV8-19*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgatgacacagtctccatcctccctgactgtgacagcaggagagaaggtcact
+atgagctgcaagtccagtcagagtctgttaaacagtggaaatcaaaagaactacttgacc
+tggtaccagcagaaaccagggcagcctcctaaactgttgatctactgggca.........
+............tccactagggaatctggggtccct...gatcgcttcacaggcagtgga
+......tctggaacagatttcactctcaccatcagcagtgtgcaggctgaagacctggca
+gtttattactgtcagaatgattatagttatcctcc
+>IMGT000068|IGKV8-21*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgatgtcacagtctccatcctccctggctgtgtcagcaggagagaaggtcact
+atgagctgcaaatccagtcagagtctgctcaacagtagaacccgaaagaactacttggct
+tggtaccagcagaaaccagggcagtctcctaaactgctgatctactgggca.........
+............tccactagggaatctggggtccct...gatcgcttcacaggcagtgga
+......tctgggacagatttcactctcaccatcagcagtgtgcaggctgaagacctggca
+gtttattactgcaagcaatcttataatcttcc
+>IMGT000068|IGKV8-23-1*01|Mus musculus_C57BL/6J|ORF|V-REGION| | | | | | | | | | |
+gaaattgtg.....................ctgactgtgtcagcaggagagagggtcact
+atcagctgcaaatccaatcagaatcttttatggagtggaaaccaaaggtactgtttggtc
+tggcaccagtggaaaccagggcaaactcctacaccgttgatcacctggaca.........
+............tctgataggtactctggagtccct...gatcgtttcataggcagtgga
+......tctgtgacagatttcactctgaccatcagcagtgtgcaggctgaagatgtggca
+gtttatttctgtcagcagcatttacacattcctcc
+>IMGT000068|IGKV8-24*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgatgacacagtctccatcctccctggctatgtcagtaggacagaaggtcact
+atgagctgcaagtccagtcagagccttttaaatagtagcaatcaaaagaactatttggcc
+tggtaccagcagaaaccaggacagtctcctaaacttctggtatactttgca.........
+............tccactagggaatctggggtccct...gatcgcttcataggcagtgga
+......tctgggacagatttcactcttaccatcagcagtgtgcaggctgaagacctggca
+gattacttctgtcagcaacattatagcactcctcc
+>IMGT000068|IGKV8-26*01|Mus musculus_C57BL/6J|ORF|V-REGION| | | | | | | | | | |
+gacattgtgatgacccagtctccatcctccctggctgtgacagcaggagagaaggtcact
+atgagctgcaagtccagtcagagtcttttgtggagtgtaaaccaaaagaactacttgtcc
+tggtaccagcagaaacaaaggcagcctcctaaactgcttatctatggggca.........
+............tccattagagaatcttgggtccct...gatcggttcacaggaagtgga
+......tctgggacagacttcactctcaccattagcaatgtgcatgctgaagacctagca
+gtttattactgtcaacacaatcatggcagctttctcccccc
+>IMGT000068|IGKV8-27*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+aacattatgatgacacagtcgccatcatctctggctgtgtctgcaggagaaaaggtcact
+atgagctgtaagtccagtcaaagtgttttatacagttcaaatcagaagaactacttggcc
+tggtaccagcagaaaccagggcagtctcctaaactgctgatctactgggca.........
+............tccactagggaatctggtgtccct...gatcgcttcacaggcagtgga
+......tctgggacagattttactcttaccatcagcagtgtacaagctgaagacctggca
+gtttattactgtcatcaatacctctcctcg
+>IMGT000068|IGKV8-28*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgatgacacagtctccatcctccctgagtgtgtcagcaggagagaaggtcact
+atgagctgcaagtccagtcagagtctgttaaacagtggaaatcaaaagaactacttggcc
+tggtaccagcagaaaccagggcagcctcctaaactgttgatctacggggca.........
+............tccactagggaatctggggtccct...gatcgcttcacaggcagtgga
+......tctggaaccgatttcactcttaccatcagcagtgtgcaggctgaagacctggca
+gtttattactgtcagaatgatcatagttatcctcc
+>IMGT000068|IGKV8-30*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattgtgatgtcacagtctccatcctccctagctgtgtcagttggagagaaggttact
+atgagctgcaagtccagtcagagccttttatatagtagcaatcaaaagaactacttggcc
+tggtaccagcagaaaccagggcagtctcctaaactgctgatttactgggca.........
+............tccactagggaatctggggtccct...gatcgcttcacaggcagtgga
+......tctgggacagatttcactctcaccatcagcagtgtgaaggctgaagacctggca
+gtttattactgtcagcaatattatagctatcctcc
+>IMGT000068|IGKV8-34*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacattttgatgacccagtctccatcctccctgactgtgtcagcaggagagaaggtcact
+atgagctgcaagtccagtcagagtcttttagctagtggcaaccaaaataactacttggcc
+tggcaccagcagaaaccaggacgatctcctaaaatgctgataatttgggca.........
+............tccactagggtatctggagtccct...gatcgcttcataggcagtgga
+......tctgggacggatttcactctgaccatcaacagtgtgcaggctgaagatctggct
+gtttattactgtcagcagtcctacagcgctcctac
+>IMGT000068|IGKV9-119*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+gacatccggatgactcagtctccatcgaccatgtttgcctctctgggagacagagtcagt
+ctcacttgacgggctagtcagagcatt..................agagtttatttaagc
+tggtatcatcagaaaccagttggaactattaaactcctgatctactccaca.........
+............ttcaaattagattctggtgtccca...tcaaggttcagtggcagtggg
+......tctgggtcagattattcaatcaccatcaacagcctagagtctgaagatgtggca
+atttattactgtctacaatatgctagttctcctcc
+>IMGT000068|IGKV9-120*02|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacatccagatgacccagtctccatcctccttatctgcctctctgggagaaagagtcagt
+ctcacttgtcgggcaagtcaggacatt..................ggtagtagcttaaac
+tggcttcagcaggaaccagatggaactattaaacgcctgatctacgccaca.........
+............tccagtttagattctggtgtcccc...aaaaggttcagtggcagtagg
+......tctgggtcagattattctctcaccatcagcagccttgagtctgaagattttgta
+gactattactgtctacaatatgctagttctcctcc
+>IMGT000068|IGKV9-123*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacatccagatgattcagtctccatcgtccatgtttgcctctctgggagacagagtcagt
+ctctcttgtcgggctagtcagggcatt..................agaggtaatttagac
+tggtatcagcagaaaccaggtggaactattaaactcctgatctactccaca.........
+............tccaatttaaattctggtgtccca...tcaaggttcagtggcagtggg
+......tctgggtcagattattctctcaccatcagcagcctagagtctgaagattttgca
+gactattactgtctacagcgtaatgcgtatcctct
+>IMGT000068|IGKV9-124*01|Mus musculus_C57BL/6J|F|V-REGION| | | | | | | | | | |
+gacatccagatgacccagtctccatcctccttatctgcctctctgggagaaagagtcagt
+ctcacttgtcgggcaagtcaggaaatt..................agtggttacttaagc
+tggcttcagcagaaaccagatggaactattaaacgcctgatctacgccgca.........
+............tccactttagattctggtgtccca...aaaaggttcagtggcagtagg
+......tctgggtcagattattctctcaccatcagcagccttgagtctgaagattttgca
+gactattactgtctacaatatgctagttatcctcc
+>IMGT000068|IGKV9-128*01|Mus musculus_C57BL/6J|P|V-REGION| | | | | | | | | | |
+gacatctggatgactcagtctccatcgtccatgtttggctctctgggagacagagtcagt
+ctcacttgccaggctagtcagagcatt..................agagtttatttaagc
+tggtatcagcagaaacaggttggaactattaaactcctgatctactctaca.........
+............tccaaattagattctggtgtccca...tcaaggttcagtggcagtggg
+......tcttagtcagattattctctcaccatcaacagcctagagtctgaagatgtagca
+atttattactgtctacaacatgctagttctcctcc
+>IMGT000068|IGKV9-129*01|Mus musculus_C57BL/6J|ORF|V-REGION| | | | | | | | | | |
+gacatccagatgacccagtctccatcctccttatctgcctctctgggagaaagagtcagt
+ctcacttgccgggcaagtcaggacatt..................catggttatttaaac
+ttgtttcagcagaaaccaggtgaaactattaaacacctgatctatgaaaca.........
+............tccaatttagattctggtgtccca...aaaaggttcagtggcagtagg
+......tctgggtcagattattctctcattatcggcagccttgagtctgaagattttgca
+gactattactgtctacaatatgctagttctcctcc
