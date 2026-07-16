@@ -1,0 +1,137 @@
+{
+  "root": "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT",
+  "root_len": 200,
+  "leaves": {
+    "seq1": {
+      "shared_group": null,
+      "shared_positions": [],
+      "private_positions": [
+        10,
+        30,
+        50
+      ],
+      "mutations": [
+        {
+          "position": 10,
+          "ref": "G",
+          "alt": "T"
+        },
+        {
+          "position": 30,
+          "ref": "G",
+          "alt": "T"
+        },
+        {
+          "position": 50,
+          "ref": "G",
+          "alt": "T"
+        }
+      ]
+    },
+    "seq2": {
+      "shared_group": null,
+      "shared_positions": [],
+      "private_positions": [
+        70,
+        90,
+        110
+      ],
+      "mutations": [
+        {
+          "position": 70,
+          "ref": "G",
+          "alt": "T"
+        },
+        {
+          "position": 90,
+          "ref": "G",
+          "alt": "T"
+        },
+        {
+          "position": 110,
+          "ref": "G",
+          "alt": "T"
+        }
+      ]
+    },
+    "seq3": {
+      "shared_group": null,
+      "shared_positions": [],
+      "private_positions": [
+        20,
+        40,
+        60
+      ],
+      "mutations": [
+        {
+          "position": 20,
+          "ref": "A",
+          "alt": "C"
+        },
+        {
+          "position": 40,
+          "ref": "A",
+          "alt": "C"
+        },
+        {
+          "position": 60,
+          "ref": "A",
+          "alt": "C"
+        }
+      ]
+    },
+    "seq4": {
+      "shared_group": null,
+      "shared_positions": [],
+      "private_positions": [
+        80,
+        100,
+        120
+      ],
+      "mutations": [
+        {
+          "position": 80,
+          "ref": "A",
+          "alt": "C"
+        },
+        {
+          "position": 100,
+          "ref": "A",
+          "alt": "C"
+        },
+        {
+          "position": 120,
+          "ref": "A",
+          "alt": "C"
+        }
+      ]
+    },
+    "seq5": {
+      "shared_group": null,
+      "shared_positions": [],
+      "private_positions": [
+        15,
+        45,
+        75
+      ],
+      "mutations": [
+        {
+          "position": 15,
+          "ref": "T",
+          "alt": "A"
+        },
+        {
+          "position": 45,
+          "ref": "C",
+          "alt": "G"
+        },
+        {
+          "position": 75,
+          "ref": "T",
+          "alt": "A"
+        }
+      ]
+    }
+  },
+  "expected_confident_clades": []
+}
