@@ -1,0 +1,39 @@
+import subprocess
+from pathlib import Path
+
+BASE = Path(__file__).resolve().parents[2]
+SCRIPT = BASE / "scripts" / "build_trees_iqtree" / "build_trees_iqtree.sh"
+DATA_DIR = Path(__file__).parent / "test_build_iqtree_data"
+
+
+def test_successful_run(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    result_dir = tmp_path / "test_result"
+
+    result = subprocess.run(
+        ["bash", str(SCRIPT), str(DATA_DIR), str(result_dir)],
+        capture_output=True, text=True, timeout=300,
+    )
+
+    assert result.returncode == 0
+    assert result_dir.is_dir()
+
+    for fasta in DATA_DIR.glob("*.fasta"):
+        name = fasta.stem
+        subdir = result_dir / name
+        assert subdir.is_dir(), f"{subdir} not created"
+        assert (subdir / f"{name}.treefile").exists(), f"treefile for {name} missing"
+
+
+def test_nonexistent_input_dir(tmp_path, monkeypatch):
+    monkeypatch.chdir(tmp_path)
+    fake_dir = tmp_path / "does_not_exist"
+    result_dir = tmp_path / "test_result"
+
+    result = subprocess.run(
+        ["bash", str(SCRIPT), str(fake_dir), str(result_dir)],
+        capture_output=True, text=True,
+    )
+
+    assert result.returncode != 0
+    assert "not found" in result.stderr or "not found" in result.stdout
