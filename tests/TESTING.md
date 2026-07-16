@@ -39,17 +39,17 @@ python test_synthetic.py "$VENV/bin/python"
 
 Запускает 4 теста:
 - ✓ **star_tree_5taxa** — политомия (0 клад ожидается, 0 найдено)
-- ⚠️ **well_separated_pairs** — две пары с хорошим разделением
-- ⚠️ **deep_nested_tree** — глубокая вложенная структура
-- ⚠️ **uneven_branches** — неравномерные длины ветвей
+- ~ **well_separated_pairs** — две пары с хорошим разделением
+- ~ **deep_nested_tree** — глубокая вложенная структура
+- ~ **uneven_branches** — неравномерные длины ветвей
 
 **Выход:**
 ```
 Прошло: 1/4
   ✓ star_tree_5taxa
-  ❌ well_separated_pairs
-  ❌ deep_nested_tree
-  ❌ uneven_branches
+  ✘ well_separated_pairs
+  ✘ deep_nested_tree
+  ✘ uneven_branches
 ```
 
 Результаты интерпретируются в `TEST_REPORT.md`.
