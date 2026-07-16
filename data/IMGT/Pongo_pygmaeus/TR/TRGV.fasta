@@ -1,0 +1,98 @@
+>BK075461|TRGV1*01|Pongo pygmaeus_AG05252|F|V-REGION|10001..10297|297 nt|1| | | | |297+33=330| | |
+tcttccaacttggaagggacaacgaagtcagtcaccggcccgactgggtcatctgctgaa
+atcacctgtgatcttcctggagcaagt..................accttatacatccac
+tggtac...ctataccaggaggggaaggccccacagcgtcttctgtactatgaaccctac
+......tacttcagggttgtgttggaatcaggaatcagtccaggaaagtatgacact...
+ggaagc...acaaggagcagctggaatttgagactgcaaaatctaattgaaaatgattct
+ggggtctattactgtgccacctgggatggg
+>BK075462|TRGV1*02|Pongo pygmaeus_AG05252|F|V-REGION|10001..10297|297 nt|1| | | | |297+33=330| | |
+tcttccaacttggaagggagaacgaagtcagtcaccggcccgactgggtcatctgctgaa
+atcacctgtgatcttcccggagcaagt..................accttatacatccac
+tggtat...ctataccaggaggggaaggccccacagcgtcttctgtactatgaaccctac
+......tacttcagggttgtgttggaatcaggaatcactccaggaaagtatgacact...
+ggaagc...acaaggagcagctggaatttgagactgcaaaatctaattgaaaatgattct
+ggggtctattactgtgccacctgggatggg
+>BK075461|TRGV10*01|Pongo pygmaeus_AG05252|ORF|V-REGION|77158..77466|309 nt|1| | | | |309+21=330| | |
+ttatcaaaagtggagcagttccagctatccatttccacagaagtcaagaaaagtattgac
+ataccttgcaagatatcgagcacaaagttt............gaaacagatgtcattcat
+tggtac...tggcagaaaccgaatcaggctttggagcacctgatctatattgcctcaaca
+......aaatccgcaactcgaggcagcacgggtaagatgggcaacaaagtggaggcaaga
+aagaattctcaaactctgacttcaatccttaccatcaagtccatagagaaagaagacatg
+gccgtttactactgtgctgcatggggttac
+>BK075461|TRGV11*01|Pongo pygmaeus_AG05252|ORF|V-REGION|85335..85643|309 nt|1| | | | |309+24=333| | |
+cttgggcagttggagcaacctgaaatatctatttccagaccaacaaataagagtgcccac
+atatcttggaaggcatccatccaaggcttt............agcggtaaaatcatacac
+tcacac...tggcagaaaccaaaccaaggcttagaatatttattacatgtcttcttgaca
+.........atctctgctcaagatcgctcaggtgggaagactaagaaacttgaggtaagt
+aaaaatgctcacacttccacttccactttgaaaataaatttcttagagaaagaagatgag
+gtggtgtaccactgcgcctgctggattaggcac
+>BK075461|TRGV2*01|Pongo pygmaeus_AG05252|F|V-REGION|14322..14621|300 nt|1| | | | |300+30=330| | |
+tcttccaacttggaagggagaacgaagtcagtcaccaggccgactgggtcatctgctgaa
+atcacttgtgatcttcctggagaaagt..................accgtctacatccac
+tggtac...ctgcaccaggaggggaaggccctacagcgtcttctgtactacgactcctac
+......aactccagagttgtgctggaatcaggaatcagtccagggaagtatgatacttac
+ggaagc...acaaggaagaacctgagattgatactgcgaaatctaattgaaaatgattct
+ggggtctattactgtgccacctgggatggg
+>BK075461|TRGV3*01|Pongo pygmaeus_AG05252|F|V-REGION|18680..18979|300 nt|1| | | | |300+30=330| | |
+tcttccaacttggaagggggaacgaagtcagtcaccaggccgactaggtcatctgctgaa
+atcacttgtgatcttactgtaacaaat..................gccttctacatccac
+tggtac...ctacaccaggaggggaaggccccacagcgtcttctgtactatgacgtctcc
+......aactcaagggatgtgttggaatcaggtctcagtccaggaaagtattatactcat
+acaccc...aggtggtggagctggatattgatactgcgaaatctaattgaaaatgattct
+ggggtctattactgtgccacctggtacagg
+>BK075461|TRGV4*01|Pongo pygmaeus_AG05252|F|V-REGION|23008..23307|300 nt|1| | | | |300+30=330| | |
+tcttccaacttggaagggggaatgaagtcagtcaccaggccgactgggtcatctgctgaa
+atcacttgtgatcttactgtaacaaat..................gccttgtacatccac
+tggtac...ctacaccaggaggggaaggccccacagcgtcttctgtactatgacgtctcc
+......aactcaagggatgtgttggaatcaggtctcagtccgggaaagtattatactcat
+acaccc...aggaggtggagctggatattgatactgcgaaatctaattgaaaatgattct
+ggggtttattactgtgtcacctggtacagg
+>BK075461|TRGV5*01|Pongo pygmaeus_AG05252|F|V-REGION|27337..27636|300 nt|1| | | | |300+30=330| | |
+tcttccaacttggaagggggaacgaagtcagtcaccaggccgactaggtcatctgctgaa
+atcacttgtgatcttactgtaacaaat..................gccttgtacatccac
+tggtac...ctacaccaggaggggaaggccccacagcgtcttctgtactacgacgtctcc
+......accgcaagagatgtgttggaatcaggtctcagtccaggaaagtattatactcat
+acaccc...aggaggtggagctggatattgagactgcaaaatctaattgaaaatgattct
+ggggtctattactgtgccacctgggacagg
+>BK075461|TRGV8*01|Pongo pygmaeus_AG05252|F|V-REGION|42063..42362|300 nt|1| | | | |300+30=330| | |
+tcttccaacttggaagggagaacgaagtcagtcaccaggccaactgggtcattggctgta
+atcacttgtgatcttcctgtggaagat..................gccgcctacatccac
+tggtac...ctacaccaggaggggaaggccccacagcgtcttctgtactatgacgtctcc
+......acctccaaggttgtgttggaatcaggaatcagtccaggaaagtatcagacttat
+gcaagc...acaaggaggagctttagatttatactggaaaacctaattgaacatgactct
+ggggtctattactgtgccacctgggacagg
+>BK075462|TRGV8*02|Pongo pygmaeus_AG05252|F|V-REGION|42065..42364|300 nt|1| | | | |300+30=330| | |
+tcttccaacttggaagggagaacgaagtcagtcaccaggccaactgggtcattggctgta
+atcacttgtgatcttcctgtggaagat..................gccgcctacatccac
+tggtac...ctacaccaggaggggaaggccccacagcgtcttctgtactatgacgtctcc
+......acctccaaggttgtgttggaatcaggaatcagtccaggaaagtatcagacttat
+gcaagc...acaaggaggagctttagatttatactggaaaatctaattgaacatgactct
+ggggtctattactgtgccacctgggacagg
+>BK075461|TRGV9*01|Pongo pygmaeus_AG05252|F|V-REGION|60017..60322|306 nt|1| | | | |306+24=330| | |
+gcaggtcacctagagcaacctcaaatttccagtactaaaacgctgtcaaaaacagcccgc
+ctggaatgtgtggtgtctggagtaacaatt............tctgcaacatctgtatat
+tggtat...cgagaaagacctggtgaagtcgtacagttcctggtgtccatttcatatgac
+.........ggcactgtcagaaaggaatccggcgttccatcaggcaaatttgaggtggat
+agggtacctgaaacatctacatccactctcaccattcacaatgtagagaaacaggacata
+gctacctactactgtgccttgtgggaggtg
+>BK075461|TRGVA*01|Pongo pygmaeus_AG05252|P|V-REGION|49742..50029|288 nt|1| | | | |288+42=330| | |
+ctcatcaggccggagcagctgccccat...gtcctggggcactagggaagcttggtcatc
+ctgcagtgcgtggtccgcaccaggatc.....................agctacatccgc
+tggaaccagcagcagaagggccaggtccctgaggcactccaccagctggccatg......
+.........tccaagttggatgtgcagtgggattccatcttgaaagcagataaaatcaca
+gccaag...gatggcagcagctgtaccttggcagtactgaagttggagacaggcatcggg
+ggcatgaactactgcactgcctgggccctg
+>BK075462|TRGVA*02|Pongo pygmaeus_AG05252|P|V-REGION|49748..50035|288 nt|1| | | | |288+42=330| | |
+cttatcaggctggagcagctgccccat...gtcctggggcactagggaagcttggtcatc
+ctgcagtgcgtggtccgcaccaggatc.....................agctacatccgc
+tggaaccagcagcagaagggccaggtccctgatgcactccaccagctggccatg......
+.........tccaagttggatgtgcagtgggattccatcttgaaagcagataaaatcaca
+gccaag...gatggcagcagctgtaccttggcagtactgaagttggagacaggcatcggg
+ggcatgaactactgcactgcctgggccctg
+>BK075461|TRGVC*01|Pongo pygmaeus_AG05252|P|V-REGION|96995..97301|307 nt|1| | | | |307+21=328| | |
+gacaatctcataacacaacttgtaacatccatcaccaagaaaaaaggaaatacagcattt
+cttgaatgccagataaaatccagtacctttaag.........aagaatgtatgtatacac
+tggtac...caccagaagccagaccggcccctaaagcgaattctgtatatctcctcaaat
+.........gaaaatgttgtccatgaacaaggtgttagtgaggaaagatatgaagcaagg
+aaatggcaaagtgacttgtcctccagcctgagaatacaccgagttgccgaggaggatgca
+gggatatattactgcacctgctgggaca

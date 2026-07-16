@@ -1,5 +1,7 @@
+import argparse
 import os
 import re
+import sys
 
 import pandas as pd
 from Bio import Align
@@ -7,18 +9,15 @@ from Bio import Align
 # ============ ПУТИ ============
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# V/J справочники — свои для каждого локуса, D — только у тяжёлой цепи
-# (у каппа/лямбда лёгких цепей нет D-сегмента, V соединяется с J напрямую).
-LOCUS_VJ_FASTA = {
-    "IGH": {"v": "IGHV.fasta", "j": "IGHJ.fasta"},
-    "IGK": {"v": "IGKV.fasta", "j": "IGKJ.fasta"},
-    "IGL": {"v": "IGLV.fasta", "j": "IGLJ.fasta"},
-}
-D_FASTA = "IGHD.fasta"
+# paths.py лежит на уровень выше (в scripts/), а не рядом с этим файлом,
+# поэтому добавляем scripts/ в sys.path, чтобы его можно было импортировать
+SCRIPTS_DIR = os.path.dirname(BASE_DIR)
+if SCRIPTS_DIR not in sys.path:
+    sys.path.insert(0, SCRIPTS_DIR)
 
-INPUT_FILE = os.path.join(BASE_DIR, "BCR_data_filtered.tsv")  # результат первого скрипта
+from paths import get_paths  # noqa: E402
 
-OUT_ROOT = os.path.join(BASE_DIR, "grouped_by_germlines")
+D_FASTA_NAME = "IGHD.fasta"
 
 aligner = Align.PairwiseAligner()
 aligner.mode = "local"  # локальное — ищем лучший совпадающий участок
@@ -81,25 +80,52 @@ def write_fasta(records, out_dir, gene_name):
             f.write(f">{seq_id}\n{seq}\n")
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(description="Группировка BCR-последовательностей по germline-генам.")
+    parser.add_argument(
+        "-k", "--key",
+        required=True,
+        help="Название подпапки внутри data/ и results/ (то же, что использовалось в filter_and_save.py)",
+    )
+    return parser.parse_args()
+
+
 def main():
+    args = parse_args()
+    paths = get_paths(args.key)
+
+    output_dir = paths["output_dir"]
+    imgt_dir = paths["imgt_dir"]  # data/IMGT/Homo_sapiens/IG — подаётся автоматически
+
+    # входной файл — это результат filter_and_save.py, он лежит в results/<key>/
+    input_file = os.path.join(output_dir, "BCR_data_filtered.tsv")
+    out_root = os.path.join(output_dir, "grouped_by_germlines")
+
+    locus_vj_fasta = {
+        "IGH": {"v": os.path.join(imgt_dir, "IGHV.fasta"), "j": os.path.join(imgt_dir, "IGHJ.fasta")},
+        "IGK": {"v": os.path.join(imgt_dir, "IGKV.fasta"), "j": os.path.join(imgt_dir, "IGKJ.fasta")},
+        "IGL": {"v": os.path.join(imgt_dir, "IGLV.fasta"), "j": os.path.join(imgt_dir, "IGLJ.fasta")},
+    }
+    d_fasta_path = os.path.join(imgt_dir, D_FASTA_NAME)
+
     print("Читаю germline-справочники (полные последовательности)...")
     v_seqs_by_locus = {}
     j_seqs_by_locus = {}
-    for locus, files in LOCUS_VJ_FASTA.items():
-        v_seqs_by_locus[locus] = read_germline_fasta(os.path.join(BASE_DIR, files["v"]))
-        j_seqs_by_locus[locus] = read_germline_fasta(os.path.join(BASE_DIR, files["j"]))
+    for locus, files in locus_vj_fasta.items():
+        v_seqs_by_locus[locus] = read_germline_fasta(files["v"])
+        j_seqs_by_locus[locus] = read_germline_fasta(files["j"])
         print(f"  {locus}: V={len(v_seqs_by_locus[locus])}, J={len(j_seqs_by_locus[locus])}")
-    d_seqs = read_germline_fasta(os.path.join(BASE_DIR, D_FASTA))
+    d_seqs = read_germline_fasta(d_fasta_path)
     print(f"  IGH: D={len(d_seqs)}")
 
-    print("Читаю отфильтрованный файл...")
-    df = pd.read_csv(INPUT_FILE, sep="\t")
+    print(f"Читаю отфильтрованный файл {input_file} ...")
+    df = pd.read_csv(input_file, sep="\t")
     total = len(df)
 
-    v_dir = build_folder(OUT_ROOT, "v")
-    d_dir = build_folder(OUT_ROOT, "d")
-    j_dir = build_folder(OUT_ROOT, "j")
-    vj_dir = build_folder(OUT_ROOT, "vj")
+    v_dir = build_folder(out_root, "v")
+    d_dir = build_folder(out_root, "d")
+    j_dir = build_folder(out_root, "j")
+    vj_dir = build_folder(out_root, "vj")
 
     v_groups = {}
     d_groups = {}
@@ -151,7 +177,7 @@ def main():
         write_fasta(records, vj_dir, gene)
 
     print(f"Готово! Fasta-файлов: V={len(v_groups)}, D={len(d_groups)}, J={len(j_groups)}, V+J={len(vj_groups)}")
-    print(f"Папки лежат в {OUT_ROOT}/v, /d, /j, /vj")
+    print(f"Папки лежат в {out_root}/v, /d, /j, /vj")
 
 
 if __name__ == "__main__":

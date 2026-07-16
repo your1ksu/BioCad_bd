@@ -1,4 +1,6 @@
+import argparse
 import os
+import sys
 from collections import Counter
 
 import pandas as pd
@@ -6,15 +8,13 @@ import pandas as pd
 # ============ ПУТИ ============
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# germline-справочники лежат прямо рядом со скриптом
-LOCUS_FASTA = {
-    "IGH": {"v": "IGHV.fasta", "j": "IGHJ.fasta"},
-    "IGK": {"v": "IGKV.fasta", "j": "IGKJ.fasta"},
-    "IGL": {"v": "IGLV.fasta", "j": "IGLJ.fasta"},
-}
+# paths.py лежит на уровень выше (в scripts/), а не рядом с этим файлом,
+# поэтому добавляем scripts/ в sys.path, чтобы его можно было импортировать
+SCRIPTS_DIR = os.path.dirname(BASE_DIR)
+if SCRIPTS_DIR not in sys.path:
+    sys.path.insert(0, SCRIPTS_DIR)
 
-INPUT_FILE = os.path.join(BASE_DIR, "BCR_data.tsv")
-OUTPUT_FILE = os.path.join(BASE_DIR, "BCR_data_filtered.tsv")
+from paths import get_paths  # noqa: E402
 
 MIN_JUNCTION = 15
 MAX_JUNCTION = 100
@@ -120,17 +120,44 @@ def check_row(row, v_lengths_by_locus, j_lengths_by_locus, reasons):
     return True
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(description="Фильтрация BCR-последовательностей.")
+    parser.add_argument(
+        "-k", "--key",
+        required=True,
+        help="Название подпапки внутри data/ и results/ (например: batch1)",
+    )
+    return parser.parse_args()
+
+
 def main():
+    args = parse_args()
+    paths = get_paths(args.key)
+
+    input_dir = paths["input_dir"]
+    output_dir = paths["output_dir"]
+    imgt_dir = paths["imgt_dir"]  # data/IMGT/Homo_sapiens/IG — подаётся автоматически
+
+    input_file = os.path.join(input_dir, "BCR_data.tsv")
+    output_file = os.path.join(output_dir, "BCR_data_filtered.tsv")
+
+    # germline-справочники лежат в imgt_dir (см. paths.py)
+    locus_fasta = {
+        "IGH": {"v": os.path.join(imgt_dir, "IGHV.fasta"), "j": os.path.join(imgt_dir, "IGHJ.fasta")},
+        "IGK": {"v": os.path.join(imgt_dir, "IGKV.fasta"), "j": os.path.join(imgt_dir, "IGKJ.fasta")},
+        "IGL": {"v": os.path.join(imgt_dir, "IGLV.fasta"), "j": os.path.join(imgt_dir, "IGLJ.fasta")},
+    }
+
     print("Читаю germline-справочники (только длины)...")
     v_lengths_by_locus = {}
     j_lengths_by_locus = {}
-    for locus, files in LOCUS_FASTA.items():
-        v_lengths_by_locus[locus] = read_germline_lengths(os.path.join(BASE_DIR, files["v"]))
-        j_lengths_by_locus[locus] = read_germline_lengths(os.path.join(BASE_DIR, files["j"]))
+    for locus, files in locus_fasta.items():
+        v_lengths_by_locus[locus] = read_germline_lengths(files["v"])
+        j_lengths_by_locus[locus] = read_germline_lengths(files["j"])
         print(f"  {locus}: V={len(v_lengths_by_locus[locus])}, J={len(j_lengths_by_locus[locus])}")
 
-    print("Читаю входной файл...")
-    df = read_input(INPUT_FILE)
+    print(f"Читаю входной файл {input_file} ...")
+    df = read_input(input_file)
     total_before = len(df)
     print("Пример значений v_call в твоих данных:", df["v_call"].dropna().unique()[:5])
     print("Локусы в данных:", df["locus"].value_counts().to_dict())
@@ -150,8 +177,8 @@ def main():
     for reason, count in reasons.most_common():
         print(f"  {reason}: {count}")
 
-    df_valid.to_csv(OUTPUT_FILE, sep="\t", index=False)
-    print(f"\nГотово! Отфильтрованные данные сохранены в {OUTPUT_FILE}")
+    df_valid.to_csv(output_file, sep="\t", index=False)
+    print(f"\nГотово! Отфильтрованные данные сохранены в {output_file}")
 
 
 if __name__ == "__main__":
