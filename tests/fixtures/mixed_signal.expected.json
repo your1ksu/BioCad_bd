@@ -1,0 +1,266 @@
+{
+  "root": "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT",
+  "root_len": 200,
+  "leaves": {
+    "seqA1": {
+      "shared_group": "A",
+      "shared_positions": [
+        5,
+        25,
+        45,
+        65,
+        85,
+        105
+      ],
+      "private_positions": [
+        125
+      ],
+      "mutations": [
+        {
+          "position": 5,
+          "ref": "C",
+          "alt": "G"
+        },
+        {
+          "position": 25,
+          "ref": "C",
+          "alt": "G"
+        },
+        {
+          "position": 45,
+          "ref": "C",
+          "alt": "G"
+        },
+        {
+          "position": 65,
+          "ref": "C",
+          "alt": "G"
+        },
+        {
+          "position": 85,
+          "ref": "C",
+          "alt": "G"
+        },
+        {
+          "position": 105,
+          "ref": "C",
+          "alt": "G"
+        },
+        {
+          "position": 125,
+          "ref": "C",
+          "alt": "G"
+        }
+      ]
+    },
+    "seqA2": {
+      "shared_group": "A",
+      "shared_positions": [
+        5,
+        25,
+        45,
+        65,
+        85,
+        105
+      ],
+      "private_positions": [
+        145
+      ],
+      "mutations": [
+        {
+          "position": 5,
+          "ref": "C",
+          "alt": "G"
+        },
+        {
+          "position": 25,
+          "ref": "C",
+          "alt": "G"
+        },
+        {
+          "position": 45,
+          "ref": "C",
+          "alt": "G"
+        },
+        {
+          "position": 65,
+          "ref": "C",
+          "alt": "G"
+        },
+        {
+          "position": 85,
+          "ref": "C",
+          "alt": "G"
+        },
+        {
+          "position": 105,
+          "ref": "C",
+          "alt": "G"
+        },
+        {
+          "position": 145,
+          "ref": "C",
+          "alt": "G"
+        }
+      ]
+    },
+    "seqB1": {
+      "shared_group": "B",
+      "shared_positions": [
+        15,
+        35,
+        55,
+        75,
+        95,
+        115
+      ],
+      "private_positions": [
+        135
+      ],
+      "mutations": [
+        {
+          "position": 15,
+          "ref": "T",
+          "alt": "A"
+        },
+        {
+          "position": 35,
+          "ref": "T",
+          "alt": "A"
+        },
+        {
+          "position": 55,
+          "ref": "T",
+          "alt": "A"
+        },
+        {
+          "position": 75,
+          "ref": "T",
+          "alt": "A"
+        },
+        {
+          "position": 95,
+          "ref": "T",
+          "alt": "A"
+        },
+        {
+          "position": 115,
+          "ref": "T",
+          "alt": "A"
+        },
+        {
+          "position": 135,
+          "ref": "T",
+          "alt": "A"
+        }
+      ]
+    },
+    "seqB2": {
+      "shared_group": "B",
+      "shared_positions": [
+        15,
+        35,
+        55,
+        75,
+        95,
+        115
+      ],
+      "private_positions": [
+        155
+      ],
+      "mutations": [
+        {
+          "position": 15,
+          "ref": "T",
+          "alt": "A"
+        },
+        {
+          "position": 35,
+          "ref": "T",
+          "alt": "A"
+        },
+        {
+          "position": 55,
+          "ref": "T",
+          "alt": "A"
+        },
+        {
+          "position": 75,
+          "ref": "T",
+          "alt": "A"
+        },
+        {
+          "position": 95,
+          "ref": "T",
+          "alt": "A"
+        },
+        {
+          "position": 115,
+          "ref": "T",
+          "alt": "A"
+        },
+        {
+          "position": 155,
+          "ref": "T",
+          "alt": "A"
+        }
+      ]
+    },
+    "seqC_singleton": {
+      "shared_group": null,
+      "shared_positions": [],
+      "private_positions": [
+        165,
+        175
+      ],
+      "mutations": [
+        {
+          "position": 165,
+          "ref": "C",
+          "alt": "G"
+        },
+        {
+          "position": 175,
+          "ref": "T",
+          "alt": "A"
+        }
+      ]
+    },
+    "seqD_singleton": {
+      "shared_group": null,
+      "shared_positions": [],
+      "private_positions": [
+        10,
+        190
+      ],
+      "mutations": [
+        {
+          "position": 10,
+          "ref": "G",
+          "alt": "T"
+        },
+        {
+          "position": 190,
+          "ref": "G",
+          "alt": "T"
+        }
+      ]
+    }
+  },
+  "expected_confident_clades": [
+    {
+      "leaves": [
+        "seqA1",
+        "seqA2"
+      ],
+      "reason": "6 общих мутаций (5,25,45,65,85,105)"
+    },
+    {
+      "leaves": [
+        "seqB1",
+        "seqB2"
+      ],
+      "reason": "6 общих мутаций (15,35,55,75,95,115)"
+    }
+  ]
+}

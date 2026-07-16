@@ -1,0 +1,226 @@
+{
+  "root": "ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT",
+  "root_len": 200,
+  "leaves": {
+    "seq1": {
+      "shared_group": "A",
+      "shared_positions": [
+        10,
+        30,
+        50,
+        70,
+        90,
+        110
+      ],
+      "private_positions": [
+        130
+      ],
+      "mutations": [
+        {
+          "position": 10,
+          "ref": "G",
+          "alt": "T"
+        },
+        {
+          "position": 30,
+          "ref": "G",
+          "alt": "T"
+        },
+        {
+          "position": 50,
+          "ref": "G",
+          "alt": "T"
+        },
+        {
+          "position": 70,
+          "ref": "G",
+          "alt": "T"
+        },
+        {
+          "position": 90,
+          "ref": "G",
+          "alt": "T"
+        },
+        {
+          "position": 110,
+          "ref": "G",
+          "alt": "T"
+        },
+        {
+          "position": 130,
+          "ref": "G",
+          "alt": "T"
+        }
+      ]
+    },
+    "seq2": {
+      "shared_group": "A",
+      "shared_positions": [
+        10,
+        30,
+        50,
+        70,
+        90,
+        110
+      ],
+      "private_positions": [
+        150
+      ],
+      "mutations": [
+        {
+          "position": 10,
+          "ref": "G",
+          "alt": "T"
+        },
+        {
+          "position": 30,
+          "ref": "G",
+          "alt": "T"
+        },
+        {
+          "position": 50,
+          "ref": "G",
+          "alt": "T"
+        },
+        {
+          "position": 70,
+          "ref": "G",
+          "alt": "T"
+        },
+        {
+          "position": 90,
+          "ref": "G",
+          "alt": "T"
+        },
+        {
+          "position": 110,
+          "ref": "G",
+          "alt": "T"
+        },
+        {
+          "position": 150,
+          "ref": "G",
+          "alt": "T"
+        }
+      ]
+    },
+    "seq3": {
+      "shared_group": "B",
+      "shared_positions": [
+        20,
+        40,
+        60,
+        80,
+        100,
+        120
+      ],
+      "private_positions": [
+        140
+      ],
+      "mutations": [
+        {
+          "position": 20,
+          "ref": "A",
+          "alt": "C"
+        },
+        {
+          "position": 40,
+          "ref": "A",
+          "alt": "C"
+        },
+        {
+          "position": 60,
+          "ref": "A",
+          "alt": "C"
+        },
+        {
+          "position": 80,
+          "ref": "A",
+          "alt": "C"
+        },
+        {
+          "position": 100,
+          "ref": "A",
+          "alt": "C"
+        },
+        {
+          "position": 120,
+          "ref": "A",
+          "alt": "C"
+        },
+        {
+          "position": 140,
+          "ref": "A",
+          "alt": "C"
+        }
+      ]
+    },
+    "seq4": {
+      "shared_group": "B",
+      "shared_positions": [
+        20,
+        40,
+        60,
+        80,
+        100,
+        120
+      ],
+      "private_positions": [
+        160
+      ],
+      "mutations": [
+        {
+          "position": 20,
+          "ref": "A",
+          "alt": "C"
+        },
+        {
+          "position": 40,
+          "ref": "A",
+          "alt": "C"
+        },
+        {
+          "position": 60,
+          "ref": "A",
+          "alt": "C"
+        },
+        {
+          "position": 80,
+          "ref": "A",
+          "alt": "C"
+        },
+        {
+          "position": 100,
+          "ref": "A",
+          "alt": "C"
+        },
+        {
+          "position": 120,
+          "ref": "A",
+          "alt": "C"
+        },
+        {
+          "position": 160,
+          "ref": "A",
+          "alt": "C"
+        }
+      ]
+    }
+  },
+  "expected_confident_clades": [
+    {
+      "leaves": [
+        "seq1",
+        "seq2"
+      ],
+      "reason": "6 общих мутаций (10,30,50,70,90,110) на определяющей ветви — сильный сигнал"
+    },
+    {
+      "leaves": [
+        "seq3",
+        "seq4"
+      ],
+      "reason": "6 общих мутаций (20,40,60,80,100,120) на определяющей ветви — сильный сигнал"
+    }
+  ]
+}

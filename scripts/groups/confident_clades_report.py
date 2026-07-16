@@ -16,6 +16,15 @@
       Требуется <группа>.names.tsv рядом (тот же шаг его пишет), чтобы вернуть
       исходные id таксонов вместо MrBayes-совместимых T0001...
 
+      Два исправления против наивного обхода дерева (найдены и проверены
+      тестами на tests/fixtures/, см. tests/test_fixtures.py):
+      1) MrBayes пишет неукоренённое дерево как rooted-newick с базовой
+         политомией — часть клады может остаться «голыми» листьями прямо на
+         корне вместо отдельного узла (см. _root_complement_supports).
+      2) Обе стороны одного и того же ребра дерева иногда попадают в supports
+         как два разных «клады» — оставляем только содержательную меньшую
+         сторону (см. _drop_complement_duplicates).
+
   --iqtree-dir DIR (напр. 'trees', выход anotherpipeline/build_trees/build_trees.sh
       у Дениса: trees/<группа>/<группа>.treefile)
       ML-дерево IQ-TREE с метками узлов вида 'SH-aLRT/UFboot' (напр. '98.5/100').
@@ -30,6 +39,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from io import StringIO
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -39,6 +49,83 @@ from biocode.model import TreeResult
 from biocode.trees import mrbayes as mrbayes_mod
 
 CON_TRE_SUFFIX = ".nex.con.tre"
+
+
+def _root_complement_supports(newick: str, supports: dict[str, dict]) -> dict[str, dict]:
+    """Достроить supports той стороной корневого разбиения, которую MrBayes не
+    обернул в отдельный узел.
+
+    MrBayes пишет консенсус НЕУКОРЕНЁННОГО дерева как rooted-newick с базовой
+    политомией (напр. ``(seq1,seq2,(seq3,seq4)1.00)``): 2 таксона висят прямо
+    на корне по отдельности, а их сестринская пара обёрнута в узел с posterior.
+    Для 4 таксонов это ЕДИНСТВЕННОЕ возможное внутреннее ребро дерева — то есть
+    {seq1,seq2} обладает ТОЙ ЖЕ posterior-поддержкой, что и {seq3,seq4}, просто
+    не материализована как узел, и наивный обход get_nonterminals() её теряет.
+
+    Правило (безопасно и однозначно только в этом частном случае): если среди
+    прямых потомков КОРНЯ ровно один — свёрнутая клада, а остальные ≥2 —
+    голые листья, то эти листья вместе — комплементарная клада с той же
+    posterior (это то же самое ребро дерева, две стороны одного разбиения).
+    Если на корне ≥2 свёрнутых клад — топология между ними не разрешена,
+    объединять голые листья не тождественно правильно, поэтому не трогаем.
+    """
+    if not newick:
+        return supports
+    try:
+        from Bio import Phylo
+        tree = Phylo.read(StringIO(newick), "newick")
+    except Exception:
+        return supports
+
+    root_children = list(tree.root.clades)
+    internal_children = [c for c in root_children if not c.is_terminal()]
+    leaf_children = [c for c in root_children if c.is_terminal()]
+    if len(internal_children) != 1 or len(leaf_children) < 2:
+        return supports
+
+    wrapped = internal_children[0]
+    wrapped_leaves = frozenset(t.name for t in wrapped.get_terminals())
+    wrapped_sig = "|".join(sorted(wrapped_leaves))
+    if wrapped_sig not in supports:
+        return supports
+
+    complement_leaves = sorted(t.name for t in leaf_children)
+    complement_sig = "|".join(complement_leaves)
+    if complement_sig in supports:
+        return supports
+
+    out = dict(supports)
+    out[complement_sig] = dict(supports[wrapped_sig])
+    return out
+
+
+def _drop_complement_duplicates(supports: dict[str, dict], all_leaves: frozenset) -> dict[str, dict]:
+    """Если клада C и её дополнение (all_leaves \\ C) обе есть в supports — это
+    ДВЕ СТОРОНЫ ОДНОГО РЕБРА дерева. Когда стороны разного размера, большая —
+    это просто «всё, кроме меньшей клады» и не несёт отдельного биологического
+    смысла (пример: клада из 2 листьев vs комплемент из 4 разнородных) — такую
+    большую сторону убираем, оставляя только содержательную меньшую.
+
+    Когда стороны РАВНОГО размера (напр. 2+2 при 4 таксонах) — это два
+    ОДИНАКОВО специфичных, независимо содержательных разбиения (напр. {1,2} и
+    {3,4} — обе реальные пары), обе сохраняются.
+    """
+    sig_to_leaves = {sig: frozenset(sig.split("|")) for sig in supports}
+    drop: set[str] = set()
+    sigs = list(supports)
+    for i, sig_a in enumerate(sigs):
+        if sig_a in drop:
+            continue
+        leaves_a = sig_to_leaves[sig_a]
+        complement = all_leaves - leaves_a
+        if len(complement) < 2 or len(leaves_a) == len(complement):
+            continue
+        for sig_b in sigs[i + 1:]:
+            if sig_b in drop or sig_to_leaves[sig_b] != complement:
+                continue
+            drop.add(sig_a if len(leaves_a) > len(complement) else sig_b)
+            break
+    return {sig: sup for sig, sup in supports.items() if sig not in drop}
 
 
 def _load_names(names_tsv: Path) -> dict[str, str]:
@@ -57,7 +144,14 @@ def _load_names(names_tsv: Path) -> dict[str, str]:
 def clades_from_mrbayes(con_tre: Path, names_tsv: Path, posterior_min: float) -> list[dict]:
     """<группа>.nex.con.tre (posterior) → список уверенных клад."""
     rev = _load_names(names_tsv)
-    _, supports = mrbayes_mod.parse_con_tre(con_tre, rev)
+    newick, supports = mrbayes_mod.parse_con_tre(con_tre, rev)
+    supports = _root_complement_supports(newick, supports)
+
+    if newick:
+        from Bio import Phylo
+        all_leaves = frozenset(t.name for t in Phylo.read(StringIO(newick), "newick").get_terminals())
+        supports = _drop_complement_duplicates(supports, all_leaves)
+
     entries = []
     for sig, sup in supports.items():
         pp = sup.get("posterior")

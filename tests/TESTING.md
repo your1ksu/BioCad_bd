@@ -1,73 +1,59 @@
 # Тестирование Pipeline
 
-Два типа тестов для проверки открытости и достоверности:
+Два типа тестов, оба консольные (без HTML/GUI-зависимостей):
 
-## 1. E2E тесты на реальных данных
-
-Загружает реальные группы из `BIOCAD.bigchallenges/anotherpipeline/`, прогоняет через pipeline, генерирует визуализации.
+## 1. Тесты на статических fixtures с известным ответом
 
 ```bash
-python test_pipeline.py [N_GROUPS]
+python tests/test_fixtures.py
 ```
 
-**Примеры:**
-```bash
-python test_pipeline.py 1      # одна группа (~32 сек)
-python test_pipeline.py 3      # три группы (~90 сек)
+Читает `tests/fixtures/*_aligned.fasta` (статические файлы с задокументированными
+мутациями — см. `*.expected.json` рядом), прогоняет через реальный
+`mrbayes/run_mrbayes.py` → `groups/confident_clades_report.py`, сверяет найденные
+уверенные клады с ожидаемыми.
+
+```
+Пройдено: 3/3
+  ✓ mixed_signal
+  ✓ no_shared_mutations
+  ✓ two_clear_pairs
 ```
 
-**Выход:**
-- `aligned_sequences/` — копии исходных FASTA
-- `mrbayes/` — NEXUS, консенсус, лог MrBayes, `.tree.html` визуализации
-- `groups/report.json` — уверенные клады всех групп
-
----
-
-## 2. Синтетические тесты с известным ответом
-
-Создаёт филогенетические деревья с контролируемой структурой, эволюционирует по ним последовательности, запускает pipeline, проверяет восстановление топологии.
+## 2. E2E тест на реальных данных
 
 ```bash
-python test_synthetic.py /path/to/venv/bin/python
+python tests/test_pipeline.py [N_GROUPS]
 ```
 
-**Пример (с тестовым окружением):**
+Загружает N реальных групп из `BIOCAD.bigchallenges/anotherpipeline/`
+(настоящие данные Ксюши/Алины), прогоняет через pipeline, печатает пути к
+результатам. Визуализацию не генерирует — для неё см. ниже.
+
 ```bash
-VENV=/private/tmp/claude-501/.../scratchpad/venv
-python test_synthetic.py "$VENV/bin/python"
+python tests/test_pipeline.py 1      # одна группа (~35 сек)
+python tests/test_pipeline.py 3      # три группы (~100 сек)
 ```
 
-Запускает 4 теста:
-- ✓ **star_tree_5taxa** — политомия (0 клад ожидается, 0 найдено)
-- ~ **well_separated_pairs** — две пары с хорошим разделением
-- ~ **deep_nested_tree** — глубокая вложенная структура
-- ~ **uneven_branches** — неравномерные длины ветвей
+## 3. Визуализация (отдельно, опционально)
 
-**Выход:**
-```
-Прошло: 1/4
-  ✓ star_tree_5taxa
-  ✘ well_separated_pairs
-  ✘ deep_nested_tree
-  ✘ uneven_branches
+```bash
+python tests/visualize_tree.py <group_key> mrbayes/ \
+    --report groups/report.json --out mrbayes/<group_key>.tree.html
 ```
 
-Результаты интерпретируются в `TEST_REPORT.md`.
-
----
+Не требуется для тестирования — намеренно вынесена в отдельный файл, который
+`test_fixtures.py`/`test_pipeline.py` не импортируют.
 
 ## Требования
 
-- Python 3.9+
-- `biopython` (pip install biopython)
-- Бинарь `mb` (conda install -c bioconda mrbayes, опционально для фазы 2 MrBayes)
-- Клон репозитория `BIOCAD.bigchallenges` с ветки `origin/main` (для test_pipeline.py)
-
----
+- Python 3.9+, `biopython` (pip install biopython)
+- Бинарь `mb` (MrBayes): conda install -c bioconda mrbayes
+- Для test_pipeline.py — клон BIOCAD.bigchallenges на ветке main
 
 ## Интерпретация результатов
 
-Смотрите [TEST_REPORT.md](TEST_REPORT.md) для подробного анализа:
-- Почему некоторые синтетические тесты "не проходят" (это нормально)
-- Что это говорит о достоверности pipeline
-- Какие ограничения есть и когда их ожидать
+Смотрите [TEST_REPORT.md](TEST_REPORT.md) — там разобрана находка: реальный
+баг в извлечении уверенных клад из MrBayes-консенсуса (часть клады терялась
+при неукоренённом дереве с базовой политомией) и то, как он был исправлен и
+покрыт тестом.
