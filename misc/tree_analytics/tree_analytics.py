@@ -102,7 +102,7 @@ def plot_results(genes, clades_counts, all_sizes, all_depths):
 
 # Главный блок выполнения
 if __name__ == "__main__":
-    INPUT_FILE_PATH = "data.json"
+    INPUT_FILE_PATH = "report2.json"
 
     try:
         # Шаг 1: Загрузка
