@@ -1,25 +1,17 @@
-# build_trees_iqtree.sh
+# build_trees_iqtree.py
 
 Скрипт строит филогенетические деревья по FASTA-выравниваниям через IQ-TREE.
-
-## Требования
-
-- [Miniconda](https://docs.anaconda.com/miniconda/) (или Anaconda)
 
 ## Использование
 
 ```bash
-./build_trees_iqtree.sh                           # input: aligned_sequences, output: trees
-./build_trees_iqtree.sh aligned_sequences         # явный input, output: trees
-./build_trees_iqtree.sh aligned_sequences my_trees # явные input и output
+python3 build_trees_iqtree.py -i aligned_sequences -o trees
 ```
-
-Скрипт сам создаст conda-окружение `trees_building_env`, установит `iqtree` и запустит его для всех `.fa/.fasta/.fas/.aln` файлов из указанной папки.
 
 ## Что делает
 
 - Читает каждый FASTA-файл из указанной директории
-- Определяет число CPU (`nproc` / `sysctl -n hw.ncpu`)
+- Определяет число CPU
 - Запускает IQ-TREE с параметрами:
 
 ```
@@ -39,7 +31,7 @@ aligned_sequences/  →  trees/
   file2.fasta           file2/
 ```
 
-Вся работа происходит внутри conda-окружения `trees_building_env`. Окружение создаётся один раз, при повторных запусках переиспользуется.
+Требует `iqtree` в `$PATH` (можно установить через `conda install -c bioconda iqtree`).
 
 ## Тесты
 

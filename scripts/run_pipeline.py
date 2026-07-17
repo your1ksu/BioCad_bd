@@ -20,6 +20,48 @@ SCRIPTS_DIR = REPO_ROOT / "scripts"
 DATA_DIR = REPO_ROOT / "data"
 RESULTS_DIR = REPO_ROOT / "results"
 REFERENCES_DIR = DATA_DIR / "references"
+ENV_NAME = "biocad_bcr_pipeline_environment"
+ENV_YML = REPO_ROOT / "environment.yml"
+
+# Cache for env binary paths (resolved once after ensure_env)
+PYTHON_BIN: str | None = None
+BASH_BIN: str | None = None
+
+
+def ensure_env():
+    """Check that the conda env exists; if not, create it from environment.yml."""
+    try:
+        result = subprocess.run(
+            ["conda", "env", "list", "--json"], capture_output=True, text=True, check=True
+        )
+        import json
+        envs = json.loads(result.stdout).get("envs", [])
+        base = subprocess.run(
+            ["conda", "info", "--base"], capture_output=True, text=True, check=True
+        ).stdout.strip()
+    except Exception:
+        print("Error: conda not found. Install miniconda first.")
+        sys.exit(1)
+
+    env_paths = [p for p in envs if p.endswith("/" + ENV_NAME)]
+    if not env_paths:
+        print(f"Creating conda environment '{ENV_NAME}' from {ENV_YML} ...")
+        subprocess.run(
+            ["conda", "env", "create", "-f", str(ENV_YML)],
+            check=True
+        )
+        print("Environment created.")
+
+    # Resolve binary paths once
+    global PYTHON_BIN, BASH_BIN
+    PYTHON_BIN = subprocess.run(
+        ["conda", "run", "-n", ENV_NAME, "which", "python"],
+        capture_output=True, text=True, check=True
+    ).stdout.strip()
+    BASH_BIN = subprocess.run(
+        ["conda", "run", "-n", ENV_NAME, "which", "bash"],
+        capture_output=True, text=True, check=True
+    ).stdout.strip()
 
 
 def run_cmd(cmd, cwd=None, log_file=None, description=None):
@@ -71,7 +113,7 @@ def run_cmd(cmd, cwd=None, log_file=None, description=None):
 def step1_filter(input_tsv, output_tsv, log_dir):
     """Step 1: Filter BCR data."""
     return run_cmd([
-        sys.executable, str(SCRIPTS_DIR / "01_filter_sequences" / "filter_sequences.py"),
+        PYTHON_BIN, str(SCRIPTS_DIR / "01_filter_sequences" / "filter_sequences.py"),
         "-i", str(input_tsv),
         "-o", str(output_tsv),
         "-r", str(REFERENCES_DIR),
@@ -81,7 +123,7 @@ def step1_filter(input_tsv, output_tsv, log_dir):
 def step2_group(filtered_tsv, output_dir, log_dir):
     """Step 2: Group by germlines."""
     return run_cmd([
-        sys.executable, str(SCRIPTS_DIR / "02_group_by_germlines" / "group_by_germlines.py"),
+        PYTHON_BIN, str(SCRIPTS_DIR / "02_group_by_germlines" / "group_by_germlines.py"),
         "-i", str(filtered_tsv),
         "-o", str(output_dir),
         "-r", str(REFERENCES_DIR),
@@ -91,7 +133,7 @@ def step2_group(filtered_tsv, output_dir, log_dir):
 def step3_msa(grouped_vj_dir, output_dir, log_dir):
     """Step 3: Multiple sequence alignment."""
     return run_cmd([
-        sys.executable, str(SCRIPTS_DIR / "03_multiple_alignment" / "multiple_alignment.py"),
+        PYTHON_BIN, str(SCRIPTS_DIR / "03_multiple_alignment" / "multiple_alignment.py"),
         "-i", str(grouped_vj_dir),
         "-o", str(output_dir),
     ], log_file=log_dir / "step3_msa.log", description="Step 3: MSA (MAFFT)")
@@ -100,16 +142,16 @@ def step3_msa(grouped_vj_dir, output_dir, log_dir):
 def step4a_iqtree(aligned_dir, trees_dir, log_dir):
     """Step 4a: IQ-TREE (ML trees)."""
     return run_cmd([
-        "bash", str(SCRIPTS_DIR / "04a_build_trees_iqtree" / "build_trees_iqtree.sh"),
-        str(aligned_dir), str(trees_dir),
+        PYTHON_BIN, str(SCRIPTS_DIR / "04a_build_trees_iqtree" / "build_trees_iqtree.py"),
+        "-i", str(aligned_dir),
+        "-o", str(trees_dir),
     ], log_file=log_dir / "step4a_iqtree.log", description="Step 4a: IQ-TREE (ML)")
 
 
 def step4b_mrbayes(aligned_dir, mrbayes_dir, log_dir):
     """Step 4b: MrBayes (Bayesian trees)."""
     return run_cmd([
-        "conda", "run", "-n", "biocad_pipeline", "python",
-        str(SCRIPTS_DIR / "04b_build_trees_mrbayes" / "build_trees_mrbayes.py"),
+        PYTHON_BIN, str(SCRIPTS_DIR / "04b_build_trees_mrbayes" / "build_trees_mrbayes.py"),
         str(aligned_dir),
         "--out", str(mrbayes_dir),
     ], log_file=log_dir / "step4b_mrbayes.log", description="Step 4b: MrBayes (Bayesian)")
@@ -118,9 +160,9 @@ def step4b_mrbayes(aligned_dir, mrbayes_dir, log_dir):
 def step5_viz(trees_dir, viz_dir, log_dir):
     """Step 5: Visualize trees."""
     return run_cmd([
-        "conda", "run", "-n", "biocad_pipeline", "bash",
-        str(SCRIPTS_DIR / "visualize_trees" / "visualize_trees.sh"),
-        str(trees_dir), str(viz_dir),
+        PYTHON_BIN, str(SCRIPTS_DIR / "visualize_trees" / "visualize_trees.py"),
+        "-i", str(trees_dir),
+        "-o", str(viz_dir),
     ], log_file=log_dir / "step5_viz.log", description="Step 5: Tree visualization")
 
 
@@ -128,8 +170,7 @@ def step6_clades(trees_dir, mrbayes_dir, groups_dir, aligned_dir, log_dir):
     """Step 6: Confident clades report + extract clade FASTAs."""
     clades_dir = groups_dir / "clades"
     return run_cmd([
-        "conda", "run", "-n", "biocad_pipeline", "python",
-        str(SCRIPTS_DIR / "05_clade_search" / "clade_search.py"),
+        PYTHON_BIN, str(SCRIPTS_DIR / "05_clade_search" / "clade_search.py"),
         "--iqtree-dir", str(trees_dir),
         "--mrbayes-dir", str(mrbayes_dir),
         "--out", str(groups_dir / "report.json"),
@@ -141,12 +182,16 @@ def step6_clades(trees_dir, mrbayes_dir, groups_dir, aligned_dir, log_dir):
 def step7_mutations(clades_dir, mutations_dir, ref_dir, log_dir):
     """Step 7: Analyze mutations."""
     return run_cmd([
-        "bash", str(SCRIPTS_DIR / "06_analyze_mutations" / "analyze_mutations.sh"),
-        str(clades_dir), str(mutations_dir), str(ref_dir),
+        PYTHON_BIN, str(SCRIPTS_DIR / "06_analyze_mutations" / "run_mutations.py"),
+        "-i", str(clades_dir),
+        "-o", str(mutations_dir),
+        "-r", str(ref_dir),
     ], log_file=log_dir / "step7_mutations.log", description="Step 7: Analyze mutations")
 
 
 def main():
+    ensure_env()
+
     parser = argparse.ArgumentParser(description="Run full BCR analysis pipeline.")
     parser.add_argument("-k", "--key", help="Data key (folder under data/)")
     parser.add_argument("-i", "--input", help="Input BCR_data.tsv path (alternative to -k)")

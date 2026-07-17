@@ -17,36 +17,13 @@ import sys
 import pandas as pd
 from Bio import Align
 
-aligner = Align.PairwiseAligner()
-aligner.mode = "local"
+_aligner = Align.PairwiseAligner()
+_aligner.mode = "local"
 
 D_FASTA_NAME = "IGHD.fasta"
 
-# Константы для тестов (expected by test_main_end_to_end)
-LOCUS_VJ_FASTA = {
-    "IGH": {"v": "IGHV.fasta", "j": "IGHJ.fasta"},
-    "IGK": {"v": "IGKV.fasta", "j": "IGKJ.fasta"},
-    "IGL": {"v": "IGLV.fasta", "j": "IGLJ.fasta"},
-}
-
-# Для совместимости с тестом
-D_FASTA = "IGHD.fasta"
-
-# Для совместимости с тестом
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# Константы для тестов (monkeypatch)
-LOCUS_VJ_FASTA = {
-    "IGH": {"v": "IGHV.fasta", "j": "IGHJ.fasta"},
-    "IGK": {"v": "IGKV.fasta", "j": "IGKJ.fasta"},
-    "IGL": {"v": "IGLV.fasta", "j": "IGLJ.fasta"},
-}
-INPUT_FILE = os.path.join(BASE_DIR, "..", "..", "results", "BCR_data_filtered.tsv")
-OUT_ROOT = os.path.join(BASE_DIR, "..", "..", "results", "grouped_by_germlines")
-
 
 def read_germline_fasta(path):
-    """Читает IMGT fasta -> словарь {имя_гена: последовательность (в верхнем регистре)}."""
     seqs = {}
     name = None
     chunks = []
@@ -99,7 +76,7 @@ def best_germline_match(query_seq, germline_dict):
     best_score = float("-inf")
     query_seq = query_seq.upper()
     for name, gseq in germline_dict.items():
-        score = aligner.score(query_seq, gseq)
+        score = _aligner.score(query_seq, gseq)
         if score > best_score:
             best_score = score
             best_name = name
@@ -140,23 +117,11 @@ def parse_args():
     return parser.parse_args()
 
 
-def main(args=None):
-    import sys
-    default_input = os.path.join(BASE_DIR, "..", "..", "results", "BCR_data_filtered.tsv")
-    in_test_mode = (INPUT_FILE != default_input)
-    
-    if in_test_mode:
-        # Test mode - use monkeypatched constants
-        input_file = INPUT_FILE
-        output_dir = os.path.dirname(OUT_ROOT)
-        ref_dir = BASE_DIR
-    else:
-        # CLI mode
-        if args is None:
-            args = parse_args()
-        input_file = args.input
-        output_dir = args.output
-        ref_dir = args.ref_dir
+def main():
+    args = parse_args()
+    input_file = args.input
+    output_dir = args.output
+    ref_dir = args.ref_dir
 
     if not os.path.isfile(input_file):
         print(f"Ошибка: входной файл не найден: {input_file}", file=sys.stderr)

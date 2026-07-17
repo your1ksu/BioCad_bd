@@ -1,4 +1,4 @@
-name: biocad_pipeline
+name: biocad_bcr_pipeline_environment
 channels:
   - conda-forge
   - bioconda
@@ -14,3 +14,5 @@ dependencies:
   - blast
   - toytree
   - toyplot
+  - matplotlib
+  - seaborn

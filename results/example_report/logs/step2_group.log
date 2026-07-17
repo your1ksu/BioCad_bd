@@ -7,7 +7,7 @@
   обработано 13/13
 Готово! Fasta-файлов: V=1, D=7, J=1, V+J=1
 Папки лежат в results/example_report/grouped_by_germlines/v, /d, /j, /vj
-CMD: /Users/shumilov/miniconda3/envs/biocad_pipeline/bin/python /Users/shumilov/PycharmProjects/BioCad_bd/scripts/02_group_by_germlines/group_by_germlines.py -i results/example_report/BCR_data_filtered.tsv -o results/example_report/grouped_by_germlines -r /Users/shumilov/PycharmProjects/BioCad_bd/data/references
+CMD: /Users/shumilov/miniconda3/envs/biocad_bcr_pipeline_environment/bin/python /Users/shumilov/PycharmProjects/BioCad_bd/scripts/02_group_by_germlines/group_by_germlines.py -i results/example_report/BCR_data_filtered.tsv -o results/example_report/grouped_by_germlines -r /Users/shumilov/PycharmProjects/BioCad_bd/data/references
 CWD: /Users/shumilov/PycharmProjects/BioCad_bd
-START: 2026-07-17 22:55:17.602788
+START: 2026-07-18 00:00:08.441012
 

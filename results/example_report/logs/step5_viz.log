@@ -1,6 +1,5 @@
-[2026-07-17 22:55:54] Conda env 'trees_building_env' exists, activating ...
   Saved results/example_report/trees_visualization/IGHV1-69_12_IGHJ4_02_aligned/IGHV1-69_12_IGHJ4_02_aligned.html
-CMD: conda run -n biocad_pipeline bash /Users/shumilov/PycharmProjects/BioCad_bd/scripts/visualize_trees/visualize_trees.sh results/example_report/trees results/example_report/trees_visualization
+CMD: /Users/shumilov/miniconda3/envs/biocad_bcr_pipeline_environment/bin/python /Users/shumilov/PycharmProjects/BioCad_bd/scripts/visualize_trees/visualize_trees.py -i results/example_report/trees -o results/example_report/trees_visualization
 CWD: /Users/shumilov/PycharmProjects/BioCad_bd
-START: 2026-07-17 22:55:51.865789
+START: 2026-07-18 00:00:51.584335
 

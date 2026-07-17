@@ -2,25 +2,13 @@
 
 Фильтрация "сырых" BCR-последовательностей: отсеивает дубликаты и строки с некорректной длиной/локусом.
 
-## Входные и выходные файлы
-# Как раньше (TSV)
-python filter_sequences.py -k batch1
+## Вход и выход
 
-# FASTA на входе
-python filter_sequences.py -k batch1 -i path/to/sequences.fasta
-
-
-Все пути (откуда брать данные, куда сохранять результат, где лежат IMGT-справочники) определяются не внутри самого скрипта, а централизованно — в файле **`paths.py`** (лежит здесь же, в `scripts/`).
-
-По одному ключу (названию подпапки) сразу определяются все три пути:
-
-| Путь | Где физически | Что это |
+| | Путь | Что это |
 |---|---|---|
-| входные данные | `data/<key>/BCR_data.tsv` | сюда кладёшь исходный `.tsv` (имя файла строго `BCR_data.tsv`) |
-| результаты | `results/<key>/BCR_data_filtered.tsv` | сюда пишется отфильтрованный файл |
-| IMGT-справочники | `data/IMGT/Homo_sapiens/IG/` | подаётся автоматически, ключ на него не влияет |
-
-Ключ передаётся аргументом `-k` / `--key` при запуске самого скрипта (не `paths.py` — тот нужен только для проверки путей).
+| вход (`-i`) | `data/<batch>/BCR_data.tsv` | исходный AIRR-подобный TSV |
+| выход (`-o`) | произвольный путь | отфильтрованный TSV |
+| референсы (`-r`) | `data/references/` | IMGT-гермлайновые справочники (IGHV.fasta, IGKJ.fasta и т.д.) |
 
 ## Задача
 
@@ -37,10 +25,5 @@ python filter_sequences.py -k batch1 -i path/to/sequences.fasta
 ## Запуск
 
 ```bash
-python3 filter_sequences.py --key <название_подпапки>
-```
-
-Например, если данные лежат в `data/BCR/BCR_data.tsv`:
-```bash
-python3 filter_sequences.py --key BCR
+python3 filter_sequences.py -i data/BCR/BCR_data.tsv -o results/BCR/BCR_data_filtered.tsv -r data/references
 ```

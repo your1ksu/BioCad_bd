@@ -1,32 +1,23 @@
-# analyze_mutations.sh
+# run_mutations.py
 
 Анализирует антигенные рецепторы (антитела): находит мутации относительно гермлайна, аннотирует по FR/CDR регионам (IMGT нумерация), выводит таблицу мутаций.
-
-## Требования
-
-- [Miniconda](https://docs.anaconda.com/miniconda/)
 
 ## Использование
 
 ```bash
-./analyze_mutations.sh <input_dir> <output_dir>
-```
-
-Примеры:
-```bash
-./analyze_mutations.sh fasta_from_clades mutation_tables
-./analyze_mutations.sh /path/to/fa/files /path/to/output
+python3 run_mutations.py -i fasta_from_clades -o mutation_tables -r data/references
 ```
 
 Входная директория должна содержать `.fasta`/`.fa`/`.fas` файлы с нуклеотидными последовательностями антител.
 
 ## Что делает
 
-1. Находит все FASTA-файлы во входной директории
-2. Для каждого файла запускает IgBLAST с гермлайновыми базами V/D/J (human, IMGT)
-3. Парсит выход IgBLAST: V/D/J гены, тип цепи, границы доменов FR1-CDR3, FR4
-4. Вычисляет аминокислотные мутации из выравнивания нуклеотидов
-5. Сохраняет результаты в подпапке `output_dir/<basename>/`:
+1. Форматирует BLAST-базы из референсных FASTA
+2. Находит все FASTA-файлы во входной директории
+3. Для каждого файла запускает IgBLAST с гермлайновыми базами V/D/J (human, IMGT)
+4. Парсит выход IgBLAST: V/D/J гены, тип цепи, границы доменов FR1-CDR3, FR4
+5. Вычисляет аминокислотные мутации из выравнивания нуклеотидов
+6. Сохраняет результаты в подпапке `output_dir/<basename>/`:
    - `mutations.tsv` — таблица мутаций (по одной строке на мутацию)
    - `mutations_summary.tsv` — сводка по последовательности (счётчики по регионам)
 
@@ -74,7 +65,7 @@ mutation_tables/
 
 ## Референсные базы
 
-Ожидаются в папке, переданной третьим аргументом (по умолчанию `scripts/06_analyze_mutations/references/`):
+Ожидаются в папке, переданной аргументом `-r` (например `data/references/`):
 - `all_V.fasta` — V-сегменты (IGHV, IGKV, IGLV)
 - `all_D.fasta` — D-сегменты (IGH, IGK, IGL)
 - `all_J.fasta` — J-сегменты

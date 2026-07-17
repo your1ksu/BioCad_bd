@@ -22,22 +22,6 @@ MIN_JUNCTION = 15
 MAX_JUNCTION = 300
 V_MIN_FRACTION = 0.5
 
-D_FASTA_NAME = "IGHD.fasta"
-
-# Константы для тестов (expected by test_main_end_to_end)
-LOCUS_FASTA = {
-    "IGH": {"v": "IGHV.fasta", "j": "IGHJ.fasta"},
-    "IGK": {"v": "IGKV.fasta", "j": "IGKJ.fasta"},
-    "IGL": {"v": "IGLV.fasta", "j": "IGLJ.fasta"},
-}
-
-# Для совместимости с тестом (monkeypatch)
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# Константы для тестов (monkeypatch)
-INPUT_FILE = os.path.join(BASE_DIR, "..", "..", "data", "BCR", "BCR_data.tsv")
-OUTPUT_FILE = os.path.join(BASE_DIR, "..", "..", "results", "BCR_data_filtered.tsv")
-
 # ============ ALIGNER (для аннотации FASTA) ============
 _aligner = Align.PairwiseAligner()
 _aligner.mode = "local"
@@ -74,7 +58,7 @@ def read_fasta(path):
 def detect_format(path):
     """Возвращает 'fasta', 'tsv' или 'csv' по расширению."""
     ext = os.path.splitext(path)[1].lower()
-    if ext in (".fasta", ".fa", ".fna", ".fasta.gz", ".fa.gz"):
+    if ext in (".fasta", ".fa", ".fna"):
         return "fasta"
     if ext == ".tsv":
         return "tsv"
@@ -109,28 +93,8 @@ def read_germline_fasta(path):
 
 def read_germline_lengths(path):
     """Читает IMGT fasta -> словарь {имя_гена: длина}."""
-    lengths = {}
-    name = None
-    chunks = []
-
-    def flush():
-        if name is not None:
-            lengths[name] = len("".join(chunks))
-
-    with open(path, "r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            if line.startswith(">"):
-                flush()
-                parts = line[1:].split("|")
-                name = parts[1].strip() if len(parts) > 1 else parts[0].strip()
-                chunks = []
-            else:
-                chunks.append(line)
-        flush()
-    return lengths
+    seqs = read_germline_fasta(path)
+    return {k: len(v) for k, v in seqs.items()}
 
 
 # ============ GERMLINE MATCHING (для аннотации FASTA) ============
@@ -156,7 +120,7 @@ def locus_from_gene(gene_name):
     return m.group(1) if m else None
 
 
-def annotate_fasta_df(df, v_seqs_by_locus, j_seqs_by_locus, d_seqs):
+def annotate_fasta_df(df, v_seqs_by_locus, j_seqs_by_locus):
     """Заполняет v_call, j_call, locus для DataFrame из FASTA через выравнивание."""
     all_v = {}
     all_j = {}
@@ -278,21 +242,10 @@ def parse_args():
 # ============ MAIN ============
 
 def main():
-    # Test mode detection: if INPUT_FILE/OUTPUT_FILE are monkeypatched (different from defaults)
-    default_input = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "data", "BCR", "BCR_data.tsv")
-    in_test_mode = (INPUT_FILE != default_input)
-    
-    if in_test_mode:
-        # Test mode - use monkeypatched constants
-        input_file = INPUT_FILE
-        output_file = OUTPUT_FILE
-        ref_dir = BASE_DIR
-    else:
-        # CLI mode
-        args = parse_args()
-        input_file = args.input
-        output_file = args.output
-        ref_dir = args.ref_dir
+    args = parse_args()
+    input_file = args.input
+    output_file = args.output
+    ref_dir = args.ref_dir
 
     if not os.path.isfile(input_file):
         print(f"Ошибка: входной файл не найден: {input_file}", file=sys.stderr)
@@ -308,7 +261,6 @@ def main():
         "IGK": {"v": os.path.join(ref_dir, "IGKV.fasta"), "j": os.path.join(ref_dir, "IGKJ.fasta")},
         "IGL": {"v": os.path.join(ref_dir, "IGLV.fasta"), "j": os.path.join(ref_dir, "IGLJ.fasta")},
     }
-    d_fasta_path = os.path.join(ref_dir, D_FASTA_NAME)
 
     fmt = detect_format(input_file)
     print(f"Формат входного файла: {fmt}")
@@ -328,8 +280,6 @@ def main():
             v_lengths_by_locus[locus] = {k: len(v) for k, v in seqs_v.items()}
             j_lengths_by_locus[locus] = {k: len(v) for k, v in seqs_j.items()}
             print(f"  {locus}: V={len(seqs_v)}, J={len(seqs_j)}")
-        d_seqs = read_germline_fasta(d_fasta_path)
-        print(f"  IGH: D={len(d_seqs)}")
     else:
         print("Читаю germline-справочники (только длины)...")
         v_lengths_by_locus = {}
@@ -345,7 +295,7 @@ def main():
         df = read_fasta(input_file)
         print(f"  Прочитано {len(df)} последовательностей из FASTA")
         print("Аннотирую последовательности (выравнивание на germline V/J)...")
-        df = annotate_fasta_df(df, v_seqs_by_locus, j_seqs_by_locus, d_seqs)
+        df = annotate_fasta_df(df, v_seqs_by_locus, j_seqs_by_locus)
     else:
         df = read_input(input_file)
 
