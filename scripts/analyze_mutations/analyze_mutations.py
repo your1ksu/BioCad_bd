@@ -315,8 +315,11 @@ def compute_mutations(qseq: str, sseq: str, qstart: int, domain_boundaries: dict
 
         imgt_position = IMGT_DOMAIN_STARTS.get(domain, aa_pos) + local_aa - 1
 
-        if q_aa != s_aa:
-            is_silent = (q_aa == '*' and s_aa == '*') or (q_aa == s_aa)
+        # Условие отбора — по кодону, а не по аминокислоте: синонимная замена
+        # (кодон изменён, аминокислота сохранена) также является мутацией и
+        # необходима как знаменатель dS при расчёте dN/dS.
+        if q_codon != s_codon:
+            is_silent = (q_aa == s_aa)
             mutations.append({
                 'aa_pos': aa_pos,
                 'imgt_position': imgt_position,
@@ -326,7 +329,7 @@ def compute_mutations(qseq: str, sseq: str, qstart: int, domain_boundaries: dict
                 'ref_codon': s_codon.lower(),
                 'mut_codon': q_codon.lower(),
                 'query_nt_pos': query_nt_pos,
-                'is_silent': is_silent or (q_aa == s_aa),
+                'is_silent': is_silent,
             })
 
         aa_pos += 1
