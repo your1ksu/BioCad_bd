@@ -1,0 +1,895 @@
+{
+  "IGHV1-18_01_IGHJ4_02": {
+    "mrbayes": {
+      "threshold": {
+        "posterior_min": 0.95
+      },
+      "clades": [
+        {
+          "clade": "AAGGCAGCACCAGTTA-1_contig_1|ACACTGACAGTTCCCT-1_contig_1|ACTTGTTCAGGTCTCG-1_contig_2|AGAATAGTCAACGCTA-1_contig_2|AGATTGCCAGTGAGTG-1_contig_1|AGCAGCCGTTTAAGCC-1_contig_2|AGCGGTCCAGGTGCCT-1_contig_2|AGGTCATTCCTTGCCA-1_contig_1|CCAATCCAGGTGCACA-1_contig_2|CCTTTCTTCCACGACG-1_contig_1|CGGAGTCGTGCACCAC-1_contig_1|CGTCACTCACCTGGTG-1_contig_1|CGTGAGCTCGCTTAGA-1_contig_1|CGTGTAAAGCCGATTT-1_contig_2|CTAACTTTCTAGCACA-1_contig_2|CTGATCCTCGTGACAT-1_contig_1|GACAGAGTCATAGCAC-1_contig_2|GACTGCGTCCTTTCGG-1_contig_1|GCAATCAAGTGTCCAT-1_contig_1|GCACTCTCAGCCACCA-1_contig_2|GCCAAATTCTCCCTGA-1_contig_2|GCTTGAAGTCTCCATC-1_contig_1|GGAATAAAGCGTCTAT-1_contig_1|GGACAAGCACATTTCT-1_contig_1|GGACAAGGTAAGTGTA-1_contig_1|GTGTTAGTCATGCATG-1_contig_1|TAAACCGCATGAAGTA-1_contig_1|TATCAGGGTGCATCTA-1_contig_2|TGAGGGACAGTACACT-1_contig_2|TGCGGGTTCTTGTATC-1_contig_2|TGGTTCCCACATTTCT-1_contig_1|TTTGGTTCAATGGAGC-1_contig_2",
+          "size": 32,
+          "leaves": [
+            "AAGGCAGCACCAGTTA-1_contig_1",
+            "ACACTGACAGTTCCCT-1_contig_1",
+            "ACTTGTTCAGGTCTCG-1_contig_2",
+            "AGAATAGTCAACGCTA-1_contig_2",
+            "AGATTGCCAGTGAGTG-1_contig_1",
+            "AGCAGCCGTTTAAGCC-1_contig_2",
+            "AGCGGTCCAGGTGCCT-1_contig_2",
+            "AGGTCATTCCTTGCCA-1_contig_1",
+            "CCAATCCAGGTGCACA-1_contig_2",
+            "CCTTTCTTCCACGACG-1_contig_1",
+            "CGGAGTCGTGCACCAC-1_contig_1",
+            "CGTCACTCACCTGGTG-1_contig_1",
+            "CGTGAGCTCGCTTAGA-1_contig_1",
+            "CGTGTAAAGCCGATTT-1_contig_2",
+            "CTAACTTTCTAGCACA-1_contig_2",
+            "CTGATCCTCGTGACAT-1_contig_1",
+            "GACAGAGTCATAGCAC-1_contig_2",
+            "GACTGCGTCCTTTCGG-1_contig_1",
+            "GCAATCAAGTGTCCAT-1_contig_1",
+            "GCACTCTCAGCCACCA-1_contig_2",
+            "GCCAAATTCTCCCTGA-1_contig_2",
+            "GCTTGAAGTCTCCATC-1_contig_1",
+            "GGAATAAAGCGTCTAT-1_contig_1",
+            "GGACAAGCACATTTCT-1_contig_1",
+            "GGACAAGGTAAGTGTA-1_contig_1",
+            "GTGTTAGTCATGCATG-1_contig_1",
+            "TAAACCGCATGAAGTA-1_contig_1",
+            "TATCAGGGTGCATCTA-1_contig_2",
+            "TGAGGGACAGTACACT-1_contig_2",
+            "TGCGGGTTCTTGTATC-1_contig_2",
+            "TGGTTCCCACATTTCT-1_contig_1",
+            "TTTGGTTCAATGGAGC-1_contig_2"
+          ],
+          "depth": 17,
+          "ancestor_to_leaves": {
+            "max": 0.2573,
+            "mean": 0.14723,
+            "min": 0.05571
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CCAATCCAGGTGCACA-1_contig_2|GCACTCTCAGCCACCA-1_contig_2|GCCAAATTCTCCCTGA-1_contig_2|TGAGGGACAGTACACT-1_contig_2|TTTGGTTCAATGGAGC-1_contig_2",
+          "size": 5,
+          "leaves": [
+            "CCAATCCAGGTGCACA-1_contig_2",
+            "GCACTCTCAGCCACCA-1_contig_2",
+            "GCCAAATTCTCCCTGA-1_contig_2",
+            "TGAGGGACAGTACACT-1_contig_2",
+            "TTTGGTTCAATGGAGC-1_contig_2"
+          ],
+          "depth": 2,
+          "ancestor_to_leaves": {
+            "max": 0.04076,
+            "mean": 0.02064,
+            "min": 0.00682
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AGGTCATTCCTTGCCA-1_contig_1|CGGAGTCGTGCACCAC-1_contig_1",
+          "size": 2,
+          "leaves": [
+            "AGGTCATTCCTTGCCA-1_contig_1",
+            "CGGAGTCGTGCACCAC-1_contig_1"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.00218,
+            "mean": 0.002125,
+            "min": 0.00207
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CGTGAGCTCGCTTAGA-1_contig_1|GCAATCAAGTGTCCAT-1_contig_1",
+          "size": 2,
+          "leaves": [
+            "CGTGAGCTCGCTTAGA-1_contig_1",
+            "GCAATCAAGTGTCCAT-1_contig_1"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.00221,
+            "mean": 0.002185,
+            "min": 0.00216
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AGATTGCCAGTGAGTG-1_contig_1|GGAATAAAGCGTCTAT-1_contig_1",
+          "size": 2,
+          "leaves": [
+            "AGATTGCCAGTGAGTG-1_contig_1",
+            "GGAATAAAGCGTCTAT-1_contig_1"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.01109,
+            "mean": 0.006745,
+            "min": 0.0024
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CGTGTAAAGCCGATTT-1_contig_2|CTAACTTTCTAGCACA-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "CGTGTAAAGCCGATTT-1_contig_2",
+            "CTAACTTTCTAGCACA-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.06732,
+            "mean": 0.038275,
+            "min": 0.00923
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AAGGCAGCACCAGTTA-1_contig_1|CTGATCCTCGTGACAT-1_contig_1",
+          "size": 2,
+          "leaves": [
+            "AAGGCAGCACCAGTTA-1_contig_1",
+            "CTGATCCTCGTGACAT-1_contig_1"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.05588,
+            "mean": 0.030305,
+            "min": 0.00473
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AGAATAGTCAACGCTA-1_contig_2|TATCAGGGTGCATCTA-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "AGAATAGTCAACGCTA-1_contig_2",
+            "TATCAGGGTGCATCTA-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.09411,
+            "mean": 0.062115,
+            "min": 0.03012
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.998,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AGGTCCGTCTGCGGCA-1_contig_2|GGGAATGGTTGGTAAA-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "AGGTCCGTCTGCGGCA-1_contig_2",
+            "GGGAATGGTTGGTAAA-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.01955,
+            "mean": 0.01122,
+            "min": 0.00289
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.991,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        }
+      ]
+    }
+  },
+  "IGHV1-46_01_IGHJ4_02": {
+    "mrbayes": {
+      "threshold": {
+        "posterior_min": 0.95
+      },
+      "clades": [
+        {
+          "clade": "ACCCACTAGACAATAC-1_contig_1|ATAGACCAGGGCACTA-1_contig_1",
+          "size": 2,
+          "leaves": [
+            "ACCCACTAGACAATAC-1_contig_1",
+            "ATAGACCAGGGCACTA-1_contig_1"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.04127,
+            "mean": 0.03666,
+            "min": 0.03205
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.999,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AGGCCGTTCGTTGACA-1_contig_2|TACTCGCCAATAGAGT-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "AGGCCGTTCGTTGACA-1_contig_2",
+            "TACTCGCCAATAGAGT-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.0252,
+            "mean": 0.023215,
+            "min": 0.02123
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.998,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "GCTGCAGTCAGGTTCA-1_contig_1|TATCAGGAGATATGCA-1_contig_1",
+          "size": 2,
+          "leaves": [
+            "GCTGCAGTCAGGTTCA-1_contig_1",
+            "TATCAGGAGATATGCA-1_contig_1"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.01298,
+            "mean": 0.011055,
+            "min": 0.00913
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.993,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        }
+      ]
+    }
+  },
+  "IGHV1-69_12_IGHJ6_03": {
+    "mrbayes": {
+      "threshold": {
+        "posterior_min": 0.95
+      },
+      "clades": [
+        {
+          "clade": "ACACCAACACGTCAGC-1_contig_2|ACGCCAGGTCGCTTTC-1_contig_2|ACTGCTCCACTTACGA-1_contig_2|ATTGGACCAAAGGCGT-1_contig_2|CAACCTCGTGTAAGTA-1_contig_2|CCACGGATCCAACCAA-1_contig_2|GATCTAGAGCCCAGCT-1_contig_2|GATGAGGCAGGGTTAG-1_contig_2|GCAGTTACAAAGCGGT-1_contig_2|GCGCGATGTCTCCACT-1_contig_2|GGACAGAAGACTTGAA-1_contig_2|GTGAAGGGTAGCTAAA-1_contig_2",
+          "size": 12,
+          "leaves": [
+            "ACACCAACACGTCAGC-1_contig_2",
+            "ACGCCAGGTCGCTTTC-1_contig_2",
+            "ACTGCTCCACTTACGA-1_contig_2",
+            "ATTGGACCAAAGGCGT-1_contig_2",
+            "CAACCTCGTGTAAGTA-1_contig_2",
+            "CCACGGATCCAACCAA-1_contig_2",
+            "GATCTAGAGCCCAGCT-1_contig_2",
+            "GATGAGGCAGGGTTAG-1_contig_2",
+            "GCAGTTACAAAGCGGT-1_contig_2",
+            "GCGCGATGTCTCCACT-1_contig_2",
+            "GGACAGAAGACTTGAA-1_contig_2",
+            "GTGAAGGGTAGCTAAA-1_contig_2"
+          ],
+          "depth": 6,
+          "ancestor_to_leaves": {
+            "max": 0.09679,
+            "mean": 0.036158,
+            "min": 0.02163
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CAACCAATCCTAGAAC-1_contig_2|CTCGAGGTCGTTGCCT-1_contig_2|TGTGTTTGTGTGGTTT-1_contig_2",
+          "size": 3,
+          "leaves": [
+            "CAACCAATCCTAGAAC-1_contig_2",
+            "CTCGAGGTCGTTGCCT-1_contig_2",
+            "TGTGTTTGTGTGGTTT-1_contig_2"
+          ],
+          "depth": 1,
+          "ancestor_to_leaves": {
+            "max": 0.07912,
+            "mean": 0.061,
+            "min": 0.04163
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AGCATACCAACACGCC-1_contig_2|ATTGGACAGGCTATCT-1_contig_2|GCTGCTTCAGCCTGTG-1_contig_2",
+          "size": 3,
+          "leaves": [
+            "AGCATACCAACACGCC-1_contig_2",
+            "ATTGGACAGGCTATCT-1_contig_2",
+            "GCTGCTTCAGCCTGTG-1_contig_2"
+          ],
+          "depth": 1,
+          "ancestor_to_leaves": {
+            "max": 0.02056,
+            "mean": 0.013063,
+            "min": 0.00596
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "GAAGCAGGTGCAGACA-1_contig_2|GCAATCACAAGGACTG-1_contig_2|TACAGTGGTATAGGTA-1_contig_2",
+          "size": 3,
+          "leaves": [
+            "GAAGCAGGTGCAGACA-1_contig_2",
+            "GCAATCACAAGGACTG-1_contig_2",
+            "TACAGTGGTATAGGTA-1_contig_2"
+          ],
+          "depth": 1,
+          "ancestor_to_leaves": {
+            "max": 0.09016,
+            "mean": 0.046263,
+            "min": 0.01832
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CAAGATCGTTCAACCA-1_contig_2|GCAAACTCAGACGCTC-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "CAAGATCGTTCAACCA-1_contig_2",
+            "GCAAACTCAGACGCTC-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.06105,
+            "mean": 0.057805,
+            "min": 0.05456
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CTCGAGGTCGTTGCCT-1_contig_2|TGTGTTTGTGTGGTTT-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "CTCGAGGTCGTTGCCT-1_contig_2",
+            "TGTGTTTGTGTGGTTT-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.0538,
+            "mean": 0.045365,
+            "min": 0.03693
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CATGCCTAGGAGCGTT-1_contig_2|CGTCTACAGCATGGCA-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "CATGCCTAGGAGCGTT-1_contig_2",
+            "CGTCTACAGCATGGCA-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.01805,
+            "mean": 0.01015,
+            "min": 0.00225
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "ATTACTCGTTTAAGCC-1_contig_2|CAGTAACCAAGGGTCA-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "ATTACTCGTTTAAGCC-1_contig_2",
+            "CAGTAACCAAGGGTCA-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.07549,
+            "mean": 0.06533,
+            "min": 0.05517
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "ACTGCTCCACTTACGA-1_contig_2|ATTGGACCAAAGGCGT-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "ACTGCTCCACTTACGA-1_contig_2",
+            "ATTGGACCAAAGGCGT-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.0103,
+            "mean": 0.0069,
+            "min": 0.0035
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "GCGCGATGTCTCCACT-1_contig_2|GGACAGAAGACTTGAA-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "GCGCGATGTCTCCACT-1_contig_2",
+            "GGACAGAAGACTTGAA-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.01248,
+            "mean": 0.008375,
+            "min": 0.00427
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "ACAGCCGTCTAAGCCA-1_contig_2|CTCACACGTCACAAGG-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "ACAGCCGTCTAAGCCA-1_contig_2",
+            "CTCACACGTCACAAGG-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.01266,
+            "mean": 0.00727,
+            "min": 0.00188
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "GGCTCGAAGGACACCA-1_contig_2|TTAGTTCCAATGGTCT-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "GGCTCGAAGGACACCA-1_contig_2",
+            "TTAGTTCCAATGGTCT-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.08954,
+            "mean": 0.057875,
+            "min": 0.02621
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CTCGGGACATGCGCAC-1_contig_2|TACGGATGTTCCGTCT-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "CTCGGGACATGCGCAC-1_contig_2",
+            "TACGGATGTTCCGTCT-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.04718,
+            "mean": 0.028345,
+            "min": 0.00951
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CATCGAACAGGGCATA-1_contig_2|CTACACCTCTGAAAGA-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "CATCGAACAGGGCATA-1_contig_2",
+            "CTACACCTCTGAAAGA-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.05359,
+            "mean": 0.036845,
+            "min": 0.0201
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AGATTGCCACCAGTTA-1_contig_2|CATTCGCAGTTACCCA-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "AGATTGCCACCAGTTA-1_contig_2",
+            "CATTCGCAGTTACCCA-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.00438,
+            "mean": 0.003295,
+            "min": 0.00221
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "GCATGTACAGTCAGAG-1_contig_2|TACTTGTAGGGTGTGT-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "GCATGTACAGTCAGAG-1_contig_2",
+            "TACTTGTAGGGTGTGT-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.01725,
+            "mean": 0.00951,
+            "min": 0.00177
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CATGGCGGTTCCATGA-1_contig_2|TCGGTAAAGAGGTAGA-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "CATGGCGGTTCCATGA-1_contig_2",
+            "TCGGTAAAGAGGTAGA-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.00499,
+            "mean": 0.00425,
+            "min": 0.00351
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CACCAGGTCATGCTCC-1_contig_2|TGACGGCTCGTACCGG-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "CACCAGGTCATGCTCC-1_contig_2",
+            "TGACGGCTCGTACCGG-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.01506,
+            "mean": 0.008525,
+            "min": 0.00199
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CAACCAATCCTAGAAC-1_contig_2|CATGCCTAGGAGCGTT-1_contig_2|CGTCTACAGCATGGCA-1_contig_2|CTCGAGGTCGTTGCCT-1_contig_2|TGTGTTTGTGTGGTTT-1_contig_2",
+          "size": 5,
+          "leaves": [
+            "CAACCAATCCTAGAAC-1_contig_2",
+            "CATGCCTAGGAGCGTT-1_contig_2",
+            "CGTCTACAGCATGGCA-1_contig_2",
+            "CTCGAGGTCGTTGCCT-1_contig_2",
+            "TGTGTTTGTGTGGTTT-1_contig_2"
+          ],
+          "depth": 3,
+          "ancestor_to_leaves": {
+            "max": 0.12,
+            "mean": 0.08478,
+            "min": 0.05123
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.995,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AGCATACCAACACGCC-1_contig_2|GCTGCTTCAGCCTGTG-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "AGCATACCAACACGCC-1_contig_2",
+            "GCTGCTTCAGCCTGTG-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.00986,
+            "mean": 0.005915,
+            "min": 0.00197
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.993,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "ACACCAACACGTCAGC-1_contig_2|ACAGCCGTCTAAGCCA-1_contig_2|ACGCCAGGTCGCTTTC-1_contig_2|ACTGCTCCACTTACGA-1_contig_2|AGATTGCCACCAGTTA-1_contig_2|AGCATACCAACACGCC-1_contig_2|ATTACTCGTTTAAGCC-1_contig_2|ATTGGACAGGCTATCT-1_contig_2|ATTGGACCAAAGGCGT-1_contig_2|CAACCAATCCTAGAAC-1_contig_2|CAACCTCGTGTAAGTA-1_contig_2|CAAGATCGTTCAACCA-1_contig_2|CAGAATCAGATGAGAG-1_contig_2|CAGTAACCAAGGGTCA-1_contig_2|CATCGAACAGGGCATA-1_contig_2|CATGCCTAGGAGCGTT-1_contig_2|CATTATCGTTATGTGC-1_contig_2|CATTCGCAGTTACCCA-1_contig_2|CCACGGATCCAACCAA-1_contig_2|CGTCTACAGCATGGCA-1_contig_2|CTACACCTCTGAAAGA-1_contig_2|CTCACACGTCACAAGG-1_contig_2|CTCGAGGTCGTTGCCT-1_contig_2|CTCGGGACATGCGCAC-1_contig_2|GAAGCAGGTGCAGACA-1_contig_2|GATCTAGAGCCCAGCT-1_contig_2|GATGAGGCAGGGTTAG-1_contig_2|GCAAACTCAGACGCTC-1_contig_2|GCAATCACAAGGACTG-1_contig_2|GCAGTTACAAAGCGGT-1_contig_2|GCATACATCTCGCTTG-1_contig_2|GCGCGATGTCTCCACT-1_contig_2|GCTGCTTCAGCCTGTG-1_contig_2|GGACAGAAGACTTGAA-1_contig_2|GGCTCGAAGGACACCA-1_contig_2|GTGAAGGGTAGCTAAA-1_contig_2|TACAGTGGTATAGGTA-1_contig_2|TACGGATGTTCCGTCT-1_contig_2|TCAGCTCTCAGAGCTT-1_contig_3|TGTGTTTGTGTGGTTT-1_contig_2|TTAGTTCCAATGGTCT-1_contig_2",
+          "size": 41,
+          "leaves": [
+            "ACACCAACACGTCAGC-1_contig_2",
+            "ACAGCCGTCTAAGCCA-1_contig_2",
+            "ACGCCAGGTCGCTTTC-1_contig_2",
+            "ACTGCTCCACTTACGA-1_contig_2",
+            "AGATTGCCACCAGTTA-1_contig_2",
+            "AGCATACCAACACGCC-1_contig_2",
+            "ATTACTCGTTTAAGCC-1_contig_2",
+            "ATTGGACAGGCTATCT-1_contig_2",
+            "ATTGGACCAAAGGCGT-1_contig_2",
+            "CAACCAATCCTAGAAC-1_contig_2",
+            "CAACCTCGTGTAAGTA-1_contig_2",
+            "CAAGATCGTTCAACCA-1_contig_2",
+            "CAGAATCAGATGAGAG-1_contig_2",
+            "CAGTAACCAAGGGTCA-1_contig_2",
+            "CATCGAACAGGGCATA-1_contig_2",
+            "CATGCCTAGGAGCGTT-1_contig_2",
+            "CATTATCGTTATGTGC-1_contig_2",
+            "CATTCGCAGTTACCCA-1_contig_2",
+            "CCACGGATCCAACCAA-1_contig_2",
+            "CGTCTACAGCATGGCA-1_contig_2",
+            "CTACACCTCTGAAAGA-1_contig_2",
+            "CTCACACGTCACAAGG-1_contig_2",
+            "CTCGAGGTCGTTGCCT-1_contig_2",
+            "CTCGGGACATGCGCAC-1_contig_2",
+            "GAAGCAGGTGCAGACA-1_contig_2",
+            "GATCTAGAGCCCAGCT-1_contig_2",
+            "GATGAGGCAGGGTTAG-1_contig_2",
+            "GCAAACTCAGACGCTC-1_contig_2",
+            "GCAATCACAAGGACTG-1_contig_2",
+            "GCAGTTACAAAGCGGT-1_contig_2",
+            "GCATACATCTCGCTTG-1_contig_2",
+            "GCGCGATGTCTCCACT-1_contig_2",
+            "GCTGCTTCAGCCTGTG-1_contig_2",
+            "GGACAGAAGACTTGAA-1_contig_2",
+            "GGCTCGAAGGACACCA-1_contig_2",
+            "GTGAAGGGTAGCTAAA-1_contig_2",
+            "TACAGTGGTATAGGTA-1_contig_2",
+            "TACGGATGTTCCGTCT-1_contig_2",
+            "TCAGCTCTCAGAGCTT-1_contig_3",
+            "TGTGTTTGTGTGGTTT-1_contig_2",
+            "TTAGTTCCAATGGTCT-1_contig_2"
+          ],
+          "depth": 30,
+          "ancestor_to_leaves": {
+            "max": 0.23024,
+            "mean": 0.153856,
+            "min": 0.09464
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.967,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "CATTATCGTTATGTGC-1_contig_2|GCATACATCTCGCTTG-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "CATTATCGTTATGTGC-1_contig_2",
+            "GCATACATCTCGCTTG-1_contig_2"
+          ],
+          "depth": 0,
+          "ancestor_to_leaves": {
+            "max": 0.01636,
+            "mean": 0.010785,
+            "min": 0.00521
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.965,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "ACACCAACACGTCAGC-1_contig_2|ACGCCAGGTCGCTTTC-1_contig_2|CAACCTCGTGTAAGTA-1_contig_2|CCACGGATCCAACCAA-1_contig_2|GATCTAGAGCCCAGCT-1_contig_2|GATGAGGCAGGGTTAG-1_contig_2|GCAGTTACAAAGCGGT-1_contig_2|GCGCGATGTCTCCACT-1_contig_2|GGACAGAAGACTTGAA-1_contig_2|GTGAAGGGTAGCTAAA-1_contig_2",
+          "size": 10,
+          "leaves": [
+            "ACACCAACACGTCAGC-1_contig_2",
+            "ACGCCAGGTCGCTTTC-1_contig_2",
+            "CAACCTCGTGTAAGTA-1_contig_2",
+            "CCACGGATCCAACCAA-1_contig_2",
+            "GATCTAGAGCCCAGCT-1_contig_2",
+            "GATGAGGCAGGGTTAG-1_contig_2",
+            "GCAGTTACAAAGCGGT-1_contig_2",
+            "GCGCGATGTCTCCACT-1_contig_2",
+            "GGACAGAAGACTTGAA-1_contig_2",
+            "GTGAAGGGTAGCTAAA-1_contig_2"
+          ],
+          "depth": 4,
+          "ancestor_to_leaves": {
+            "max": 0.0862,
+            "mean": 0.027793,
+            "min": 0.01171
+          },
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.952,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        }
+      ]
+    }
+  }
+}
