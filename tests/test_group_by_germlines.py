@@ -1,5 +1,5 @@
 """
-Тесты для scripts/group_by_germlines.py
+Тесты для scripts/group_by_germlines/group_by_germlines.py
 
 Запуск:  pytest tests/test_group_by_germlines.py -v
 """
@@ -115,29 +115,50 @@ def test_write_fasta_uses_safe_filename(tmp_path):
 
 
 # ---------- end-to-end через main() на маленьком наборе данных ----------
+#
+# С тех пор как group_by_germlines.py стал использовать paths.py (--key
+# вместо жёстко прописанных путей рядом со скриптом), тест подменяет саму
+# функцию gg.get_paths(), а не модульные константы BASE_DIR/INPUT_FILE/
+# LOCUS_VJ_FASTA/D_FASTA (которых в модуле больше нет). Входной файл теперь
+# лежит в output_dir (results/<key>/BCR_data_filtered.tsv) — это результат
+# предыдущего шага (filter_and_save.py), а не в data/<key>/.
 
 def test_main_end_to_end(tmp_path, monkeypatch):
-    # маленькие germline-справочники для всех локусов + D для IGH
-    for locus, files in gg.LOCUS_VJ_FASTA.items():
-        (tmp_path / files["v"]).write_text(">acc|V1*01|x\nACGTACGTACGT\n")
-        (tmp_path / files["j"]).write_text(">acc|J1*01|x\nTTTTTTTT\n")
-    (tmp_path / gg.D_FASTA).write_text(">acc|D1*01|x\nGGGG\n")
+    imgt_dir = tmp_path / "data" / "IMGT" / "Homo_sapiens" / "IG"
+    output_dir = tmp_path / "results" / "testkey"
+    imgt_dir.mkdir(parents=True)
+    output_dir.mkdir(parents=True)
 
-    filtered_tsv = tmp_path / "BCR_data_filtered.tsv"
+    # маленькие germline-справочники для всех локусов + D для IGH
+    (imgt_dir / "IGHV.fasta").write_text(">acc|V1*01|x\nACGTACGTACGT\n")
+    (imgt_dir / "IGHJ.fasta").write_text(">acc|J1*01|x\nTTTTTTTT\n")
+    (imgt_dir / "IGKV.fasta").write_text(">acc|K1*01|x\nACGTACGTACGT\n")
+    (imgt_dir / "IGKJ.fasta").write_text(">acc|KJ1*01|x\nTTTTTTTT\n")
+    (imgt_dir / "IGLV.fasta").write_text(">acc|L1*01|x\nACGTACGTACGT\n")
+    (imgt_dir / "IGLJ.fasta").write_text(">acc|LJ1*01|x\nTTTTTTTT\n")
+    (imgt_dir / "IGHD.fasta").write_text(">acc|D1*01|x\nGGGG\n")
+
+    # входной файл — результат filter_and_save.py, лежит в results/<key>/
     seq = "ACGTACGTACGTTTTTTTTT"
-    filtered_tsv.write_text(
+    (output_dir / "BCR_data_filtered.tsv").write_text(
         "sequence_id\tsequence_vdj\tlocus\n"
         f"read1\t{seq}\tIGH\n"
         f"read2\t{seq}\tIGK\n"
     )
 
-    out_root = tmp_path / "grouped_by_germlines"
-    monkeypatch.setattr(gg, "BASE_DIR", str(tmp_path))
-    monkeypatch.setattr(gg, "INPUT_FILE", str(filtered_tsv))
-    monkeypatch.setattr(gg, "OUT_ROOT", str(out_root))
+    def fake_get_paths(key, create_output=True):
+        return {
+            "input_dir": str(tmp_path / "data" / key),  # не используется этим скриптом
+            "output_dir": str(output_dir),
+            "imgt_dir": str(imgt_dir),
+        }
+
+    monkeypatch.setattr(gg, "get_paths", fake_get_paths)
+    monkeypatch.setattr(sys, "argv", ["group_by_germlines.py", "--key", "testkey"])
 
     gg.main()
 
+    out_root = output_dir / "grouped_by_germlines"
     assert (out_root / "v").is_dir()
     assert (out_root / "j").is_dir()
     assert (out_root / "vj").is_dir()

@@ -1,5 +1,5 @@
 """
-Тесты для scripts/filter_and_save.py
+Тесты для scripts/filtered/filter_and_save.py
 
 Запуск:  pytest tests/test_filter_and_save.py -v
 """
@@ -190,30 +190,51 @@ def test_read_input_csv(tmp_path):
 
 
 # ---------- end-to-end через main() на маленьком наборе данных ----------
+#
+# С тех пор как filter_and_save.py стал использовать paths.py (--key вместо
+# жёстко прописанных путей рядом со скриптом), тест подменяет саму функцию
+# fs.get_paths(), а не модульные константы BASE_DIR/INPUT_FILE/LOCUS_FASTA
+# (которых в модуле больше нет).
 
 def test_main_end_to_end(tmp_path, monkeypatch):
-    # готовим mini germline-справочники для всех локусов, которые ожидает скрипт
-    for locus, files in fs.LOCUS_FASTA.items():
-        (tmp_path / files["v"]).write_text(">acc|V1*01|extra\n" + "A" * 100 + "\n")
-        (tmp_path / files["j"]).write_text(">acc|J1*01|extra\n" + "A" * 20 + "\n")
+    data_dir = tmp_path / "data" / "testkey"
+    imgt_dir = tmp_path / "data" / "IMGT" / "Homo_sapiens" / "IG"
+    output_dir = tmp_path / "results" / "testkey"
+    data_dir.mkdir(parents=True)
+    imgt_dir.mkdir(parents=True)
+
+    # мини germline-справочники для всех локусов, которые ожидает скрипт
+    (imgt_dir / "IGHV.fasta").write_text(">acc|V1*01|extra\n" + "A" * 100 + "\n")
+    (imgt_dir / "IGHJ.fasta").write_text(">acc|J1*01|extra\n" + "A" * 20 + "\n")
+    (imgt_dir / "IGKV.fasta").write_text(">acc|K1*01|extra\nAAAA\n")
+    (imgt_dir / "IGKJ.fasta").write_text(">acc|KJ1*01|extra\nAAAA\n")
+    (imgt_dir / "IGLV.fasta").write_text(">acc|L1*01|extra\nAAAA\n")
+    (imgt_dir / "IGLJ.fasta").write_text(">acc|LJ1*01|extra\nAAAA\n")
 
     # входной файл: 1 валидная строка, 1 дубликат, 1 с неизвестным locus
-    input_tsv = tmp_path / "BCR_data.tsv"
     valid_seq = "A" * 150
-    input_tsv.write_text(
+    (data_dir / "BCR_data.tsv").write_text(
         "sequence\tsequence_vdj\tlocus\tv_call\tj_call\n"
         f"{valid_seq}\t{valid_seq}\tIGH\tV1*01\tJ1*01\n"
         f"{valid_seq}\t{valid_seq}\tIGH\tV1*01\tJ1*01\n"  # дубликат по sequence
         f"XXXX\tXXXX\tUNKNOWN\tV1*01\tJ1*01\n"
     )
 
-    monkeypatch.setattr(fs, "BASE_DIR", str(tmp_path))
-    monkeypatch.setattr(fs, "INPUT_FILE", str(input_tsv))
-    output_tsv = tmp_path / "BCR_data_filtered.tsv"
-    monkeypatch.setattr(fs, "OUTPUT_FILE", str(output_tsv))
+    def fake_get_paths(key, create_output=True):
+        if create_output:
+            output_dir.mkdir(parents=True, exist_ok=True)
+        return {
+            "input_dir": str(data_dir),
+            "output_dir": str(output_dir),
+            "imgt_dir": str(imgt_dir),
+        }
+
+    monkeypatch.setattr(fs, "get_paths", fake_get_paths)
+    monkeypatch.setattr(sys, "argv", ["filter_and_save.py", "--key", "testkey"])
 
     fs.main()
 
+    output_tsv = output_dir / "BCR_data_filtered.tsv"
     assert output_tsv.exists()
     result = pd.read_csv(output_tsv, sep="\t")
     assert len(result) == 1
