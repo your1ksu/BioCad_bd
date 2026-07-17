@@ -2,8 +2,9 @@ import subprocess
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parents[2]
-SCRIPT = BASE / "scripts" / "analyze_mutations" / "analyze_mutations.sh"
+SCRIPT = BASE / "scripts" / "06_analyze_mutations" / "analyze_mutations.sh"
 DATA_DIR = Path(__file__).parent / "test_analyze_mutations_data"
+REF_DIR = BASE / "data" / "references"
 
 
 def test_successful_run(tmp_path, monkeypatch):
@@ -11,7 +12,7 @@ def test_successful_run(tmp_path, monkeypatch):
     result_dir = tmp_path / "test_result"
 
     result = subprocess.run(
-        ["bash", str(SCRIPT), str(DATA_DIR), str(result_dir)],
+        ["bash", str(SCRIPT), str(DATA_DIR), str(result_dir), str(REF_DIR)],
         capture_output=True, text=True, timeout=300,
     )
 

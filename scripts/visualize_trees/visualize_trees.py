@@ -68,8 +68,10 @@ def get_tree_type(filename):
     fname = filename.lower()
     if fname.endswith(".treefile"):
         return "iqtree"
-    # MrBayes common extensions
-    if fname.endswith((".con.tre", ".t", ".nex", ".tre", ".tree")):
+    # MrBayes common extensions (skip .splits.nex from IQ-TREE)
+    if fname.endswith((".con.tre", ".t", ".tre", ".tree")):
+        return "mrbayes"
+    if fname.endswith(".nex") and not fname.endswith(".splits.nex"):
         return "mrbayes"
     return None
 

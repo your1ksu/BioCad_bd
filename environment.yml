@@ -1,0 +1,16 @@
+name: biocad_pipeline
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.11
+  - pandas
+  - biopython
+  - mafft
+  - iqtree
+  - mrbayes
+  - igblast
+  - blast
+  - toytree
+  - toyplot

@@ -9,7 +9,7 @@
 "...ACGTACGTACGT...").
 
 Формат fixture: <name>_aligned.fasta — точно формат, который производит
-Alina/MSA_final.py (mafft --auto), т.е. прямой вход mrbayes/run_mrbayes.py.
+Alina/03_multiple_alignment/multiple_alignment.py (mafft --auto), т.е. прямой вход 04b_build_trees_mrbayes/build_trees_mrbayes.py.
 Рядом лежит <name>.expected.json — задокументированный ground truth: корневая
 последовательность, мутации каждого листа (позиция, ref, alt) и ожидаемые
 уверенные клады с обоснованием.
@@ -28,12 +28,12 @@ import sys
 from pathlib import Path
 
 FIXTURES_DIR = Path(__file__).parent / "fixtures"
-# Корень проекта = родитель tests/ (там лежат mrbayes/, groups/, biocode/)
+# Корень проекта = родитель tests/ (там лежат 04b_build_trees_mrbayes/, 05_clade_search/, biocode/)
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
 def find_pipeline_dir(name: str) -> Path:
-    """Найти папку 'mrbayes' или 'groups': <root>/<name> либо <root>/scripts/<name>
+    """Найти папку '04b_build_trees_mrbayes' или '05_clade_search': <root>/<name> либо <root>/scripts/<name>
     (локальная раскладка и раскладка ветки Nikita на GitHub отличаются)."""
     for candidate in (PROJECT_ROOT / name, PROJECT_ROOT / "scripts" / name):
         if candidate.is_dir():
@@ -54,8 +54,8 @@ def load_fixture(name: str) -> tuple[Path, dict]:
 
 
 def run_case(name: str, python_bin: str, work_dir: Path) -> bool:
-    """Прогнать один fixture через реальный pipeline (run_mrbayes.py →
-    confident_clades_report.py) и сверить найденные клады с expected.json."""
+    """Прогнать один fixture через реальный pipeline (build_trees_mrbayes.py →
+    clade_search.py) и сверить найденные клады с expected.json."""
     print(f"\n{'=' * 70}\nFIXTURE: {name}\n{'=' * 70}")
 
     fasta_path, expected = load_fixture(name)
@@ -74,12 +74,12 @@ def run_case(name: str, python_bin: str, work_dir: Path) -> bool:
     groups_dir = work_dir / f"groups_{name}"
     groups_dir.mkdir(parents=True, exist_ok=True)
 
-    mrbayes_scripts_dir = find_pipeline_dir("mrbayes")
-    groups_scripts_dir = find_pipeline_dir("groups")
+    mrbayes_scripts_dir = find_pipeline_dir("04b_build_trees_mrbayes")
+    groups_scripts_dir = find_pipeline_dir("05_clade_search")
 
-    print("\n→ mrbayes/run_mrbayes.py ...")
+    print("\n→ 04b_build_trees_mrbayes/build_trees_mrbayes.py ...")
     r = subprocess.run(
-        [python_bin, str(mrbayes_scripts_dir / "run_mrbayes.py"),
+        [python_bin, str(mrbayes_scripts_dir / "build_trees_mrbayes.py"),
          str(in_dir), "--out", str(mrbayes_dir), "--mb-ngen", "800000"],
         capture_output=True, text=True, cwd=str(PROJECT_ROOT))
     print("  " + r.stdout.strip().splitlines()[-1] if r.stdout.strip() else "  (нет вывода)")
@@ -87,9 +87,9 @@ def run_case(name: str, python_bin: str, work_dir: Path) -> bool:
         print(f"  ОШИБКА: {r.stderr[-500:]}", file=sys.stderr)
         return False
 
-    print("→ groups/confident_clades_report.py ...")
+    print("→ 05_clade_search/clade_search.py ...")
     r = subprocess.run(
-        [python_bin, str(groups_scripts_dir / "confident_clades_report.py"),
+        [python_bin, str(groups_scripts_dir / "clade_search.py"),
          "--mrbayes-dir", str(mrbayes_dir), "--posterior-min", "0.95",
          "--out", str(groups_dir / "report.json")],
         capture_output=True, text=True, cwd=str(PROJECT_ROOT))
@@ -132,8 +132,8 @@ def main(python_bin: str | None = None) -> int:
         print("Ошибка: нужен biopython (pip install biopython)", file=sys.stderr)
         return 1
     try:
-        find_pipeline_dir("mrbayes")
-        find_pipeline_dir("groups")
+        find_pipeline_dir("04b_build_trees_mrbayes")
+        find_pipeline_dir("05_clade_search")
     except FileNotFoundError as e:
         print(f"Ошибка: {e}", file=sys.stderr)
         return 1

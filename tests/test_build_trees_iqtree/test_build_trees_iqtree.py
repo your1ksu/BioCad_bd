@@ -2,7 +2,7 @@ import subprocess
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parents[2]
-SCRIPT = BASE / "scripts" / "build_trees_iqtree" / "build_trees_iqtree.sh"
+SCRIPT = BASE / "scripts" / "04a_build_trees_iqtree" / "build_trees_iqtree.sh"
 DATA_DIR = Path(__file__).parent / "test_build_iqtree_data"
 
 

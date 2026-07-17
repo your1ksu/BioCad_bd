@@ -26,29 +26,35 @@
 ## Как прогнать весь конвейер (из корня репозитория)
 
 ```bash
-# 1–2: фильтрация + группировка (ключ = имя подпапки в data/ и results/)
-python3 scripts/filtered/filter_and_save.py --key BCR
-python3 scripts/group_by_germlines/group_by_germlines.py --key BCR
+# или одной командой:
+python3 scripts/run_pipeline.py -i data/sequences.fasta -o results/report
+
+# Поэтапно:
+# 1–2: фильтрация + группировка
+python3 scripts/01_filter_sequences/filter_sequences.py --key BCR
+python3 scripts/02_group_by_germlines/group_by_germlines.py --key BCR
 
 # 3: выравнивание (MAFFT)
-python3 scripts/MSA/MSA_final.py \
+python3 scripts/03_multiple_alignment/multiple_alignment.py \
   -i results/BCR/grouped_by_germlines/vj \
   -o aligned_sequences
 
-# 4: ML-деревья (IQ-TREE) — опционально, независимо от шага 5
-./scripts/build_trees_iqtree/build_trees_iqtree.sh aligned_sequences trees
+# 4a: ML-деревья (IQ-TREE)
+./scripts/04a_build_trees_iqtree/build_trees_iqtree.sh aligned_sequences trees
 
-# 5a-b: байесовское дерево + уверенные клады (Никита)
-python3 scripts/mrbayes/run_mrbayes.py aligned_sequences --out mrbayes
-python3 scripts/groups/confident_clades_report.py \
+# 4b: байесовское дерево (MrBayes)
+python3 scripts/04b_build_trees_mrbayes/build_trees_mrbayes.py aligned_sequences --out mrbayes
+
+# 5: уверенные клады
+python3 scripts/05_clade_search/clade_search.py \
   --mrbayes-dir mrbayes --iqtree-dir trees --out groups/report.json
 
 # 6: визуализация деревьев
 ./scripts/visualize_trees/visualize_trees.sh trees trees_visualization
 ./scripts/visualize_trees/visualize_trees.sh mrbayes mrbayes_visualization
 
-# 7: анализ мутаций (нужны fasta-файлы по кладам — см. «Известные пробелы»)
-./scripts/analyze_mutations/analyze_mutations.sh fasta_from_clades mutation_tables
+# 7: анализ мутаций
+./scripts/06_analyze_mutations/analyze_mutations.sh fasta_from_clades mutation_tables
 ```
 
 ## Структура репозитория
@@ -75,14 +81,14 @@ misc/                           — пусто (зарезервировано)
 ## Тестирование
 
 Большинство этапов покрыто `pytest` (`tests/test_*`). Этап Никиты
-(`mrbayes/` + `groups/`) тестируется отдельными консольными скриптами без
+(`04b_build_trees_mrbayes/` + `05_clade_search/`) тестируется отдельными консольными скриптами без
 pytest — см. [tests/README.md](tests/README.md) и [tests/TEST_REPORT.md](tests/TEST_REPORT.md)
 (там же разобран найденный и исправленный баг в извлечении уверенных клад).
 
 ## Известные пробелы и несоответствия
 
-- **`biocode/` не опубликован.** `scripts/mrbayes/run_mrbayes.py` и
-  `scripts/groups/confident_clades_report.py` импортируют пакет `biocode`
+- **`biocode/` не опубликован.** `scripts/04b_build_trees_mrbayes/build_trees_mrbayes.py` и
+  `scripts/05_clade_search/clade_search.py` импортируют пакет `biocode`
   (вендорен из `BIOCAD.bigchallenges@main`) из родительской директории — без
   него оба скрипта падают на импорте. См. `scripts/README.md`.
 - **Два разных соглашения о путях.** Шаги 1–2 (Ксюша) используют

@@ -1,5 +1,5 @@
 """
-Тесты для scripts/group_by_germlines/group_by_germlines.py
+Тесты для scripts/02_group_by_germlines/group_by_germlines.py
 
 Запуск:  pytest tests/test_group_by_germlines.py -v
 """
@@ -121,10 +121,10 @@ def test_write_fasta_uses_safe_filename(tmp_path):
 # функцию gg.get_paths(), а не модульные константы BASE_DIR/INPUT_FILE/
 # LOCUS_VJ_FASTA/D_FASTA (которых в модуле больше нет). Входной файл теперь
 # лежит в output_dir (results/<key>/BCR_data_filtered.tsv) — это результат
-# предыдущего шага (filter_and_save.py), а не в data/<key>/.
+# предыдущего шага (filter_sequences.py), а не в data/<key>/.
 
 def test_main_end_to_end(tmp_path, monkeypatch):
-    imgt_dir = tmp_path / "data" / "IMGT" / "Homo_sapiens" / "IG"
+    imgt_dir = tmp_path / "imgt"
     output_dir = tmp_path / "results" / "testkey"
     imgt_dir.mkdir(parents=True)
     output_dir.mkdir(parents=True)
@@ -138,38 +138,31 @@ def test_main_end_to_end(tmp_path, monkeypatch):
     (imgt_dir / "IGLJ.fasta").write_text(">acc|LJ1*01|x\nTTTTTTTT\n")
     (imgt_dir / "IGHD.fasta").write_text(">acc|D1*01|x\nGGGG\n")
 
-    # входной файл — результат filter_and_save.py, лежит в results/<key>/
-    seq = "ACGTACGTACGTTTTTTTTT"
-    (output_dir / "BCR_data_filtered.tsv").write_text(
+    input_tsv = output_dir / "BCR_data_filtered.tsv"
+    input_tsv.write_text(
         "sequence_id\tsequence_vdj\tlocus\n"
-        f"read1\t{seq}\tIGH\n"
-        f"read2\t{seq}\tIGK\n"
+        f"read1\tACGTACGTACGTTTTTTTTT\tIGH\n"
+        f"read2\tACGTACGTACGTTTTTTTTT\tIGK\n"
     )
 
-    def fake_get_paths(key, create_output=True):
-        return {
-            "input_dir": str(tmp_path / "data" / key),  # не используется этим скриптом
-            "output_dir": str(output_dir),
-            "imgt_dir": str(imgt_dir),
-        }
-
-    monkeypatch.setattr(gg, "get_paths", fake_get_paths)
-    monkeypatch.setattr(sys, "argv", ["group_by_germlines.py", "--key", "testkey"])
+    monkeypatch.setattr(sys, "argv", [
+        "group_by_germlines.py",
+        "-i", str(input_tsv),
+        "-o", str(output_dir),
+        "-r", str(imgt_dir),
+    ])
 
     gg.main()
 
-    out_root = output_dir / "grouped_by_germlines"
-    assert (out_root / "v").is_dir()
-    assert (out_root / "j").is_dir()
-    assert (out_root / "vj").is_dir()
-    assert (out_root / "d").is_dir()
+    assert (output_dir / "v").is_dir()
+    assert (output_dir / "j").is_dir()
+    assert (output_dir / "vj").is_dir()
+    assert (output_dir / "d").is_dir()
 
-    # у IGH-строки должен появиться файл в папке d (D-сегмент только у тяжёлой цепи)
-    d_files = list((out_root / "d").iterdir())
+    d_files = list((output_dir / "d").iterdir())
     assert len(d_files) == 1
 
-    # в v/j/vj должно быть суммарно 2 обработанные записи (IGH + IGK)
-    v_files = list((out_root / "v").iterdir())
+    v_files = list((output_dir / "v").iterdir())
     assert len(v_files) >= 1
 
 

@@ -1,0 +1,10 @@
+#NEXUS
+[This is a minimal MrBayes-style consensus tree fixture for offline parser tests.]
+begin trees;
+	translate
+		1 T0000,
+		2 T0001,
+		3 T0002,
+		4 T0003;
+	tree con_50_majrule = [&U] (1:0.10,(2:0.05,3:0.05)0.97:0.10,4:0.10);
+end;

@@ -22,8 +22,8 @@ tests/
 ## Ключевой принцип: тесты и визуализация разделены
 
 `test_fixtures.py` и `test_pipeline.py` не импортируют `visualize_tree.py` вообще.
-Они работают в чистой консоли: запускают `mrbayes/run_mrbayes.py` и
-`groups/confident_clades_report.py` как subprocess, читают получившиеся
+Они работают в чистой консоли: запускают `04b_build_trees_mrbayes/build_trees_mrbayes.py` и
+`05_clade_search/clade_search.py` как subprocess, читают получившиеся
 `.nex.con.tre`/`report.json`, печатают pass/fail. `visualize_tree.py` — отдельный
 скрипт, который по желанию рендерит HTML-филограмму из уже посчитанных
 результатов, и без него тестирование работает нормально.
@@ -31,7 +31,7 @@ tests/
 ## Fixtures — не runtime-генератор, а статические файлы
 
 `tests/fixtures/*_aligned.fasta` — точно формат, который производит
-`Alina/MSA_final.py` (mafft --auto) и который читает `mrbayes/run_mrbayes.py`.
+`Alina/03_multiple_alignment/multiple_alignment.py` (mafft --auto) и который читает `04b_build_trees_mrbayes/build_trees_mrbayes.py`.
 Последовательности построены из повторяющегося паттерна `ACGT` — любая
 мутация видна невооружённым глазом (напр. `...ACGTACTTACGT...` вместо
 `...ACGTACGTACGT...`). Рядом — `*.expected.json`: корневая последовательность,
@@ -42,20 +42,20 @@ tests/
 ## Запуск
 
 ```bash
-# Из корня проекта (где лежат mrbayes/, groups/, biocode/)
+# Из корня проекта
 python tests/test_fixtures.py                 # статические fixtures (~65 сек, 3 кейса)
 python tests/test_pipeline.py 1                # E2E на реальных данных (~35 сек, 1 группа)
 
 # Визуализация — отдельно, опционально, после того как выше уже отработало:
-python tests/visualize_tree.py IGHV3-23_01_IGHJ3_01 mrbayes/ \
-    --report groups/report.json --out mrbayes/IGHV3-23_01_IGHJ3_01.tree.html
+python tests/visualize_tree.py IGHV3-23_01_IGHJ3_01 04b_build_trees_mrbayes/ \
+    --report 05_clade_search/report.json --out 04b_build_trees_mrbayes/IGHV3-23_01_IGHJ3_01.tree.html
 ```
 
 ## Требования
 
 - Python 3.9+
 - `biopython` (pip install biopython) — нужен и test_fixtures.py/test_pipeline.py
-  (транзитивно, через вызываемые mrbayes/groups скрипты), и visualize_tree.py
+  (транзитивно, через вызываемые 04b_build_trees_mrbayes/05_clade_search скрипты), и visualize_tree.py
 - Бинарь `mb` (MrBayes): conda install -c bioconda mrbayes
 - Для test_pipeline.py — клон BIOCAD.bigchallenges на ветке main (реальные
   данные Ксюши/Алины)
@@ -64,7 +64,7 @@ python tests/visualize_tree.py IGHV3-23_01_IGHJ3_01 mrbayes/ \
 
 Формат fixtures подтверждён по факту прочтения реальных скриптов других
 участников (ветки your1ksu/BioCad_bd): `ksu_branch/scripts/group_by_germlines`
-→ `Alina/scripts/MSA/MSA_final.py` (mafft --auto, суффикс `_aligned.fasta`) →
-наш `mrbayes/run_mrbayes.py`. Параллельно — `Denis/scripts/build_trees_iqtree`
+→ `Alina/scripts/03_multiple_alignment/multiple_alignment.py` (mafft --auto, суффикс `_aligned.fasta`) →
+наш `04b_build_trees_mrbayes/build_trees_mrbayes.py`. Параллельно — `Denis/scripts/04a_build_trees_iqtree`
 (вход тот же `aligned_sequences/`, выход `trees/<группа>/<группа>.treefile`),
-который `groups/confident_clades_report.py` тоже умеет читать (`--iqtree-dir`).
+который `05_clade_search/clade_search.py` тоже умеет читать (`--iqtree-dir`).
