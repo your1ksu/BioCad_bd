@@ -31,7 +31,7 @@
       Критерий: UFBoot ≥ --ufboot-min (95) И aLRT ≥ --alrt-min (80) — здесь
       напрямую вызывается ``biocode.clades.confident_clades`` без изменений.
 
-Выход: groups/report.json — {<группа>: {"mrbayes": {...}, "iqtree": {...}}}
+Выход: clades/report.json — {<группа>: {"mrbayes": {...}, "iqtree": {...}}}
 (секции присутствуют только для тех источников, что были переданы и найдены).
 """
 from __future__ import annotations
@@ -189,7 +189,7 @@ def main(argv=None) -> int:
     ap.add_argument("--posterior-min", type=float, default=0.95)
     ap.add_argument("--ufboot-min", type=float, default=95.0)
     ap.add_argument("--alrt-min", type=float, default=80.0)
-    ap.add_argument("--out", default="groups/report.json")
+    ap.add_argument("--out", default="clades/report.json")
     args = ap.parse_args(argv)
 
     report: dict[str, dict] = {}

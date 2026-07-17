@@ -23,7 +23,7 @@ tests/
 
 `test_fixtures.py` и `test_pipeline.py` не импортируют `visualize_tree.py` вообще.
 Они работают в чистой консоли: запускают `mrbayes/run_mrbayes.py` и
-`groups/confident_clades_report.py` как subprocess, читают получившиеся
+`clades/confident_clades_report.py` как subprocess, читают получившиеся
 `.nex.con.tre`/`report.json`, печатают pass/fail. `visualize_tree.py` — отдельный
 скрипт, который по желанию рендерит HTML-филограмму из уже посчитанных
 результатов, и без него тестирование работает нормально.
@@ -42,20 +42,20 @@ tests/
 ## Запуск
 
 ```bash
-# Из корня проекта (где лежат mrbayes/, groups/, biocode/)
+# Из корня проекта (где лежат mrbayes/, clades/, biocode/)
 python tests/test_fixtures.py                 # статические fixtures (~65 сек, 3 кейса)
 python tests/test_pipeline.py 1                # E2E на реальных данных (~35 сек, 1 группа)
 
 # Визуализация — отдельно, опционально, после того как выше уже отработало:
 python tests/visualize_tree.py IGHV3-23_01_IGHJ3_01 mrbayes/ \
-    --report groups/report.json --out mrbayes/IGHV3-23_01_IGHJ3_01.tree.html
+    --report clades/report.json --out mrbayes/IGHV3-23_01_IGHJ3_01.tree.html
 ```
 
 ## Требования
 
 - Python 3.9+
 - `biopython` (pip install biopython) — нужен и test_fixtures.py/test_pipeline.py
-  (транзитивно, через вызываемые mrbayes/groups скрипты), и visualize_tree.py
+  (транзитивно, через вызываемые mrbayes/clades скрипты), и visualize_tree.py
 - Бинарь `mb` (MrBayes): conda install -c bioconda mrbayes
 - Для test_pipeline.py — клон BIOCAD.bigchallenges на ветке main (реальные
   данные Ксюши/Алины)
@@ -67,4 +67,4 @@ python tests/visualize_tree.py IGHV3-23_01_IGHJ3_01 mrbayes/ \
 → `Alina/scripts/MSA/MSA_final.py` (mafft --auto, суффикс `_aligned.fasta`) →
 наш `mrbayes/run_mrbayes.py`. Параллельно — `Denis/scripts/build_trees_iqtree`
 (вход тот же `aligned_sequences/`, выход `trees/<группа>/<группа>.treefile`),
-который `groups/confident_clades_report.py` тоже умеет читать (`--iqtree-dir`).
+который `clades/confident_clades_report.py` тоже умеет читать (`--iqtree-dir`).

@@ -13,7 +13,7 @@
 Дополнительно пишется `mrbayes/<группа>.names.tsv` (`safe_id → исходный id`) —
 MrBayes не принимает `-`/спецсимволы в именах таксонов, которые обычны в
 10x-баркодах (`GTTTCTATCATTATCC-1_contig_1`), поэтому таксоны временно
-переименовываются в `T0001…`. Этот файл нужен `../groups/confident_clades_report.py`,
+переименовываются в `T0001…`. Этот файл нужен `../clades/confident_clades_report.py`,
 чтобы вернуть исходные id в отчёте.
 
 ## Запуск
@@ -38,5 +38,5 @@ python run_mrbayes.py --outgroup <seq_id>    # если в fasta есть germli
 
 ## Дальше по конвейеру
 
-`mrbayes/<группа>.nex.con.tre` — вход для [../groups/confident_clades_report.py](../groups/confident_clades_report.py)
+`mrbayes/<группа>.nex.con.tre` — вход для [../clades/confident_clades_report.py](../clades/confident_clades_report.py)
 (поиск уверенных клад по апостериорной поддержке, posterior ≥ 0.95).

@@ -11,7 +11,7 @@
 |---|---|---|
 | вход | nexus | `mrbayes/<группа>.nex.con.tre` (+ `.names.tsv`) — выход [../mrbayes/run_mrbayes.py](../mrbayes/run_mrbayes.py) |
 | вход (опционально) | newick с aLRT/UFBoot в метках узлов | `trees/<группа>/<группа>.treefile` — выход `anotherpipeline/build_trees/build_trees.sh` (Денис, IQ-TREE) |
-| выход | json | `groups/report.json` |
+| выход | json | `clades/report.json` |
 
 Два источника, любой можно включить/выключить, оба пишутся в один `report.json`:
 

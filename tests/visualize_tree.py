@@ -7,13 +7,13 @@ pipeline через консоль (subprocess + assert на report.json/.nex.co
 здесь что-то сломано или Bio.Phylo/HTML-генерация недоступны по любой причине.
 
 Использование как CLI (после того как mrbayes/run_mrbayes.py и
-groups/confident_clades_report.py уже отработали):
+clades/confident_clades_report.py уже отработали):
 
     python visualize_tree.py <group_key> <mrbayes_dir> [--report report.json] [--out out.html]
 
 Пример:
     python visualize_tree.py IGHV3-23_01_IGHJ3_01 ../mrbayes \\
-        --report ../groups/report.json --out ../mrbayes/IGHV3-23_01_IGHJ3_01.tree.html
+        --report ../clades/report.json --out ../mrbayes/IGHV3-23_01_IGHJ3_01.tree.html
 
 Или программно:
     from visualize_tree import parse_nexus_tree, generate_tree_html
@@ -283,7 +283,7 @@ def main(argv=None) -> int:
     ap.add_argument("group_key", help="ключ группы (напр. IGHV3-23_01_IGHJ3_01)")
     ap.add_argument("mrbayes_dir", type=Path, help="папка с <группа>.nex.con.tre (+.names.tsv)")
     ap.add_argument("--report", type=Path, default=None,
-                    help="groups/report.json (для подсветки уверенных клад)")
+                    help="clades/report.json (для подсветки уверенных клад)")
     ap.add_argument("--out", type=Path, default=None, help="путь выходного .html")
     args = ap.parse_args(argv)
 

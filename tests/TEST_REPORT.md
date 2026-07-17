@@ -32,7 +32,7 @@ MrBayes пишет консенсус НЕУКОРЕНЁННОГО дерева 
 
 ### Исправление
 
-В `groups/confident_clades_report.py` (без изменения вендоренного `biocode/`)
+В `clades/confident_clades_report.py` (без изменения вендоренного `biocode/`)
 добавлены две функции:
 
 1. **`_root_complement_supports`** — если среди прямых потомков корня ровно
@@ -86,7 +86,7 @@ data/BCR_data.tsv
   → [ksu_branch] group_by_germlines.py    → results/<key>/grouped_by_germlines/vj/<V>_<J>.fasta
   → [Alina] MSA_final.py (mafft --auto)   → aligned_sequences/<V>_<J>_aligned.fasta
   → [Nikita] run_mrbayes.py               → mrbayes/<группа>.nex, .nex.con.tre, .mb.log
-  → [Nikita] confident_clades_report.py   → groups/report.json
+  → [Nikita] confident_clades_report.py   → clades/report.json
 
   (параллельно) [Denis] build_trees_iqtree.sh aligned_sequences trees
                 → trees/<группа>/<группа>.treefile
