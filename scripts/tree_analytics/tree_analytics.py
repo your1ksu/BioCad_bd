@@ -94,13 +94,13 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Анализ и визуализация статистики по кладам.")
     parser.add_argument(
         "-k", "--key",
-        required=True,
-        help="Название подпапки внутри data/ и results/ (например: batch1)",
+        default="BCR",
+        help="Название подпапки внутри results/ (по умолчанию: BCR)",
     )
     parser.add_argument(
         "--input-file",
         default=INPUT_FILENAME,
-        help=f"Имя входного JSON-файла внутри data/<key>/ (по умолчанию: {INPUT_FILENAME})",
+        help=f"Имя входного JSON-файла внутри results/<key>/ (по умолчанию: {INPUT_FILENAME})",
     )
     return parser.parse_args()
 
@@ -109,7 +109,9 @@ def main():
     args = parse_args()
     paths = get_paths(args.key)
 
-    input_path = os.path.join(paths["input_dir"], args.input_file)
+    # clades_report.json — это результат предыдущих шагов пайплайна,
+    # поэтому берём его из results/<key>/, а не из data/<key>/
+    input_path = os.path.join(paths["output_dir"], args.input_file)
     output_path = os.path.join(paths["output_dir"], OUTPUT_FILENAME)
 
     try:
