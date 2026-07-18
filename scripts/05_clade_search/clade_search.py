@@ -229,7 +229,8 @@ def write_clade_fastas(report: dict[str, dict],
                 if not leaf_seqs:
                     continue
                 fasta_path = out_dir / f"{group_key}__{src_key}_c{ci:03d}.fa"
-                lines = [f">{k}\n{v}" for k, v in leaf_seqs.items()]
+                clean = {k: v.replace("-", "").replace(".", "") for k, v in leaf_seqs.items()}
+                lines = [f">{k}\n{v}" for k, v in clean.items()]
                 fasta_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
         n_clades = (len(sources.get("mrbayes", {}).get("clades", []))
                     + len(sources.get("iqtree", {}).get("clades", [])))

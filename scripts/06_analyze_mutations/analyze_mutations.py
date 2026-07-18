@@ -89,6 +89,21 @@ def find_igblast(conda_base: Path | None = None) -> str | None:
     return None
 
 
+def strip_gaps_from_fasta(input_fasta: str) -> str:
+    with open(input_fasta) as f:
+        lines = f.readlines()
+    out_lines = []
+    for line in lines:
+        if line.startswith(">"):
+            out_lines.append(line)
+        else:
+            out_lines.append(line.replace("-", "").replace(".", ""))
+    tmp = input_fasta + ".clean"
+    with open(tmp, "w") as f:
+        f.writelines(out_lines)
+    return tmp
+
+
 def run_igblast(query_fasta: str, ref_dir: str, out_file: str) -> str:
     """Run igblastn on query sequences."""
     igblast_bin = find_igblast(find_conda_base())
@@ -116,10 +131,7 @@ def run_igblast(query_fasta: str, ref_dir: str, out_file: str) -> str:
         '-num_alignments_D', '1',
         '-num_alignments_J', '1',
         '-organism', 'human',
-        '-domain_system', 'imgt',
     ]
-    if os.path.exists(aux_file):
-        cmd.extend(['-auxiliary_data', aux_file])
 
     result = subprocess.run(cmd, capture_output=True, text=True)
     if result.returncode != 0:
@@ -459,11 +471,12 @@ def main() -> None:
         sys.exit(1)
 
     print(f"Running IgBLAST on {args.input}...", file=sys.stderr)
+    clean_fasta = strip_gaps_from_fasta(args.input)
     with tempfile.NamedTemporaryFile(suffix='_igblast.tsv', delete=False) as tmp:
         igblast_out = tmp.name
 
     try:
-        run_igblast(args.input, ref_dir, igblast_out)
+        run_igblast(clean_fasta, ref_dir, igblast_out)
 
         print("Parsing IgBLAST output...", file=sys.stderr)
         results = parse_igblast_output(igblast_out)
@@ -498,6 +511,9 @@ def main() -> None:
     finally:
         if os.path.exists(igblast_out):
             os.unlink(igblast_out)
+        clean_tmp = args.input + ".clean"
+        if os.path.exists(clean_tmp):
+            os.unlink(clean_tmp)
 
 
 if __name__ == '__main__':

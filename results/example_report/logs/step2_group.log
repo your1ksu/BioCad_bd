@@ -9,5 +9,5 @@
 Папки лежат в results/example_report/grouped_by_germlines/v, /d, /j, /vj
 CMD: /Users/shumilov/miniconda3/envs/biocad_bcr_pipeline_environment/bin/python /Users/shumilov/PycharmProjects/BioCad_bd/scripts/02_group_by_germlines/group_by_germlines.py -i results/example_report/BCR_data_filtered.tsv -o results/example_report/grouped_by_germlines -r /Users/shumilov/PycharmProjects/BioCad_bd/data/references
 CWD: /Users/shumilov/PycharmProjects/BioCad_bd
-START: 2026-07-18 00:10:34.784131
+START: 2026-07-18 09:33:44.445910
 

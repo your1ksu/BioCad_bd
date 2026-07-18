@@ -1,21 +1,51 @@
 Running IgBLAST on results/example_report/groups/clades/IGHV1-69_12_IGHJ4_02__mrbayes_c000.fa...
 Parsing IgBLAST output...
-Warning: no results from IgBLAST
+Processed 4 sequences
+Mutation table written to results/example_report/mutation_tables/IGHV1-69_12_IGHJ4_02__mrbayes_c000/mutations.tsv
+  ATAGACCAGGGCATGT-1_contig_2: V=IGHV1-69*12, D=IGHD5-18*02, J=IGHJ4*02, mutations=15
+  TATCAGGAGTGAATTG-1_contig_2: V=IGHV1-69*12, D=IGHD5-18*02, J=IGHJ4*02, mutations=15
+  CCTATTAGTGCGATAG-1_contig_2: V=IGHV1-69*12, D=IGHD5-18*02, J=IGHJ4*02, mutations=16
+  TTCTACAGTAAACCTC-1_contig_2: V=IGHV1-69*12, D=IGHD5-18*02, J=IGHJ4*02, mutations=15
 Running IgBLAST on results/example_report/groups/clades/IGHV1-69_12_IGHJ4_02__mrbayes_c000.fa...
 Parsing IgBLAST output...
-Warning: no results from IgBLAST
+Processed 4 sequences
+Summary written to results/example_report/mutation_tables/IGHV1-69_12_IGHJ4_02__mrbayes_c000/mutations_summary.tsv
+  ATAGACCAGGGCATGT-1_contig_2: V=IGHV1-69*12, D=IGHD5-18*02, J=IGHJ4*02, mutations=15
+  TATCAGGAGTGAATTG-1_contig_2: V=IGHV1-69*12, D=IGHD5-18*02, J=IGHJ4*02, mutations=15
+  CCTATTAGTGCGATAG-1_contig_2: V=IGHV1-69*12, D=IGHD5-18*02, J=IGHJ4*02, mutations=16
+  TTCTACAGTAAACCTC-1_contig_2: V=IGHV1-69*12, D=IGHD5-18*02, J=IGHJ4*02, mutations=15
 Running IgBLAST on results/example_report/groups/clades/IGHV1-69_12_IGHJ4_02__mrbayes_c001.fa...
 Parsing IgBLAST output...
-Warning: no results from IgBLAST
+Processed 2 sequences
+Mutation table written to results/example_report/mutation_tables/IGHV1-69_12_IGHJ4_02__mrbayes_c001/mutations.tsv
+  AAACGGGTCGTACGGC-1_contig_1: V=IGHV1-69*12, D=IGHD5-5*01, J=IGHJ4*02, mutations=8
+  TGTGGTAGTATCAGTC-1_contig_2: V=IGHV1-69*12, D=IGHD5-5*01, J=IGHJ4*02, mutations=10
 Running IgBLAST on results/example_report/groups/clades/IGHV1-69_12_IGHJ4_02__mrbayes_c001.fa...
 Parsing IgBLAST output...
-Warning: no results from IgBLAST
+Processed 2 sequences
+Summary written to results/example_report/mutation_tables/IGHV1-69_12_IGHJ4_02__mrbayes_c001/mutations_summary.tsv
+  AAACGGGTCGTACGGC-1_contig_1: V=IGHV1-69*12, D=IGHD5-5*01, J=IGHJ4*02, mutations=8
+  TGTGGTAGTATCAGTC-1_contig_2: V=IGHV1-69*12, D=IGHD5-5*01, J=IGHJ4*02, mutations=10
 Running IgBLAST on results/example_report/groups/clades/IGHV1-69_12_IGHJ4_02__mrbayes_c002.fa...
 Parsing IgBLAST output...
-Warning: no results from IgBLAST
+Processed 6 sequences
+Mutation table written to results/example_report/mutation_tables/IGHV1-69_12_IGHJ4_02__mrbayes_c002/mutations.tsv
+  ATGGGAGGTGCTTCTC-1_contig_2: V=IGHV1-69*12, D=IGHD3-10*01, J=IGHJ4*02, mutations=0
+  AAACGGGTCGTACGGC-1_contig_1: V=IGHV1-69*12, D=IGHD5-5*01, J=IGHJ4*02, mutations=8
+  AGGCCGTAGCTAACAA-1_contig_2: V=IGHV1-69*12, D=IGHD4-17*01, J=IGHJ4*02, mutations=11
+  TGTGGTAGTATCAGTC-1_contig_2: V=IGHV1-69*12, D=IGHD5-5*01, J=IGHJ4*02, mutations=10
+  CAGTAACGTTAGATGA-1_contig_2: V=IGHV1-69*12, D=IGHD5-24*01, J=IGHJ4*02, mutations=16
+  TGTTCCGGTAAGAGAG-1_contig_2: V=IGHV1-69*12, D=IGHD4/OR15-4a*01, J=IGHJ4*02, mutations=8
 Running IgBLAST on results/example_report/groups/clades/IGHV1-69_12_IGHJ4_02__mrbayes_c002.fa...
 Parsing IgBLAST output...
-Warning: no results from IgBLAST
+Processed 6 sequences
+Summary written to results/example_report/mutation_tables/IGHV1-69_12_IGHJ4_02__mrbayes_c002/mutations_summary.tsv
+  ATGGGAGGTGCTTCTC-1_contig_2: V=IGHV1-69*12, D=IGHD3-10*01, J=IGHJ4*02, mutations=0
+  AAACGGGTCGTACGGC-1_contig_1: V=IGHV1-69*12, D=IGHD5-5*01, J=IGHJ4*02, mutations=8
+  AGGCCGTAGCTAACAA-1_contig_2: V=IGHV1-69*12, D=IGHD4-17*01, J=IGHJ4*02, mutations=11
+  TGTGGTAGTATCAGTC-1_contig_2: V=IGHV1-69*12, D=IGHD5-5*01, J=IGHJ4*02, mutations=10
+  CAGTAACGTTAGATGA-1_contig_2: V=IGHV1-69*12, D=IGHD5-24*01, J=IGHJ4*02, mutations=16
+  TGTTCCGGTAAGAGAG-1_contig_2: V=IGHV1-69*12, D=IGHD4/OR15-4a*01, J=IGHJ4*02, mutations=8
 Analyzing IGHV1-69_12_IGHJ4_02__mrbayes_c000.fa ...
 Done: IGHV1-69_12_IGHJ4_02__mrbayes_c000.fa
 
@@ -28,5 +58,5 @@ Done: IGHV1-69_12_IGHJ4_02__mrbayes_c002.fa
 All mutation tables saved to results/example_report/mutation_tables
 CMD: /Users/shumilov/miniconda3/envs/biocad_bcr_pipeline_environment/bin/python /Users/shumilov/PycharmProjects/BioCad_bd/scripts/06_analyze_mutations/run_mutations.py -i results/example_report/groups/clades -o results/example_report/mutation_tables -r /Users/shumilov/PycharmProjects/BioCad_bd/data/references
 CWD: /Users/shumilov/PycharmProjects/BioCad_bd
-START: 2026-07-18 00:11:31.058880
+START: 2026-07-18 09:34:29.155071
 
