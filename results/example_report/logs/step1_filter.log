@@ -20,5 +20,5 @@ Length: 1, dtype: str
 Готово! Отфильтрованные данные сохранены в results/example_report/BCR_data_filtered.tsv
 CMD: /Users/shumilov/miniconda3/envs/biocad_bcr_pipeline_environment/bin/python /Users/shumilov/PycharmProjects/BioCad_bd/scripts/01_filter_sequences/filter_sequences.py -i data/example.fasta -o results/example_report/BCR_data_filtered.tsv -r /Users/shumilov/PycharmProjects/BioCad_bd/data/references
 CWD: /Users/shumilov/PycharmProjects/BioCad_bd
-START: 2026-07-18 09:33:39.514655
+START: 2026-07-18 13:51:32.215761
 

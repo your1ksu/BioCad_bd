@@ -12,12 +12,23 @@ If --mafft is not specified, the script searches for "mafft" in PATH.
 from __future__ import annotations
 
 import argparse
+import os
 import shutil
 import subprocess
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 
 OUTPUT_SUFFIX = "_aligned"
+
+
+def detect_nproc() -> int:
+    try:
+        return len(os.sched_getaffinity(0))
+    except AttributeError:
+        pass
+    n = os.cpu_count()
+    return n if n else 1
 
 
 def discover_fasta_files(input_dir: Path) -> list[Path]:
@@ -31,21 +42,20 @@ def discover_fasta_files(input_dir: Path) -> list[Path]:
     return sorted(files)
 
 
-def run_mafft(mafft_bin: Path, input_fasta: Path, output_fasta: Path) -> None:
+def run_mafft(mafft_bin: Path, input_fasta: Path, output_fasta: Path, threads: int) -> None:
     """Run MAFFT and write the alignment to the output file."""
-    # --preservecase не позволяет MAFFT превращать входные A/C/G/T в строчные.
     command = [
         str(mafft_bin),
         "--auto",
         "--quiet",
         "--preservecase",
+        "--thread", str(threads),
         str(input_fasta),
     ]
     try:
         with output_fasta.open("w", encoding="utf-8") as output_handle:
             subprocess.run(command, stdout=output_handle, check=True)
     except Exception:
-        # Не оставляем пустой или недописанный файл после ошибки MAFFT.
         output_fasta.unlink(missing_ok=True)
         raise
 
@@ -80,6 +90,18 @@ def parse_args() -> argparse.Namespace:
             "in PATH."
         ),
     )
+    parser.add_argument(
+        "--threads",
+        type=int,
+        default=1,
+        help="Threads per MAFFT instance (default: 1)",
+    )
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=0,
+        help="Number of parallel MAFFT processes (default: number of CPU cores)",
+    )
     return parser.parse_args()
 
 
@@ -105,6 +127,8 @@ def main() -> None:
     input_dir = args.input.expanduser()
     output_dir = args.output.expanduser()
     mafft_bin = find_mafft(args.mafft)
+    nproc = detect_nproc()
+    workers = args.workers if args.workers > 0 else nproc
 
     if not input_dir.exists():
         raise FileNotFoundError(f"Input directory not found: {input_dir}")
@@ -117,17 +141,34 @@ def main() -> None:
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    manifest_lines = ["input_fasta\taligned_fasta"]
-    for index, fasta_path in enumerate(fasta_files, start=1):
+    tasks = []
+    for fasta_path in fasta_files:
         rel_path = fasta_path.relative_to(input_dir)
         rel_stem = rel_path.stem
         rel_suffix = rel_path.suffix.lower()
         output_path = output_dir / rel_path.parent / f"{rel_stem}{OUTPUT_SUFFIX}{rel_suffix}"
         output_path.parent.mkdir(parents=True, exist_ok=True)
+        tasks.append((fasta_path, rel_path, output_path))
 
-        print(f"[{index}/{len(fasta_files)}] Aligning {rel_path} -> {output_path.relative_to(output_dir)}")
-        run_mafft(mafft_bin, fasta_path, output_path)
-        manifest_lines.append(f"{rel_path}\t{output_path.relative_to(output_dir)}")
+    manifest_lines = ["input_fasta\taligned_fasta"]
+    completed = 0
+    total = len(tasks)
+
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        fut_to_task = {
+            executor.submit(run_mafft, mafft_bin, fp, op, args.threads): (fp, rp, op)
+            for fp, rp, op in tasks
+        }
+        for future in as_completed(fut_to_task):
+            fp, rp, op = fut_to_task[future]
+            try:
+                future.result()
+            except Exception as e:
+                print(f"[FAILED] {rp}: {e}")
+                continue
+            completed += 1
+            print(f"[{completed}/{total}] Aligned {rp}")
+            manifest_lines.append(f"{rp}\t{op.relative_to(output_dir)}")
 
     manifest_path = output_dir / "manifest.tsv"
     manifest_path.write_text("\n".join(manifest_lines) + "\n", encoding="utf-8")
@@ -136,7 +177,9 @@ def main() -> None:
     print(f"MAFFT executable: {mafft_bin}")
     print(f"Input directory: {input_dir}")
     print(f"Output directory: {output_dir}")
-    print(f"Aligned FASTA files: {len(fasta_files)}")
+    print(f"Workers: {workers}")
+    print(f"Aligned FASTA files: {completed}")
+    print(f"Failed: {total - completed}")
     print(f"Manifest: {manifest_path}")
 
 

@@ -50,13 +50,13 @@ class TestMsaFinal(unittest.TestCase):
             def fake_mafft(command, stdout, check):
                 self.assertEqual(
                     command,
-                    ["mafft", "--auto", "--quiet", "--preservecase", str(input_fasta)],
+                    ["mafft", "--auto", "--quiet", "--preservecase", "--thread", "1", str(input_fasta)],
                 )
                 self.assertTrue(check)
                 stdout.write(aligned_fasta)
 
             with patch("multiple_alignment.subprocess.run", side_effect=fake_mafft):
-                multiple_alignment.run_mafft(Path("mafft"), input_fasta, output_fasta)
+                multiple_alignment.run_mafft(Path("mafft"), input_fasta, output_fasta, 1)
 
             self.assertEqual(output_fasta.read_text(encoding="utf-8"), aligned_fasta)
 
