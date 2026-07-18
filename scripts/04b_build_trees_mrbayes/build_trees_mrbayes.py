@@ -2,10 +2,13 @@
 from __future__ import annotations
 
 import argparse
+import os
 import re
+import shutil
 import subprocess
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from io import StringIO
 from pathlib import Path
 
@@ -109,7 +112,6 @@ def find_mb(explicit: str = "") -> Path | None:
         if p.is_file() and p.stat().st_mode & 0o111:
             return p
         return None
-    import shutil
     for cand in ("mb", "mrbayes"):
         which = shutil.which(cand)
         if which:
@@ -123,6 +125,15 @@ def find_mb(explicit: str = "") -> Path | None:
             if p.is_file() and p.stat().st_mode & 0o111:
                 return p
     return None
+
+
+def detect_nproc() -> int:
+    try:
+        return len(os.sched_getaffinity(0))
+    except AttributeError:
+        pass
+    n = os.cpu_count()
+    return n if n else 1
 
 
 def write_nexus(key: str, msa: dict[str, str], outgroup_id: str | None,
@@ -144,9 +155,6 @@ def run_mb(key: str, nex_path: Path, rev: dict[str, str],
            mb_bin: str, timeout_s: int, out_dir: Path) -> str:
     binpath = find_mb(mb_bin)
     if binpath is None:
-        print(f"[{key}] mb не найден — nexus сохранён ({nex_path.name}), "
-              f"MrBayes-фаза пропущена. Установка: conda install -c bioconda mrbayes",
-              file=sys.stderr)
         return "nexus_only"
 
     t0 = time.time()
@@ -155,11 +163,8 @@ def run_mb(key: str, nex_path: Path, rev: dict[str, str],
                               cwd=str(out_dir), capture_output=True, text=True,
                               timeout=timeout_s)
     except subprocess.TimeoutExpired:
-        print(f"[{key}] ТАЙМАУТ mb ({timeout_s}с)", file=sys.stderr)
         return "failed"
     if proc.returncode != 0:
-        tail = ((proc.stdout or "") + (proc.stderr or ""))[-2000:]
-        print(f"[{key}] ОШИБКА mb (код {proc.returncode}): {tail}", file=sys.stderr)
         return "failed"
 
     (out_dir / f"{key}.mb.log").write_text(proc.stdout or "", encoding="utf-8")
@@ -167,10 +172,7 @@ def run_mb(key: str, nex_path: Path, rev: dict[str, str],
 
     newick, supports = parse_con_tre(out_dir / f"{key}.nex.con.tre", rev)
     avg_std, converged = convergence(proc.stdout or "")
-    print(f"[{key}] готово: {out_dir / (key + '.nex.con.tre')} "
-          f"(runtime={runtime:.1f}s, клад с posterior={len(supports)}, "
-          f"сошлось={'да' if converged else 'нет'} avg_std={avg_std})")
-    return "ok"
+    return f"ok|{runtime}|{len(supports)}|{converged}|{avg_std}"
 
 
 def main(argv=None) -> int:
@@ -187,6 +189,10 @@ def main(argv=None) -> int:
     ap.add_argument("--timeout-s", type=int, default=3600)
     ap.add_argument("--nexus-only", action="store_true",
                     help="только фаза 1 (сгенерировать .nex)")
+    ap.add_argument("--workers", type=int, default=0,
+                    help="сколько групп запускать параллельно (по умолчанию: число ядер)")
+    ap.add_argument("--max-workers", type=int, default=0,
+                    help="максимум параллельных mb (чтобы не убить диск/RAM)")
     args = ap.parse_args(argv)
 
     in_dir = Path(args.input_dir)
@@ -200,8 +206,18 @@ def main(argv=None) -> int:
         print(f"В {in_dir} не найдено *.fa/*.fasta/*.fas/*.aln", file=sys.stderr)
         return 0
 
+    nproc = detect_nproc()
+    workers = args.workers if args.workers > 0 else nproc
+    if args.max_workers > 0:
+        workers = min(workers, args.max_workers)
+    else:
+        workers = min(workers, 4)
+
     out_dir.mkdir(parents=True, exist_ok=True)
     counts = {"ok": 0, "nexus_only": 0, "failed": 0, "skipped": 0}
+
+    # Фаза 1: генерация nexus (последовательно, быстро)
+    tasks: list[tuple[str, Path, dict[str, str]]] = []
     for fasta in fasta_files:
         key = group_key_of(fasta)
         msa = read_fasta(fasta)
@@ -209,17 +225,65 @@ def main(argv=None) -> int:
             print(f"[{key}] пропущено: меньше 3 последовательностей ({len(msa)})")
             counts["skipped"] += 1
             continue
-
         nex_path, rev = write_nexus(key, msa, args.outgroup,
                                      args.mb_ngen, args.mb_burnin_frac,
                                      args.seed, out_dir)
         print(f"[{key}] nexus готов: {nex_path}")
+        tasks.append((key, nex_path, rev))
 
-        if args.nexus_only:
-            status = "nexus_only"
-        else:
+    if args.nexus_only or not tasks:
+        print(f"\nИтого: nexus_only={len(tasks)} пропущено={counts['skipped']}")
+        return 0
+
+    # Фаза 2: запуск mb (параллельно)
+    workers = min(workers, len(tasks))
+    print(f"\n--- MrBayes: {len(tasks)} групп, {workers} воркеров ---")
+
+    if workers <= 1:
+        for key, nex_path, rev in tasks:
             status = run_mb(key, nex_path, rev, args.mb_bin, args.timeout_s, out_dir)
-        counts[status] += 1
+            if status.startswith("ok"):
+                _, rt, nclades, ok_str, avg = status.split("|")
+                converged_str = "да" if ok_str == "True" else "нет"
+                print(f"[{key}] готово: {out_dir / (key + '.nex.con.tre')} "
+                      f"(runtime={float(rt):.1f}s, клад={nclades}, "
+                      f"сошлось={converged_str} avg_std={avg})")
+                counts["ok"] += 1
+            elif status == "failed":
+                print(f"[{key}] ОШИБКА mb", file=sys.stderr)
+                counts["failed"] += 1
+            else:
+                print(f"[{key}] mb не найден — nexus сохранён", file=sys.stderr)
+                counts["nexus_only"] += 1
+    else:
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            fut_to_key = {
+                pool.submit(run_mb, key, nex_path, rev,
+                            args.mb_bin, args.timeout_s, out_dir): key
+                for key, nex_path, rev in tasks
+            }
+            for future in as_completed(fut_to_key):
+                key = fut_to_key[future]
+                try:
+                    status = future.result()
+                except Exception as e:
+                    print(f"[{key}] ОШИБКА воркера: {e}", file=sys.stderr)
+                    counts["failed"] += 1
+                    continue
+
+                if status.startswith("ok"):
+                    _, rt, nclades, ok_str, avg = status.split("|")
+                    converged_str = "да" if ok_str == "True" else "нет"
+                    print(f"[{key}] готово: {out_dir / (key + '.nex.con.tre')} "
+                          f"(runtime={float(rt):.1f}s, клад={nclades}, "
+                          f"сошлось={converged_str} avg_std={avg})")
+                    counts["ok"] += 1
+                elif status == "failed":
+                    print(f"[{key}] ОШИБКА mb", file=sys.stderr)
+                    counts["failed"] += 1
+                else:
+                    print(f"[{key}] mb не найден — nexus сохранён", file=sys.stderr)
+                    counts["nexus_only"] += 1
 
     print(f"\nИтого: ok={counts['ok']} только-nexus={counts['nexus_only']} "
           f"ошибок={counts['failed']} пропущено={counts['skipped']} из {len(fasta_files)} групп")

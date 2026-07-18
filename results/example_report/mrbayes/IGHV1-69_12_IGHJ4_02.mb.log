@@ -44,7 +44,7 @@
       Successfully read matrix
       Setting default partition (does not divide up characters)
       Setting model defaults
-      Seed (for generating default start values) = 1784373017
+      Seed (for generating default start values) = 1784374274
       Setting output file names to "IGHV1-69_12_IGHJ4_02.nex.run<i>.<p|t>"
    Exiting data block
    Reading mrbayes block
@@ -64,7 +64,7 @@
       Setting 'Starttree' to "Random"
       Setting chain output file names to "IGHV1-69_12_IGHJ4_02.nex.run<i>.<p/t>"
       Running Markov chain
-      MCMC stamp = 1846797916
+      MCMC stamp = 1221419396
       Seed = 376088129
       Swapseed = 12345
       Model settings:
@@ -202,7 +202,7 @@
 
       Average standard deviation of split frequencies: 0.013677
 
-      120000 -- (-1657.901) [-1654.292] (-1664.187) (-1658.489) * (-1668.082) [-1662.124] (-1657.433) (-1652.872) -- 0:00:10
+      120000 -- (-1657.901) [-1654.292] (-1664.187) (-1658.489) * (-1668.082) [-1662.124] (-1657.433) (-1652.872) -- 0:00:11
 
       Average standard deviation of split frequencies: 0.016106
 
@@ -221,8 +221,8 @@
 
       Average standard deviation of split frequencies: 0.014337
 
-      Analysis completed in 27 seconds
-      Analysis used 26.91 seconds of CPU time
+      Analysis completed in 28 seconds
+      Analysis used 28.07 seconds of CPU time
       Likelihood of best state for "cold" chain of run 1 was -1643.67
       Likelihood of best state for "cold" chain of run 2 was -1643.77
 
