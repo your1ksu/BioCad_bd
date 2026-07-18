@@ -17,7 +17,7 @@ SYMBOL = ">"
 MIN_COUNT = 5   # строго больше
 MAX_COUNT = 100  # строго меньше
 
-DEFAULT_SUBFOLDERS = ["grouped_by_germlines", "v"]
+DEFAULT_SUBFOLDERS = ["grouped_by_germlines", "vj"]
 
 
 def count_symbol(file_path, symbol=SYMBOL):
@@ -90,9 +90,10 @@ def main():
         print(f"Ошибка: путь {target_dir} не найден. Проверь --key и --subfolders.")
         return
 
-    # новая папка создаётся рядом с целевой, с суффиксом _filtered
+    # новая папка создаётся на уровне results/<key>/ — то есть рядом с самой
+    # папкой grouped_by_germlines, а не внутри неё рядом с vj
     last_folder_name = args.subfolders[-1] + "_filtered"
-    output_dir = os.path.join(os.path.dirname(target_dir), last_folder_name)
+    output_dir = os.path.join(paths["output_dir"], last_folder_name)
 
     filter_and_copy_files(target_dir, output_dir)
 
