@@ -217,6 +217,16 @@ def check_row(row, v_lengths_by_locus, j_lengths_by_locus, reasons):
     return True
 
 
+def filter_percentile(df, col="sequence_vdj", lo=0.05, hi=0.95):
+    """Убирает 5% самых коротких и 5% самых длинных по колонке col."""
+    lengths = df[col].str.len()
+    q_lo = lengths.quantile(lo)
+    q_hi = lengths.quantile(hi)
+    mask = (lengths >= q_lo) & (lengths <= q_hi)
+    print(f"  Перцентили: {lo*100:.0f}%={q_lo:.0f}, {hi*100:.0f}%={q_hi:.0f}")
+    return df[mask]
+
+
 # ============ CLI ============
 
 def parse_args():
@@ -235,6 +245,13 @@ def parse_args():
         "-r", "--ref-dir",
         required=True,
         help="Папка с гермлайновыми справочниками (IGHV.fasta, IGHJ.fasta, IGKV.fasta, IGKJ.fasta, IGLV.fasta, IGLJ.fasta).",
+    )
+    parser.add_argument(
+        "--filter-mode",
+        choices=["germline", "percentile"],
+        default="germline",
+        help="Режим фильтрации: germline (проверка V/J длин) или "
+             "percentile (убрать 5% хвостов по длине). По умолчанию germline.",
     )
     return parser.parse_args()
 
@@ -306,17 +323,22 @@ def main():
     df = df.drop_duplicates(subset="sequence", keep="first")
     after_dedup = len(df)
 
-    reasons = Counter()
-    mask = df.apply(lambda row: check_row(row, v_lengths_by_locus, j_lengths_by_locus, reasons), axis=1)
-    df_valid = df[mask]
-    after_length_filter = len(df_valid)
+    if args.filter_mode == "percentile":
+        print("Фильтрация по перцентилям (убрать 5% хвостов)...")
+        df_valid = filter_percentile(df, "sequence_vdj")
+        after_length_filter = len(df_valid)
+    else:
+        reasons = Counter()
+        mask = df.apply(lambda row: check_row(row, v_lengths_by_locus, j_lengths_by_locus, reasons), axis=1)
+        df_valid = df[mask]
+        after_length_filter = len(df_valid)
+        print("\nПричины отбраковки:")
+        for reason, count in reasons.most_common():
+            print(f"  {reason}: {count}")
 
     print(f"\nВсего было: {total_before}")
     print(f"После удаления дубликатов: {after_dedup} (убрано {total_before - after_dedup})")
-    print(f"После проверки длины: {after_length_filter} (убрано {after_dedup - after_length_filter})")
-    print("\nПричины отбраковки:")
-    for reason, count in reasons.most_common():
-        print(f"  {reason}: {count}")
+    print(f"После фильтрации длины: {after_length_filter} (убрано {after_dedup - after_length_filter})")
 
     df_valid.to_csv(output_file, sep="\t", index=False)
     print(f"\nГотово! Отфильтрованные данные сохранены в {output_file}")
