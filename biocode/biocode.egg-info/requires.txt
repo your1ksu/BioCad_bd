@@ -1,7 +1,0 @@
-biopython
-numpy
-pandas
-
-[dev]
-pytest
-pytest-cov

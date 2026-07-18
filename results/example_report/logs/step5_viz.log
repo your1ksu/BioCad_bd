@@ -1,5 +1,5 @@
   Saved results/example_report/trees_visualization/IGHV1-69_12_IGHJ4_02_aligned/IGHV1-69_12_IGHJ4_02_aligned.html
 CMD: /Users/shumilov/miniconda3/envs/biocad_bcr_pipeline_environment/bin/python /Users/shumilov/PycharmProjects/BioCad_bd/scripts/visualize_trees/visualize_trees.py -i results/example_report/trees -o results/example_report/trees_visualization
 CWD: /Users/shumilov/PycharmProjects/BioCad_bd
-START: 2026-07-18 09:34:26.681632
+START: 2026-07-18 14:10:45.074201
 

@@ -1,57 +1,19 @@
 #!/usr/bin/env python3
-"""ШАГ «Никиты» (nexus + MRBayes) — байесовские деревья по группам.
-
-Обёртка над продакшн-движком ``biocode.trees.mrbayes`` (см. ../biocode/,
-вендорено без изменений из BIOCAD.bigchallenges@main), адаптированная под
-файловый контракт остальных участников конвейера (см. ../BioCad_repo.md —
-это ДВЕ отдельные строки таблицы: «nexus» (fasta→nexus) и «MRBayes»
-(nexus→nexus-дерево), выполняются здесь как две фазы одного скрипта):
-
-  вход:  aligned_sequences/*.fasta — множественные выравнивания по группам
-         V+J (выход шага Алины «MSA»; по умолчанию берём ту же папку, что и
-         anotherpipeline/build_trees/build_trees.sh у Дениса — единый вход
-         для ML- и Bayes-путей)
-  выход: mrbayes/<группа>.nex          — NEXUS (DATA + MRBAYES-блок, GTR+I+G)
-         mrbayes/<группа>.nex.con.tre  — консенсусное дерево (фаза 2, нужен mb)
-         mrbayes/<группа>.mb.log       — лог MrBayes (фаза 2)
-         mrbayes/<группа>.names.tsv    — safe_id → исходный id (см. ниже)
-
-Фаза 1 (генерация .nex) не требует бинаря mb и всегда отрабатывает — так
-шаг «nexus» из таблицы остаётся самостоятельным даже если MrBayes ещё не
-установлен. Фаза 2 запускает ``mb`` на уже написанном .nex, если бинарь
-найден; иначе печатает подсказку и не падает (аналогично поведению
-``biocode.pipeline._bayes_tree`` — Bayes-путь опционален).
-
-MrBayes капризен к именам таксонов (не любит '-'/спецсимволы, обычные в
-10x-баркодах вида ``GTTTCTATCATTATCC-1_contig_1``), поэтому таксоны
-переименовываются в безопасные ``T0001``... Генерация NEXUS и чтение
-консенсуса — два независимых запуска (может быть даже на разных машинах,
-раз MrBayes долгий), поэтому маппинг сохраняется рядом в
-``<группа>.names.tsv``, чтобы ``clades/confident_clades_report.py`` мог
-вернуть исходные id.
-
-Требует бинарь ``mb`` для фазы 2: conda install -c bioconda mrbayes.
-Требует Python-пакет biopython (парсинг .nex.con.tre в фазе 2).
-"""
 from __future__ import annotations
 
 import argparse
+import re
+import subprocess
 import sys
 import time
+from io import StringIO
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-
-from biocode import tools
-from biocode.config import RunConfig
-from biocode.errors import ToolNotFoundError, ToolRunError
-from biocode.trees import mrbayes
-
 FASTA_EXTS = (".fa", ".fasta", ".fas", ".aln")
+_SPLIT_RE = re.compile(r"Average standard deviation of split frequencies:\s*([0-9.]+)")
 
 
 def read_fasta(path: Path) -> dict[str, str]:
-    """FASTA → {id: seq}. Гэпы '-' сохраняются как есть — это уже MSA Алины."""
     seqs: dict[str, str] = {}
     cur = None
     for line in path.read_text().splitlines():
@@ -70,43 +32,141 @@ def group_key_of(fasta_path: Path) -> str:
     return name
 
 
+def safe_names(ids: list[str]) -> tuple[dict[str, str], dict[str, str]]:
+    fwd = {sid: f"T{i:04d}" for i, sid in enumerate(ids)}
+    rev = {v: k for k, v in fwd.items()}
+    return fwd, rev
+
+
+def build_nexus(key: str, msa: dict[str, str], fwd: dict[str, str],
+                outgroup_safe: str | None, mb_ngen: int,
+                mb_burnin_frac: float, seed: int) -> str:
+    ids = list(msa)
+    width = len(next(iter(msa.values())))
+    samplefreq = max(1, mb_ngen // 1000)
+    diagnfreq = max(1, mb_ngen // 10)
+    printfreq = max(1, mb_ngen // 10)
+
+    lines = ["#NEXUS", "", "begin data;",
+             f"  dimensions ntax={len(ids)} nchar={width};",
+             "  format datatype=DNA gap=- missing=? interleave=no;",
+             "  matrix"]
+    for sid in ids:
+        lines.append(f"  {fwd[sid]}  {msa[sid]}")
+    lines += ["  ;", "end;", "", "begin mrbayes;",
+              f"  set autoclose=yes nowarn=yes seed={seed} swapseed={seed};",
+              "  lset nst=6 rates=invgamma;                 [ GTR+I+G ]"]
+    if outgroup_safe:
+        lines.append(f"  outgroup {outgroup_safe};")
+    lines += [
+        f"  mcmc ngen={mb_ngen} samplefreq={samplefreq} nchains=4 nruns=2 "
+        f"printfreq={printfreq} diagnfreq={diagnfreq} "
+        f"starttree=random savebrlens=yes;",
+        f"  sumt burninfrac={mb_burnin_frac} conformat=simple;",
+        f"  sump burninfrac={mb_burnin_frac};",
+        "end;", ""]
+    return "\n".join(lines)
+
+
+def parse_con_tre(path: str | Path, rev: dict[str, str]) -> tuple[str, dict[str, dict]]:
+    from Bio import Phylo
+
+    path = Path(path)
+    if not path.is_file():
+        return "", {}
+    tree = next(Phylo.parse(str(path), "nexus"), None)
+    if tree is None:
+        return "", {}
+    for tip in tree.get_terminals():
+        tip.name = rev.get(tip.name, tip.name)
+
+    all_leaves = {t.name for t in tree.get_terminals()}
+    supports: dict[str, dict] = {}
+    for clade in tree.get_nonterminals():
+        leaves = frozenset(t.name for t in clade.get_terminals())
+        if len(leaves) < 2 or len(leaves) >= len(all_leaves):
+            continue
+        if clade.confidence is not None:
+            pp = float(clade.confidence)
+            pp = pp / 100.0 if pp > 1.0 else pp
+            supports["|".join(sorted(leaves))] = {"posterior": round(pp, 4)}
+    out = StringIO()
+    Phylo.write(tree, out, "newick")
+    return out.getvalue().strip(), supports
+
+
+def convergence(stdout: str) -> tuple[float | None, bool]:
+    vals = _SPLIT_RE.findall(stdout or "")
+    if not vals:
+        return None, False
+    last = float(vals[-1])
+    return last, last < 0.01
+
+
+def find_mb(explicit: str = "") -> Path | None:
+    if explicit:
+        p = Path(explicit)
+        if p.is_file() and p.stat().st_mode & 0o111:
+            return p
+        return None
+    import shutil
+    for cand in ("mb", "mrbayes"):
+        which = shutil.which(cand)
+        if which:
+            return Path(which)
+    for envbin in [
+        Path("/opt/miniconda3/envs/bv2026_msa/bin"),
+        Path("/opt/miniconda3/envs/bv2026/bin"),
+    ]:
+        for cand in ("mb", "mrbayes"):
+            p = envbin / cand
+            if p.is_file() and p.stat().st_mode & 0o111:
+                return p
+    return None
+
+
 def write_nexus(key: str, msa: dict[str, str], outgroup_id: str | None,
-                cfg: RunConfig, out_dir: Path) -> tuple[Path, dict[str, str]]:
-    """Фаза 1: MSA → <группа>.nex (+ .names.tsv). Не требует бинаря mb."""
-    fwd, rev = mrbayes.safe_names(list(msa))
+                mb_ngen: int, mb_burnin_frac: float, seed: int,
+                out_dir: Path) -> tuple[Path, dict[str, str]]:
+    fwd, rev = safe_names(list(msa))
     names_tsv = out_dir / f"{key}.names.tsv"
     names_tsv.write_text(
         "\n".join(f"{safe}\t{orig}" for orig, safe in fwd.items()) + "\n",
         encoding="utf-8")
     outg = fwd.get(outgroup_id) if outgroup_id else None
-    nexus_text = mrbayes.build_nexus(msa, fwd, outg, cfg)
+    nexus_text = build_nexus(key, msa, fwd, outg, mb_ngen, mb_burnin_frac, seed)
     nex_path = out_dir / f"{key}.nex"
     nex_path.write_text(nexus_text, encoding="utf-8")
     return nex_path, rev
 
 
-def run_mb(key: str, nex_path: Path, rev: dict[str, str], cfg: RunConfig,
-          out_dir: Path) -> str:
-    """Фаза 2: запустить mb на уже готовом .nex. Возвращает статус-строку."""
-    try:
-        binpath = tools.find_tool("mb", cfg.mrbayes_bin)
-    except ToolNotFoundError as e:
+def run_mb(key: str, nex_path: Path, rev: dict[str, str],
+           mb_bin: str, timeout_s: int, out_dir: Path) -> str:
+    binpath = find_mb(mb_bin)
+    if binpath is None:
         print(f"[{key}] mb не найден — nexus сохранён ({nex_path.name}), "
-              f"MrBayes-фаза пропущена: {e}", file=sys.stderr)
+              f"MrBayes-фаза пропущена. Установка: conda install -c bioconda mrbayes",
+              file=sys.stderr)
         return "nexus_only"
 
     t0 = time.time()
     try:
-        proc = tools.run([str(binpath), nex_path.name], cwd=out_dir,
-                         timeout=cfg.timeout_s, tool="mb")
-    except ToolRunError as e:
-        print(f"[{key}] ОШИБКА mb — {e}", file=sys.stderr)
+        proc = subprocess.run([str(binpath), nex_path.name],
+                              cwd=str(out_dir), capture_output=True, text=True,
+                              timeout=timeout_s)
+    except subprocess.TimeoutExpired:
+        print(f"[{key}] ТАЙМАУТ mb ({timeout_s}с)", file=sys.stderr)
         return "failed"
+    if proc.returncode != 0:
+        tail = ((proc.stdout or "") + (proc.stderr or ""))[-2000:]
+        print(f"[{key}] ОШИБКА mb (код {proc.returncode}): {tail}", file=sys.stderr)
+        return "failed"
+
     (out_dir / f"{key}.mb.log").write_text(proc.stdout or "", encoding="utf-8")
     runtime = time.time() - t0
 
-    newick, supports = mrbayes.parse_con_tre(out_dir / f"{key}.nex.con.tre", rev)
-    avg_std, converged = mrbayes.convergence(proc.stdout or "")
+    newick, supports = parse_con_tre(out_dir / f"{key}.nex.con.tre", rev)
+    avg_std, converged = convergence(proc.stdout or "")
     print(f"[{key}] готово: {out_dir / (key + '.nex.con.tre')} "
           f"(runtime={runtime:.1f}s, клад с posterior={len(supports)}, "
           f"сошлось={'да' if converged else 'нет'} avg_std={avg_std})")
@@ -114,21 +174,19 @@ def run_mb(key: str, nex_path: Path, rev: dict[str, str], cfg: RunConfig,
 
 
 def main(argv=None) -> int:
-    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap = argparse.ArgumentParser(description="MrBayes — байесовские деревья по группам")
     ap.add_argument("input_dir", nargs="?", default="aligned_sequences",
-                    help="папка с *.fasta (одно выравнивание = одна группа V+J); "
-                         "по умолчанию 'aligned_sequences'")
-    ap.add_argument("--out", default="mrbayes", help="выходная папка (по умолчанию 'mrbayes')")
+                    help="папка с *.fasta (одно выравнивание = одна группа)")
+    ap.add_argument("--out", default="mrbayes", help="выходная папка")
     ap.add_argument("--outgroup", default=None,
-                    help="id таксона-outgroup (germline-предок), если он есть в fasta; "
-                         "по умолчанию не укореняем")
+                    help="id таксона-outgroup (если есть в fasta)")
     ap.add_argument("--mb-ngen", type=int, default=200_000, help="длина цепи MCMC")
     ap.add_argument("--mb-burnin-frac", type=float, default=0.25)
     ap.add_argument("--seed", type=int, default=12345)
-    ap.add_argument("--mb-bin", default="", help="явный путь к бинарю mb (по умолчанию — автопоиск в $PATH)")
+    ap.add_argument("--mb-bin", default="", help="явный путь к бинарю mb")
     ap.add_argument("--timeout-s", type=int, default=3600)
     ap.add_argument("--nexus-only", action="store_true",
-                    help="только фаза 1 (сгенерировать .nex), не пытаться запускать mb")
+                    help="только фаза 1 (сгенерировать .nex)")
     args = ap.parse_args(argv)
 
     in_dir = Path(args.input_dir)
@@ -142,9 +200,6 @@ def main(argv=None) -> int:
         print(f"В {in_dir} не найдено *.fa/*.fasta/*.fas/*.aln", file=sys.stderr)
         return 0
 
-    cfg = RunConfig(mb_ngen=args.mb_ngen, mb_burnin_frac=args.mb_burnin_frac,
-                    seed=args.seed, mrbayes_bin=args.mb_bin, timeout_s=args.timeout_s)
-
     out_dir.mkdir(parents=True, exist_ok=True)
     counts = {"ok": 0, "nexus_only": 0, "failed": 0, "skipped": 0}
     for fasta in fasta_files:
@@ -155,10 +210,15 @@ def main(argv=None) -> int:
             counts["skipped"] += 1
             continue
 
-        nex_path, rev = write_nexus(key, msa, args.outgroup, cfg, out_dir)
+        nex_path, rev = write_nexus(key, msa, args.outgroup,
+                                     args.mb_ngen, args.mb_burnin_frac,
+                                     args.seed, out_dir)
         print(f"[{key}] nexus готов: {nex_path}")
 
-        status = "nexus_only" if args.nexus_only else run_mb(key, nex_path, rev, cfg, out_dir)
+        if args.nexus_only:
+            status = "nexus_only"
+        else:
+            status = run_mb(key, nex_path, rev, args.mb_bin, args.timeout_s, out_dir)
         counts[status] += 1
 
     print(f"\nИтого: ok={counts['ok']} только-nexus={counts['nexus_only']} "

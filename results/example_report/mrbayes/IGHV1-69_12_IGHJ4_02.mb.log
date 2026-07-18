@@ -44,7 +44,7 @@
       Successfully read matrix
       Setting default partition (does not divide up characters)
       Setting model defaults
-      Seed (for generating default start values) = 1784356439
+      Seed (for generating default start values) = 1784373017
       Setting output file names to "IGHV1-69_12_IGHJ4_02.nex.run<i>.<p|t>"
    Exiting data block
    Reading mrbayes block
@@ -64,7 +64,7 @@
       Setting 'Starttree' to "Random"
       Setting chain output file names to "IGHV1-69_12_IGHJ4_02.nex.run<i>.<p/t>"
       Running Markov chain
-      MCMC stamp = 0201508773
+      MCMC stamp = 1846797916
       Seed = 376088129
       Swapseed = 12345
       Model settings:
@@ -182,11 +182,11 @@
       Chain results (200000 generations requested):
 
           0 -- [-2193.153] (-2239.501) (-2294.090) (-2190.353) * [-2174.438] (-2289.761) (-2286.432) (-2110.664) 
-      20000 -- [-1661.122] (-1669.227) (-1658.676) (-1652.937) * (-1664.467) [-1653.181] (-1653.669) (-1670.754) -- 0:00:18
+      20000 -- [-1661.122] (-1669.227) (-1658.676) (-1652.937) * (-1664.467) [-1653.181] (-1653.669) (-1670.754) -- 0:00:26
 
       Average standard deviation of split frequencies: 0.035278
 
-      40000 -- (-1660.993) (-1659.347) [-1654.199] (-1674.403) * (-1661.164) (-1661.073) (-1654.686) [-1660.401] -- 0:00:20
+      40000 -- (-1660.993) (-1659.347) [-1654.199] (-1674.403) * (-1661.164) (-1661.073) (-1654.686) [-1660.401] -- 0:00:23
 
       Average standard deviation of split frequencies: 0.016492
 
@@ -198,7 +198,7 @@
 
       Average standard deviation of split frequencies: 0.015270
 
-      100000 -- (-1663.110) (-1660.853) [-1663.918] (-1661.400) * (-1654.093) (-1664.602) (-1657.571) [-1658.356] -- 0:00:12
+      100000 -- (-1663.110) (-1660.853) [-1663.918] (-1661.400) * (-1654.093) (-1664.602) (-1657.571) [-1658.356] -- 0:00:13
 
       Average standard deviation of split frequencies: 0.013677
 
@@ -222,7 +222,7 @@
       Average standard deviation of split frequencies: 0.014337
 
       Analysis completed in 27 seconds
-      Analysis used 26.94 seconds of CPU time
+      Analysis used 26.91 seconds of CPU time
       Likelihood of best state for "cold" chain of run 1 was -1643.67
       Likelihood of best state for "cold" chain of run 2 was -1643.77
 
