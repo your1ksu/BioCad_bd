@@ -1,0 +1,109 @@
+#nexus
+
+BEGIN Taxa;
+DIMENSIONS ntax=13;
+TAXLABELS
+[1] 'TAGTTGGGTCATGCAT-1_contig_2'
+[2] 'ATAGACCAGGGCATGT-1_contig_2'
+[3] 'ATGGGAGGTGCTTCTC-1_contig_2'
+[4] 'AAACGGGTCGTACGGC-1_contig_1'
+[5] 'CTGTTTAAGTCTCCTC-1_contig_1'
+[6] 'AGGCCGTAGCTAACAA-1_contig_2'
+[7] 'TATCAGGAGTGAATTG-1_contig_2'
+[8] 'TGTGGTAGTATCAGTC-1_contig_2'
+[9] 'CAGTAACGTTAGATGA-1_contig_2'
+[10] 'CCTATTAGTGCGATAG-1_contig_2'
+[11] 'TGTTCCGGTAAGAGAG-1_contig_2'
+[12] 'TTCTACAGTAAACCTC-1_contig_2'
+[13] 'AATCGGTAGTTCGATC-1_contig_2'
+;
+END; [Taxa]
+
+BEGIN Splits;
+DIMENSIONS ntax=13 nsplits=81;
+FORMAT labels=no weights=yes confidences=no intervals=no;
+MATRIX
+	100	 2,
+	100	 12,
+	19	 2 12,
+	100	 7,
+	45	 2 7 12,
+	100	 10,
+	100	 2 7 10 12,
+	100	 3,
+	100	 11,
+	72	 3 11,
+	100	 4,
+	100	 8,
+	98	 4 8,
+	100	 6,
+	13	 4 6 8,
+	14	 3 4 6 8 11,
+	100	 9,
+	72	 3 4 6 8 9 11,
+	100	 13,
+	5	 1 2 5 7 10 12,
+	100	 5,
+	51	 1 2 7 10 12,
+	100	 1,
+	5	 2 7 10 12 13,
+	5	 3 9,
+	4	 4 8 11,
+	69	 3 4 8 9 11,
+	17	 5 6,
+	76	 1 2 7 10 12 13,
+	12	 2 10,
+	8	 2 10 12,
+	33	 3 4 8 11,
+	28	 7 10,
+	27	 2 7 10,
+	11	 1 5 13,
+	43	 1 13,
+	10	 2 7,
+	12	 4 8 9,
+	35	 7 12,
+	15	 9 11,
+	36	 3 9 11,
+	4	 3 4 8,
+	6	 10 12,
+	1	 4 6,
+	5	 3 4 6 8,
+	10	 7 10 12,
+	0	 3 4 11,
+	6	 6 9,
+	3	 3 4 8 9,
+	3	 5 13,
+	0	 2 5 6 7 10 12,
+	4	 5 9,
+	1	 2 6 7 10 12,
+	0	 5 9 11,
+	1	 1 5,
+	1	 3 4 8 9 11 13,
+	2	 4 8 9 11,
+	1	 3 4 5 6 8 11,
+	1	 3 6 11,
+	0	 3 6,
+	0	 4 5 6 8 9,
+	7	 5 6 9,
+	0	 8 9,
+	1	 3 6 9 11,
+	2	 3 4 5 8 9 11,
+	1	 6 13,
+	0	 6 8,
+	0	 4 6 8 9,
+	0	 3 8 11,
+	0	 3 4 9 11,
+	1	 3 5 6 9 11,
+	2	 2 5 7 10 12,
+	1	 5 6 13,
+	0	 4 6 8 9 11,
+	0	 4 6 8 11,
+	1	 1 5 6 13,
+	0	 4 9,
+	0	 2 5 7 10 12 13,
+	0	 4 5 6 8,
+	0	 1 2 6 7 10 12,
+	0	 6 9 11,
+;
+END; [Splits]
+

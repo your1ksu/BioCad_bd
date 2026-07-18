@@ -1,0 +1,24 @@
+Формат входного файла: fasta
+Читаю germline-справочники (полные последовательности)...
+  IGH: V=472, J=15
+  IGK: V=132, J=10
+  IGL: V=126, J=11
+Читаю входной файл data/example.fasta ...
+  Прочитано 13 последовательностей из FASTA
+Аннотирую последовательности (выравнивание на germline V/J)...
+Пример значений v_call: <StringArray>
+['IGHV1-69*12']
+Length: 1, dtype: str
+Локусы в данных: {'IGH': 13}
+
+Всего было: 13
+После удаления дубликатов: 13 (убрано 0)
+После проверки длины: 13 (убрано 0)
+
+Причины отбраковки:
+
+Готово! Отфильтрованные данные сохранены в results/example_report/BCR_data_filtered.tsv
+CMD: /Users/shumilov/miniconda3/envs/biocad_bcr_pipeline_environment/bin/python /Users/shumilov/PycharmProjects/BioCad_bd/scripts/01_filter_sequences/filter_sequences.py -i data/example.fasta -o results/example_report/BCR_data_filtered.tsv -r /Users/shumilov/PycharmProjects/BioCad_bd/data/references
+CWD: /Users/shumilov/PycharmProjects/BioCad_bd
+START: 2026-07-18 09:33:39.514655
+

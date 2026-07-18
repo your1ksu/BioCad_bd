@@ -1,0 +1,13 @@
+Читаю germline-справочники (полные последовательности)...
+  IGH: V=472, J=15
+  IGK: V=132, J=10
+  IGL: V=126, J=11
+  IGH: D=48
+Читаю отфильтрованный файл results/example_report/BCR_data_filtered.tsv ...
+  обработано 13/13
+Готово! Fasta-файлов: V=1, D=7, J=1, V+J=1
+Папки лежат в results/example_report/grouped_by_germlines/v, /d, /j, /vj
+CMD: /Users/shumilov/miniconda3/envs/biocad_bcr_pipeline_environment/bin/python /Users/shumilov/PycharmProjects/BioCad_bd/scripts/02_group_by_germlines/group_by_germlines.py -i results/example_report/BCR_data_filtered.tsv -o results/example_report/grouped_by_germlines -r /Users/shumilov/PycharmProjects/BioCad_bd/data/references
+CWD: /Users/shumilov/PycharmProjects/BioCad_bd
+START: 2026-07-18 09:33:44.445910
+

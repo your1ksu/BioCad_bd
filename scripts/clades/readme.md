@@ -9,7 +9,7 @@
 
 | | формат | путь по умолчанию |
 |---|---|---|
-| вход | nexus | `mrbayes/<группа>.nex.con.tre` (+ `.names.tsv`) — выход [../mrbayes/run_mrbayes.py](../mrbayes/run_mrbayes.py) |
+| вход | nexus | `mrbayes/<группа>.nex.con.tre` (+ `.names.tsv`) — выход [../04b_build_trees_mrbayes/build_trees_mrbayes.py](../04b_build_trees_mrbayes/build_trees_mrbayes.py) |
 | вход (опционально) | newick с aLRT/UFBoot в метках узлов | `trees/<группа>/<группа>.treefile` — выход `anotherpipeline/build_trees/build_trees.sh` (Денис, IQ-TREE) |
 | выход | json | `clades/report.json` |
 
@@ -24,9 +24,9 @@
 ## Запуск
 
 ```bash
-python confident_clades_report.py                                   # mrbayes/ → report.json
-python confident_clades_report.py --iqtree-dir trees                # + ML-путь Дениса
-python confident_clades_report.py --posterior-min 0.9 --ufboot-min 90 --alrt-min 70
+python clade_search.py                                   # mrbayes/ → report.json
+python clade_search.py --iqtree-dir trees                # + ML-путь Дениса
+python clade_search.py --posterior-min 0.9 --ufboot-min 90 --alrt-min 70
 ```
 
 ## Формат report.json

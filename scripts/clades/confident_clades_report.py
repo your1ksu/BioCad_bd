@@ -10,7 +10,7 @@
 или оба сразу — тогда клады группы объединяются в один report.json):
 
   --mrbayes-dir DIR (по умолчанию 'mrbayes')
-      <группа>.nex.con.tre из шага ../mrbayes/run_mrbayes.py — консенсус
+      <группа>.nex.con.tre из шага ../04b_build_trees_mrbayes/build_trees_mrbayes.py — консенсус
       MrBayes с апостериорной поддержкой (posterior) на внутренних узлах.
       Критерий: posterior ≥ --posterior-min (по умолчанию 0.95).
       Требуется <группа>.names.tsv рядом (тот же шаг его пишет), чтобы вернуть
@@ -42,7 +42,7 @@ import sys
 from io import StringIO
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 
 from biocode import clades as clades_mod
 from biocode.model import TreeResult
@@ -180,6 +180,63 @@ def clades_from_iqtree(treefile: Path, ufboot_min: float, alrt_min: float) -> li
     return clades_mod.confident_clades(tree, muts=[], ufboot_min=ufboot_min, alrt_min=alrt_min)
 
 
+def read_fasta(path: Path) -> dict[str, str]:
+    records: dict[str, str] = {}
+    key = None
+    seq: list[str] = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        if line.startswith(">"):
+            if key is not None:
+                records[key] = "".join(seq)
+            key = line[1:].split()[0]
+            seq = []
+        else:
+            seq.append(line)
+    if key is not None:
+        records[key] = "".join(seq)
+    return records
+
+
+def _find_aligned_fasta(group_key: str, aligned_dir: Path) -> Path | None:
+    candidates = [
+        aligned_dir / f"{group_key}.fasta",
+        aligned_dir / f"{group_key}.fa",
+        aligned_dir / f"{group_key}_aligned.fasta",
+        aligned_dir / f"{group_key}_aligned.fa",
+    ]
+    for p in candidates:
+        if p.is_file():
+            return p
+    return None
+
+
+def write_clade_fastas(report: dict[str, dict],
+                       aligned_dir: Path, out_dir: Path) -> None:
+    out_dir.mkdir(parents=True, exist_ok=True)
+    for group_key, sources in report.items():
+        aligned = _find_aligned_fasta(group_key, aligned_dir)
+        if aligned is None:
+            print(f"  {group_key}: aligned FASTA не найден")
+            continue
+        all_seqs = read_fasta(aligned)
+        for src_key in ("mrbayes", "iqtree"):
+            for ci, clade in enumerate(sources.get(src_key, {}).get("clades", [])):
+                leaves = clade.get("leaves", [])
+                leaf_seqs = {k: v for k, v in all_seqs.items() if k in leaves}
+                if not leaf_seqs:
+                    continue
+                fasta_path = out_dir / f"{group_key}__{src_key}_c{ci:03d}.fa"
+                clean = {k: v.replace("-", "").replace(".", "") for k, v in leaf_seqs.items()}
+                lines = [f">{k}\n{v}" for k, v in clean.items()]
+                fasta_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        n_clades = (len(sources.get("mrbayes", {}).get("clades", []))
+                    + len(sources.get("iqtree", {}).get("clades", [])))
+        print(f"  {group_key}: {n_clades} clade FASTA files")
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--mrbayes-dir", default="mrbayes",
@@ -189,7 +246,15 @@ def main(argv=None) -> int:
     ap.add_argument("--posterior-min", type=float, default=0.95)
     ap.add_argument("--ufboot-min", type=float, default=95.0)
     ap.add_argument("--alrt-min", type=float, default=80.0)
+<<<<<<<< HEAD:scripts/clades/confident_clades_report.py
     ap.add_argument("--out", default="clades/report.json")
+========
+    ap.add_argument("--out", default="groups/report.json")
+    ap.add_argument("--aligned-dir", default="",
+                    help="папка с выравненными FASTA (группа.fasta); если указан, извлекаются FASTA клад")
+    ap.add_argument("--clades-fasta-dir", default="",
+                    help="куда сохранять FASTA уверенных клад (требует --aligned-dir)")
+>>>>>>>> Denis:scripts/05_clade_search/clade_search.py
     args = ap.parse_args(argv)
 
     report: dict[str, dict] = {}
@@ -230,6 +295,10 @@ def main(argv=None) -> int:
     n_clades = sum(len(v.get("mrbayes", {}).get("clades", [])) + len(v.get("iqtree", {}).get("clades", []))
                    for v in report.values())
     print(f"\n{out_path}: {len(report)} групп, {n_clades} уверенных клад суммарно")
+
+    if args.aligned_dir and args.clades_fasta_dir:
+        write_clade_fastas(report, Path(args.aligned_dir), Path(args.clades_fasta_dir))
+
     return 0
 
 
