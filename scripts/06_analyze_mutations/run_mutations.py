@@ -1,15 +1,12 @@
 #!/usr/bin/env python3
-"""Batch runner for mutation analysis: format BLAST DBs, then run analyze_mutations.py on each FASTA.
-
-Usage:
-    python run_mutations.py -i fasta_from_clades -o mutation_tables -r data/references
-"""
+from __future__ import annotations
 
 import argparse
 import os
 import shutil
 import subprocess
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 
@@ -17,12 +14,20 @@ FASTA_EXTS = {".fa", ".fasta", ".fas", ".aln"}
 BLAST_DB_NAMES = ["all_V", "all_D", "all_J"]
 
 
+def detect_nproc() -> int:
+    try:
+        return len(os.sched_getaffinity(0))
+    except AttributeError:
+        pass
+    n = os.cpu_count()
+    return n if n else 1
+
+
 def discover_fasta_files(input_dir: Path) -> list[Path]:
-    files = [
+    return sorted(
         p for p in input_dir.iterdir()
         if p.is_file() and p.suffix.lower() in FASTA_EXTS
-    ]
-    return sorted(files)
+    )
 
 
 def ensure_blast_dbs(ref_dir: Path) -> None:
@@ -42,6 +47,23 @@ def ensure_blast_dbs(ref_dir: Path) -> None:
             ], check=True)
 
 
+def analyze_one(fasta: Path, analyzer: Path, output_dir: Path, ref_dir: Path) -> str:
+    name = fasta.stem
+    subdir = output_dir / name
+    subdir.mkdir(parents=True, exist_ok=True)
+
+    for fmt, outname in [("mutations", "mutations.tsv"), ("summary", "mutations_summary.tsv")]:
+        subprocess.run([
+            sys.executable, str(analyzer),
+            "-i", str(fasta),
+            "-o", str(subdir / outname),
+            "--ref-dir", str(ref_dir),
+            "--format", fmt,
+        ], check=True)
+
+    return name
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Batch mutation analysis: format BLAST DBs and analyze each FASTA."
@@ -52,6 +74,8 @@ def parse_args() -> argparse.Namespace:
                         help="Output directory for mutation tables")
     parser.add_argument("-r", "--ref-dir", required=True,
                         help="Reference germline database directory")
+    parser.add_argument("--workers", type=int, default=0,
+                        help="Сколько файлов анализировать параллельно (по умолчанию: min(nproc, 4))")
     return parser.parse_args()
 
 
@@ -84,36 +108,38 @@ def main() -> None:
         print("No FASTA files found in", input_dir)
         sys.exit(0)
 
+    nproc = detect_nproc()
+    workers = args.workers if args.workers > 0 else min(nproc, 4)
+    workers = min(workers, len(fasta_files))
+
     script_dir = Path(__file__).resolve().parent
     analyzer = script_dir / "analyze_mutations.py"
 
-    for fasta in fasta_files:
-        name = fasta.stem
-        subdir = output_dir / name
-        subdir.mkdir(parents=True, exist_ok=True)
+    print(f"Analyzing {len(fasta_files)} files with {workers} workers ...")
 
-        print(f"Analyzing {fasta.name} ...")
+    completed = 0
+    if workers <= 1:
+        for fasta in fasta_files:
+            name = analyze_one(fasta, analyzer, output_dir, ref_dir)
+            completed += 1
+            print(f"  [{completed}/{len(fasta_files)}] {name}")
+    else:
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            fut_to_fasta = {
+                pool.submit(analyze_one, fasta, analyzer, output_dir, ref_dir): fasta
+                for fasta in fasta_files
+            }
+            for future in as_completed(fut_to_fasta):
+                fasta = fut_to_fasta[future]
+                try:
+                    name = future.result()
+                except Exception as e:
+                    print(f"  [FAILED] {fasta.name}: {e}", file=sys.stderr)
+                    continue
+                completed += 1
+                print(f"  [{completed}/{len(fasta_files)}] {name}")
 
-        subprocess.run([
-            sys.executable, str(analyzer),
-            "-i", str(fasta),
-            "-o", str(subdir / "mutations.tsv"),
-            "--ref-dir", str(ref_dir),
-            "--format", "mutations",
-        ], check=True)
-
-        subprocess.run([
-            sys.executable, str(analyzer),
-            "-i", str(fasta),
-            "-o", str(subdir / "mutations_summary.tsv"),
-            "--ref-dir", str(ref_dir),
-            "--format", "summary",
-        ], check=True)
-
-        print(f"Done: {fasta.name}")
-        print()
-
-    print("All mutation tables saved to", output_dir)
+    print(f"\nAll mutation tables saved to {output_dir}")
 
 
 if __name__ == "__main__":

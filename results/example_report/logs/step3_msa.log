@@ -9,5 +9,5 @@ Failed: 0
 Manifest: results/example_report/aligned_sequences/manifest.tsv
 CMD: /Users/shumilov/miniconda3/envs/biocad_bcr_pipeline_environment/bin/python /Users/shumilov/PycharmProjects/BioCad_bd/scripts/03_multiple_alignment/multiple_alignment.py -i results/example_report/grouped_by_germlines/vj -o results/example_report/aligned_sequences
 CWD: /Users/shumilov/PycharmProjects/BioCad_bd
-START: 2026-07-18 14:31:05.359377
+START: 2026-07-18 14:37:48.524454
 
