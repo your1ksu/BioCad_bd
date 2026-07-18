@@ -1,38 +1,20 @@
 import argparse
 import json
 import os
-import sys
 
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# ============ ПУТИ ============
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# paths.py лежит на уровень выше (в scripts/), а не рядом с этим файлом
-SCRIPTS_DIR = os.path.dirname(BASE_DIR)
-if SCRIPTS_DIR not in sys.path:
-    sys.path.insert(0, SCRIPTS_DIR)
-
-from paths import get_paths  # noqa: E402
-
-INPUT_FILENAME = "clades_report.json"
 OUTPUT_FILENAME = "tree_analytics.png"
 
 
 def load_json_data(file_path):
-    """Загружает данные из JSON-файла."""
     with open(file_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
 def extract_statistics(data):
-    """Извлекает по каждому гену: число клад, размер (size), глубину (depth)
-    и среднюю генетическую дистанцию предок-лист (ancestor_to_leaves.mean).
-
-    depth и ancestor_to_leaves — готовые поля из отчёта, вычислять их самим
-    не нужно (в отличие от старой версии, которая пересчитывала depth сама).
-    """
     genes = []
     clades_counts = []
     sizes = []
@@ -58,7 +40,6 @@ def extract_statistics(data):
 
 
 def plot_results(genes, clades_counts, sizes, depths, ancestor_distances, output_path):
-    """Строит 4 диаграммы на основе собранных параметров и сохраняет в файл."""
     sns.set_theme(style="whitegrid")
 
     fig, axes = plt.subplots(1, 4, figsize=(22, 5))
@@ -92,27 +73,17 @@ def plot_results(genes, clades_counts, sizes, depths, ancestor_distances, output
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Анализ и визуализация статистики по кладам.")
-    parser.add_argument(
-        "-k", "--key",
-        default="BCR",
-        help="Название подпапки внутри results/ (по умолчанию: BCR)",
-    )
-    parser.add_argument(
-        "--input-file",
-        default=INPUT_FILENAME,
-        help=f"Имя входного JSON-файла внутри results/<key>/ (по умолчанию: {INPUT_FILENAME})",
-    )
+    parser.add_argument("-i", "--input", required=True,
+                        help="Путь к входному JSON-файлу (clades_report.json)")
+    parser.add_argument("-o", "--output", default=OUTPUT_FILENAME,
+                        help=f"Путь для сохранения графика (по умолчанию: {OUTPUT_FILENAME})")
     return parser.parse_args()
 
 
 def main():
     args = parse_args()
-    paths = get_paths(args.key)
-
-    # clades_report.json — это результат предыдущих шагов пайплайна,
-    # поэтому берём его из results/<key>/, а не из data/<key>/
-    input_path = os.path.join(paths["output_dir"], args.input_file)
-    output_path = os.path.join(paths["output_dir"], OUTPUT_FILENAME)
+    input_path = args.input
+    output_path = args.output
 
     try:
         raw_data = load_json_data(input_path)

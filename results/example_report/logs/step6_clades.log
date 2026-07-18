@@ -1,0 +1,10 @@
+[IGHV1-69_12_IGHJ4_02] mrbayes: 3 уверенных клад (posterior≥0.95)
+[IGHV1-69_12_IGHJ4_02_aligned] iqtree: 0 уверенных клад (UFBoot≥95.0, aLRT≥80.0)
+
+results/example_report/groups/report.json: 2 групп, 3 уверенных клад суммарно
+  IGHV1-69_12_IGHJ4_02: 3 clade FASTA files
+  IGHV1-69_12_IGHJ4_02_aligned: 0 clade FASTA files
+CMD: /Users/shumilov/miniconda3/envs/biocad_bcr_pipeline_environment/bin/python /Users/shumilov/PycharmProjects/BioCad_bd/scripts/05_clade_search/clade_search.py --iqtree-dir results/example_report/trees --mrbayes-dir results/example_report/mrbayes --out results/example_report/groups/report.json --clades-fasta-dir results/example_report/groups/clades --aligned-dir results/example_report/aligned_sequences
+CWD: /Users/shumilov/PycharmProjects/BioCad_bd
+START: 2026-07-18 14:38:23.052045
+

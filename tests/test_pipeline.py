@@ -4,7 +4,7 @@
 1. Загружает несколько тестовых групп из BIOCAD.bigchallenges (реальные данные
    Ксюши/Алины: anotherpipeline/part_*/*_aligned.fasta)
 2. Запускает mrbayes/run_mrbayes.py
-3. Запускает groups/confident_clades_report.py
+3. Запускает clades/confident_clades_report.py
 4. Печатает статистику и пути к результатам (.nex.con.tre, report.json)
 
 Визуализация (HTML) намеренно НЕ импортируется и не запускается здесь — см.
@@ -12,9 +12,9 @@ tests/visualize_tree.py, отдельный скрипт для рендерин
 посчитанных результатов. Это разделение сделано специально: данный файл
 должен работать в чистой консоли даже без biopython/HTML-кода.
 
-Расположение mrbayes/groups в репозитории отличается между локальной копией
-(<root>/mrbayes/, <root>/groups/) и веткой Nikita на GitHub
-(<root>/scripts/mrbayes/, <root>/scripts/groups/) — find_pipeline_dir() ищет
+Расположение mrbayes/clades в репозитории отличается между локальной копией
+(<root>/mrbayes/, <root>/clades/) и веткой Nikita на GitHub
+(<root>/scripts/mrbayes/, <root>/scripts/clades/) — find_pipeline_dir() ищет
 оба варианта, чтобы тест работал в любой раскладке.
 """
 from __future__ import annotations
@@ -28,7 +28,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
 def find_pipeline_dir(name: str) -> Path:
-    """Найти папку 'mrbayes' или 'groups': <root>/<name> либо <root>/scripts/<name>."""
+    """Найти папку 'mrbayes' или 'clades': <root>/<name> либо <root>/scripts/<name>."""
     for candidate in (PROJECT_ROOT / name, PROJECT_ROOT / "scripts" / name):
         if candidate.is_dir():
             return candidate
@@ -78,7 +78,7 @@ def run_test_cycle(n_groups: int = 3) -> int:
 
     try:
         mrbayes_scripts_dir = find_pipeline_dir("mrbayes")
-        groups_scripts_dir = find_pipeline_dir("groups")
+        clades_scripts_dir = find_pipeline_dir("clades")
     except FileNotFoundError as e:
         print(f"Ошибка: {e}", file=sys.stderr)
         return 1
@@ -101,10 +101,10 @@ def run_test_cycle(n_groups: int = 3) -> int:
         print(f"Ошибка mrbayes: {result.stderr}", file=sys.stderr)
         return 1
 
-    print("3. Запуск groups/confident_clades_report.py...")
-    report_path = groups_scripts_dir / "report.json"
+    print("3. Запуск clades/confident_clades_report.py...")
+    report_path = clades_scripts_dir / "report.json"
     result = subprocess.run(
-        [sys.executable, str(groups_scripts_dir / "confident_clades_report.py"),
+        [sys.executable, str(clades_scripts_dir / "confident_clades_report.py"),
          "--mrbayes-dir", str(mrbayes_out), "--posterior-min", "0.95",
          "--out", str(report_path)],
         capture_output=True, text=True)

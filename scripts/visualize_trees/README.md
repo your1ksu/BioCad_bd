@@ -1,22 +1,12 @@
-# visualize_trees.sh
+# visualize_trees.py
 
 Визуализирует филогенетические деревья (IQ-TREE и MrBayes) в интерактивный HTML.
-
-## Требования
-
-- [Miniconda](https://docs.anaconda.com/miniconda/)
 
 ## Использование
 
 ```bash
-./visualize_trees.sh <input_dir> <output_dir>
-```
-
-Примеры:
-```bash
-./visualize_trees.sh trees trees_visualization
-./visualize_trees.sh /path/to/iqtree_output /path/to/html_output
-./visualize_trees.sh mrbayes_output mrbayes_viz
+python3 visualize_trees.py -i trees -o trees_visualization
+python3 visualize_trees.py -i mrbayes -o mrbayes_visualization
 ```
 
 ## Что делает
@@ -67,7 +57,6 @@ output_dir/
 
 ## Зависимости
 
-Устанавливаются автоматически в conda-окружении `trees_building_env`:
 - `toytree`
 - `toyplot`
 

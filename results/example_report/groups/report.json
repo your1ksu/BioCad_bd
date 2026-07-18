@@ -1,0 +1,74 @@
+{
+  "IGHV1-69_12_IGHJ4_02": {
+    "mrbayes": {
+      "threshold": {
+        "posterior_min": 0.95
+      },
+      "clades": [
+        {
+          "clade": "ATAGACCAGGGCATGT-1_contig_2|CCTATTAGTGCGATAG-1_contig_2|TATCAGGAGTGAATTG-1_contig_2|TTCTACAGTAAACCTC-1_contig_2",
+          "size": 4,
+          "leaves": [
+            "ATAGACCAGGGCATGT-1_contig_2",
+            "CCTATTAGTGCGATAG-1_contig_2",
+            "TATCAGGAGTGAATTG-1_contig_2",
+            "TTCTACAGTAAACCTC-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AAACGGGTCGTACGGC-1_contig_1|TGTGGTAGTATCAGTC-1_contig_2",
+          "size": 2,
+          "leaves": [
+            "AAACGGGTCGTACGGC-1_contig_1",
+            "TGTGGTAGTATCAGTC-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 1.0,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        },
+        {
+          "clade": "AAACGGGTCGTACGGC-1_contig_1|AGGCCGTAGCTAACAA-1_contig_2|ATGGGAGGTGCTTCTC-1_contig_2|CAGTAACGTTAGATGA-1_contig_2|TGTGGTAGTATCAGTC-1_contig_2|TGTTCCGGTAAGAGAG-1_contig_2",
+          "size": 6,
+          "leaves": [
+            "AAACGGGTCGTACGGC-1_contig_1",
+            "AGGCCGTAGCTAACAA-1_contig_2",
+            "ATGGGAGGTGCTTCTC-1_contig_2",
+            "CAGTAACGTTAGATGA-1_contig_2",
+            "TGTGGTAGTATCAGTC-1_contig_2",
+            "TGTTCCGGTAAGAGAG-1_contig_2"
+          ],
+          "ufboot": null,
+          "alrt": null,
+          "posterior": 0.969,
+          "defining_mutations": null,
+          "defining_cdr": null,
+          "isotypes": {},
+          "days": [],
+          "confident_both_models": false
+        }
+      ]
+    }
+  },
+  "IGHV1-69_12_IGHJ4_02_aligned": {
+    "iqtree": {
+      "threshold": {
+        "ufboot_min": 95.0,
+        "alrt_min": 80.0
+      },
+      "clades": []
+    }
+  }
+}

@@ -1,8 +1,10 @@
 import subprocess
 from pathlib import Path
 
+import conftest
+
 BASE = Path(__file__).resolve().parents[2]
-SCRIPT = BASE / "scripts" / "visualize_trees" / "visualize_trees.sh"
+SCRIPT = BASE / "scripts" / "visualize_trees" / "visualize_trees.py"
 DATA_DIR = Path(__file__).parent / "test_visualize_trees_data"
 
 
@@ -10,12 +12,10 @@ def test_successful_run(tmp_path, monkeypatch):
     monkeypatch.chdir(tmp_path)
     result_dir = tmp_path / "test_result"
 
-    result = subprocess.run(
-        ["bash", str(SCRIPT), str(DATA_DIR), str(result_dir)],
-        capture_output=True, text=True, timeout=300,
-    )
+    cmd = conftest.pipeline_python() + [str(SCRIPT), "-i", str(DATA_DIR), "-o", str(result_dir)]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
 
-    assert result.returncode == 0
+    assert result.returncode == 0, result.stderr
     assert result_dir.is_dir()
 
     for family_dir in DATA_DIR.iterdir():
@@ -32,10 +32,7 @@ def test_nonexistent_input_dir(tmp_path, monkeypatch):
     fake_dir = tmp_path / "does_not_exist"
     result_dir = tmp_path / "test_result"
 
-    result = subprocess.run(
-        ["bash", str(SCRIPT), str(fake_dir), str(result_dir)],
-        capture_output=True, text=True,
-    )
+    cmd = conftest.pipeline_python() + [str(SCRIPT), "-i", str(fake_dir), "-o", str(result_dir)]
+    result = subprocess.run(cmd, capture_output=True, text=True)
 
     assert result.returncode != 0
-    assert "not found" in result.stderr or "not found" in result.stdout

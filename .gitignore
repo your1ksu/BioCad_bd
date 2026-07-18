@@ -1,31 +1,37 @@
-# pytest cache
+# ─── Python ───────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
 .pytest_cache/
-.coverage
-htmlcov/
-**/__pycache__/
-*.pyc
+.ipynb_checkpoints/
 
-# IDE
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# OS
+# ─── OS / редакторы ───────────────────────────────────────
 .DS_Store
+.vscode/
+.idea/
 
-# Test artifacts
-tests/**/.pytest_cache/
-tests/**/__pycache__/
-tests/**/*.pyc
+# ─── логи ─────────────────────────────────────────────────
+*.log
 
-# Virtual environments
-venv/
-env/
-.venv/
+# ─── загрузки и ВЫВОДЫ прогонов (регенерируются `python -m biocode run`) ──
+uploads/
+results/
 
-# Build artifacts
-build/
-dist/
-*.egg-info/__pycache__/
-*.pyc
+# ─── артефакты филогенетических инструментов (IQ-TREE / MAFFT), где бы ни лежали ──
+*.treefile
+*.iqtree
+*.state
+*.ckp.gz
+*.model.gz
+*.bionj
+*.mldist
+*.splits.nex
+*.contree
+*.uniqueseq.phy
+
+# ─── артефакты MrBayes (<name>.nex.run*.*, .con.tre, .mcmc, .*stat, …) ──
+# ВНИМАНИЕ: не трогает тестовую фикстуру biocode/_fixtures/sample.con.tre
+*.nex.*
+
+# ─── деревья, генерируемые anotherpipeline/build_trees.sh ──
+anotherpipeline/trees/
