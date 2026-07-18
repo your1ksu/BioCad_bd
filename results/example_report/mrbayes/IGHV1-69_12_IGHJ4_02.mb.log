@@ -44,7 +44,7 @@
       Successfully read matrix
       Setting default partition (does not divide up characters)
       Setting model defaults
-      Seed (for generating default start values) = 1784322024
+      Seed (for generating default start values) = 1784322661
       Setting output file names to "IGHV1-69_12_IGHJ4_02.nex.run<i>.<p|t>"
    Exiting data block
    Reading mrbayes block
@@ -64,7 +64,7 @@
       Setting 'Starttree' to "Random"
       Setting chain output file names to "IGHV1-69_12_IGHJ4_02.nex.run<i>.<p/t>"
       Running Markov chain
-      MCMC stamp = 7387358679
+      MCMC stamp = 7118797043
       Seed = 376088129
       Swapseed = 12345
       Model settings:
@@ -194,7 +194,7 @@
 
       Average standard deviation of split frequencies: 0.011946
 
-      80000 -- [-1657.464] (-1660.765) (-1663.724) (-1662.287) * (-1660.416) (-1659.966) [-1660.673] (-1662.325) -- 0:00:15
+      80000 -- [-1657.464] (-1660.765) (-1663.724) (-1662.287) * (-1660.416) (-1659.966) [-1660.673] (-1662.325) -- 0:00:16
 
       Average standard deviation of split frequencies: 0.015270
 

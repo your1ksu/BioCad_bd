@@ -28,5 +28,5 @@ Done: IGHV1-69_12_IGHJ4_02__mrbayes_c002.fa
 All mutation tables saved to results/example_report/mutation_tables
 CMD: /Users/shumilov/miniconda3/envs/biocad_bcr_pipeline_environment/bin/python /Users/shumilov/PycharmProjects/BioCad_bd/scripts/06_analyze_mutations/run_mutations.py -i results/example_report/groups/clades -o results/example_report/mutation_tables -r /Users/shumilov/PycharmProjects/BioCad_bd/data/references
 CWD: /Users/shumilov/PycharmProjects/BioCad_bd
-START: 2026-07-18 00:00:54.031203
+START: 2026-07-18 00:11:31.058880
 
