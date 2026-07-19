@@ -18,31 +18,8 @@ import sys
 import tempfile
 from pathlib import Path
 
-# Standard genetic code
-CODON_TABLE = {
-    'ATA': 'I', 'ATC': 'I', 'ATT': 'I', 'ATG': 'M',
-    'ACA': 'T', 'ACC': 'T', 'ACG': 'T', 'ACT': 'T',
-    'AAC': 'N', 'AAT': 'N', 'AAA': 'K', 'AAG': 'K',
-    'AGC': 'S', 'AGT': 'S', 'AGA': 'R', 'AGG': 'R',
-    'CTA': 'L', 'CTC': 'L', 'CTG': 'L', 'CTT': 'L',
-    'CCA': 'P', 'CCC': 'P', 'CCG': 'P', 'CCT': 'P',
-    'CAC': 'H', 'CAT': 'H', 'CAA': 'Q', 'CAG': 'Q',
-    'CGA': 'R', 'CGC': 'R', 'CGG': 'R', 'CGT': 'R',
-    'GTA': 'V', 'GTC': 'V', 'GTG': 'V', 'GTT': 'V',
-    'GCA': 'A', 'GCC': 'A', 'GCG': 'A', 'GCT': 'A',
-    'GAC': 'D', 'GAT': 'D', 'GAA': 'E', 'GAG': 'E',
-    'GGA': 'G', 'GGC': 'G', 'GGG': 'G', 'GGT': 'G',
-    'TCA': 'S', 'TCC': 'S', 'TCG': 'S', 'TCT': 'S',
-    'TTC': 'F', 'TTT': 'F', 'TTA': 'L', 'TTG': 'L',
-    'TAC': 'Y', 'TAT': 'Y', 'TAA': '*', 'TAG': '*',
-    'TGC': 'C', 'TGT': 'C', 'TGA': '*', 'TGG': 'W',
-}
-
-
-def translate(codon: str) -> str:
-    """Translate a DNA codon to amino acid (single letter)."""
-    codon = codon.upper().replace('U', 'T')
-    return CODON_TABLE.get(codon, 'X')
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from shared.utils import CODON_TABLE, translate
 
 
 def find_conda_base() -> Path | None:
@@ -327,8 +304,8 @@ def compute_mutations(qseq: str, sseq: str, qstart: int, domain_boundaries: dict
 
         imgt_position = IMGT_DOMAIN_STARTS.get(domain, aa_pos) + local_aa - 1
 
-        if q_aa != s_aa:
-            is_silent = (q_aa == '*' and s_aa == '*') or (q_aa == s_aa)
+        if q_codon != s_codon:
+            is_silent = (q_aa == s_aa)
             mutations.append({
                 'aa_pos': aa_pos,
                 'imgt_position': imgt_position,
@@ -338,7 +315,7 @@ def compute_mutations(qseq: str, sseq: str, qstart: int, domain_boundaries: dict
                 'ref_codon': s_codon.lower(),
                 'mut_codon': q_codon.lower(),
                 'query_nt_pos': query_nt_pos,
-                'is_silent': is_silent or (q_aa == s_aa),
+                'is_silent': 'yes' if is_silent else 'no',
             })
 
         aa_pos += 1

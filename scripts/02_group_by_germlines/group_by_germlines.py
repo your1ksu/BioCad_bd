@@ -11,8 +11,8 @@
 
 import argparse
 import os
-import re
 import sys
+from pathlib import Path
 
 import pandas as pd
 from Bio import Align
@@ -20,36 +20,11 @@ from Bio import Align
 _aligner = Align.PairwiseAligner()
 _aligner.mode = "local"
 
-D_FASTA_NAME = "IGHD.fasta"
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from shared.utils import read_germline_fasta, safe_filename, format_group_key
 
 
-def read_germline_fasta(path):
-    seqs = {}
-    name = None
-    chunks = []
 
-    def flush():
-        if name is not None:
-            seqs[name] = "".join(chunks).upper()
-
-    with open(path, "r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            if line.startswith(">"):
-                flush()
-                parts = line[1:].split("|")
-                name = parts[1] if len(parts) > 1 else parts[0]
-                chunks = []
-            else:
-                chunks.append(line)
-        flush()
-    return seqs
-
-
-def safe_filename(name):
-    return re.sub(r'[^A-Za-z0-9_\-\.]', '_', name)
 
 
 def parse_vj_call(call_str, germline_dict):
@@ -99,21 +74,14 @@ def write_fasta(records, out_dir, gene_name):
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Группировка BCR-последовательностей по germline-генам.")
-    parser.add_argument(
-        "-i", "--input",
-        required=True,
-        help="Путь к входному TSV файлу (результат filter_sequences.py).",
-    )
-    parser.add_argument(
-        "-o", "--output",
-        required=True,
-        help="Путь к выходной директории (будет создана grouped_by_germlines внутри).",
-    )
-    parser.add_argument(
-        "-r", "--ref-dir",
-        required=True,
-        help="Папка с гермлайновыми справочниками (IGHV.fasta, IGHJ.fasta, IGKV.fasta, IGKJ.fasta, IGLV.fasta, IGLJ.fasta, IGHD.fasta).",
-    )
+    parser.add_argument("-i", "--input", required=True,
+                        help="Путь к входному TSV файлу (результат filter_sequences.py).")
+    parser.add_argument("-o", "--output", required=True,
+                        help="Путь к выходной директории (будет создана grouped_by_germlines внутри).")
+    parser.add_argument("-r", "--ref-dir", required=True,
+                        help="Папка с гермлайновыми справочниками.")
+    parser.add_argument("--grouping-strategy", choices=["allele", "gene", "v_only"], default="gene",
+                        help="Стратегия группировки (default: gene)")
     return parser.parse_args()
 
 
@@ -122,6 +90,7 @@ def main():
     input_file = args.input
     output_dir = args.output
     ref_dir = args.ref_dir
+    strategy = args.grouping_strategy
 
     if not os.path.isfile(input_file):
         print(f"Ошибка: входной файл не найден: {input_file}", file=sys.stderr)
@@ -137,36 +106,26 @@ def main():
         "IGK": {"v": os.path.join(ref_dir, "IGKV.fasta"), "j": os.path.join(ref_dir, "IGKJ.fasta")},
         "IGL": {"v": os.path.join(ref_dir, "IGLV.fasta"), "j": os.path.join(ref_dir, "IGLJ.fasta")},
     }
-    d_fasta_path = os.path.join(ref_dir, D_FASTA_NAME)
 
-    print("Читаю germline-справочники (полные последовательности)...")
+    print("Читаю germline-справочники...")
     v_seqs_by_locus = {}
     j_seqs_by_locus = {}
     for locus, files in locus_vj_fasta.items():
         v_seqs_by_locus[locus] = read_germline_fasta(files["v"])
         j_seqs_by_locus[locus] = read_germline_fasta(files["j"])
         print(f"  {locus}: V={len(v_seqs_by_locus[locus])}, J={len(j_seqs_by_locus[locus])}")
-    d_seqs = read_germline_fasta(d_fasta_path)
-    print(f"  IGH: D={len(d_seqs)}")
 
     print(f"Читаю отфильтрованный файл {input_file} ...")
     df = pd.read_csv(input_file, sep="\t")
     total = len(df)
 
-    v_dir = build_folder(out_root, "v")
-    d_dir = build_folder(out_root, "d")
-    j_dir = build_folder(out_root, "j")
     vj_dir = build_folder(out_root, "vj")
-
-    v_groups = {}
-    d_groups = {}
-    j_groups = {}
     vj_groups = {}
 
     skipped_locus = 0
     aligned_v = 0
     aligned_j = 0
-    
+
     for i, (_, row) in enumerate(df.iterrows(), 1):
         seq_id = row["sequence_id"]
         seq = row["sequence_vdj"]
@@ -178,31 +137,21 @@ def main():
             skipped_locus += 1
             continue
 
-        # 1) Пробуем использовать v_call/j_call из аннотации (быстро)
         v_call = row.get("v_call")
         j_call = row.get("j_call")
-        
+
         best_v = parse_vj_call(v_call, v_seqs)
         if best_v is None:
-            # Fallback: выравнивание (медленно)
             best_v, _ = best_germline_match(seq, v_seqs)
             aligned_v += 1
-        
+
         best_j = parse_vj_call(j_call, j_seqs)
         if best_j is None:
-            # Fallback: выравнивание (медленно)
             best_j, _ = best_germline_match(seq, j_seqs)
             aligned_j += 1
 
-        v_groups.setdefault(best_v, []).append((seq_id, seq))
-        j_groups.setdefault(best_j, []).append((seq_id, seq))
-
-        vj_key = f"{best_v}_{best_j}"
+        vj_key = format_group_key(best_v, best_j, strategy)
         vj_groups.setdefault(vj_key, []).append((seq_id, seq))
-
-        if locus == "IGH":
-            best_d, _ = best_germline_match(seq, d_seqs)
-            d_groups.setdefault(best_d, []).append((seq_id, seq))
 
         if i % 500 == 0 or i == total:
             print(f"  обработано {i}/{total}")
@@ -212,17 +161,12 @@ def main():
     if skipped_locus:
         print(f"Пропущено строк (нет sequence_vdj или неизвестный locus): {skipped_locus}")
 
-    for gene, records in v_groups.items():
-        write_fasta(records, v_dir, gene)
-    for gene, records in d_groups.items():
-        write_fasta(records, d_dir, gene)
-    for gene, records in j_groups.items():
-        write_fasta(records, j_dir, gene)
     for gene, records in vj_groups.items():
         write_fasta(records, vj_dir, gene)
 
-    print(f"Готово! Fasta-файлов: V={len(v_groups)}, D={len(d_groups)}, J={len(j_groups)}, V+J={len(vj_groups)}")
-    print(f"Папки лежат в {out_root}/v, /d, /j, /vj")
+    print(f"Готово! Fasta-файлов: V+J={len(vj_groups)}")
+    print(f"Стратегия группировки: {strategy}")
+    print(f"Папка: {out_root}/vj")
 
 
 if __name__ == "__main__":

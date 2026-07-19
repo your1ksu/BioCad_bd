@@ -2,25 +2,14 @@ import argparse
 import os
 import sys
 import time
+from pathlib import Path
 
 from Bio.Align import PairwiseAligner
 from Bio.Seq import Seq
 
-# ============ ПУТИ ============
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# paths.py лежит на уровень выше (в scripts/), а не рядом с этим файлом
-SCRIPTS_DIR = os.path.dirname(BASE_DIR)
-if SCRIPTS_DIR not in sys.path:
-    sys.path.insert(0, SCRIPTS_DIR)
-
-from paths import get_paths  # noqa: E402
-
 STOP_SYMBOL = "*"
-MATCH_IDENTITY_THRESHOLD = 0.5  # доля совпавших позиций от длины белка, чтобы считать совпадением
+MATCH_IDENTITY_THRESHOLD = 0.5
 
-DEFAULT_INPUT_SUBFOLDER = "vj_filtered"
-DEFAULT_OUTPUT_SUBFOLDER = "amino"
 DEFAULT_REFERENCE_FILENAME = "HomoSapiens_IMGTGENEDB-ReferenceSequences.fasta"
 
 
@@ -243,85 +232,67 @@ def process_file(input_path, output_dir, quarantine_dir, no_match_dir, reference
     print(f"  ok={len(ok_records)}, no_match={len(no_match_records)}, premature_stop={len(premature_records)}")
 
 
+RESULTS_DIR = Path(__file__).resolve().parent.parent.parent / "results"
+DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
+
+
 def parse_args():
     parser = argparse.ArgumentParser(
         description="Трансляция нуклеотидных fasta (V+J) в аминокислотные со сверкой по IMGT."
     )
-    parser.add_argument(
-        "-k", "--key",
-        default="BCR",
-        help="Название подпапки внутри results/ (по умолчанию: BCR)",
-    )
-    parser.add_argument(
-        "--input-subfolder",
-        default=DEFAULT_INPUT_SUBFOLDER,
-        help=f"Подпапка внутри results/<key>/ с входными nt-fasta (по умолчанию: {DEFAULT_INPUT_SUBFOLDER})",
-    )
-    parser.add_argument(
-        "--output-subfolder",
-        default=DEFAULT_OUTPUT_SUBFOLDER,
-        help=f"Подпапка внутри results/<key>/ для результатов (по умолчанию: {DEFAULT_OUTPUT_SUBFOLDER})",
-    )
-    parser.add_argument(
-        "--reference-fasta",
-        default=None,
-        help=(
-            "Путь к AA-справочнику IMGT без гэпов. Если не указан, берётся "
-            f"data/{DEFAULT_REFERENCE_FILENAME}"
-        ),
-    )
+    parser.add_argument("-k", "--key", default="BCR",
+                        help="Название подпапки внутри results/ (по умолчанию: BCR)")
+    parser.add_argument("--input-dir", default=None,
+                        help="Входная папка с nt-fasta (если не указана: results/<key>/vj_filtered)")
+    parser.add_argument("--output-dir", default=None,
+                        help="Выходная папка (если не указана: results/<key>/amino)")
+    parser.add_argument("--reference-fasta", default=None,
+                        help=f"Путь к AA-справочнику IMGT (по умолчанию: data/{DEFAULT_REFERENCE_FILENAME})")
     return parser.parse_args()
 
 
 def main():
     args = parse_args()
-    paths = get_paths(args.key)
+    results_dir = RESULTS_DIR / args.key
 
-    input_dir = os.path.join(paths["output_dir"], args.input_subfolder)
-    output_dir = os.path.join(paths["output_dir"], args.output_subfolder)
-    quarantine_dir = os.path.join(output_dir, "premature_stop")
-    no_match_dir = os.path.join(output_dir, "no_match")
+    input_dir = Path(args.input_dir) if args.input_dir else results_dir / "vj_filtered"
+    output_dir = Path(args.output_dir) if args.output_dir else results_dir / "amino"
+    quarantine_dir = output_dir / "premature_stop"
+    no_match_dir = output_dir / "no_match"
 
-    if not os.path.isdir(input_dir):
-        print(f"Ошибка: путь {input_dir} не найден. Проверь --key и --input-subfolder.")
+    if not input_dir.is_dir():
+        print(f"Ошибка: путь {input_dir} не найден. Проверь --key или --input-dir.")
         return
 
-    os.makedirs(output_dir, exist_ok=True)
-    os.makedirs(quarantine_dir, exist_ok=True)
-    os.makedirs(no_match_dir, exist_ok=True)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    quarantine_dir.mkdir(parents=True, exist_ok=True)
+    no_match_dir.mkdir(parents=True, exist_ok=True)
 
-
-# !!!!!!!!!!!!!!!!!!!!
-    reference_path = args.reference_fasta or os.path.join(os.path.dirname(paths["input_dir"]), DEFAULT_REFERENCE_FILENAME)
-    print(args.reference_fasta)
-    if os.path.isfile(reference_path):
-        reference_dict, total_ref = read_aa_reference(reference_path)
+    reference_path = Path(args.reference_fasta) if args.reference_fasta else DATA_DIR / DEFAULT_REFERENCE_FILENAME
+    if reference_path.is_file():
+        reference_dict, total_ref = read_aa_reference(str(reference_path))
         print(f"Загружен AA-справочник: {len(reference_dict)} уникальных генов, {total_ref} записей")
     else:
         reference_dict = {}
-        print(
-            f"Внимание: AA-справочник не найден по пути {reference_path}. "
-            "Сверка со справочником пропускается — берём первый вариант, "
-            "прошедший проверку по стоп-кодону."
-        )
+        print(f"Внимание: AA-справочник не найден по пути {reference_path}. "
+              "Сверка со справочником пропускается.")
 
     counters = {
-        "no_stop": 0,
-        "stop_at_end": 0,
-        "matched": 0,
-        "no_match": 0,
-        "premature_stop": 0,
+        "no_stop": 0, "stop_at_end": 0, "matched": 0,
+        "no_match": 0, "premature_stop": 0,
     }
 
-    fasta_files = [f for f in os.listdir(input_dir) if f.lower().endswith((".fasta", ".fa"))]
+    fasta_files = sorted(
+        p for p in input_dir.iterdir()
+        if p.is_file() and p.suffix.lower() in (".fasta", ".fa")
+    )
     print(f"Найдено fasta-файлов: {len(fasta_files)}")
     t_start = time.time()
 
-    for idx, filename in enumerate(fasta_files, 1):
-        print(f"\n[{idx}/{len(fasta_files)}] {filename}")
+    for idx, fpath in enumerate(fasta_files, 1):
+        print(f"\n[{idx}/{len(fasta_files)}] {fpath.name}")
         process_file(
-            os.path.join(input_dir, filename),
-            output_dir, quarantine_dir, no_match_dir,
+            str(fpath), str(output_dir), str(quarantine_dir), str(no_match_dir),
             reference_dict, counters,
         )
         elapsed = time.time() - t_start
@@ -329,13 +300,11 @@ def main():
 
     elapsed = time.time() - t_start
     print(f"\nГотово! ({elapsed:.1f} сек)")
-
-    print("\nГотово!")
     print(f"Без стоп-кодона: {counters['no_stop']}")
     print(f"Стоп-кодон в конце: {counters['stop_at_end']}")
-    print(f"Совпало со справочником (сохранено в {args.output_subfolder}/): {counters['matched']}")
-    print(f"Не нашли совпадения ни в одной рамке (в no_match/): {counters['no_match']}")
-    print(f"Стоп-кодон не в конце во всех рамках (в premature_stop/): {counters['premature_stop']}")
+    print(f"Совпало со справочником: {counters['matched']}")
+    print(f"Не нашли совпадения: {counters['no_match']}")
+    print(f"Преждевременный стоп: {counters['premature_stop']}")
 
 
 if __name__ == "__main__":

@@ -1,8 +1,0 @@
-[IGHV1-69_12_IGHJ4_02] nexus готов: results/example_report/mrbayes/IGHV1-69_12_IGHJ4_02.nex
-[IGHV1-69_12_IGHJ4_02] готово: results/example_report/mrbayes/IGHV1-69_12_IGHJ4_02.nex.con.tre (runtime=27.2s, клад с posterior=7, сошлось=нет avg_std=0.014337)
-
-Итого: ok=1 только-nexus=0 ошибок=0 пропущено=0 из 1 групп
-CMD: /Users/shumilov/miniconda3/envs/biocad_bcr_pipeline_environment/bin/python /Users/shumilov/PycharmProjects/BioCad_bd/scripts/04b_build_trees_mrbayes/build_trees_mrbayes.py results/example_report/aligned_sequences --out results/example_report/mrbayes
-CWD: /Users/shumilov/PycharmProjects/BioCad_bd
-START: 2026-07-18 09:33:59.182902
-
