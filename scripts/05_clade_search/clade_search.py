@@ -34,6 +34,53 @@ def _support(clade) -> dict[str, float]:
     return {}
 
 
+def _clade_tree_metrics(tree, leaves: frozenset):
+    """Метрики клады по дереву: (depth, ancestor_to_leaves).
+
+    depth — сколько ВНУТРЕННИХ узлов внутри клады, не считая сам узел-предок
+    клады. Пара листьев от общего предка → depth=0; каждый доп. уровень
+    ветвления внутри клады → +1. Считается по РЕАЛЬНОМУ дереву, а не как
+    (size-1): majority-rule консенсус MrBayes может давать политомии.
+
+    ancestor_to_leaves — насколько предок клады далеко от своих листьев, в
+    длинах ветвей (замен на сайт): {"max","mean","min"} по всем листьям клады.
+
+    Клада может быть достроена из комплемента корня (см.
+    _root_complement_supports): тогда отдельного узла в дереве нет, а общим
+    предком листьев выступает корень — обрабатывается отдельной веткой.
+    """
+    if tree is None:
+        return None, None
+    target = None
+    for clade in tree.get_nonterminals():
+        if frozenset(t.name for t in clade.get_terminals()) == leaves:
+            target = clade
+            break
+
+    if target is not None:
+        depth = len(target.get_nonterminals()) - 1        # без самого узла-предка
+        # Bio.Phylo depths() у под-клады стартует с её собственной ветви (ведущей
+        # К предку) — вычитаем её, чтобы получить расстояние ОТ предка вниз.
+        stem = target.branch_length or 0.0
+        dists = [d - stem for cl, d in target.depths().items() if cl.is_terminal()]
+    else:
+        # комплемент корня: листья висят прямо на корне, их предок — корень
+        root_leaf_children = [c for c in tree.root.clades
+                              if c.is_terminal() and c.name in leaves]
+        if len(root_leaf_children) != len(leaves):
+            return None, None
+        depth = 0
+        dists = [c.branch_length or 0.0 for c in root_leaf_children]
+
+    if not dists:
+        return depth, None
+    return depth, {
+        "max": round(max(dists), 6),
+        "mean": round(sum(dists) / len(dists), 6),
+        "min": round(min(dists), 6),
+    }
+
+
 def confident_clades(newick: str, *, ufboot_min: float = 95.0,
                      alrt_min: float = 80.0) -> list[dict]:
     from Bio import Phylo
@@ -51,10 +98,13 @@ def confident_clades(newick: str, *, ufboot_min: float = 95.0,
         leaves = [t.name for t in clade.get_terminals()]
         if len(leaves) < 2:
             continue
+        depth, anc = _clade_tree_metrics(phylo, frozenset(leaves))
         clades.append({
             "clade": _node_name(clade),
             "size": len(leaves),
             "leaves": leaves,
+            "depth": depth,
+            "ancestor_to_leaves": anc,
             "ufboot": uf,
             "alrt": al,
             "defining_mutations": 0,
@@ -161,9 +211,11 @@ def clades_from_mrbayes(con_tre: Path, names_tsv: Path, posterior_min: float) ->
     newick, supports = parse_con_tre(con_tre, rev)
     supports = _root_complement_supports(newick, supports)
 
+    tree = None
     if newick:
         from Bio import Phylo
-        all_leaves = frozenset(t.name for t in Phylo.read(StringIO(newick), "newick").get_terminals())
+        tree = Phylo.read(StringIO(newick), "newick")
+        all_leaves = frozenset(t.name for t in tree.get_terminals())
         supports = _drop_complement_duplicates(supports, all_leaves)
 
     entries = []
@@ -172,8 +224,10 @@ def clades_from_mrbayes(con_tre: Path, names_tsv: Path, posterior_min: float) ->
         if pp is None or pp < posterior_min:
             continue
         leaves = sig.split("|")
+        depth, anc = _clade_tree_metrics(tree, frozenset(leaves))
         entries.append({
             "clade": sig, "size": len(leaves), "leaves": leaves,
+            "depth": depth, "ancestor_to_leaves": anc,
             "ufboot": None, "alrt": None, "posterior": pp,
             "defining_mutations": None, "defining_cdr": None,
             "isotypes": {}, "days": [], "confident_both_models": False,
