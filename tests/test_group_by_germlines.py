@@ -1,5 +1,5 @@
 """
-Тесты для scripts/group_by_germlines.py
+Тесты для scripts/02_group_by_germlines/group_by_germlines.py
 
 Запуск:  pytest tests/test_group_by_germlines.py -v
 """
@@ -115,40 +115,54 @@ def test_write_fasta_uses_safe_filename(tmp_path):
 
 
 # ---------- end-to-end через main() на маленьком наборе данных ----------
+#
+# С тех пор как group_by_germlines.py стал использовать paths.py (--key
+# вместо жёстко прописанных путей рядом со скриптом), тест подменяет саму
+# функцию gg.get_paths(), а не модульные константы BASE_DIR/INPUT_FILE/
+# LOCUS_VJ_FASTA/D_FASTA (которых в модуле больше нет). Входной файл теперь
+# лежит в output_dir (results/<key>/BCR_data_filtered.tsv) — это результат
+# предыдущего шага (filter_sequences.py), а не в data/<key>/.
 
 def test_main_end_to_end(tmp_path, monkeypatch):
-    # маленькие germline-справочники для всех локусов + D для IGH
-    for locus, files in gg.LOCUS_VJ_FASTA.items():
-        (tmp_path / files["v"]).write_text(">acc|V1*01|x\nACGTACGTACGT\n")
-        (tmp_path / files["j"]).write_text(">acc|J1*01|x\nTTTTTTTT\n")
-    (tmp_path / gg.D_FASTA).write_text(">acc|D1*01|x\nGGGG\n")
+    imgt_dir = tmp_path / "imgt"
+    output_dir = tmp_path / "results" / "testkey"
+    imgt_dir.mkdir(parents=True)
+    output_dir.mkdir(parents=True)
 
-    filtered_tsv = tmp_path / "BCR_data_filtered.tsv"
-    seq = "ACGTACGTACGTTTTTTTTT"
-    filtered_tsv.write_text(
+    # маленькие germline-справочники для всех локусов + D для IGH
+    (imgt_dir / "IGHV.fasta").write_text(">acc|V1*01|x\nACGTACGTACGT\n")
+    (imgt_dir / "IGHJ.fasta").write_text(">acc|J1*01|x\nTTTTTTTT\n")
+    (imgt_dir / "IGKV.fasta").write_text(">acc|K1*01|x\nACGTACGTACGT\n")
+    (imgt_dir / "IGKJ.fasta").write_text(">acc|KJ1*01|x\nTTTTTTTT\n")
+    (imgt_dir / "IGLV.fasta").write_text(">acc|L1*01|x\nACGTACGTACGT\n")
+    (imgt_dir / "IGLJ.fasta").write_text(">acc|LJ1*01|x\nTTTTTTTT\n")
+    (imgt_dir / "IGHD.fasta").write_text(">acc|D1*01|x\nGGGG\n")
+
+    input_tsv = output_dir / "BCR_data_filtered.tsv"
+    input_tsv.write_text(
         "sequence_id\tsequence_vdj\tlocus\n"
-        f"read1\t{seq}\tIGH\n"
-        f"read2\t{seq}\tIGK\n"
+        f"read1\tACGTACGTACGTTTTTTTTT\tIGH\n"
+        f"read2\tACGTACGTACGTTTTTTTTT\tIGK\n"
     )
 
-    out_root = tmp_path / "grouped_by_germlines"
-    monkeypatch.setattr(gg, "BASE_DIR", str(tmp_path))
-    monkeypatch.setattr(gg, "INPUT_FILE", str(filtered_tsv))
-    monkeypatch.setattr(gg, "OUT_ROOT", str(out_root))
+    monkeypatch.setattr(sys, "argv", [
+        "group_by_germlines.py",
+        "-i", str(input_tsv),
+        "-o", str(output_dir),
+        "-r", str(imgt_dir),
+    ])
 
     gg.main()
 
-    assert (out_root / "v").is_dir()
-    assert (out_root / "j").is_dir()
-    assert (out_root / "vj").is_dir()
-    assert (out_root / "d").is_dir()
+    assert (output_dir / "v").is_dir()
+    assert (output_dir / "j").is_dir()
+    assert (output_dir / "vj").is_dir()
+    assert (output_dir / "d").is_dir()
 
-    # у IGH-строки должен появиться файл в папке d (D-сегмент только у тяжёлой цепи)
-    d_files = list((out_root / "d").iterdir())
+    d_files = list((output_dir / "d").iterdir())
     assert len(d_files) == 1
 
-    # в v/j/vj должно быть суммарно 2 обработанные записи (IGH + IGK)
-    v_files = list((out_root / "v").iterdir())
+    v_files = list((output_dir / "v").iterdir())
     assert len(v_files) >= 1
 
 

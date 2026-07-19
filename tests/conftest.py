@@ -1,4 +1,5 @@
 import os
+import subprocess
 import sys
 
 TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -18,3 +19,17 @@ if os.path.isdir(SCRIPTS_DIR):
 for path in paths_to_add:
     if path not in sys.path:
         sys.path.insert(0, path)
+
+ENV_NAME = "biocad_bcr_pipeline_environment"
+
+
+def pipeline_python():
+    """Return a command prefix to run Python inside the pipeline conda environment."""
+    try:
+        subprocess.run(
+            ["conda", "run", "-n", ENV_NAME, "python", "-c", "import Bio"],
+            capture_output=True, text=True, check=True
+        )
+        return ["conda", "run", "-n", ENV_NAME, "python"]
+    except Exception:
+        return [sys.executable]
