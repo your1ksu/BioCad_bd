@@ -109,7 +109,7 @@ def main() -> None:
         sys.exit(0)
 
     nproc = detect_nproc()
-    workers = args.workers if args.workers > 0 else min(nproc, 4)
+    workers = args.workers if args.workers > 0 else nproc
     workers = min(workers, len(fasta_files))
 
     script_dir = Path(__file__).resolve().parent

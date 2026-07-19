@@ -63,14 +63,6 @@ def main():
         print(f"Ошибка: входная папка {target_dir} не найдена.")
         return
 
-<<<<<<< HEAD
-    # новая папка создаётся на уровне results/<key>/ — то есть рядом с самой
-    # папкой grouped_by_germlines, а не внутри неё рядом с vj
-    last_folder_name = args.subfolders[-1] + "_filtered"
-    output_dir = os.path.join(paths["output_dir"], last_folder_name)
-
-=======
->>>>>>> main
     filter_and_copy_files(target_dir, output_dir)
 
 
