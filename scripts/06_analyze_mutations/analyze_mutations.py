@@ -172,7 +172,7 @@ def parse_igblast_output(igblast_file: str) -> list[dict]:
                 continue
 
             elif current_section == 'domain_summary':
-                if stripped.startswith('Total') or stripped.startswith('CDR3'):
+                if stripped.startswith('Total'):
                     continue
                 fields = stripped.split('\t')
                 if len(fields) >= 8:
@@ -400,7 +400,7 @@ def write_summary(results: list[dict], out_file: str) -> None:
 
             region_counts = {
                 'FR1-IMGT': 0, 'CDR1-IMGT': 0, 'FR2-IMGT': 0,
-                'CDR2-IMGT': 0, 'FR3-IMGT': 0, 'CDR3-IMGT': 0,
+                'CDR2-IMGT': 0, 'FR3-IMGT': 0, 'CDR3-IMGT (germline)': 0,
                 'FR4-IMGT': 0,
             }
             total = 0
@@ -428,7 +428,7 @@ def write_summary(results: list[dict], out_file: str) -> None:
                 qid, chain, vg, dg, jg,
                 region_counts['FR1-IMGT'], region_counts['CDR1-IMGT'],
                 region_counts['FR2-IMGT'], region_counts['CDR2-IMGT'],
-                region_counts['FR3-IMGT'], region_counts['CDR3-IMGT'],
+                region_counts['FR3-IMGT'], region_counts['CDR3-IMGT (germline)'],
                 region_counts['FR4-IMGT'], total,
             ])
 
