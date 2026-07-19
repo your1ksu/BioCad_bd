@@ -1,69 +1,64 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
 import argparse
-import os
-import shutil
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from shared.utils import count_sequences, FASTA_EXTS
 
 
-SYMBOL = ">"
-MIN_COUNT = 5
-MAX_COUNT = 100
+def filter_and_link_files(target_dir: Path, output_dir: Path,
+                           min_count: int, max_count: int) -> int:
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    fasta_files = sorted(
+        p for p in target_dir.iterdir()
+        if p.is_file() and p.suffix.lower() in FASTA_EXTS
+    )
+
+    linked = 0
+    for fpath in fasta_files:
+        n = count_sequences(fpath)
+        if min_count < n < max_count:
+            dest = output_dir / fpath.name
+            if not dest.exists():
+                dest.symlink_to(fpath.resolve())
+            print(f"  {fpath.name}: {n} seqs → OK")
+            linked += 1
+        else:
+            print(f"  {fpath.name}: {n} seqs → пропущен")
+
+    print(f"\nОтфильтровано: {linked} из {len(fasta_files)} файлов")
+    return linked
 
 
-
-def count_symbol(file_path, symbol=SYMBOL):
-    with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
-        content = f.read()
-    return content.count(symbol)
-
-
-def filter_and_copy_files(target_dir, output_dir, min_count=MIN_COUNT, max_count=MAX_COUNT):
-    os.makedirs(output_dir, exist_ok=True)
-    print(f"Папка для отфильтрованных файлов: {output_dir}")
-
-    files = [
-        f for f in os.listdir(target_dir)
-        if os.path.isfile(os.path.join(target_dir, f))
-    ]
-
-    copied_count = 0
-    for file_name in files:
-        file_path = os.path.join(target_dir, file_name)
-        try:
-            count_symbols = count_symbol(file_path)
-        except OSError as e:
-            print(f"Не удалось прочитать файл {file_name}: {e}")
-            continue
-
-        if min_count < count_symbols < max_count:
-            dest_path = os.path.join(output_dir, file_name)
-            shutil.copy2(file_path, dest_path)
-            print(f"Скопирован: {file_name} (найдено '{SYMBOL}': {count_symbols})")
-            copied_count += 1
-
-    print(f"\nГотово! Всего скопировано файлов: {copied_count}")
-    return copied_count
-
-
-def parse_args():
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Фильтрация fasta-файлов по количеству символов '>' (числу последовательностей)."
+        description="Фильтрация fasta-файлов по числу последовательностей."
     )
     parser.add_argument("-i", "--input", required=True,
-                        help="Папка с исходными FASTA-файлами")
+                        help="Папка с fasta-файлами")
     parser.add_argument("-o", "--output", required=True,
-                        help="Папка для отфильтрованных FASTA-файлов")
+                        help="Куда сохранить отфильтрованные fasta (symlinks)")
+    parser.add_argument("--min", type=int, default=5,
+                        help="Минимальное число seqs (строго больше, по умолч. 5)")
+    parser.add_argument("--max", type=int, default=200,
+                        help="Максимальное число seqs (строго меньше, по умолч. 200)")
     return parser.parse_args()
 
 
-def main():
+def main() -> None:
     args = parse_args()
-    target_dir = args.input
-    output_dir = args.output
+    target_dir = Path(args.input)
+    output_dir = Path(args.output)
 
-    if not os.path.isdir(target_dir):
-        print(f"Ошибка: входная папка {target_dir} не найдена.")
-        return
+    if not target_dir.is_dir():
+        print(f"Ошибка: папка не найдена: {target_dir}", file=sys.stderr)
+        sys.exit(1)
 
-    filter_and_copy_files(target_dir, output_dir)
+    filter_and_link_files(target_dir, output_dir, args.min, args.max)
 
 
 if __name__ == "__main__":
