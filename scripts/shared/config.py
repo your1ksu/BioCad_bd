@@ -33,6 +33,8 @@ class PipelineConfig:
     mb_ngen_min: int = 50_000                        # минимум генераций при динамическом расчёте
     mb_ngen_max: int = 500_000                       # максимум генераций при динамическом расчёте
     mb_burnin_frac: float = 0.25                     # доля burn-in (первые итерации, которые выкидываются)
+    gpu_mb_bin: str = ""                              # путь к GPU-бинарю MrBayes (BEAGLE-CUDA); пусто = только CPU
+    gpu_min_taxa: int = 60                            # группы с таксонов ≥ порога считать на GPU (если задан gpu_mb_bin)
 
     # ---------- clade_search / tree_analytics ----------
     posterior_min: float = 0.95                      # мин. posterior probability для confident clade

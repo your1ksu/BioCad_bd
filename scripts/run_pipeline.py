@@ -162,10 +162,14 @@ def step4a_iqtree(aligned_dir, trees_dir, log_dir, iqtree_model):
 
 
 def step4b_mrbayes(aligned_dir, mrbayes_dir, log_dir, config):
+    # GPU включается только если задан config.gpu_mb_bin (путь к BEAGLE-CUDA mb);
+    # иначе всё считается на CPU. Пустой --gpu-mb-bin build_trees_mrbayes трактует как CPU.
     return run_cmd([
         PYTHON_BIN, str(SCRIPTS_DIR / "04b_build_trees_mrbayes" / "build_trees_mrbayes.py"),
         str(aligned_dir), "--out", str(mrbayes_dir),
         "--mb-ngen", str(config.mb_ngen_default),
+        "--gpu-mb-bin", str(config.gpu_mb_bin),
+        "--gpu-min-taxa", str(config.gpu_min_taxa),
     ], log_file=log_dir / "step4b_mrbayes.log", description="Step 4b: MrBayes (Bayesian)")
 
 
@@ -245,6 +249,8 @@ def main():
                         help="Minimum sequences per group (filter_groups)")
     parser.add_argument("--max-group-size", type=int, default=None,
                         help="Maximum sequences per group (filter_groups)")
+    parser.add_argument("--gpu-mb-bin", default=None,
+                        help="Путь к GPU-бинарю MrBayes (BEAGLE-CUDA). Без него MrBayes идёт на CPU")
     parser.add_argument("--iqtree-model", default=None,
                         help="IQ-TREE substitution model (default: GTR+F+I+G4)")
     args = parser.parse_args()
@@ -267,6 +273,8 @@ def main():
         config.iqtree_model = args.iqtree_model
     if args.parallel_trees:
         config.parallel_trees = True
+    if args.gpu_mb_bin is not None:
+        config.gpu_mb_bin = args.gpu_mb_bin
 
     # Resolve input
     if args.key:

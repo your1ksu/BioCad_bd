@@ -1,42 +1,53 @@
-# mrbayes
+# 04b_build_trees_mrbayes — байесовские деревья (MrBayes)
 
-Байесовские деревья по группам
+Строит по одному байесовскому дереву на каждую группу выравнивания.
 
 ## Вход / выход
 
 | | формат | путь по умолчанию |
 |---|---|---|
-| вход | несколько `.fasta` (по одному на группу V+J, уже выровненные) | `aligned_sequences/` — тот же вход, что берёт `anotherpipeline/build_trees/build_trees.sh` (Денис, IQ-TREE) |
-| выход | nexus | `mrbayes/<группа>.nex` |
-| выход | nexus (дерево) | `mrbayes/<группа>.nex.con.tre`, `mrbayes/<группа>.mb.log` |
+| вход | `*.fasta`/`*.aln` (по одному на группу V+J, выровненные) | `aligned_sequences/` |
+| выход | NEXUS-задание | `mrbayes/<группа>.nex` |
+| выход | консенсусное дерево | `mrbayes/<группа>.nex.con.tre` |
+| выход | карта имён | `mrbayes/<группа>.names.tsv` (`safe_id → исходный id`) |
 
-Дополнительно пишется `mrbayes/<группа>.names.tsv` (`safe_id → исходный id`) —
-MrBayes не принимает `-`/спецсимволы в именах таксонов, которые обычны в
-10x-баркодах (`GTTTCTATCATTATCC-1_contig_1`), поэтому таксоны временно
-переименовываются в `T0001…`. Этот файл нужен `../clades/confident_clades_report.py`,
-чтобы вернуть исходные id в отчёте.
+`.names.tsv` нужен, потому что MrBayes не принимает `-`/спецсимволы в именах
+таксонов (обычные в 10x-баркодах, напр. `GTTTCTATCATTATCC-1_contig_1`): таксоны
+временно переименовываются в `T0000…`. По этому файлу
+`../05_clade_search/clade_search.py` возвращает исходные id в отчёт.
 
 ## Запуск
 
 ```bash
-python run_mrbayes.py                       # aligned_sequences/ → mrbayes/
-python run_mrbayes.py путь/до/fasta --out mrbayes
-python run_mrbayes.py --nexus-only           # только сгенерировать .nex, не запускать mb
-python run_mrbayes.py --outgroup <seq_id>    # если в fasta есть germline-предок
+python build_trees_mrbayes.py aligned_sequences --out mrbayes
+python build_trees_mrbayes.py aligned_sequences --out mrbayes --nexus-only   # только .nex
+python build_trees_mrbayes.py aligned_sequences --out mrbayes --outgroup <seq_id>
 ```
 
-Скрипт состоит из двух фаз:
-1. **nexus** — MSA → `.nex` (DATA-блок + MRBAYES-блок: GTR+I+G, MCMC). Не требует
-   бинаря `mb`, всегда отрабатывает.
-2. **MRBayes** — запускает `mb` на только что написанном `.nex`, парсит
-   `.nex.con.tre` (апостериорные вероятности клад). Если `mb` не найден в `$PATH`
-   (`conda install -c bioconda mrbayes`), фаза 2 пропускается с понятным
-   сообщением, а `.nex` остаётся на диске — можно прогнать `mb` вручную или
-   перезапустить скрипт позже.
+Особенности реализации:
+- **Изоляция cwd**: каждый `mb` запускается в своей подпапке `_work/<группа>/`,
+  поэтому параллельные процессы не мешают друг другу общими файлами.
+- **stoprule**: MCMC останавливается по достижении сходимости
+  (avg split freq < `--stopval`, по умолчанию 0.01); `--mb-ngen` — верхний предел.
+- **Параллелизм** по группам на всех ядрах (`--workers`).
 
-Требует Python-пакет `biopython` (парсинг `.nex.con.tre`).
+## CPU / GPU
+
+По умолчанию — CPU (параллельно по группам). Для GPU (BEAGLE-CUDA) укажите бинарь:
+
+```bash
+python build_trees_mrbayes.py aligned_sequences --out mrbayes \
+    --gpu-mb-bin /path/to/mrbayes-gpu/bin/mb --gpu-min-taxa 60
+```
+
+Группы с числом таксонов ≥ `--gpu-min-taxa` считаются на GPU последовательно
+(одна карта), мелкие — параллельно на CPU. Без `--gpu-mb-bin` всё идёт на CPU.
+GPU-бинарь MrBayes с BEAGLE-CUDA собирается отдельно (в conda его нет).
+
+Требует `biopython` (парсинг `.nex.con.tre`) и бинарь `mb`
+(`conda install -c bioconda mrbayes`).
 
 ## Дальше по конвейеру
 
-`mrbayes/<группа>.nex.con.tre` — вход для [../clades/confident_clades_report.py](../clades/confident_clades_report.py)
-(поиск уверенных клад по апостериорной поддержке, posterior ≥ 0.95).
+`mrbayes/<группа>.nex.con.tre` → [../05_clade_search/clade_search.py](../05_clade_search/clade_search.py)
+(уверенные клады по posterior ≥ 0.95).

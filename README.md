@@ -43,7 +43,21 @@ python scripts/run_pipeline.py -k BCR --skip mrbayes --parallel-trees
 
 Зависимости шагов: `mutations` подтягивает `clades`; `filter_groups` — `group`.
 Переопределения из CLI: `--grouping-strategy`, `--min-group-size`, `--max-group-size`,
-`--iqtree-model`, `--parallel-trees`.
+`--iqtree-model`, `--parallel-trees`, `--gpu-mb-bin`.
+
+### CPU / GPU для MrBayes
+
+По умолчанию MrBayes считается на CPU (параллельно по группам, каждая в своей
+изолированной подпапке, со stoprule по сходимости). Для ускорения крупных групп
+на GPU (A100, BEAGLE-CUDA) укажите путь к GPU-бинарю `mb`:
+
+```bash
+python scripts/run_pipeline.py -k BCR --gpu-mb-bin /path/to/mrbayes-gpu/bin/mb
+```
+
+Тогда группы с числом таксонов ≥ `gpu_min_taxa` (по умолчанию 60) идут на GPU
+последовательно, мелкие — параллельно на CPU. Без `--gpu-mb-bin` — всё на CPU.
+GPU-бинарь MrBayes с BEAGLE-CUDA нужно собрать отдельно (в conda его нет).
 
 ## Структура репозитория
 
@@ -58,7 +72,8 @@ scripts/
   mutation_stats/              dN/dS и распределение мутаций по регионам (отдельно)
   SHM/                         поиск SHM hotspot/coldspot мотивов (отдельно)
   tree_analytics/              сводная аналитика по report.json (отдельно)
-  translate_to_amino/          трансляция нуклеотидов в аминокислоты
+  verify_by_amino/             трансляция в аминокислоты + сверка с IMGT-справочником
+  paths.py                     единые пути data/<key>/ ↔ results/<key>/ (для verify_by_amino)
   synthetic_data/              генератор синтетики + валидация разметки FR/CDR
   MACSE/                       кодон-осознанное выравнивание (альтернатива MAFFT)
 data/

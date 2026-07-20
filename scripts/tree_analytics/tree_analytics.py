@@ -1,10 +1,12 @@
 import argparse
 import json
+import os
 
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 OUTPUT_FILENAME = "tree_analytics.png"
+TOP_N_GENES = 20
 
 
 def load_json_data(file_path):
@@ -12,93 +14,106 @@ def load_json_data(file_path):
         return json.load(f)
 
 
-def extract_statistics(data, source="both"):
+def extract_statistics(data):
     genes = []
     clades_counts = []
     sizes = []
     depths = []
     ancestor_distances = []
-
-    sources_to_read = []
-    if source in ("both", "mrbayes"):
-        sources_to_read.append("mrbayes")
-    if source in ("both", "iqtree"):
-        sources_to_read.append("iqtree")
+    posteriors = []
+    ufboots = []
 
     for gene, content in data.items():
-        total_clades = 0
-        for src in sources_to_read:
-            clades_list = content.get(src, {}).get("clades", [])
-            total_clades += len(clades_list)
-            for clade in clades_list:
-                sizes.append(clade.get("size", 0))
-                if src == "mrbayes":
-                    depths.append(clade.get("depth", 0))
-                    if clade.get("ancestor_to_leaves"):
-                        ancestor_distances.append(clade["ancestor_to_leaves"].get("mean", 0))
-                elif src == "iqtree":
-                    if clade.get("ancestor_to_leaves"):
-                        ancestor_distances.append(clade["ancestor_to_leaves"].get("mean", 0))
+        clades_list = content.get("mrbayes", {}).get("clades", [])
+
         genes.append(gene)
-        clades_counts.append(total_clades)
+        clades_counts.append(len(clades_list))
 
-    return genes, clades_counts, sizes, depths, ancestor_distances
+        for clade in clades_list:
+            sizes.append(clade.get("size", 0))
+            depths.append(clade.get("depth", 0))
+
+            ancestor_to_leaves = clade.get("ancestor_to_leaves") or {}
+            mean_distance = ancestor_to_leaves.get("mean")
+            if mean_distance is not None:
+                ancestor_distances.append(mean_distance)
+
+            posterior = clade.get("posterior")
+            if posterior is not None:
+                posteriors.append(posterior)
+
+            ufboot = clade.get("ufboot")
+            if ufboot is not None:
+                ufboots.append(ufboot)
+
+    return genes, clades_counts, sizes, depths, ancestor_distances, posteriors, ufboots
 
 
-def plot_results(genes, clades_counts, sizes, depths, ancestor_distances, output_path):
+def plot_results(genes, clades_counts, sizes, depths, ancestor_distances, posteriors, ufboots, output_path):
     sns.set_theme(style="whitegrid")
 
-    fig, axes = plt.subplots(1, 4, figsize=(22, 5))
+    fig, axes = plt.subplots(1, 5, figsize=(26, 6))
 
-    # 589 генов не помещаются на одну ось (столбики сливаются, подписи наслаиваются),
-    # поэтому показываем топ по числу клад горизонтальными столбиками — так длинные
-    # имена V–J читаются без поворота.
-    top_n = 20
-    ranked = sorted(
-        ((g, c) for g, c in zip(genes, clades_counts) if c > 0),
-        key=lambda gc: gc[1], reverse=True,
-    )[:top_n]
-    top_genes = [g for g, _ in ranked]
-    top_counts = [c for _, c in ranked]
-    sns.barplot(x=top_counts, y=top_genes, hue=top_genes, ax=axes[0],
-                palette="viridis", legend=False, orient="h")
-    axes[0].set_title(f"Топ-{top_n} генов по числу клад (из {len(genes)})")
+    # 1. Топ-20 генов по числу клад — горизонтальные столбики, чтобы длинные
+    # имена генов помещались и читались (все 500+ генов на одну ось не влезают).
+    gene_pairs = sorted(zip(genes, clades_counts), key=lambda p: p[1], reverse=True)
+    top = gene_pairs[:TOP_N_GENES]
+    top_genes = [p[0] for p in top]
+    top_counts = [p[1] for p in top]
+
+    n = len(top_genes)
+    colors = [plt.cm.viridis(i / max(1, n - 1)) for i in range(n)]  # верхний (больше клад) — тёмный
+    axes[0].barh(range(n), top_counts, color=colors)
+    axes[0].set_yticks(range(n))
+    axes[0].set_yticklabels(top_genes, fontsize=8)
+    axes[0].invert_yaxis()                        # самый частый ген — сверху
+    axes[0].set_title(f"Топ-{n} генов по числу клад (из {len(genes)})")
     axes[0].set_xlabel("Количество клад")
     axes[0].set_ylabel("Ген (V–J)")
 
-    if sizes:
-        sns.histplot(sizes, ax=axes[1], kde=True, color="crimson", bins=10)
-        axes[1].set_title("Распределение размера клады (size)")
-        axes[1].set_xlabel("Размер клады (число листьев)")
-        axes[1].set_ylabel("Частота")
+    # 2. Размер клады — почти всё до ~10-15, длинный хвост редких крупных клад
+    # растягивал график, поэтому обрезаем ось.
+    size_cap = 15
+    axes[1].hist([s for s in sizes if s <= size_cap], bins=range(0, size_cap + 2),
+                 color="crimson", edgecolor="white")
+    axes[1].set_title("Сколько антител в кладе")
+    axes[1].set_xlabel("Размер клады\n(антител в кладе, до 15)")
+    axes[1].set_ylabel("Сколько клад")
+    axes[1].set_xticks(range(0, size_cap + 1))
+    axes[1].set_xlim(0, size_cap)
 
-    if depths:
-        # discrete-гистограмма по целочисленной оси: countplot схлопывал пропущенные
-        # значения глубины (10, 14, 16…28), из-за чего одиночная глубина 29 рисовалась
-        # вплотную к 15. Здесь ось числовая — разрыв виден, выброс стоит на своём месте.
-        sns.histplot(x=depths, discrete=True, ax=axes[2], color="purple")
-        axes[2].set_title("Распределение глубины клады (depth)")
-        axes[2].set_xlabel("Глубина (внутренних узлов в кладе)")
-        axes[2].set_ylabel("Количество клад")
+    # 3. Глубина клады — та же история, обрезаем по тому же принципу.
+    depth_cap = 10
+    depths_capped = [d for d in depths if d <= depth_cap]
+    sns.countplot(x=depths_capped, ax=axes[2], palette="magma", order=range(0, depth_cap + 1))
+    axes[2].set_title("Сложность родословной")
+    axes[2].set_xlabel("Глубина клады\n(уровней ветвления, до 10)")
+    axes[2].set_ylabel("Число клад")
+
+    # 4. Генетическая дистанция — это доля нуклеотидов, отличных от предка.
+    sns.histplot(ancestor_distances, ax=axes[3], kde=True, color="teal", bins=10)
+    axes[3].set_title("Отличие потомков от предка")
+    axes[3].set_xlabel("Отличие от предка\n(доля изменённых нуклеотидов)")
+    axes[3].set_ylabel("Сколько клад")
+
+    # 5. Уверенность в кладе. Если есть ufboot (IQ-TREE) — накладываем вторую
+    # линию для сравнения двух методов; если пуст — показываем только posterior.
+    sns.histplot(posteriors, ax=axes[4], kde=True, color="darkorange",
+                 bins=10, stat="density", label="MrBayes (posterior)")
+    if ufboots:
+        ufboots_scaled = [u / 100 for u in ufboots]    # ufboot 0-100 → шкала 0-1
+        sns.histplot(ufboots_scaled, ax=axes[4], kde=True, color="steelblue",
+                     bins=10, stat="density", label="IQ-TREE (UFBoot/100)")
+        axes[4].legend()
     else:
-        axes[2].text(0.5, 0.5, "Нет данных (только для MrBayes)",
-                     ha="center", va="center", transform=axes[2].transAxes)
-        axes[2].set_title("Глубина клады (depth)")
+        axes[4].text(0.02, 0.95,
+                     "UFBoot (IQ-TREE) в отчёте не заполнен —\nвторая линия появится, когда он будет посчитан",
+                     transform=axes[4].transAxes, fontsize=8, va="top", color="gray")
+    axes[4].set_title("Уверенность в кладе")
+    axes[4].set_xlabel("Поддержка клады\n(0–1, ближе к 1 — надёжнее)")
+    axes[4].set_ylabel("Плотность")
 
-    if ancestor_distances:
-        # переводим ветвевую дистанцию (замен/сайт, доли ~0.001–0.36) в % дивергенции —
-        # стандартную и читаемую единицу: медиана ~1.6 %, хвост до ~36 %.
-        ancestor_divergence_pct = [d * 100 for d in ancestor_distances]
-        sns.histplot(ancestor_divergence_pct, ax=axes[3], kde=True, color="teal", bins=10)
-        axes[3].set_title("Дивергенция предок→листья (mean)")
-        axes[3].set_xlabel("Дивергенция от предка, % (замен на 100 сайтов)")
-        axes[3].set_ylabel("Частота")
-    else:
-        axes[3].text(0.5, 0.5, "Нет данных (только для IQ-TREE)",
-                     ha="center", va="center", transform=axes[3].transAxes)
-        axes[3].set_title("Дивергенция предок→листья")
-
-    plt.tight_layout()
+    fig.tight_layout(w_pad=2.0)
     plt.savefig(output_path, dpi=150)
     print(f"График сохранён в {output_path}")
 
@@ -106,11 +121,9 @@ def plot_results(genes, clades_counts, sizes, depths, ancestor_distances, output
 def parse_args():
     parser = argparse.ArgumentParser(description="Анализ и визуализация статистики по кладам.")
     parser.add_argument("-i", "--input", required=True,
-                        help="Путь к входному JSON-файлу (report.json)")
+                         help="Путь к входному JSON-файлу (report.json)")
     parser.add_argument("-o", "--output", default=OUTPUT_FILENAME,
-                        help=f"Путь для сохранения графика (по умолчанию: {OUTPUT_FILENAME})")
-    parser.add_argument("--source", choices=["both", "mrbayes", "iqtree"], default="both",
-                        help="Источник данных: both (оба), mrbayes, iqtree (default: both)")
+                         help=f"Путь для сохранения графика (по умолчанию: {OUTPUT_FILENAME})")
     return parser.parse_args()
 
 
@@ -128,16 +141,21 @@ def main():
         print("Ошибка: некорректный JSON-формат.")
         return
 
-    genes, clades_counts, sizes, depths, ancestor_distances = extract_statistics(
-        raw_data, source=args.source)
+    genes, clades_counts, sizes, depths, ancestor_distances, posteriors, ufboots = extract_statistics(raw_data)
 
     print(f"Обработано генов: {len(genes)}")
     print(f"Всего клад найдено: {len(sizes)}")
+    if depths:
+        print(f"Максимальная глубина клады: {max(depths)}")
     if ancestor_distances:
         print(f"Средняя дистанция предок-лист по всем кладам: "
               f"{sum(ancestor_distances) / len(ancestor_distances):.5f}")
+    if posteriors:
+        print(f"Средний posterior по всем кладам: {sum(posteriors) / len(posteriors):.4f}")
+    if not ufboots:
+        print("UFBoot (IQ-TREE) в этом отчёте не заполнен — на 5-м графике будет только posterior.")
 
-    plot_results(genes, clades_counts, sizes, depths, ancestor_distances, output_path)
+    plot_results(genes, clades_counts, sizes, depths, ancestor_distances, posteriors, ufboots, output_path)
 
 
 if __name__ == "__main__":
