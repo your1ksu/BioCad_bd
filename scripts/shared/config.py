@@ -21,6 +21,9 @@ class PipelineConfig:
     # ---------- group_by_germlines (step 2) ----------
     grouping_strategy: str = "gene"                  # allele (IGHV1-2*01_IGHJ4*01), gene (IGHV1-2_IGHJ4), v_only (IGHV1-2)
 
+    # ---------- aligner (step 3) ----------
+    aligner: str = "mafft"                           # aligner for MSA: "mafft" или "macse"
+
     # ---------- filter_by_symbol_count (step 2b) ----------
     min_group_size: int = 5                          # мин. число последовательностей в группе (меньшие удаляются)
     max_group_size: int = 100                        # макс. число последовательностей в группе (большие обрезаются)

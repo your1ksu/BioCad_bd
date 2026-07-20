@@ -70,7 +70,7 @@ def main() -> None:
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    fasta_files = discover_fasta_files(input_dir)
+    fasta_files = [f for f in discover_fasta_files(input_dir) if not f.stem.endswith("_aa")]
     if not fasta_files:
         print("No FASTA files found in", input_dir)
         sys.exit(0)

@@ -152,8 +152,10 @@ def run_mb(key: str, nex_path: Path, rev: dict[str, str],
                               cwd=str(out_dir), capture_output=True, text=True,
                               timeout=timeout_s)
     except subprocess.TimeoutExpired:
+        print(f"[{key}] mb timeout after {timeout_s}s", file=sys.stderr)
         return "failed"
     if proc.returncode != 0:
+        print(f"[{key}] mb stderr: {proc.stderr.strip()}", file=sys.stderr)
         return "failed"
 
     runtime = time.time() - t0
@@ -194,7 +196,10 @@ def main(argv=None) -> int:
         print(f"Ошибка: папка не найдена: {in_dir}", file=sys.stderr)
         return 1
 
-    fasta_files = sorted(p for p in in_dir.iterdir() if p.suffix.lower() in FASTA_EXTS)
+    fasta_files = sorted(
+        p for p in in_dir.iterdir()
+        if p.suffix.lower() in FASTA_EXTS and not p.stem.endswith("_aa")
+    )
     if not fasta_files:
         print(f"В {in_dir} не найдено *.fa/*.fasta/*.fas/*.aln", file=sys.stderr)
         return 0

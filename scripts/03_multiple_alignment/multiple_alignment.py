@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
-"""Align every grouped FASTA file with MAFFT.
+"""Align every grouped FASTA file with MAFFT or MACSE.
 
-Example:
-    python3 multiple_alignment.py \
-        --input /path/to/grouped_by_germlines \
-        --output /path/to/aligned_sequences
-
-If --mafft is not specified, the script searches for "mafft" in PATH.
+Examples:
+    python3 multiple_alignment.py -i /path/to/input -o /path/to/output
+    python3 multiple_alignment.py -i /path/to/input -o /path/to/output --aligner macse
 """
 
 from __future__ import annotations
@@ -17,6 +14,13 @@ import shutil
 import subprocess
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+
+# Allow import of MACSE runner when aligner=macse
+import sys
+SCRIPTS_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(SCRIPTS_DIR))
+
+from MACSE.MACSEtry import run_macse as _run_macse
 
 
 OUTPUT_SUFFIX = "_aligned"
@@ -32,7 +36,6 @@ def detect_nproc() -> int:
 
 
 def discover_fasta_files(input_dir: Path) -> list[Path]:
-    """Return all FASTA files under the input directory."""
     suffixes = {".fasta", ".fa", ".fna", ".ffn", ".faa"}
     files = [
         path
@@ -43,7 +46,6 @@ def discover_fasta_files(input_dir: Path) -> list[Path]:
 
 
 def run_mafft(mafft_bin: Path, input_fasta: Path, output_fasta: Path, threads: int) -> None:
-    """Run MAFFT and write the alignment to the output file."""
     command = [
         str(mafft_bin),
         "--auto",
@@ -60,59 +62,16 @@ def run_mafft(mafft_bin: Path, input_fasta: Path, output_fasta: Path, threads: i
         raise
 
 
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description=(
-            "Find FASTA files in an input directory and align each file with MAFFT."
-        )
-    )
-    parser.add_argument(
-        "-i",
-        "--input",
-        required=True,
-        type=Path,
-        help="Directory with input FASTA files.",
-    )
-    parser.add_argument(
-        "-o",
-        "--output",
-        required=True,
-        type=Path,
-        help="Directory where aligned FASTA files and manifest.tsv will be written.",
-    )
-    parser.add_argument(
-        "-m",
-        "--mafft",
-        type=Path,
-        default=None,
-        help=(
-            "Path to MAFFT executable. If omitted, the script searches for mafft "
-            "in PATH."
-        ),
-    )
-    parser.add_argument(
-        "--threads",
-        type=int,
-        default=1,
-        help="Threads per MAFFT instance (default: 1)",
-    )
-    parser.add_argument(
-        "--workers",
-        type=int,
-        default=0,
-        help="Number of parallel MAFFT processes (default: number of CPU cores)",
-    )
-    return parser.parse_args()
+def run_macse(macse_bin: Path, input_fasta: Path, output_fasta: Path) -> None:
+    _run_macse(macse_bin, input_fasta, output_fasta)
 
 
 def find_mafft(mafft_arg: Path | None) -> Path:
-    """Return a MAFFT executable from --mafft or from PATH."""
     if mafft_arg is not None:
         mafft_bin = mafft_arg.expanduser()
         if not mafft_bin.is_file():
             raise FileNotFoundError(f"MAFFT not found: {mafft_bin}")
         return mafft_bin
-
     mafft_from_path = shutil.which("mafft")
     if mafft_from_path is None:
         raise FileNotFoundError(
@@ -122,11 +81,47 @@ def find_mafft(mafft_arg: Path | None) -> Path:
     return Path(mafft_from_path)
 
 
+def find_macse(macse_arg: Path | None) -> Path:
+    if macse_arg is not None:
+        macse_bin = macse_arg.expanduser()
+        if not macse_bin.is_file():
+            raise FileNotFoundError(f"MACSE not found: {macse_bin}")
+        return macse_bin
+    macse_from_path = shutil.which("macse")
+    if macse_from_path is None:
+        raise FileNotFoundError(
+            "MACSE not found in PATH. Install MACSE (conda install -c bioconda macse) "
+            "or pass the executable with --macse."
+        )
+    return Path(macse_from_path)
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Find FASTA files in an input directory and align each file."
+    )
+    parser.add_argument("-i", "--input", required=True, type=Path,
+                        help="Directory with input FASTA files.")
+    parser.add_argument("-o", "--output", required=True, type=Path,
+                        help="Directory where aligned FASTA files and manifest.tsv will be written.")
+    parser.add_argument("--aligner", choices=["mafft", "macse"], default="mafft",
+                        help="Aligner to use (default: mafft).")
+    parser.add_argument("-m", "--mafft", type=Path, default=None,
+                        help="Path to MAFFT executable (default: search PATH).")
+    parser.add_argument("--macse", type=Path, default=None,
+                        help="Path to MACSE executable (default: search PATH).")
+    parser.add_argument("--threads", type=int, default=1,
+                        help="Threads per aligner process (default: 1).")
+    parser.add_argument("--workers", type=int, default=0,
+                        help="Number of parallel processes (default: CPU count).")
+    return parser.parse_args()
+
+
 def main() -> None:
     args = parse_args()
     input_dir = args.input.expanduser()
     output_dir = args.output.expanduser()
-    mafft_bin = find_mafft(args.mafft)
+    aligner = args.aligner
     nproc = detect_nproc()
     workers = args.workers if args.workers > 0 else nproc
 
@@ -150,15 +145,28 @@ def main() -> None:
         output_path.parent.mkdir(parents=True, exist_ok=True)
         tasks.append((fasta_path, rel_path, output_path))
 
+    r_mafft = None
+    r_macse = None
+    if aligner == "mafft":
+        r_mafft = find_mafft(args.mafft)
+    else:
+        r_macse = find_macse(args.macse)
+
     manifest_lines = ["input_fasta\taligned_fasta"]
     completed = 0
     total = len(tasks)
 
     with ThreadPoolExecutor(max_workers=workers) as executor:
-        fut_to_task = {
-            executor.submit(run_mafft, mafft_bin, fp, op, args.threads): (fp, rp, op)
-            for fp, rp, op in tasks
-        }
+        if aligner == "mafft":
+            fut_to_task = {
+                executor.submit(run_mafft, r_mafft, fp, op, args.threads): (fp, rp, op)
+                for fp, rp, op in tasks
+            }
+        else:
+            fut_to_task = {
+                executor.submit(run_macse, r_macse, fp, op): (fp, rp, op)
+                for fp, rp, op in tasks
+            }
         for future in as_completed(fut_to_task):
             fp, rp, op = fut_to_task[future]
             try:
@@ -173,8 +181,9 @@ def main() -> None:
     manifest_path = output_dir / "manifest.tsv"
     manifest_path.write_text("\n".join(manifest_lines) + "\n", encoding="utf-8")
 
+    aligner_name = "MAFFT" if aligner == "mafft" else "MACSE"
     print()
-    print(f"MAFFT executable: {mafft_bin}")
+    print(f"{aligner_name} executable: {r_mafft or r_macse}")
     print(f"Input directory: {input_dir}")
     print(f"Output directory: {output_dir}")
     print(f"Workers: {workers}")
