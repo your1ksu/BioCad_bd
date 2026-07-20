@@ -16,3 +16,4 @@ dependencies:
   - toyplot
   - matplotlib
   - seaborn
+  - macse

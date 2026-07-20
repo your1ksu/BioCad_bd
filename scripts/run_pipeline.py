@@ -71,7 +71,7 @@ def conda_env():
     return env
 
 
-ALL_STEPS = ["filter", "group", "filter_groups", "msa", "iqtree", "mrbayes", "viz", "clades", "mutations"]
+ALL_STEPS = ["filter", "group", "filter_groups", "verify", "msa", "iqtree", "mrbayes", "viz", "clades", "mutations"]
 
 
 def run_cmd(cmd, cwd=None, log_file=None, description=None):
@@ -143,11 +143,21 @@ def step2b_filter_groups(vj_dir, filtered_dir, log_dir, min_size, max_size):
     ], log_file=log_dir / "step2b_filter_groups.log", description="Step 2b: Filter groups by size")
 
 
-def step3_msa(grouped_vj_dir, output_dir, log_dir):
+def step_verify(vj_dir, verify_dir, log_dir):
     return run_cmd([
+        PYTHON_BIN, str(SCRIPTS_DIR / "verify_by_amino" / "verify_by_amino.py"),
+        "-i", str(vj_dir), "-o", str(verify_dir),
+    ], log_file=log_dir / "step_verify.log", description="Step 2c: Verify by amino acid translation")
+
+
+def step3_msa(grouped_vj_dir, output_dir, log_dir, aligner):
+    desc = f"Step 3: MSA ({aligner.upper()})"
+    cmd = [
         PYTHON_BIN, str(SCRIPTS_DIR / "03_multiple_alignment" / "multiple_alignment.py"),
         "-i", str(grouped_vj_dir), "-o", str(output_dir),
-    ], log_file=log_dir / "step3_msa.log", description="Step 3: MSA (MAFFT)")
+        "--aligner", aligner,
+    ]
+    return run_cmd(cmd, log_file=log_dir / "step3_msa.log", description=desc)
 
 
 def step4a_iqtree(aligned_dir, trees_dir, log_dir, iqtree_model):
@@ -252,6 +262,8 @@ def main():
                         help="Maximum sequences per group (filter_groups)")
     parser.add_argument("--iqtree-model", default=None,
                         help="IQ-TREE substitution model (default: GTR+F+I+G4)")
+    parser.add_argument("--aligner", choices=["mafft", "macse"], default=None,
+                        help="Aligner for MSA: mafft (default) or macse")
     args = parser.parse_args()
 
     # Load config
@@ -270,6 +282,8 @@ def main():
         config.max_group_size = args.max_group_size
     if args.iqtree_model is not None:
         config.iqtree_model = args.iqtree_model
+    if args.aligner is not None:
+        config.aligner = args.aligner
     if args.parallel_trees:
         config.parallel_trees = True
 
@@ -306,6 +320,7 @@ def main():
     grouped_dir = report_dir / "grouped_by_germlines"
     grouped_vj_dir = grouped_dir / "vj"
     vj_filtered_dir = grouped_dir / "vj_filtered"
+    verify_dir = report_dir / "verify_by_amino"
     aligned_dir = report_dir / "aligned_sequences"
     trees_dir = report_dir / "trees"
     mrbayes_dir = report_dir / "mrbayes"
@@ -331,6 +346,8 @@ def main():
     if "filter_groups" in steps_to_run and "group" not in steps_to_run:
         print("WARNING: filter_groups requires group. Adding group step.")
         steps_to_run.add("group")
+    if "verify" in steps_to_run and "group" not in steps_to_run and "filter_groups" not in steps_to_run:
+        print("WARNING: verify requires group or filter_groups output.")
     if "msa" in steps_to_run and "group" not in steps_to_run and "filter_groups" not in steps_to_run:
         print("WARNING: msa requires group or filter_groups output.")
 
@@ -339,6 +356,7 @@ def main():
     print(f"Input:  {input_tsv}")
     print(f"Output: {report_dir}")
     print(f"Config: grouping={config.grouping_strategy}, "
+          f"aligner={config.aligner}, "
           f"iqtree_model={config.iqtree_model}, "
           f"min_group={config.min_group_size}")
     print(f"Steps:  {', '.join(s for s in ALL_STEPS if s in steps_to_run)}")
@@ -377,9 +395,24 @@ def main():
     else:
         results["filter_groups"] = True
 
+    # Step 2c: Verify by amino acid (only before MAFFT; MACSE handles translation natively)
+    if config.aligner == "macse":
+        if "verify" in steps_to_run:
+            print("Skipping verify: not needed with MACSE (handles translation natively)")
+        results["verify"] = True
+    elif "verify" in steps_to_run:
+        results["verify"] = step_verify(msa_input_dir, verify_dir, log_dir)
+        if results["verify"]:
+            msa_input_dir = verify_dir
+        else:
+            print("Pipeline stopped at verify")
+            return 1
+    else:
+        results["verify"] = True
+
     # Step 3: MSA
     if "msa" in steps_to_run:
-        results["msa"] = step3_msa(msa_input_dir, aligned_dir, log_dir)
+        results["msa"] = step3_msa(msa_input_dir, aligned_dir, log_dir, config.aligner)
         if not results["msa"]:
             print("Pipeline stopped at step 3")
             return 1

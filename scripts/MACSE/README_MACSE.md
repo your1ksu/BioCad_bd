@@ -1,88 +1,66 @@
 # MACSE MSA
 
-Короткий модуль пайплайна для множественного выравнивания FASTA-файлов с помощью MACSE.
+Множественное выравнивание FASTA-файлов с помощью MACSE.
 
-Скрипт ищет все FASTA-файлы во входной папке, запускает MACSE для каждого файла и сохраняет:
+Скрипт ищет все FASTA-файлы во входной папке, запускает MACSE для каждого
+файла и сохраняет:
 
-- `*_aligned.fasta` - нуклеотидное выравнивание;
-- `*_aligned_aa.fasta` - аминокислотное выравнивание;
-- `manifest.tsv` - таблицу соответствия входных и выходных файлов.
+- `*_aligned.fasta` — нуклеотидное выравнивание;
+- `*_aligned_aa.fasta` — аминокислотное выравнивание;
+- `manifest.tsv` — таблицу соответствия.
 
 ## Требования
 
-- Linux/macOS shell;
-- `python3`;
-- `conda` или доступ к интернету для автоматической установки Miniforge;
-- MACSE устанавливается автоматически в conda-окружение `macse_env`.
+- Python 3.11+
+- MACSE в PATH (или путь через `--macse`)
+
+```bash
+conda install -c bioconda macse
+```
 
 ## Запуск
 
-Рекомендуемый запуск через shell-обертку:
-
 ```bash
-./run_macse.sh \
-  -i /path/to/input_fastas \
-  -o /path/to/output_dir
+python3 MACSEtry.py -i /path/to/input_fastas -o /path/to/output_dir
+
+# С явным путём к MACSE:
+python3 MACSEtry.py -i /path/to/input_fastas -o /path/to/output_dir --macse /opt/macse/bin/macse
 ```
 
-Пример для V-генов:
+## Аргументы
+
+| Аргумент | Описание |
+|---|---|
+| `-i`, `--input` | Папка с входными FASTA-файлами |
+| `-o`, `--output` | Папка для результатов |
+| `--macse` | Путь к MACSE (по умолч. поиск в PATH) |
+| `--threads` | Потоков на процесс (по умолч. 1) |
+| `--workers` | Параллельных процессов (по умолч. число ядер CPU) |
+
+## Использование в пайплайне
+
+Через `run_pipeline.py`:
 
 ```bash
-./run_macse.sh \
-  -i /home/hellstrom/Загрузки/grouped_by_germlines/v \
-  -o /home/hellstrom/Документы/MACSE/v
+python3 scripts/run_pipeline.py -k batch1 --aligner macse
 ```
 
-Можно задать имя conda-окружения:
+Или через `multiple_alignment.py`:
 
 ```bash
-./run_macse.sh \
-  -i /path/to/input_fastas \
-  -o /path/to/output_dir \
-  -e my_macse_env
+python3 scripts/03_multiple_alignment/multiple_alignment.py -i input -o output --aligner macse
 ```
 
-`MSA.sh` делает то же самое и просто вызывает `run_macse.sh`:
+## Важно
 
-```bash
-./MSA.sh -i /path/to/input_fastas -o /path/to/output_dir
-```
-
-## Что делает run_macse.sh
-
-1. Ищет `conda`.
-2. Если `conda` нет, ставит локальный Miniforge в `.miniforge`.
-3. Создает conda-окружение, если его еще нет.
-4. Устанавливает `macse`.
-5. Запускает `MACSEtry.py` внутри этого окружения.
-
-## Запуск Python-скрипта напрямую
-
-Если окружение уже активировано и `macse` доступен:
-
-```bash
-python3 MACSEtry.py \
-  --input /path/to/input_fastas \
-  --output /path/to/output_dir
-```
-
-Если нужно указать MACSE явно:
-
-```bash
-python3 MACSEtry.py \
-  --input /path/to/input_fastas \
-  --output /path/to/output_dir \
-  --macse /path/to/macse
-```
+MACSE предназначен для кодирующих нуклеотидных последовательностей. Если
+входные последовательности не являются coding DNA, имеют проблемную рамку
+считывания или много стоп-кодонов, MACSE может завершиться с ошибкой.
 
 ## Тесты
 
 ```bash
-python3 -m unittest discover -s tests_MACSE -p 'test_*.py'
+python3 -m pytest tests/tests_MACSE/ -v
 ```
 
-Тесты не запускают настоящий MACSE: внешний вызов подменяется фейковой функцией, чтобы проверить логику скрипта быстро и без зависимости от окружения.
-
-## Важно
-
-MACSE предназначен для кодирующих нуклеотидных последовательностей. Если входные последовательности не являются coding DNA, имеют проблемную рамку считывания или много стоп-кодонов, MACSE может завершиться с ошибкой.
+Тесты не запускают настоящий MACSE: внешний вызов подменяется фейком.

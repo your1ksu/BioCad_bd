@@ -1,35 +1,33 @@
-# MSA: выравнивание FASTA-файлов через MAFFT
+# MSA: выравнивание FASTA-файлов (MAFFT / MACSE)
 
-`multiple_alignment.py` выполняет множественное выравнивание FASTA-файлов с помощью
-MAFFT.
+`multiple_alignment.py` выполняет множественное выравнивание FASTA-файлов.
+Поддерживаются два выравнивателя: MAFFT (по умолчанию) и MACSE.
 
 ## Запуск
 
 ```bash
+# MAFFT (по умолчанию)
 python3 multiple_alignment.py -i /path/to/input_fastas -o /path/to/output_dir
+
+# MACSE
+python3 multiple_alignment.py -i /path/to/input_fastas -o /path/to/output_dir --aligner macse
 ```
 
-Пример:
+## Аргументы
 
-```bash
-python3 multiple_alignment.py \
-  -i results/BCR/grouped_by_germlines/vj \
-  -o aligned_sequences
-```
-
-Если `mafft` не находится автоматически, можно указать путь к нему:
-
-```bash
-python3 multiple_alignment.py \
-  -i /path/to/input_dir \
-  -o /path/to/output_dir \
-  -m /path/to/mafft
-```
+| Аргумент | Описание |
+|---|---|
+| `-i`, `--input` | Папка с входными FASTA-файлами |
+| `-o`, `--output` | Папка для результатов |
+| `--aligner` | `mafft` (по умолч.) или `macse` |
+| `-m`, `--mafft` | Путь к MAFFT (по умолч. поиск в PATH) |
+| `--macse` | Путь к MACSE (по умолч. поиск в PATH) |
+| `--threads` | Потоков на процесс выравнивания (по умолч. 1) |
+| `--workers` | Параллельных процессов (по умолч. число ядер CPU) |
 
 ## Входные данные
 
-На вход подаётся папка с FASTA-файлами. `multiple_alignment.py` ищет файлы рекурсивно,
-то есть также обрабатывает FASTA-файлы во всех подпапках.
+На вход подаётся папка с FASTA-файлами. Скрипт ищет файлы рекурсивно.
 
 Поддерживаемые расширения: `.fasta`, `.fa`, `.fna`, `.ffn`, `.faa`.
 
@@ -37,13 +35,11 @@ python3 multiple_alignment.py \
 
 ## Что делает
 
-Скрипт:
-
 - находит все FASTA-файлы во входной папке;
-- запускает MAFFT для каждого файла отдельно;
+- запускает выравниватель для каждого файла;
 - сохраняет выровненные последовательности в выходную папку;
-- сохраняет структуру подпапок из входной папки;
-- создаёт файл `manifest.tsv` со списком входных и выходных файлов.
+- сохраняет структуру подпапок;
+- создаёт `manifest.tsv` со списком входных и выходных файлов.
 
 ## Результаты
 
@@ -54,5 +50,5 @@ python3 multiple_alignment.py \
 group1.fasta -> group1_aligned.fasta
 ```
 
-В выходной папке также появится `manifest.tsv` — соответствие между исходными
-FASTA-файлами и результатами выравнивания.
+При использовании MACSE дополнительно создаются `*_aa.fasta` (аминокислотное
+выравнивание).

@@ -2,26 +2,18 @@ import argparse
 import os
 import sys
 import time
+from pathlib import Path
 
 from Bio.Align import PairwiseAligner
 from Bio.Seq import Seq
 
-# ============ ПУТИ ============
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-# paths.py лежит на уровень выше (в scripts/), а не рядом с этим файлом
-SCRIPTS_DIR = os.path.dirname(BASE_DIR)
-if SCRIPTS_DIR not in sys.path:
-    sys.path.insert(0, SCRIPTS_DIR)
-
-from paths import get_paths  # noqa: E402
-
 STOP_SYMBOL = "*"
 MATCH_IDENTITY_THRESHOLD = 0.5
 
-DEFAULT_INPUT_SUBFOLDER = "vj_filtered"
-DEFAULT_OUTPUT_SUBFOLDER = "verify_by_amino"
-DEFAULT_REFERENCE_FILENAME = "HomoSapiens_IMGTGENEDB-ReferenceSequences.fasta"
+DEFAULT_AA_REFERENCE = str(
+    Path(__file__).resolve().parent.parent.parent / "data"
+    / "HomoSapiens_IMGTGENEDB-ReferenceSequences.fasta"
+)
 
 
 def read_fasta(path):
@@ -222,51 +214,32 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description="Верификация нуклеотидных fasta через трансляцию и сверку по IMGT. На выход — нуклеотиды."
     )
-    parser.add_argument(
-        "-k", "--key",
-        default="BCR",
-        help="Название подпапки внутри results/ (по умолчанию: BCR)",
-    )
-    parser.add_argument(
-        "--input-subfolder",
-        default=DEFAULT_INPUT_SUBFOLDER,
-        help=f"Подпапка внутри results/<key>/ с входными nt-fasta (по умолчанию: {DEFAULT_INPUT_SUBFOLDER})",
-    )
-    parser.add_argument(
-        "--output-subfolder",
-        default=DEFAULT_OUTPUT_SUBFOLDER,
-        help=f"Подпапка внутри results/<key>/ для результатов (по умолчанию: {DEFAULT_OUTPUT_SUBFOLDER})",
-    )
-    parser.add_argument(
-        "--reference-fasta",
-        default=None,
-        help=(
-            "Путь к AA-справочнику IMGT без гэпов. Если не указан, берётся "
-            f"data/{DEFAULT_REFERENCE_FILENAME}"
-        ),
-    )
+    parser.add_argument("-i", "--input", required=True,
+                        help="Входная папка с nt-fasta файлами (vj_filtered/)")
+    parser.add_argument("-o", "--output", required=True,
+                        help="Выходная папка для прошедших проверку nt-fasta")
+    parser.add_argument("--aa-reference", default=DEFAULT_AA_REFERENCE,
+                        help="Путь к AA-справочнику IMGT без гэпов")
     return parser.parse_args()
 
 
 def main():
     args = parse_args()
-    paths = get_paths(args.key)
 
-    input_dir = os.path.join(paths["output_dir"], args.input_subfolder)
-    output_dir = os.path.join(paths["output_dir"], args.output_subfolder)
+    input_dir = args.input
+    output_dir = args.output
     quarantine_dir = os.path.join(output_dir, "premature_stop")
     no_match_dir = os.path.join(output_dir, "no_match")
 
     if not os.path.isdir(input_dir):
-        print(f"Ошибка: путь {input_dir} не найден. Проверь --key и --input-subfolder.")
-        return
+        print(f"Ошибка: папка {input_dir} не найдена.", file=sys.stderr)
+        sys.exit(1)
 
     os.makedirs(output_dir, exist_ok=True)
     os.makedirs(quarantine_dir, exist_ok=True)
     os.makedirs(no_match_dir, exist_ok=True)
 
-    reference_path = args.reference_fasta or os.path.join(os.path.dirname(paths["input_dir"]), DEFAULT_REFERENCE_FILENAME)
-    
+    reference_path = args.aa_reference
     if os.path.isfile(reference_path):
         reference_dict, total_ref = read_aa_reference(reference_path)
         print(f"Загружен AA-справочник: {len(reference_dict)} уникальных генов, {total_ref} записей")
@@ -286,7 +259,7 @@ def main():
         "premature_stop": 0,
     }
 
-    fasta_files = [f for f in os.listdir(input_dir) if f.lower().endswith((".fasta", ".fa"))]
+    fasta_files = sorted(f for f in os.listdir(input_dir) if f.lower().endswith((".fasta", ".fa")))
     print(f"Найдено fasta-файлов: {len(fasta_files)}")
     t_start = time.time()
 
@@ -302,11 +275,9 @@ def main():
 
     elapsed = time.time() - t_start
     print(f"\nГотово! ({elapsed:.1f} сек)")
-
-    print("\nГотово!")
     print(f"Без стоп-кодона: {counters['no_stop']}")
     print(f"Стоп-кодон в конце: {counters['stop_at_end']}")
-    print(f"Совпало со справочником (сохранено в {args.output_subfolder}/): {counters['matched']}")
+    print(f"Совпало со справочником (сохранено в verify_by_amino/): {counters['matched']}")
     print(f"Не нашли совпадения ни в одной рамке (в no_match/): {counters['no_match']}")
     print(f"Стоп-кодон не в конце во всех рамках (в premature_stop/): {counters['premature_stop']}")
 
