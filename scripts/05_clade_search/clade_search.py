@@ -1,39 +1,4 @@
 #!/usr/bin/env python3
-"""ШАГ «Никиты» (уверенные клады) — nexus → report.json.
-
-Обёртка над продакшн-движком ``biocode`` (см. ../biocode/, вендорено без
-изменений из BIOCAD.bigchallenges@main), адаптированная под файловый контракт
-остальных участников конвейера (см. ../BioCad_repo.md, строка «уверенные
-клады»: критерий UFBoot≥95 и aLRT≥80, у Байеса — posterior≥0.95).
-
-Два независимых источника NEXUS-деревьев поддержаны (можно использовать один
-или оба сразу — тогда клады группы объединяются в один report.json):
-
-  --mrbayes-dir DIR (по умолчанию 'mrbayes')
-      <группа>.nex.con.tre из шага ../04b_build_trees_mrbayes/build_trees_mrbayes.py — консенсус
-      MrBayes с апостериорной поддержкой (posterior) на внутренних узлах.
-      Критерий: posterior ≥ --posterior-min (по умолчанию 0.95).
-      Требуется <группа>.names.tsv рядом (тот же шаг его пишет), чтобы вернуть
-      исходные id таксонов вместо MrBayes-совместимых T0001...
-
-      Два исправления против наивного обхода дерева (найдены и проверены
-      тестами на tests/fixtures/, см. tests/test_fixtures.py):
-      1) MrBayes пишет неукоренённое дерево как rooted-newick с базовой
-         политомией — часть клады может остаться «голыми» листьями прямо на
-         корне вместо отдельного узла (см. _root_complement_supports).
-      2) Обе стороны одного и того же ребра дерева иногда попадают в supports
-         как два разных «клады» — оставляем только содержательную меньшую
-         сторону (см. _drop_complement_duplicates).
-
-  --iqtree-dir DIR (напр. 'trees', выход anotherpipeline/build_trees/build_trees.sh
-      у Дениса: trees/<группа>/<группа>.treefile)
-      ML-дерево IQ-TREE с метками узлов вида 'SH-aLRT/UFboot' (напр. '98.5/100').
-      Критерий: UFBoot ≥ --ufboot-min (95) И aLRT ≥ --alrt-min (80) — здесь
-      напрямую вызывается ``biocode.clades.confident_clades`` без изменений.
-
-Выход: groups/report.json — {<группа>: {"mrbayes": {...}, "iqtree": {...}}}
-(секции присутствуют только для тех источников, что были переданы и найдены).
-"""
 from __future__ import annotations
 
 import argparse
@@ -42,33 +7,117 @@ import sys
 from io import StringIO
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
-
-from biocode import clades as clades_mod
-from biocode.model import TreeResult
-from biocode.trees import mrbayes as mrbayes_mod
-
 CON_TRE_SUFFIX = ".nex.con.tre"
 
 
-def _root_complement_supports(newick: str, supports: dict[str, dict]) -> dict[str, dict]:
-    """Достроить supports той стороной корневого разбиения, которую MrBayes не
-    обернул в отдельный узел.
+def _node_name(clade) -> str | None:
+    if clade.is_terminal():
+        return clade.name
+    if clade.name:
+        return clade.name.split("/")[0]
+    return None
 
-    MrBayes пишет консенсус НЕУКОРЕНЁННОГО дерева как rooted-newick с базовой
-    политомией (напр. ``(seq1,seq2,(seq3,seq4)1.00)``): 2 таксона висят прямо
-    на корне по отдельности, а их сестринская пара обёрнута в узел с posterior.
-    Для 4 таксонов это ЕДИНСТВЕННОЕ возможное внутреннее ребро дерева — то есть
-    {seq1,seq2} обладает ТОЙ ЖЕ posterior-поддержкой, что и {seq3,seq4}, просто
-    не материализована как узел, и наивный обход get_nonterminals() её теряет.
 
-    Правило (безопасно и однозначно только в этом частном случае): если среди
-    прямых потомков КОРНЯ ровно один — свёрнутая клада, а остальные ≥2 —
-    голые листья, то эти листья вместе — комплементарная клада с той же
-    posterior (это то же самое ребро дерева, две стороны одного разбиения).
-    Если на корне ≥2 свёрнутых клад — топология между ними не разрешена,
-    объединять голые листья не тождественно правильно, поэтому не трогаем.
+def _support(clade) -> dict[str, float]:
+    if clade.is_terminal() or not clade.name:
+        return {}
+    nums = []
+    for tok in clade.name.split("/"):
+        try:
+            nums.append(float(tok))
+        except ValueError:
+            pass
+    if len(nums) >= 2:
+        return {"alrt": nums[-2], "ufboot": nums[-1]}
+    if len(nums) == 1:
+        return {"ufboot": nums[0]}
+    return {}
+
+
+def _clade_tree_metrics(tree, leaves: frozenset):
+    """Метрики клады по дереву: (depth, ancestor_to_leaves).
+
+    depth — сколько ВНУТРЕННИХ узлов внутри клады, не считая сам узел-предок
+    клады. Пара листьев от общего предка → depth=0; каждый доп. уровень
+    ветвления внутри клады → +1. Считается по РЕАЛЬНОМУ дереву, а не как
+    (size-1): majority-rule консенсус MrBayes может давать политомии.
+
+    ancestor_to_leaves — насколько предок клады далеко от своих листьев, в
+    длинах ветвей (замен на сайт): {"max","mean","min"} по всем листьям клады.
+
+    Клада может быть достроена из комплемента корня (см.
+    _root_complement_supports): тогда отдельного узла в дереве нет, а общим
+    предком листьев выступает корень — обрабатывается отдельной веткой.
     """
+    if tree is None:
+        return None, None
+    target = None
+    for clade in tree.get_nonterminals():
+        if frozenset(t.name for t in clade.get_terminals()) == leaves:
+            target = clade
+            break
+
+    if target is not None:
+        depth = len(target.get_nonterminals()) - 1        # без самого узла-предка
+        # Bio.Phylo depths() у под-клады стартует с её собственной ветви (ведущей
+        # К предку) — вычитаем её, чтобы получить расстояние ОТ предка вниз.
+        stem = target.branch_length or 0.0
+        dists = [d - stem for cl, d in target.depths().items() if cl.is_terminal()]
+    else:
+        # комплемент корня: листья висят прямо на корне, их предок — корень
+        root_leaf_children = [c for c in tree.root.clades
+                              if c.is_terminal() and c.name in leaves]
+        if len(root_leaf_children) != len(leaves):
+            return None, None
+        depth = 0
+        dists = [c.branch_length or 0.0 for c in root_leaf_children]
+
+    if not dists:
+        return depth, None
+    return depth, {
+        "max": round(max(dists), 6),
+        "mean": round(sum(dists) / len(dists), 6),
+        "min": round(min(dists), 6),
+    }
+
+
+def confident_clades(newick: str, *, ufboot_min: float = 95.0,
+                     alrt_min: float = 80.0) -> list[dict]:
+    from Bio import Phylo
+
+    if not newick:
+        return []
+    phylo = Phylo.read(StringIO(newick), "newick")
+
+    clades: list[dict] = []
+    for clade in phylo.get_nonterminals():
+        sup = _support(clade)
+        uf, al = sup.get("ufboot", 0.0), sup.get("alrt", 0.0)
+        if not (uf >= ufboot_min and al >= alrt_min):
+            continue
+        leaves = [t.name for t in clade.get_terminals()]
+        if len(leaves) < 2:
+            continue
+        depth, anc = _clade_tree_metrics(phylo, frozenset(leaves))
+        clades.append({
+            "clade": _node_name(clade),
+            "size": len(leaves),
+            "leaves": leaves,
+            "depth": depth,
+            "ancestor_to_leaves": anc,
+            "ufboot": uf,
+            "alrt": al,
+            "defining_mutations": 0,
+            "defining_cdr": 0,
+            "isotypes": {},
+            "days": [],
+            "confident_both_models": False,
+        })
+    clades.sort(key=lambda c: (c["ufboot"], c["size"]), reverse=True)
+    return clades
+
+
+def _root_complement_supports(newick: str, supports: dict[str, dict]) -> dict[str, dict]:
     if not newick:
         return supports
     try:
@@ -100,16 +149,6 @@ def _root_complement_supports(newick: str, supports: dict[str, dict]) -> dict[st
 
 
 def _drop_complement_duplicates(supports: dict[str, dict], all_leaves: frozenset) -> dict[str, dict]:
-    """Если клада C и её дополнение (all_leaves \\ C) обе есть в supports — это
-    ДВЕ СТОРОНЫ ОДНОГО РЕБРА дерева. Когда стороны разного размера, большая —
-    это просто «всё, кроме меньшей клады» и не несёт отдельного биологического
-    смысла (пример: клада из 2 листьев vs комплемент из 4 разнородных) — такую
-    большую сторону убираем, оставляя только содержательную меньшую.
-
-    Когда стороны РАВНОГО размера (напр. 2+2 при 4 таксонах) — это два
-    ОДИНАКОВО специфичных, независимо содержательных разбиения (напр. {1,2} и
-    {3,4} — обе реальные пары), обе сохраняются.
-    """
     sig_to_leaves = {sig: frozenset(sig.split("|")) for sig in supports}
     drop: set[str] = set()
     sigs = list(supports)
@@ -128,8 +167,34 @@ def _drop_complement_duplicates(supports: dict[str, dict], all_leaves: frozenset
     return {sig: sup for sig, sup in supports.items() if sig not in drop}
 
 
+def parse_con_tre(path: str | Path, rev: dict[str, str]) -> tuple[str, dict[str, dict]]:
+    from Bio import Phylo
+
+    path = Path(path)
+    if not path.is_file():
+        return "", {}
+    tree = next(Phylo.parse(str(path), "nexus"), None)
+    if tree is None:
+        return "", {}
+    for tip in tree.get_terminals():
+        tip.name = rev.get(tip.name, tip.name)
+
+    all_leaves = {t.name for t in tree.get_terminals()}
+    supports: dict[str, dict] = {}
+    for clade in tree.get_nonterminals():
+        leaves = frozenset(t.name for t in clade.get_terminals())
+        if len(leaves) < 2 or len(leaves) >= len(all_leaves):
+            continue
+        if clade.confidence is not None:
+            pp = float(clade.confidence)
+            pp = pp / 100.0 if pp > 1.0 else pp
+            supports["|".join(sorted(leaves))] = {"posterior": round(pp, 4)}
+    out = StringIO()
+    Phylo.write(tree, out, "newick")
+    return out.getvalue().strip(), supports
+
+
 def _load_names(names_tsv: Path) -> dict[str, str]:
-    """<группа>.names.tsv (safe_id\\toriginal_id) → {safe_id: original_id}."""
     if not names_tsv.is_file():
         return {}
     rev: dict[str, str] = {}
@@ -142,14 +207,15 @@ def _load_names(names_tsv: Path) -> dict[str, str]:
 
 
 def clades_from_mrbayes(con_tre: Path, names_tsv: Path, posterior_min: float) -> list[dict]:
-    """<группа>.nex.con.tre (posterior) → список уверенных клад."""
     rev = _load_names(names_tsv)
-    newick, supports = mrbayes_mod.parse_con_tre(con_tre, rev)
+    newick, supports = parse_con_tre(con_tre, rev)
     supports = _root_complement_supports(newick, supports)
 
+    tree = None
     if newick:
         from Bio import Phylo
-        all_leaves = frozenset(t.name for t in Phylo.read(StringIO(newick), "newick").get_terminals())
+        tree = Phylo.read(StringIO(newick), "newick")
+        all_leaves = frozenset(t.name for t in tree.get_terminals())
         supports = _drop_complement_duplicates(supports, all_leaves)
 
     entries = []
@@ -158,8 +224,10 @@ def clades_from_mrbayes(con_tre: Path, names_tsv: Path, posterior_min: float) ->
         if pp is None or pp < posterior_min:
             continue
         leaves = sig.split("|")
+        depth, anc = _clade_tree_metrics(tree, frozenset(leaves))
         entries.append({
             "clade": sig, "size": len(leaves), "leaves": leaves,
+            "depth": depth, "ancestor_to_leaves": anc,
             "ufboot": None, "alrt": None, "posterior": pp,
             "defining_mutations": None, "defining_cdr": None,
             "isotypes": {}, "days": [], "confident_both_models": False,
@@ -169,15 +237,10 @@ def clades_from_mrbayes(con_tre: Path, names_tsv: Path, posterior_min: float) ->
 
 
 def clades_from_iqtree(treefile: Path, ufboot_min: float, alrt_min: float) -> list[dict]:
-    """<группа>.treefile (newick, alrt/ufboot в метках узлов) → уверенные клады.
-
-    Прямой вызов biocode.clades.confident_clades — без адаптации, как договорились.
-    """
     newick = treefile.read_text(encoding="utf-8").strip()
     if not newick:
         return []
-    tree = TreeResult(method="iqtree", newick=newick)
-    return clades_mod.confident_clades(tree, muts=[], ufboot_min=ufboot_min, alrt_min=alrt_min)
+    return confident_clades(newick, ufboot_min=ufboot_min, alrt_min=alrt_min)
 
 
 def read_fasta(path: Path) -> dict[str, str]:
@@ -238,19 +301,19 @@ def write_clade_fastas(report: dict[str, dict],
 
 
 def main(argv=None) -> int:
-    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap = argparse.ArgumentParser(description="Уверенные клады — ML + Bayes")
     ap.add_argument("--mrbayes-dir", default="mrbayes",
-                    help="папка с <группа>.nex.con.tre (+ .names.tsv); '' — отключить источник")
+                    help="папка с <группа>.nex.con.tre (+ .names.tsv)")
     ap.add_argument("--iqtree-dir", default="",
-                    help="папка вида trees/<группа>/<группа>.treefile; по умолчанию отключено")
+                    help="папка вида trees/<группа>/<группа>.treefile")
     ap.add_argument("--posterior-min", type=float, default=0.95)
     ap.add_argument("--ufboot-min", type=float, default=95.0)
     ap.add_argument("--alrt-min", type=float, default=80.0)
     ap.add_argument("--out", default="groups/report.json")
     ap.add_argument("--aligned-dir", default="",
-                    help="папка с выравненными FASTA (группа.fasta); если указан, извлекаются FASTA клад")
+                    help="папка с выравненными FASTA")
     ap.add_argument("--clades-fasta-dir", default="",
-                    help="куда сохранять FASTA уверенных клад (требует --aligned-dir)")
+                    help="куда сохранять FASTA уверенных клад")
     args = ap.parse_args(argv)
 
     report: dict[str, dict] = {}

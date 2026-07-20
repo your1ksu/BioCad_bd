@@ -3,8 +3,8 @@
 
 1. Загружает несколько тестовых групп из BIOCAD.bigchallenges (реальные данные
    Ксюши/Алины: anotherpipeline/part_*/*_aligned.fasta)
-2. Запускает 04b_build_trees_mrbayes/build_trees_mrbayes.py
-3. Запускает 05_clade_search/clade_search.py
+2. Запускает mrbayes/run_mrbayes.py
+3. Запускает clades/confident_clades_report.py
 4. Печатает статистику и пути к результатам (.nex.con.tre, report.json)
 
 Визуализация (HTML) намеренно НЕ импортируется и не запускается здесь — см.
@@ -12,9 +12,9 @@ tests/visualize_tree.py, отдельный скрипт для рендерин
 посчитанных результатов. Это разделение сделано специально: данный файл
 должен работать в чистой консоли даже без biopython/HTML-кода.
 
-Расположение mrbayes/groups в репозитории отличается между локальной копией
-(<root>/04b_build_trees_mrbayes/, <root>/05_clade_search/) и веткой Nikita на GitHub
-(<root>/scripts/04b_build_trees_mrbayes/, <root>/scripts/05_clade_search/) — find_pipeline_dir() ищет
+Расположение mrbayes/clades в репозитории отличается между локальной копией
+(<root>/mrbayes/, <root>/clades/) и веткой Nikita на GitHub
+(<root>/scripts/mrbayes/, <root>/scripts/clades/) — find_pipeline_dir() ищет
 оба варианта, чтобы тест работал в любой раскладке.
 """
 from __future__ import annotations
@@ -28,7 +28,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
 def find_pipeline_dir(name: str) -> Path:
-    """Найти папку '04b_build_trees_mrbayes' или '05_clade_search': <root>/<name> либо <root>/scripts/<name>."""
+    """Найти папку 'mrbayes' или 'clades': <root>/<name> либо <root>/scripts/<name>."""
     for candidate in (PROJECT_ROOT / name, PROJECT_ROOT / "scripts" / name):
         if candidate.is_dir():
             return candidate
@@ -71,14 +71,14 @@ def download_test_groups(n_groups: int = 3) -> dict[str, Path]:
 
 
 def run_test_cycle(n_groups: int = 3) -> int:
-    """Запустить полный цикл: загрузка → MrBayes → уверенные клады. Возвращает exit code."""
+    """Запустить полный цикл: загрузка → mrbayes → confident_clades. Возвращает exit code."""
     print("=" * 70)
     print("E2E ТЕСТ: nexus + MrBayes + уверенные клады (реальные данные)")
     print("=" * 70)
 
     try:
-        mrbayes_scripts_dir = find_pipeline_dir("04b_build_trees_mrbayes")
-        groups_scripts_dir = find_pipeline_dir("05_clade_search")
+        mrbayes_scripts_dir = find_pipeline_dir("mrbayes")
+        clades_scripts_dir = find_pipeline_dir("clades")
     except FileNotFoundError as e:
         print(f"Ошибка: {e}", file=sys.stderr)
         return 1
@@ -89,10 +89,10 @@ def run_test_cycle(n_groups: int = 3) -> int:
         print("Ошибка: не удалось загрузить группы", file=sys.stderr)
         return 1
 
-    print("\n2. Запуск 04b_build_trees_mrbayes/build_trees_mrbayes.py (это займёт ~30-50s на группу)...")
-    mrbayes_out = mrbayes_scripts_dir  # результаты рядом со скриптом, как в readme
+    print("\n2. Запуск mrbayes/run_mrbayes.py (это займёт ~30-50s на группу)...")
+    mrbayes_out = mrbayes_scripts_dir  # результаты рядом со скриптом, как в mrbayes/readme.md
     result = subprocess.run(
-        [sys.executable, str(mrbayes_scripts_dir / "build_trees_mrbayes.py"),
+        [sys.executable, str(mrbayes_scripts_dir / "run_mrbayes.py"),
          str(PROJECT_ROOT / "aligned_sequences"), "--out", str(mrbayes_out),
          "--mb-ngen", "2000000"],
         capture_output=True, text=True)
@@ -101,10 +101,10 @@ def run_test_cycle(n_groups: int = 3) -> int:
         print(f"Ошибка mrbayes: {result.stderr}", file=sys.stderr)
         return 1
 
-    print("3. Запуск 05_clade_search/clade_search.py...")
-    report_path = groups_scripts_dir / "report.json"
+    print("3. Запуск clades/confident_clades_report.py...")
+    report_path = clades_scripts_dir / "report.json"
     result = subprocess.run(
-        [sys.executable, str(groups_scripts_dir / "clade_search.py"),
+        [sys.executable, str(clades_scripts_dir / "confident_clades_report.py"),
          "--mrbayes-dir", str(mrbayes_out), "--posterior-min", "0.95",
          "--out", str(report_path)],
         capture_output=True, text=True)

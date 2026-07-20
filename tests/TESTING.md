@@ -10,7 +10,7 @@ python tests/test_fixtures.py
 
 Читает `tests/fixtures/*_aligned.fasta` (статические файлы с задокументированными
 мутациями — см. `*.expected.json` рядом), прогоняет через реальный
-`04b_build_trees_mrbayes/build_trees_mrbayes.py` → `05_clade_search/clade_search.py`, сверяет найденные
+`mrbayes/run_mrbayes.py` → `clades/confident_clades_report.py`, сверяет найденные
 уверенные клады с ожидаемыми.
 
 ```
@@ -38,8 +38,8 @@ python tests/test_pipeline.py 3      # три группы (~100 сек)
 ## 3. Визуализация (отдельно, опционально)
 
 ```bash
-python tests/visualize_tree.py <group_key> 04b_build_trees_mrbayes/ \
-    --report 05_clade_search/report.json --out 04b_build_trees_mrbayes/<group_key>.tree.html
+python tests/visualize_tree.py <group_key> mrbayes/ \
+    --report clades/report.json --out mrbayes/<group_key>.tree.html
 ```
 
 Не требуется для тестирования — намеренно вынесена в отдельный файл, который

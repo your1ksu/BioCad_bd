@@ -1,7 +1,0 @@
-README.md
-pyproject.toml
-biocode.egg-info/PKG-INFO
-biocode.egg-info/SOURCES.txt
-biocode.egg-info/dependency_links.txt
-biocode.egg-info/requires.txt
-biocode.egg-info/top_level.txt

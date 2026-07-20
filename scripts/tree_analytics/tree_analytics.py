@@ -50,11 +50,21 @@ def plot_results(genes, clades_counts, sizes, depths, ancestor_distances, output
 
     fig, axes = plt.subplots(1, 4, figsize=(22, 5))
 
-    sns.barplot(x=genes, y=clades_counts, ax=axes[0], palette="viridis")
-    axes[0].set_title("Количество клад по генам")
-    axes[0].set_xlabel("Ген")
-    axes[0].set_ylabel("Количество клад")
-    axes[0].tick_params(axis="x", rotation=45)
+    # 589 генов не помещаются на одну ось (столбики сливаются, подписи наслаиваются),
+    # поэтому показываем топ по числу клад горизонтальными столбиками — так длинные
+    # имена V–J читаются без поворота.
+    top_n = 20
+    ranked = sorted(
+        ((g, c) for g, c in zip(genes, clades_counts) if c > 0),
+        key=lambda gc: gc[1], reverse=True,
+    )[:top_n]
+    top_genes = [g for g, _ in ranked]
+    top_counts = [c for _, c in ranked]
+    sns.barplot(x=top_counts, y=top_genes, hue=top_genes, ax=axes[0],
+                palette="viridis", legend=False, orient="h")
+    axes[0].set_title(f"Топ-{top_n} генов по числу клад (из {len(genes)})")
+    axes[0].set_xlabel("Количество клад")
+    axes[0].set_ylabel("Ген (V–J)")
 
     if sizes:
         sns.histplot(sizes, ax=axes[1], kde=True, color="crimson", bins=10)
@@ -63,9 +73,12 @@ def plot_results(genes, clades_counts, sizes, depths, ancestor_distances, output
         axes[1].set_ylabel("Частота")
 
     if depths:
-        sns.countplot(x=depths, ax=axes[2], palette="magma")
+        # discrete-гистограмма по целочисленной оси: countplot схлопывал пропущенные
+        # значения глубины (10, 14, 16…28), из-за чего одиночная глубина 29 рисовалась
+        # вплотную к 15. Здесь ось числовая — разрыв виден, выброс стоит на своём месте.
+        sns.histplot(x=depths, discrete=True, ax=axes[2], color="purple")
         axes[2].set_title("Распределение глубины клады (depth)")
-        axes[2].set_xlabel("Глубина")
+        axes[2].set_xlabel("Глубина (внутренних узлов в кладе)")
         axes[2].set_ylabel("Количество клад")
     else:
         axes[2].text(0.5, 0.5, "Нет данных (только для MrBayes)",
@@ -73,14 +86,17 @@ def plot_results(genes, clades_counts, sizes, depths, ancestor_distances, output
         axes[2].set_title("Глубина клады (depth)")
 
     if ancestor_distances:
-        sns.histplot(ancestor_distances, ax=axes[3], kde=True, color="teal", bins=10)
-        axes[3].set_title("Дистанция предок→листья (mean)")
-        axes[3].set_xlabel("Замен на сайт (substitutions/site)")
+        # переводим ветвевую дистанцию (замен/сайт, доли ~0.001–0.36) в % дивергенции —
+        # стандартную и читаемую единицу: медиана ~1.6 %, хвост до ~36 %.
+        ancestor_divergence_pct = [d * 100 for d in ancestor_distances]
+        sns.histplot(ancestor_divergence_pct, ax=axes[3], kde=True, color="teal", bins=10)
+        axes[3].set_title("Дивергенция предок→листья (mean)")
+        axes[3].set_xlabel("Дивергенция от предка, % (замен на 100 сайтов)")
         axes[3].set_ylabel("Частота")
     else:
         axes[3].text(0.5, 0.5, "Нет данных (только для IQ-TREE)",
                      ha="center", va="center", transform=axes[3].transAxes)
-        axes[3].set_title("Дистанция предок→листья")
+        axes[3].set_title("Дивергенция предок→листья")
 
     plt.tight_layout()
     plt.savefig(output_path, dpi=150)
