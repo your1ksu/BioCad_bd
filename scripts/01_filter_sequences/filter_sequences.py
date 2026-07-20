@@ -253,6 +253,12 @@ def parse_args():
         help="Режим фильтрации: germline (проверка V/J длин) или "
              "percentile (убрать 5% хвостов по длине). По умолчанию germline.",
     )
+    parser.add_argument("--min-junction", type=int, default=MIN_JUNCTION,
+                        help=f"Мин. длина junction для germline-режима (по умолчанию {MIN_JUNCTION}).")
+    parser.add_argument("--max-junction", type=int, default=MAX_JUNCTION,
+                        help=f"Макс. длина junction для germline-режима (по умолчанию {MAX_JUNCTION}).")
+    parser.add_argument("--v-min-fraction", type=float, default=V_MIN_FRACTION,
+                        help=f"Мин. доля V-гена в последовательности (по умолчанию {V_MIN_FRACTION}).")
     return parser.parse_args()
 
 
@@ -263,6 +269,11 @@ def main():
     input_file = args.input
     output_file = args.output
     ref_dir = args.ref_dir
+
+    global MIN_JUNCTION, MAX_JUNCTION, V_MIN_FRACTION
+    MIN_JUNCTION = args.min_junction
+    MAX_JUNCTION = args.max_junction
+    V_MIN_FRACTION = args.v_min_fraction
 
     if not os.path.isfile(input_file):
         print(f"Ошибка: входной файл не найден: {input_file}", file=sys.stderr)

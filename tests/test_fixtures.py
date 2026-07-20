@@ -8,8 +8,9 @@
 взглядом (замена буквы ломает паттерн — например "...ACGTACTTACGT..." вместо
 "...ACGTACGTACGT...").
 
-Формат fixture: <name>_aligned.fasta — точно формат, который производит
-Alina/MSA_final.py (mafft --auto), т.е. прямой вход mrbayes/run_mrbayes.py.
+Формат fixture: <name>_aligned.fasta — тот же формат, что даёт
+scripts/03_multiple_alignment (mafft --auto), т.е. прямой вход
+scripts/04b_build_trees_mrbayes/build_trees_mrbayes.py.
 Рядом лежит <name>.expected.json — задокументированный ground truth: корневая
 последовательность, мутации каждого листа (позиция, ref, alt) и ожидаемые
 уверенные клады с обоснованием.
@@ -28,19 +29,11 @@ import sys
 from pathlib import Path
 
 FIXTURES_DIR = Path(__file__).parent / "fixtures"
-# Корень проекта = родитель tests/ (там лежат mrbayes/, clades/, biocode/)
+# Корень проекта = родитель tests/
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
-
-def find_pipeline_dir(name: str) -> Path:
-    """Найти папку 'mrbayes' или 'clades': <root>/<name> либо <root>/scripts/<name>
-    (локальная раскладка и раскладка ветки Nikita на GitHub отличаются)."""
-    for candidate in (PROJECT_ROOT / name, PROJECT_ROOT / "scripts" / name):
-        if candidate.is_dir():
-            return candidate
-    raise FileNotFoundError(
-        f"Не найдена папка '{name}' ни в {PROJECT_ROOT / name}, "
-        f"ни в {PROJECT_ROOT / 'scripts' / name}")
+MRBAYES_SCRIPT = PROJECT_ROOT / "scripts" / "04b_build_trees_mrbayes" / "build_trees_mrbayes.py"
+CLADES_SCRIPT = PROJECT_ROOT / "scripts" / "05_clade_search" / "clade_search.py"
 
 
 def load_fixture(name: str) -> tuple[Path, dict]:
@@ -54,8 +47,8 @@ def load_fixture(name: str) -> tuple[Path, dict]:
 
 
 def run_case(name: str, python_bin: str, work_dir: Path) -> bool:
-    """Прогнать один fixture через реальный pipeline (run_mrbayes.py →
-    confident_clades_report.py) и сверить найденные клады с expected.json."""
+    """Прогнать один fixture через актуальный pipeline (build_trees_mrbayes.py →
+    clade_search.py) и сверить найденные клады с expected.json."""
     print(f"\n{'=' * 70}\nFIXTURE: {name}\n{'=' * 70}")
 
     fasta_path, expected = load_fixture(name)
@@ -74,12 +67,9 @@ def run_case(name: str, python_bin: str, work_dir: Path) -> bool:
     clades_dir = work_dir / f"clades_{name}"
     clades_dir.mkdir(parents=True, exist_ok=True)
 
-    mrbayes_scripts_dir = find_pipeline_dir("mrbayes")
-    clades_scripts_dir = find_pipeline_dir("clades")
-
-    print("\n→ mrbayes/run_mrbayes.py ...")
+    print("\n→ 04b_build_trees_mrbayes/build_trees_mrbayes.py ...")
     r = subprocess.run(
-        [python_bin, str(mrbayes_scripts_dir / "run_mrbayes.py"),
+        [python_bin, str(MRBAYES_SCRIPT),
          str(in_dir), "--out", str(mrbayes_dir), "--mb-ngen", "800000"],
         capture_output=True, text=True, cwd=str(PROJECT_ROOT))
     print("  " + r.stdout.strip().splitlines()[-1] if r.stdout.strip() else "  (нет вывода)")
@@ -87,9 +77,9 @@ def run_case(name: str, python_bin: str, work_dir: Path) -> bool:
         print(f"  ОШИБКА: {r.stderr[-500:]}", file=sys.stderr)
         return False
 
-    print("→ clades/confident_clades_report.py ...")
+    print("→ 05_clade_search/clade_search.py ...")
     r = subprocess.run(
-        [python_bin, str(clades_scripts_dir / "confident_clades_report.py"),
+        [python_bin, str(CLADES_SCRIPT),
          "--mrbayes-dir", str(mrbayes_dir), "--posterior-min", "0.95",
          "--out", str(clades_dir / "report.json")],
         capture_output=True, text=True, cwd=str(PROJECT_ROOT))
@@ -131,12 +121,10 @@ def main(python_bin: str | None = None) -> int:
     if check.returncode != 0:
         print("Ошибка: нужен biopython (pip install biopython)", file=sys.stderr)
         return 1
-    try:
-        find_pipeline_dir("mrbayes")
-        find_pipeline_dir("clades")
-    except FileNotFoundError as e:
-        print(f"Ошибка: {e}", file=sys.stderr)
-        return 1
+    for script in (MRBAYES_SCRIPT, CLADES_SCRIPT):
+        if not script.is_file():
+            print(f"Ошибка: не найден скрипт {script}", file=sys.stderr)
+            return 1
 
     fixture_names = sorted(p.stem.replace("_aligned", "")
                           for p in FIXTURES_DIR.glob("*_aligned.fasta"))

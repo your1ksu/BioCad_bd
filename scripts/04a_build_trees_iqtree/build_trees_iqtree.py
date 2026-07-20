@@ -42,6 +42,7 @@ def run_iqtree(fasta: Path, name: str, subdir: Path, model: str, threads: int) -
         "-s", str(fasta),
         "-m", model,
         "-B", "1000",
+        "-alrt", "1000",
         "-T", str(threads),
         "--prefix", str(subdir / name),
         "-redo",

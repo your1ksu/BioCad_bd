@@ -23,7 +23,7 @@ class PipelineConfig:
 
     # ---------- filter_by_symbol_count (step 2b) ----------
     min_group_size: int = 5                          # мин. число последовательностей в группе (меньшие удаляются)
-    max_group_size: int = 100                        # макс. число последовательностей в группе (большие обрезаются)
+    max_group_size: int = 100                        # макс. число последовательностей в группе (большие группы отсеиваются целиком)
 
     # ---------- build_trees_iqtree (step 4a) ----------
     iqtree_model: str = "GTR+F+I+G4"                # модель нуклеотидных замен для IQ-TREE (GTR+F+I+G4 — быстрее MFP)

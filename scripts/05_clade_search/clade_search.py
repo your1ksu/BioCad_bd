@@ -347,6 +347,16 @@ def main(argv=None) -> int:
         else:
             print(f"--iqtree-dir не найдена: {iq_dir}", file=sys.stderr)
 
+    # кросс-модельное подтверждение: клада надёжна в обеих моделях, если её набор
+    # листьев присутствует и в mrbayes, и в iqtree одной группы
+    for sources in report.values():
+        mb_sets = {frozenset(c["leaves"]) for c in sources.get("mrbayes", {}).get("clades", [])}
+        iq_sets = {frozenset(c["leaves"]) for c in sources.get("iqtree", {}).get("clades", [])}
+        for c in sources.get("mrbayes", {}).get("clades", []):
+            c["confident_both_models"] = frozenset(c["leaves"]) in iq_sets
+        for c in sources.get("iqtree", {}).get("clades", []):
+            c["confident_both_models"] = frozenset(c["leaves"]) in mb_sets
+
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")

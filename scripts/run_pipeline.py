@@ -10,7 +10,6 @@ Usage:
 import argparse
 import json
 import os
-import shutil
 import sys
 import subprocess
 import time
@@ -120,10 +119,14 @@ def run_cmd(cmd, cwd=None, log_file=None, description=None):
         return False
 
 
-def step1_filter(input_tsv, output_tsv, log_dir):
+def step1_filter(input_tsv, output_tsv, log_dir, config):
     return run_cmd([
         PYTHON_BIN, str(SCRIPTS_DIR / "01_filter_sequences" / "filter_sequences.py"),
         "-i", str(input_tsv), "-o", str(output_tsv), "-r", str(REFERENCES_DIR),
+        "--filter-mode", str(config.filter_mode),
+        "--min-junction", str(config.min_junction),
+        "--max-junction", str(config.max_junction),
+        "--v-min-fraction", str(config.v_min_fraction),
     ], log_file=log_dir / "step1_filter.log", description="Step 1: Filter BCR data")
 
 
@@ -218,14 +221,6 @@ def cleanup_mrbayes(mrbayes_dir: Path):
             removed += 1
     if removed:
         print(f"  MrBayes: удалено {removed} промежуточных файлов")
-
-
-def cleanup_grouped(grouped_dir: Path):
-    for subdir in ("v", "d", "j"):
-        p = grouped_dir / subdir
-        if p.exists():
-            shutil.rmtree(p)
-            print(f"  Удалена папка grouped_by_germlines/{subdir}/ (не используется)")
 
 
 def main():
@@ -349,7 +344,7 @@ def main():
 
     # Step 1: Filter
     if "filter" in steps_to_run:
-        results["filter"] = step1_filter(input_tsv, filtered_tsv, log_dir)
+        results["filter"] = step1_filter(input_tsv, filtered_tsv, log_dir, config)
         if not results["filter"]:
             print("Pipeline stopped at step 1")
             return 1
@@ -361,7 +356,6 @@ def main():
         if not results["group"]:
             print("Pipeline stopped at step 2")
             return 1
-        cleanup_grouped(grouped_dir)
 
     # Step 2b: Filter groups by size
     msa_input_dir = grouped_vj_dir
@@ -413,13 +407,13 @@ def main():
             if "iqtree" in steps_to_run:
                 results["iqtree"] = step4a_iqtree(aligned_dir, trees_dir, log_dir,
                                                   config.iqtree_model)
-                trees_ok = trees_ok and results["iqtree"]
                 cleanup_iqtree(trees_dir)
             if "mrbayes" in steps_to_run:
                 results["mrbayes"] = step4b_mrbayes(aligned_dir, mrbayes_dir, log_dir,
                                                     config)
-                trees_ok = trees_ok and results["mrbayes"]
                 cleanup_mrbayes(mrbayes_dir)
+            # визуализация/клады возможны, если построил хотя бы один из методов
+            trees_ok = bool(results.get("iqtree") or results.get("mrbayes"))
 
     # Step 5: Viz
     if "viz" in steps_to_run and trees_ok:
