@@ -1,70 +1,59 @@
-# Tests — открытость и достоверность pipeline Никиты
+# Tests
 
 ## Структура
 
 ```
 tests/
-  ├── README.md               # этот файл
-  ├── TESTING.md               # как запустить
-  ├── TEST_REPORT.md           # разбор находок, включая найденный и исправленный баг
-  ├── fixtures/                 # СТАТИЧЕСКИЕ данные с заранее известными мутациями
-  │   ├── two_clear_pairs_aligned.fasta
-  │   ├── two_clear_pairs.expected.json
-  │   ├── no_shared_mutations_aligned.fasta
-  │   ├── no_shared_mutations.expected.json
-  │   ├── mixed_signal_aligned.fasta
-  │   └── mixed_signal.expected.json
-  ├── test_fixtures.py          # тест на статических fixtures (консоль, без HTML)
-  ├── test_pipeline.py          # E2E тест на реальных данных (консоль, без HTML)
-  └── visualize_tree.py         # HTML/SVG-визуализация — ОТДЕЛЬНЫЙ файл, опционально
+  ├── README.md                       # этот файл
+  ├── TESTING.md                      # как запустить
+  ├── TEST_REPORT.md                  # разбор находок и исправленных багов
+  ├── fixtures/                       # СТАТИЧЕСКИЕ данные с заранее известными мутациями
+  │   ├── two_clear_pairs_aligned.fasta      + .expected.json
+  │   ├── no_shared_mutations_aligned.fasta  + .expected.json
+  │   └── mixed_signal_aligned.fasta         + .expected.json
+  ├── test_analyze_mutations_unit.py  # юнит на разметку мутаций (без igblast/mb)
+  ├── test_fixtures.py                # E2E на фикстурах (нужен mb)
+  ├── test_pipeline.py                # E2E-прогон mrbayes + clade_search на фикстурах (нужен mb)
+  ├── test_*.py                       # юнит-тесты остальных шагов
+  └── visualize_tree.py               # HTML/SVG-визуализация — ОТДЕЛЬНЫЙ файл, опционально
 ```
 
-## Ключевой принцип: тесты и визуализация разделены
+## Принцип: тесты и визуализация разделены
 
-`test_fixtures.py` и `test_pipeline.py` не импортируют `visualize_tree.py` вообще.
-Они работают в чистой консоли: запускают `mrbayes/run_mrbayes.py` и
-`clades/confident_clades_report.py` как subprocess, читают получившиеся
-`.nex.con.tre`/`report.json`, печатают pass/fail. `visualize_tree.py` — отдельный
-скрипт, который по желанию рендерит HTML-филограмму из уже посчитанных
-результатов, и без него тестирование работает нормально.
+`test_fixtures.py` и `test_pipeline.py` не импортируют `visualize_tree.py`. Они
+работают в консоли: запускают `04b_build_trees_mrbayes/build_trees_mrbayes.py`
+и `05_clade_search/clade_search.py` как subprocess, читают
+`.nex.con.tre`/`report.json`, печатают pass/fail.
 
-## Fixtures — не runtime-генератор, а статические файлы
+## Fixtures — статические файлы
 
-`tests/fixtures/*_aligned.fasta` — точно формат, который производит
-`Alina/MSA_final.py` (mafft --auto) и который читает `mrbayes/run_mrbayes.py`.
-Последовательности построены из повторяющегося паттерна `ACGT` — любая
-мутация видна невооружённым глазом (напр. `...ACGTACTTACGT...` вместо
-`...ACGTACGTACGT...`). Рядом — `*.expected.json`: корневая последовательность,
-точные позиции и типы мутаций каждого листа, ожидаемые уверенные клады с
-обоснованием. Никакого `random` в рантайме теста — файлы построены один раз
-детерминированно и просто читаются тестом.
+`tests/fixtures/*_aligned.fasta` — тот же формат, что даёт
+`03_multiple_alignment` (`mafft --auto`, суффикс `_aligned.fasta`).
+Последовательности из повторяющегося паттерна `ACGT` — любая мутация видна
+глазами (напр. `...ACGTACTTACGT...` вместо `...ACGTACGTACGT...`). Рядом
+`*.expected.json`: корневая последовательность, позиции/типы мутаций каждого
+листа, ожидаемые уверенные клады с обоснованием. Без `random` в рантайме.
 
 ## Запуск
 
 ```bash
-# Из корня проекта (где лежат mrbayes/, clades/, biocode/)
-python tests/test_fixtures.py                 # статические fixtures (~65 сек, 3 кейса)
-python tests/test_pipeline.py 1                # E2E на реальных данных (~35 сек, 1 группа)
+# быстрый регресс на разметку мутаций (чистый Python, без внешних тулов)
+python tests/test_analyze_mutations_unit.py
 
-# Визуализация — отдельно, опционально, после того как выше уже отработало:
-python tests/visualize_tree.py IGHV3-23_01_IGHJ3_01 mrbayes/ \
-    --report clades/report.json --out mrbayes/IGHV3-23_01_IGHJ3_01.tree.html
+# E2E на статических фикстурах (нужен mb)
+python tests/test_fixtures.py
+
+# E2E-прогон mrbayes + clade_search на фикстурах (нужен mb)
+python tests/test_pipeline.py 3
+
+# визуализация — отдельно, опционально
+python tests/visualize_tree.py <group_key> mrbayes/ --report groups/report.json
 ```
 
 ## Требования
 
-- Python 3.9+
-- `biopython` (pip install biopython) — нужен и test_fixtures.py/test_pipeline.py
-  (транзитивно, через вызываемые mrbayes/clades скрипты), и visualize_tree.py
-- Бинарь `mb` (MrBayes): conda install -c bioconda mrbayes
-- Для test_pipeline.py — клон BIOCAD.bigchallenges на ветке main (реальные
-  данные Ксюши/Алины)
+- Python 3.11, `biopython` (для скриптов, вызываемых тестами, и `visualize_tree.py`)
+- бинарь `mb` (MrBayes): `conda install -c bioconda mrbayes` — для test_fixtures/test_pipeline
+- для `test_analyze_mutations/` (smoke run_mutations.py) — `igblast` + BLAST-базы
 
-## Связь с реальным pipeline (см. TEST_REPORT.md)
-
-Формат fixtures подтверждён по факту прочтения реальных скриптов других
-участников (ветки your1ksu/BioCad_bd): `ksu_branch/scripts/group_by_germlines`
-→ `Alina/scripts/MSA/MSA_final.py` (mafft --auto, суффикс `_aligned.fasta`) →
-наш `mrbayes/run_mrbayes.py`. Параллельно — `Denis/scripts/build_trees_iqtree`
-(вход тот же `aligned_sequences/`, выход `trees/<группа>/<группа>.treefile`),
-который `clades/confident_clades_report.py` тоже умеет читать (`--iqtree-dir`).
+Подробности находок — [TEST_REPORT.md](TEST_REPORT.md).

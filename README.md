@@ -1,111 +1,132 @@
 # BioCad_bd — филогенетический конвейер по антителам (BCR repertoire)
 
-Конвейер обработки B-клеточных рецепторов (BCR): от сырых прочтений до
-эволюционных деревьев, уверенных клад и таблиц мутаций. Каждый этап —
-самостоятельный скрипт одного участника команды, соединённые в единую цепочку
-через файлы на диске (fasta → fasta → nexus/newick → json/html/tsv).
+Конвейер обработки B-клеточных рецепторов (BCR): от репертуара антител (AIRR TSV
+или FASTA) до филогенетических деревьев клональных групп, набора надёжных клад и
+таблиц мутаций с разметкой по регионам FR/CDR (IMGT). Все шаги оркеструются одним
+скриптом `scripts/run_pipeline.py`.
 
-## Конвейер
-
-| # | Этап | Автор | Папка в `scripts/` | Вход | Выход |
-|---|---|---|---|---|---|
-| 1 | Фильтрация сиквенсов | Ксюша | `filtered/` | `data/<key>/BCR_data.tsv` | `results/<key>/BCR_data_filtered.tsv` |
-| 2 | Группировка по гермлайнам | Ксюша | `group_by_germlines/` | `BCR_data_filtered.tsv` | `results/<key>/grouped_by_germlines/{v,d,j,vj}/*.fasta` |
-| 3 | Множественное выравнивание (MSA) | Алина | `MSA/` | `grouped_by_germlines/vj/*.fasta` | `aligned_sequences/*_aligned.fasta` + `manifest.tsv` |
-| 4 | ML-деревья (IQ-TREE) | Денис | `build_trees_iqtree/` | `aligned_sequences/` | `trees/<группа>/<группа>.treefile` (UFBoot+SH-aLRT) |
-| 5a | NEXUS + байесовское дерево (MrBayes) | Никита | `mrbayes/` | `aligned_sequences/*_aligned.fasta` | `mrbayes/<группа>.nex`, `.nex.con.tre`, `.mb.log` |
-| 5b | Уверенные клады | Никита | `clades/` | `mrbayes/*.nex.con.tre` и/или `trees/*/*.treefile` | `clades/report.json` |
-| 6 | Визуализация деревьев | Денис | `visualize_trees/` | `trees/` или `mrbayes/` | `<out>/<группа>/<группа>.html` (toytree, интерактивный SVG) |
-| 7 | Анализ мутаций | Денис | `analyze_mutations/` | fasta по кладам (IgBLAST) | `<out>/<клада>/mutations.tsv`, `mutations_summary.tsv` |
-
-Шаги 1–2 (Ксюша) работают по единому ключу через `scripts/paths.py`
-(`data/<key>/…` → `results/<key>/…`); шаги 3–7 принимают входную/выходную
-папку явными аргументами командной строки — см. «Известные несоответствия»
-ниже.
-
-## Как прогнать весь конвейер (из корня репозитория)
+## Быстрый старт
 
 ```bash
-# 1–2: фильтрация + группировка (ключ = имя подпапки в data/ и results/)
-python3 scripts/filtered/filter_and_save.py --key BCR
-python3 scripts/group_by_germlines/group_by_germlines.py --key BCR
+# по ключу (data/<key>/BCR_data.tsv -> results/report_<timestamp>/)
+python scripts/run_pipeline.py -k BCR
 
-# 3: выравнивание (MAFFT)
-python3 scripts/MSA/MSA_final.py \
-  -i results/BCR/grouped_by_germlines/vj \
-  -o aligned_sequences
-
-# 4: ML-деревья (IQ-TREE) — опционально, независимо от шага 5
-./scripts/build_trees_iqtree/build_trees_iqtree.sh aligned_sequences trees
-
-# 5a-b: байесовское дерево + уверенные клады (Никита)
-python3 scripts/mrbayes/run_mrbayes.py aligned_sequences --out mrbayes
-python3 scripts/clades/confident_clades_report.py \
-  --mrbayes-dir mrbayes --iqtree-dir trees --out clades/report.json
-
-# 6: визуализация деревьев
-./scripts/visualize_trees/visualize_trees.sh trees trees_visualization
-./scripts/visualize_trees/visualize_trees.sh mrbayes mrbayes_visualization
-
-# 7: анализ мутаций (нужны fasta-файлы по кладам — см. «Известные пробелы»)
-./scripts/analyze_mutations/analyze_mutations.sh fasta_from_clades mutation_tables
+# по явным путям входа/выхода
+python scripts/run_pipeline.py -i data/BCR/BCR_data.tsv -o results/output
 ```
+
+При первом запуске оркестратор проверяет/создаёт conda-окружение
+`biocad_bcr_pipeline_environment` из `environment.yml` и выполняет все шаги внутри него.
+
+## Шаги пайплайна
+
+`ALL_STEPS = [filter, group, filter_groups, msa, iqtree, mrbayes, viz, clades, mutations]`
+
+| Шаг | Скрипт | Вход → выход |
+|---|---|---|
+| `filter` | `scripts/01_filter_sequences/filter_sequences.py` | AIRR TSV/FASTA → `BCR_data_filtered.tsv` |
+| `group` | `scripts/02_group_by_germlines/group_by_germlines.py` | filtered TSV → `grouped_by_germlines/vj/<V_J>.fasta` |
+| `filter_groups` | `scripts/filter_by_symbol_count/filter_by_symbol_count.py` | `vj/` → `vj_filtered/` (симлинки групп нужного размера) |
+| `msa` | `scripts/03_multiple_alignment/multiple_alignment.py` | группы → `aligned_sequences/<V_J>_aligned.fasta` (MAFFT) |
+| `iqtree` | `scripts/04a_build_trees_iqtree/build_trees_iqtree.py` | выравнивания → `trees/<V_J>/<V_J>.treefile` (ML, UFBoot+SH-aLRT) |
+| `mrbayes` | `scripts/04b_build_trees_mrbayes/build_trees_mrbayes.py` | выравнивания → `mrbayes/<V_J>.nex(.con.tre)` (Bayes) |
+| `viz` | `scripts/visualize_trees/visualize_trees.py` | деревья → `trees_visualization/…/*.html` (toytree) |
+| `clades` | `scripts/05_clade_search/clade_search.py` | деревья + выравнивания → `groups/report.json` + `groups/clades/*.fa` |
+| `mutations` | `scripts/06_analyze_mutations/run_mutations.py` | FASTA клад → `mutation_tables/<клада>/mutations.tsv(+summary)` (IgBLAST) |
+
+Управление составом:
+
+```bash
+python scripts/run_pipeline.py -k BCR --only filter group filter_groups msa
+python scripts/run_pipeline.py -k BCR --skip mrbayes --parallel-trees
+```
+
+Зависимости шагов: `mutations` подтягивает `clades`; `filter_groups` — `group`.
+Переопределения из CLI: `--grouping-strategy`, `--min-group-size`, `--max-group-size`,
+`--iqtree-model`, `--parallel-trees`, `--gpu-mb-bin`.
+
+### CPU / GPU для MrBayes
+
+По умолчанию MrBayes считается на CPU (параллельно по группам, каждая в своей
+изолированной подпапке, со stoprule по сходимости). Для ускорения крупных групп
+на GPU (A100, BEAGLE-CUDA) укажите путь к GPU-бинарю `mb`:
+
+```bash
+python scripts/run_pipeline.py -k BCR --gpu-mb-bin /path/to/mrbayes-gpu/bin/mb
+```
+
+Тогда группы с числом таксонов ≥ `gpu_min_taxa` (по умолчанию 60, меняется флагом
+`--gpu-min-taxa N`) идут на GPU последовательно, мелкие — параллельно на CPU. Без
+`--gpu-mb-bin` — всё на CPU. GPU-бинарь MrBayes с BEAGLE-CUDA нужно собрать
+отдельно (в conda его нет); при запуске нужен `LD_LIBRARY_PATH` до `libhmsbeagle`.
+
+Замечание: BEAGLE-GPU даёт выигрыш на крупных выравниваниях; для мелких групп
+(десятки таксонов, 4 состояния) накладные расходы GPU делают его медленнее CPU —
+поэтому гибрид по умолчанию отправляет на GPU только крупные группы.
 
 ## Структура репозитория
 
 ```
-data/<key>/BCR_data.tsv        — сырой вход (AIRR-подобный TSV)
-data/IMGT/<вид>/{IG,TR}/*.fasta — germline-справочники IMGT (используется Homo_sapiens/IG)
-results/<key>/…                 — результаты шагов 1-2 (Ксюша)
-scripts/<этап>/                 — код каждого этапа + README на этапе
-tests/                          — тесты (pytest для большинства этапов,
-                                   консольные для mrbayes/clades — см. tests/README.md)
-misc/                           — пусто (зарезервировано)
+scripts/
+  run_pipeline.py              оркестратор всех шагов
+  shared/config.py             PipelineConfig (все параметры, сериализуется в config.json)
+  shared/utils.py              общие утилиты (FASTA, кодоны, ядра)
+  01_filter_sequences/ … 06_analyze_mutations/   шаги пайплайна (см. таблицу)
+  filter_by_symbol_count/      отсев групп по размеру (шаг 2b)
+  visualize_trees/             HTML-визуализация деревьев
+  mutation_stats/              dN/dS и распределение мутаций по регионам (отдельно)
+  SHM/                         поиск SHM hotspot/coldspot мотивов (отдельно)
+  tree_analytics/              сводная аналитика по report.json (отдельно)
+  verify_by_amino/             трансляция в аминокислоты + сверка с IMGT-справочником
+  paths.py                     единые пути data/<key>/ ↔ results/<key>/ (для verify_by_amino)
+  synthetic_data/              генератор синтетики + валидация разметки FR/CDR
+  MACSE/                       кодон-осознанное выравнивание (альтернатива MAFFT)
+data/
+  BCR/BCR_data.tsv             входной репертуар (AIRR)
+  references/                  germline IMGT (IGHV/…), базы IgBLAST (all_V/D/J), human_gl.aux
+  example.fasta, example.tsv   маленькие входы для быстрых прогонов
+tests/                         pytest + консольные E2E (см. tests/README.md)
+results/                       результаты прогонов (в .gitignore)
+```
+
+## Выходная директория одного прогона
+
+```
+results/report_<timestamp>/
+├── config.json                       снимок конфигурации
+├── logs/                             логи по шагам
+├── BCR_data_filtered.tsv
+├── grouped_by_germlines/vj[/_filtered]
+├── aligned_sequences/*_aligned.fasta + manifest.tsv
+├── trees/<V_J>/<V_J>.treefile        (IQ-TREE)
+├── mrbayes/<V_J>.nex.con.tre         (MrBayes)
+├── trees_visualization/…/*.html
+├── groups/report.json + groups/clades/*.fa
+└── mutation_tables/<клада>/mutations.tsv (+ mutations_summary.tsv)
 ```
 
 ## Требования
 
-- Python 3.9+, [Miniconda](https://docs.anaconda.com/miniconda/)
-- Python-пакеты: `pandas`, `biopython`
-- Внешние инструменты (ставятся conda-окружениями автоматически там, где
-  скрипты это умеют — `trees_building_env` для IQ-TREE/визуализации):
-  `mafft`, `iqtree`, `mb` (MrBayes, `conda install -c bioconda mrbayes`),
-  `igblastn` + BLAST+ (для анализа мутаций), `toytree`/`toyplot` (визуализация)
+- Python 3.11, conda/miniconda.
+- Окружение `biocad_bcr_pipeline_environment` (`environment.yml`): `pandas`, `biopython`,
+  `mafft`, `iqtree`, `mrbayes`, `igblast`, `blast`, `toytree`, `toyplot`, `matplotlib`, `seaborn`.
 
-## Тестирование
+## Тесты
 
-Большинство этапов покрыто `pytest` (`tests/test_*`). Этап Никиты
-(`mrbayes/` + `clades/`) тестируется отдельными консольными скриптами без
-pytest — см. [tests/README.md](tests/README.md) и [tests/TEST_REPORT.md](tests/TEST_REPORT.md)
-(там же разобран найденный и исправленный баг в извлечении уверенных клад).
+```bash
+pytest tests/                                   # юнит-тесты шагов (часть требует внешних тулов)
+python tests/test_analyze_mutations_unit.py     # быстрый регресс на разметку мутаций (без igblast)
+python tests/test_fixtures.py                   # E2E на фикстурах (нужен MrBayes)
+```
 
-## Известные пробелы и несоответствия
+Подробности — `tests/README.md`, `tests/TEST_REPORT.md`.
 
-- **`biocode/` не опубликован.** `scripts/mrbayes/run_mrbayes.py` и
-  `scripts/clades/confident_clades_report.py` импортируют пакет `biocode`
-  (вендорен из `BIOCAD.bigchallenges@main`) из родительской директории — без
-  него оба скрипта падают на импорте. См. `scripts/README.md`.
-- **Два разных соглашения о путях.** Шаги 1–2 (Ксюша) используют
-  централизованный `scripts/paths.py` с ключом (`data/<key>` ↔
-  `results/<key>`); шаги 3–7 — обычные `--input`/`--output`/позиционные
-  аргументы с папками по умолчанию в текущей директории
-  (`aligned_sequences`, `trees`, `mrbayes`, `clades`). Единого раннера,
-  который бы прокидывал результат одного шага во вход следующего
-  автоматически, нет — команды выше нужно запускать по очереди вручную.
-- **Шаг 7 (анализ мутаций) ожидает fasta по кладам**, а `clades/report.json`
-  (выход шага 5b) отдаёт клады как списки id внутри JSON, а не как отдельные
-  fasta-файлы — недостающее звено: скрипт, который бы разбивал
-  `aligned_sequences/*.fasta` на `fasta_from_clades/<клада>.fasta` по данным
-  `report.json`, пока не написан.
-- `.gitignore` и `gitignore.txt` — два файла с частично разным содержимым;
-  активный (учитываемый git) — `.gitignore`, `gitignore.txt` — вероятно,
-  забытый черновик.
+## Известные ограничения
 
-## Участники
+- В `report.json` поля `defining_mutations`, `defining_cdr`, `isotypes`, `days` пока не
+  вычисляются (заглушки); `confident_both_models` заполняется (пересечение клад ML и Bayes).
+- `mutation_stats.py` (dN/dS), `SHM/`, `tree_analytics.py`, `synthetic_data/validate_regions.py`
+  запускаются отдельно от оркестратора, не входят в `run_pipeline.py`.
+- `scripts/MACSE` требует ручной настройки путей и в оркестратор не встроен.
 
-| Участник | Этапы |
-|---|---|
-| Ксюша | фильтрация, группировка по гермлайнам |
-| Алина | множественное выравнивание (MSA) |
-| Денис | ML-деревья (IQ-TREE), визуализация деревьев, анализ мутаций |
-| Никита | NEXUS/MrBayes (байесовское дерево), уверенные клады |
+Каждый шаг снабжён своим README рядом со скриптом.

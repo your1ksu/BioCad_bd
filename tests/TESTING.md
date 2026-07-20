@@ -1,45 +1,38 @@
 # Тестирование Pipeline
 
-Два типа тестов, оба консольные (без HTML/GUI-зависимостей):
+## 1. Юнит на разметку мутаций (быстро, без внешних тулов)
 
-## 1. Тесты на статических fixtures с известным ответом
+```bash
+python tests/test_analyze_mutations_unit.py
+```
+
+Проверяет СОДЕРЖИМОЕ таблиц `analyze_mutations` (синонимная → `is_silent=yes`,
+несинонимная → `no`, summary считает несинонимные). Ловит регрессию, при которой
+`is_silent` записывался строкой и summary выходил нулевым. Чистый Python.
+
+## 2. Тесты на статических fixtures с известным ответом
 
 ```bash
 python tests/test_fixtures.py
 ```
 
-Читает `tests/fixtures/*_aligned.fasta` (статические файлы с задокументированными
-мутациями — см. `*.expected.json` рядом), прогоняет через реальный
-`mrbayes/run_mrbayes.py` → `clades/confident_clades_report.py`, сверяет найденные
-уверенные клады с ожидаемыми.
+Читает `tests/fixtures/*_aligned.fasta` (см. `*.expected.json` рядом), прогоняет
+через `04b_build_trees_mrbayes/build_trees_mrbayes.py` →
+`05_clade_search/clade_search.py`, сверяет найденные уверенные клады с ожидаемыми.
 
-```
-Пройдено: 3/3
-  ✓ mixed_signal
-  ✓ no_shared_mutations
-  ✓ two_clear_pairs
-```
-
-## 2. E2E тест на реальных данных
+## 3. E2E-прогон на фикстурах
 
 ```bash
-python tests/test_pipeline.py [N_GROUPS]
+python tests/test_pipeline.py [N_GROUPS]     # напр. 3
 ```
 
-Загружает N реальных групп из `BIOCAD.bigchallenges/anotherpipeline/`
-(настоящие данные Ксюши/Алины), прогоняет через pipeline, печатает пути к
-результатам. Визуализацию не генерирует — для неё см. ниже.
+Берёт N групп из `tests/fixtures/`, прогоняет mrbayes + clade_search, печатает
+пути к результатам (`.nex.con.tre`, `report.json`). Визуализацию не генерирует.
+
+## 4. Визуализация (отдельно, опционально)
 
 ```bash
-python tests/test_pipeline.py 1      # одна группа (~35 сек)
-python tests/test_pipeline.py 3      # три группы (~100 сек)
-```
-
-## 3. Визуализация (отдельно, опционально)
-
-```bash
-python tests/visualize_tree.py <group_key> mrbayes/ \
-    --report clades/report.json --out mrbayes/<group_key>.tree.html
+python tests/visualize_tree.py <group_key> mrbayes/ --report groups/report.json
 ```
 
 Не требуется для тестирования — намеренно вынесена в отдельный файл, который
@@ -47,13 +40,11 @@ python tests/visualize_tree.py <group_key> mrbayes/ \
 
 ## Требования
 
-- Python 3.9+, `biopython` (pip install biopython)
-- Бинарь `mb` (MrBayes): conda install -c bioconda mrbayes
-- Для test_pipeline.py — клон BIOCAD.bigchallenges на ветке main
+- Python 3.11, `biopython`
+- бинарь `mb` (MrBayes): `conda install -c bioconda mrbayes` — для п.2–3
 
-## Интерпретация результатов
+## Интерпретация
 
-Смотрите [TEST_REPORT.md](TEST_REPORT.md) — там разобрана находка: реальный
-баг в извлечении уверенных клад из MrBayes-консенсуса (часть клады терялась
-при неукоренённом дереве с базовой политомией) и то, как он был исправлен и
-покрыт тестом.
+См. [TEST_REPORT.md](TEST_REPORT.md) — там разобраны находки: регрессия `is_silent`
+в разметке мутаций и потеря симметричной клады из MrBayes-консенсуса (обе
+исправлены и покрыты тестами).

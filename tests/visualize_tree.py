@@ -6,8 +6,8 @@ pipeline через консоль (subprocess + assert на report.json/.nex.co
 импортируют этот файл вообще — так что консольные тесты работают, даже если
 здесь что-то сломано или Bio.Phylo/HTML-генерация недоступны по любой причине.
 
-Использование как CLI (после того как mrbayes/run_mrbayes.py и
-clades/confident_clades_report.py уже отработали):
+Использование как CLI (после того как build_trees_mrbayes.py и
+clade_search.py уже отработали):
 
     python visualize_tree.py <group_key> <mrbayes_dir> [--report report.json] [--out out.html]
 

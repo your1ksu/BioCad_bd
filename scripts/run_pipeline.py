@@ -10,7 +10,6 @@ Usage:
 import argparse
 import json
 import os
-import shutil
 import sys
 import subprocess
 import time
@@ -120,10 +119,14 @@ def run_cmd(cmd, cwd=None, log_file=None, description=None):
         return False
 
 
-def step1_filter(input_tsv, output_tsv, log_dir):
+def step1_filter(input_tsv, output_tsv, log_dir, config):
     return run_cmd([
         PYTHON_BIN, str(SCRIPTS_DIR / "01_filter_sequences" / "filter_sequences.py"),
         "-i", str(input_tsv), "-o", str(output_tsv), "-r", str(REFERENCES_DIR),
+        "--filter-mode", str(config.filter_mode),
+        "--min-junction", str(config.min_junction),
+        "--max-junction", str(config.max_junction),
+        "--v-min-fraction", str(config.v_min_fraction),
     ], log_file=log_dir / "step1_filter.log", description="Step 1: Filter BCR data")
 
 
@@ -159,10 +162,14 @@ def step4a_iqtree(aligned_dir, trees_dir, log_dir, iqtree_model):
 
 
 def step4b_mrbayes(aligned_dir, mrbayes_dir, log_dir, config):
+    # GPU включается только если задан config.gpu_mb_bin (путь к BEAGLE-CUDA mb);
+    # иначе всё считается на CPU. Пустой --gpu-mb-bin build_trees_mrbayes трактует как CPU.
     return run_cmd([
         PYTHON_BIN, str(SCRIPTS_DIR / "04b_build_trees_mrbayes" / "build_trees_mrbayes.py"),
         str(aligned_dir), "--out", str(mrbayes_dir),
         "--mb-ngen", str(config.mb_ngen_default),
+        "--gpu-mb-bin", str(config.gpu_mb_bin),
+        "--gpu-min-taxa", str(config.gpu_min_taxa),
     ], log_file=log_dir / "step4b_mrbayes.log", description="Step 4b: MrBayes (Bayesian)")
 
 
@@ -220,14 +227,6 @@ def cleanup_mrbayes(mrbayes_dir: Path):
         print(f"  MrBayes: удалено {removed} промежуточных файлов")
 
 
-def cleanup_grouped(grouped_dir: Path):
-    for subdir in ("v", "d", "j"):
-        p = grouped_dir / subdir
-        if p.exists():
-            shutil.rmtree(p)
-            print(f"  Удалена папка grouped_by_germlines/{subdir}/ (не используется)")
-
-
 def main():
     ensure_env()
 
@@ -250,6 +249,10 @@ def main():
                         help="Minimum sequences per group (filter_groups)")
     parser.add_argument("--max-group-size", type=int, default=None,
                         help="Maximum sequences per group (filter_groups)")
+    parser.add_argument("--gpu-mb-bin", default=None,
+                        help="Путь к GPU-бинарю MrBayes (BEAGLE-CUDA). Без него MrBayes идёт на CPU")
+    parser.add_argument("--gpu-min-taxa", type=int, default=None,
+                        help="Группы с числом таксонов >= порога считать на GPU (по умолчанию 60)")
     parser.add_argument("--iqtree-model", default=None,
                         help="IQ-TREE substitution model (default: GTR+F+I+G4)")
     args = parser.parse_args()
@@ -272,6 +275,10 @@ def main():
         config.iqtree_model = args.iqtree_model
     if args.parallel_trees:
         config.parallel_trees = True
+    if args.gpu_mb_bin is not None:
+        config.gpu_mb_bin = args.gpu_mb_bin
+    if args.gpu_min_taxa is not None:
+        config.gpu_min_taxa = args.gpu_min_taxa
 
     # Resolve input
     if args.key:
@@ -349,7 +356,7 @@ def main():
 
     # Step 1: Filter
     if "filter" in steps_to_run:
-        results["filter"] = step1_filter(input_tsv, filtered_tsv, log_dir)
+        results["filter"] = step1_filter(input_tsv, filtered_tsv, log_dir, config)
         if not results["filter"]:
             print("Pipeline stopped at step 1")
             return 1
@@ -361,7 +368,6 @@ def main():
         if not results["group"]:
             print("Pipeline stopped at step 2")
             return 1
-        cleanup_grouped(grouped_dir)
 
     # Step 2b: Filter groups by size
     msa_input_dir = grouped_vj_dir
@@ -413,13 +419,13 @@ def main():
             if "iqtree" in steps_to_run:
                 results["iqtree"] = step4a_iqtree(aligned_dir, trees_dir, log_dir,
                                                   config.iqtree_model)
-                trees_ok = trees_ok and results["iqtree"]
                 cleanup_iqtree(trees_dir)
             if "mrbayes" in steps_to_run:
                 results["mrbayes"] = step4b_mrbayes(aligned_dir, mrbayes_dir, log_dir,
                                                     config)
-                trees_ok = trees_ok and results["mrbayes"]
                 cleanup_mrbayes(mrbayes_dir)
+            # визуализация/клады возможны, если построил хотя бы один из методов
+            trees_ok = bool(results.get("iqtree") or results.get("mrbayes"))
 
     # Step 5: Viz
     if "viz" in steps_to_run and trees_ok:

@@ -315,7 +315,7 @@ def compute_mutations(qseq: str, sseq: str, qstart: int, domain_boundaries: dict
                 'ref_codon': s_codon.lower(),
                 'mut_codon': q_codon.lower(),
                 'query_nt_pos': query_nt_pos,
-                'is_silent': 'yes' if is_silent else 'no',
+                'is_silent': is_silent,
             })
 
         aa_pos += 1
