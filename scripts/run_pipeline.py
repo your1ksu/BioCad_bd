@@ -251,6 +251,8 @@ def main():
                         help="Maximum sequences per group (filter_groups)")
     parser.add_argument("--gpu-mb-bin", default=None,
                         help="Путь к GPU-бинарю MrBayes (BEAGLE-CUDA). Без него MrBayes идёт на CPU")
+    parser.add_argument("--gpu-min-taxa", type=int, default=None,
+                        help="Группы с числом таксонов >= порога считать на GPU (по умолчанию 60)")
     parser.add_argument("--iqtree-model", default=None,
                         help="IQ-TREE substitution model (default: GTR+F+I+G4)")
     args = parser.parse_args()
@@ -275,6 +277,8 @@ def main():
         config.parallel_trees = True
     if args.gpu_mb_bin is not None:
         config.gpu_mb_bin = args.gpu_mb_bin
+    if args.gpu_min_taxa is not None:
+        config.gpu_min_taxa = args.gpu_min_taxa
 
     # Resolve input
     if args.key:

@@ -55,9 +55,14 @@ python scripts/run_pipeline.py -k BCR --skip mrbayes --parallel-trees
 python scripts/run_pipeline.py -k BCR --gpu-mb-bin /path/to/mrbayes-gpu/bin/mb
 ```
 
-Тогда группы с числом таксонов ≥ `gpu_min_taxa` (по умолчанию 60) идут на GPU
-последовательно, мелкие — параллельно на CPU. Без `--gpu-mb-bin` — всё на CPU.
-GPU-бинарь MrBayes с BEAGLE-CUDA нужно собрать отдельно (в conda его нет).
+Тогда группы с числом таксонов ≥ `gpu_min_taxa` (по умолчанию 60, меняется флагом
+`--gpu-min-taxa N`) идут на GPU последовательно, мелкие — параллельно на CPU. Без
+`--gpu-mb-bin` — всё на CPU. GPU-бинарь MrBayes с BEAGLE-CUDA нужно собрать
+отдельно (в conda его нет); при запуске нужен `LD_LIBRARY_PATH` до `libhmsbeagle`.
+
+Замечание: BEAGLE-GPU даёт выигрыш на крупных выравниваниях; для мелких групп
+(десятки таксонов, 4 состояния) накладные расходы GPU делают его медленнее CPU —
+поэтому гибрид по умолчанию отправляет на GPU только крупные группы.
 
 ## Структура репозитория
 
