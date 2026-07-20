@@ -46,6 +46,13 @@ def extract_statistics(data):
             if ufboot is not None:
                 ufboots.append(ufboot)
 
+        # UFBoot берём из IQ-TREE-клад (у mrbayes-клад его нет) — для 2-й линии
+        # на 5-м графике: сравнение поддержки ML (IQ-TREE) и Bayes (MrBayes)
+        for clade in content.get("iqtree", {}).get("clades", []):
+            ub = clade.get("ufboot")
+            if ub is not None:
+                ufboots.append(ub)
+
     return genes, clades_counts, sizes, depths, ancestor_distances, posteriors, ufboots
 
 

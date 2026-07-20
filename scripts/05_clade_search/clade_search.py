@@ -339,10 +339,14 @@ def main(argv=None) -> int:
                 if not treefile.is_file():
                     continue
                 cl = clades_from_iqtree(treefile, args.ufboot_min, args.alrt_min)
-                report.setdefault(sub.name, {})["iqtree"] = {
+                # ключ группы согласуем с MrBayes (тот срезает суффикс _aligned),
+                # иначе одна группа попадает в отчёт дважды и confident_both_models
+                # никогда не совпадает (клады методов оказываются под разными ключами)
+                key = sub.name[:-len("_aligned")] if sub.name.endswith("_aligned") else sub.name
+                report.setdefault(key, {})["iqtree"] = {
                     "threshold": {"ufboot_min": args.ufboot_min, "alrt_min": args.alrt_min},
                     "clades": cl}
-                print(f"[{sub.name}] iqtree: {len(cl)} уверенных клад "
+                print(f"[{key}] iqtree: {len(cl)} уверенных клад "
                       f"(UFBoot≥{args.ufboot_min}, aLRT≥{args.alrt_min})")
         else:
             print(f"--iqtree-dir не найдена: {iq_dir}", file=sys.stderr)
