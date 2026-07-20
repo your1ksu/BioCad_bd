@@ -12,20 +12,17 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from io import StringIO
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from shared.utils import read_fasta, detect_nproc
+
 FASTA_EXTS = (".fa", ".fasta", ".fas", ".aln")
 _SPLIT_RE = re.compile(r"Average standard deviation of split frequencies:\s*([0-9.]+)")
+TEMP_MB_EXTS = {".parts", ".mcmc", ".trprobs", ".tstat", ".vstat", ".lstat", ".pstat"}
 
 
-def read_fasta(path: Path) -> dict[str, str]:
-    seqs: dict[str, str] = {}
-    cur = None
-    for line in path.read_text().splitlines():
-        if line.startswith(">"):
-            cur = line[1:].strip().split()[0]
-            seqs[cur] = ""
-        elif cur is not None:
-            seqs[cur] += line.strip()
-    return seqs
+def dynamic_ngen(n_seqs: int, default: int = 200_000,
+                 ngen_min: int = 50_000, ngen_max: int = 500_000) -> int:
+    return max(ngen_min, min(ngen_max, n_seqs * 5000))
 
 
 def group_key_of(fasta_path: Path) -> str:
@@ -64,6 +61,7 @@ def build_nexus(key: str, msa: dict[str, str], fwd: dict[str, str],
     lines += [
         f"  mcmc ngen={mb_ngen} samplefreq={samplefreq} nchains=4 nruns=2 "
         f"printfreq={printfreq} diagnfreq={diagnfreq} "
+        f"stoprule=yes stopval=0.01 "
         f"starttree=random savebrlens=yes;",
         f"  sumt burninfrac={mb_burnin_frac} conformat=simple;",
         f"  sump burninfrac={mb_burnin_frac};",
@@ -127,15 +125,6 @@ def find_mb(explicit: str = "") -> Path | None:
     return None
 
 
-def detect_nproc() -> int:
-    try:
-        return len(os.sched_getaffinity(0))
-    except AttributeError:
-        pass
-    n = os.cpu_count()
-    return n if n else 1
-
-
 def write_nexus(key: str, msa: dict[str, str], outgroup_id: str | None,
                 mb_ngen: int, mb_burnin_frac: float, seed: int,
                 out_dir: Path) -> tuple[Path, dict[str, str]]:
@@ -167,11 +156,15 @@ def run_mb(key: str, nex_path: Path, rev: dict[str, str],
     if proc.returncode != 0:
         return "failed"
 
-    (out_dir / f"{key}.mb.log").write_text(proc.stdout or "", encoding="utf-8")
     runtime = time.time() - t0
 
     newick, supports = parse_con_tre(out_dir / f"{key}.nex.con.tre", rev)
     avg_std, converged = convergence(proc.stdout or "")
+
+    for f in out_dir.iterdir():
+        if f.suffix in TEMP_MB_EXTS or f.name.endswith(".mb.log"):
+            f.unlink(missing_ok=True)
+
     return f"ok|{runtime}|{len(supports)}|{converged}|{avg_std}"
 
 
@@ -221,12 +214,18 @@ def main(argv=None) -> int:
     for fasta in fasta_files:
         key = group_key_of(fasta)
         msa = read_fasta(fasta)
-        if len(msa) < 3:
-            print(f"[{key}] пропущено: меньше 3 последовательностей ({len(msa)})")
+        n_seqs = len(msa)
+        if n_seqs < 3:
+            print(f"[{key}] пропущено: меньше 3 последовательностей ({n_seqs})")
             counts["skipped"] += 1
             continue
+        ngen = dynamic_ngen(n_seqs, default=args.mb_ngen)
+        if ngen != args.mb_ngen:
+            print(f"[{key}] ngen={ngen} (n_seqs={n_seqs})")
+        else:
+            print(f"[{key}] ngen={ngen}")
         nex_path, rev = write_nexus(key, msa, args.outgroup,
-                                     args.mb_ngen, args.mb_burnin_frac,
+                                     ngen, args.mb_burnin_frac,
                                      args.seed, out_dir)
         print(f"[{key}] nexus готов: {nex_path}")
         tasks.append((key, nex_path, rev))

@@ -18,31 +18,8 @@ import sys
 import tempfile
 from pathlib import Path
 
-# Standard genetic code
-CODON_TABLE = {
-    'ATA': 'I', 'ATC': 'I', 'ATT': 'I', 'ATG': 'M',
-    'ACA': 'T', 'ACC': 'T', 'ACG': 'T', 'ACT': 'T',
-    'AAC': 'N', 'AAT': 'N', 'AAA': 'K', 'AAG': 'K',
-    'AGC': 'S', 'AGT': 'S', 'AGA': 'R', 'AGG': 'R',
-    'CTA': 'L', 'CTC': 'L', 'CTG': 'L', 'CTT': 'L',
-    'CCA': 'P', 'CCC': 'P', 'CCG': 'P', 'CCT': 'P',
-    'CAC': 'H', 'CAT': 'H', 'CAA': 'Q', 'CAG': 'Q',
-    'CGA': 'R', 'CGC': 'R', 'CGG': 'R', 'CGT': 'R',
-    'GTA': 'V', 'GTC': 'V', 'GTG': 'V', 'GTT': 'V',
-    'GCA': 'A', 'GCC': 'A', 'GCG': 'A', 'GCT': 'A',
-    'GAC': 'D', 'GAT': 'D', 'GAA': 'E', 'GAG': 'E',
-    'GGA': 'G', 'GGC': 'G', 'GGG': 'G', 'GGT': 'G',
-    'TCA': 'S', 'TCC': 'S', 'TCG': 'S', 'TCT': 'S',
-    'TTC': 'F', 'TTT': 'F', 'TTA': 'L', 'TTG': 'L',
-    'TAC': 'Y', 'TAT': 'Y', 'TAA': '*', 'TAG': '*',
-    'TGC': 'C', 'TGT': 'C', 'TGA': '*', 'TGG': 'W',
-}
-
-
-def translate(codon: str) -> str:
-    """Translate a DNA codon to amino acid (single letter)."""
-    codon = codon.upper().replace('U', 'T')
-    return CODON_TABLE.get(codon, 'X')
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from shared.utils import CODON_TABLE, translate
 
 
 def find_conda_base() -> Path | None:
@@ -195,7 +172,7 @@ def parse_igblast_output(igblast_file: str) -> list[dict]:
                 continue
 
             elif current_section == 'domain_summary':
-                if stripped.startswith('Total') or stripped.startswith('CDR3'):
+                if stripped.startswith('Total'):
                     continue
                 fields = stripped.split('\t')
                 if len(fields) >= 8:
@@ -327,9 +304,6 @@ def compute_mutations(qseq: str, sseq: str, qstart: int, domain_boundaries: dict
 
         imgt_position = IMGT_DOMAIN_STARTS.get(domain, aa_pos) + local_aa - 1
 
-        # Условие отбора — по кодону, а не по аминокислоте: синонимная замена
-        # (кодон изменён, аминокислота сохранена) также является мутацией и
-        # необходима как знаменатель dS при расчёте dN/dS.
         if q_codon != s_codon:
             is_silent = (q_aa == s_aa)
             mutations.append({
@@ -341,7 +315,7 @@ def compute_mutations(qseq: str, sseq: str, qstart: int, domain_boundaries: dict
                 'ref_codon': s_codon.lower(),
                 'mut_codon': q_codon.lower(),
                 'query_nt_pos': query_nt_pos,
-                'is_silent': is_silent,
+                'is_silent': 'yes' if is_silent else 'no',
             })
 
         aa_pos += 1
@@ -426,7 +400,7 @@ def write_summary(results: list[dict], out_file: str) -> None:
 
             region_counts = {
                 'FR1-IMGT': 0, 'CDR1-IMGT': 0, 'FR2-IMGT': 0,
-                'CDR2-IMGT': 0, 'FR3-IMGT': 0, 'CDR3-IMGT': 0,
+                'CDR2-IMGT': 0, 'FR3-IMGT': 0, 'CDR3-IMGT (germline)': 0,
                 'FR4-IMGT': 0,
             }
             total = 0
@@ -454,7 +428,7 @@ def write_summary(results: list[dict], out_file: str) -> None:
                 qid, chain, vg, dg, jg,
                 region_counts['FR1-IMGT'], region_counts['CDR1-IMGT'],
                 region_counts['FR2-IMGT'], region_counts['CDR2-IMGT'],
-                region_counts['FR3-IMGT'], region_counts['CDR3-IMGT'],
+                region_counts['FR3-IMGT'], region_counts['CDR3-IMGT (germline)'],
                 region_counts['FR4-IMGT'], total,
             ])
 

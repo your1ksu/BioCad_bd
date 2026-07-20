@@ -2,7 +2,7 @@
 """Build IQ-TREE trees for aligned FASTA files.
 
 Usage:
-    python build_trees_iqtree.py -i aligned_sequences -o trees
+    python build_trees_iqtree.py -i aligned_sequences -o trees [--model GTR+F+I+G4]
 """
 
 import argparse
@@ -13,34 +13,11 @@ import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from shared.utils import count_sequences, discover_fasta_files, detect_nproc
 
-FASTA_EXTS = {".fa", ".fasta", ".fas", ".aln"}
-
-
-def discover_fasta_files(input_dir: Path) -> list[Path]:
-    files = [
-        p for p in input_dir.iterdir()
-        if p.is_file() and p.suffix.lower() in FASTA_EXTS
-    ]
-    return sorted(files)
-
-
-def count_sequences(fasta_path: Path) -> int:
-    count = 0
-    with open(fasta_path) as f:
-        for line in f:
-            if line.startswith(">"):
-                count += 1
-    return count
-
-
-def detect_nproc() -> int:
-    try:
-        return len(os.sched_getaffinity(0))
-    except AttributeError:
-        pass
-    n = os.cpu_count()
-    return n if n else 1
+TEMP_IQTREE_EXTS = {".log", ".bionj", ".mldist", ".iqtree", ".ckp.gz",
+                    ".model.gz", ".splits.nex", ".vcf", ".contree"}
 
 
 def parse_args() -> argparse.Namespace:
@@ -51,23 +28,28 @@ def parse_args() -> argparse.Namespace:
                         help="Input directory with aligned FASTA files")
     parser.add_argument("-o", "--output", default="trees",
                         help="Output directory for tree files")
+    parser.add_argument("--model", default="GTR+F+I+G4",
+                        help="Substitution model (default: GTR+F+I+G4, use MFP for auto)")
     parser.add_argument("--workers", type=int, default=0,
                         help="Number of parallel IQ-TREE processes (default: nproc // 4)")
     return parser.parse_args()
 
 
-def run_iqtree(fasta: Path, name: str, subdir: Path, threads: int) -> None:
+def run_iqtree(fasta: Path, name: str, subdir: Path, model: str, threads: int) -> None:
     subdir.mkdir(parents=True, exist_ok=True)
     cmd = [
         "iqtree",
         "-s", str(fasta),
-        "-m", "MFP",
+        "-m", model,
         "-B", "1000",
         "-T", str(threads),
         "--prefix", str(subdir / name),
         "-redo",
     ]
     subprocess.run(cmd, check=True)
+    for f in subdir.iterdir():
+        if f.suffix in TEMP_IQTREE_EXTS or (f.suffix == ".gz" and not f.name.endswith(".treefile")):
+            f.unlink(missing_ok=True)
 
 
 def main() -> None:
@@ -83,7 +65,7 @@ def main() -> None:
         sys.exit(1)
 
     if not shutil.which("iqtree"):
-        print("Error: iqtree not found. Install it or activate the pipeline environment.", file=sys.stderr)
+        print("Error: iqtree not found. Activate the pipeline environment.", file=sys.stderr)
         sys.exit(1)
 
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -106,9 +88,11 @@ def main() -> None:
     total = len(tasks)
     completed = 0
 
+    print(f"Model: {args.model}, workers: {workers}, threads per job: {iqtree_threads}")
+
     with ThreadPoolExecutor(max_workers=workers) as executor:
         fut_to_task = {
-            executor.submit(run_iqtree, fp, nm, sd, iqtree_threads): (fp, nm, sd)
+            executor.submit(run_iqtree, fp, nm, sd, args.model, iqtree_threads): (fp, nm, sd)
             for fp, nm, sd in tasks
         }
         for future in as_completed(fut_to_task):

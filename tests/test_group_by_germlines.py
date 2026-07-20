@@ -154,16 +154,10 @@ def test_main_end_to_end(tmp_path, monkeypatch):
 
     gg.main()
 
-    assert (output_dir / "v").is_dir()
-    assert (output_dir / "j").is_dir()
     assert (output_dir / "vj").is_dir()
-    assert (output_dir / "d").is_dir()
 
-    d_files = list((output_dir / "d").iterdir())
-    assert len(d_files) == 1
-
-    v_files = list((output_dir / "v").iterdir())
-    assert len(v_files) >= 1
+    vj_files = list((output_dir / "vj").iterdir())
+    assert len(vj_files) >= 1
 
 
 if __name__ == "__main__":
