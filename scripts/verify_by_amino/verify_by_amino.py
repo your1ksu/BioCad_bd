@@ -17,16 +17,15 @@ if SCRIPTS_DIR not in sys.path:
 from paths import get_paths  # noqa: E402
 
 STOP_SYMBOL = "*"
-MATCH_IDENTITY_THRESHOLD = 0.5  # доля совпавших позиций от длины белка, чтобы считать совпадением
+MATCH_IDENTITY_THRESHOLD = 0.5
 
 DEFAULT_INPUT_SUBFOLDER = "vj_filtered"
-DEFAULT_OUTPUT_SUBFOLDER = "amino"
+DEFAULT_OUTPUT_SUBFOLDER = "verify_by_amino"
 DEFAULT_REFERENCE_FILENAME = "HomoSapiens_IMGTGENEDB-ReferenceSequences.fasta"
 
 
 def read_fasta(path):
-    """Читает fasta-файл, сохраняя заголовки как есть (без разбора по '|') —
-    нам нужно сохранить исходный заголовок 1-в-1 при трансляции."""
+    """Читает fasta-файл, сохраняя заголовки как есть (без разбора по '|')."""
     records = []
     header = None
     chunks = []
@@ -57,35 +56,28 @@ def write_fasta(records, path):
 
 
 def trim_to_complete_codons(nt_seq, frame_offset):
-    """Обрезает последовательность под рамку считывания: убирает frame_offset
-    нуклеотидов слева и 1-2 "хвостовых" нуклеотида справа, если они не
-    складываются в целый кодон.
-    """
     seq = nt_seq[frame_offset:]
     complete_len = len(seq) - (len(seq) % 3)
     return seq[:complete_len]
 
 
 def translate_frame(nt_seq, frame_offset):
-    """Транслирует нуклеотидную последовательность в заданной рамке считывания
-    (0, 1 или 2). Возвращает None, если после обрезки не осталось ни одного
-    целого кодона.
+    """Транслирует нуклеотидную последовательность в заданной рамке считывания.
+
+    Возвращает (protein, trimmed_nt) или (None, None), если после обрезки
+    не осталось ни одного целого кодона. trimmed_nt — это nt_seq, обрезанная
+    под рамку: без сдвига в начале и без "хвостовых" 1-2 нуклеотидов в конце
+    (то есть длина trimmed_nt всегда кратна 3).
     """
     trimmed = trim_to_complete_codons(nt_seq, frame_offset)
     trimmed = trimmed.replace("-", "")
     if len(trimmed) < 3:
-        return None
-    return str(Seq(trimmed).translate(to_stop=False))
+        return None, None
+    protein = str(Seq(trimmed).translate(to_stop=False))
+    return protein, trimmed
 
 
 def classify_stop_codon(protein):
-    """Определяет, где встречается стоп-кодон в транслированном белке.
-
-    Возвращает:
-        'no_stop'         — стоп-кодона нет вообще
-        'stop_at_end'      — стоп-кодон есть, ровно один, и он в самом конце
-        'premature_stop'   — стоп-кодон встретился раньше конца (или их несколько)
-    """
     stop_positions = [i for i, aa in enumerate(protein) if aa == STOP_SYMBOL]
     if not stop_positions:
         return "no_stop"
@@ -95,13 +87,11 @@ def classify_stop_codon(protein):
 
 
 def strip_trailing_stop(protein):
-    """Убирает завершающий '*', если он есть."""
     return protein[:-1] if protein.endswith(STOP_SYMBOL) else protein
 
 
 def read_aa_reference(path):
-    """Читает AA-справочник IMGT: ключ — имя гена/аллели из 2-го поля
-    заголовка (между '|'), значение — аминокислотная последовательность."""
+    """Читает AA-справочник IMGT."""
     seqs = {}
     header = None
     chunks = []
@@ -131,14 +121,7 @@ def read_aa_reference(path):
 
 
 def best_reference_match(protein, reference_dict):
-    """Ищет наиболее похожую последовательность в справочнике методом
-    локального попарного выравнивания.
-
-    Возвращает (имя_гена, скор, длина_гена_из_справочника). Длина гена нужна
-    отдельно, потому что наш транслированный белок (V+junction+J) длиннее
-    любого одиночного V- или J-гена из справочника — сравнивать долю
-    совпадения нужно относительно длины СПРАВОЧНОГО гена, а не всего белка.
-    """
+    """Ищет наиболее похожую последовательность в справочнике."""
     aligner = PairwiseAligner()
     aligner.mode = "local"
 
@@ -155,9 +138,6 @@ def best_reference_match(protein, reference_dict):
 
 
 def is_confident_match(best_score, best_ref_len, threshold=MATCH_IDENTITY_THRESHOLD):
-    """Скор локального выравнивания (при match=1) примерно равен числу
-    совпавших позиций. Делим на длину гена из справочника (не на длину всего
-    транслированного белка), чтобы получить долю покрытия этого гена."""
     if not best_ref_len:
         return False
     return (best_score / best_ref_len) >= threshold
@@ -166,51 +146,46 @@ def is_confident_match(best_score, best_ref_len, threshold=MATCH_IDENTITY_THRESH
 def process_sequence(nt_seq, reference_dict, counters):
     """Пробует рамки считывания по очереди (1, 2, 3).
 
-    Возвращает (status, protein, frame_number):
-        ("ok", protein, номер_рамки)   — нашли подходящий вариант
-        ("no_match", None, None)        — стоп-кодон был валиден хоть в одной
-                                           рамке, но ни одна не совпала со
-                                           справочником
-        ("premature_stop", None, None)  — ни в одной рамке стоп-кодон не
-                                           оказался в конце (везде преждевременный)
+    Возвращает (status, protein, trimmed_nt, frame_number):
+        ("ok", protein, обрезанная_под_рамку_ДНК, номер_рамки)
+        ("no_match", None, None, None)
+        ("premature_stop", None, None, None)
     """
     had_valid_stop_frame = False
 
     for frame_offset in (0, 1, 2):
-        protein = translate_frame(nt_seq, frame_offset)
+        protein, trimmed_nt = translate_frame(nt_seq, frame_offset)
         if protein is None:
-            continue  # нечего транслировать в этой рамке
+            continue
 
         stop_status = classify_stop_codon(protein)
         if stop_status == "premature_stop":
-            continue  # эта рамка не годится, пробуем следующую
+            continue
 
         had_valid_stop_frame = True
         clean_protein = strip_trailing_stop(protein)
 
         if not reference_dict:
-            # справочника нет — берём первый вариант, прошедший проверку по стоп-кодону
             counters[stop_status] += 1
             counters["matched"] += 1
-            return "ok", clean_protein, frame_offset + 1
+            return "ok", clean_protein, trimmed_nt, frame_offset + 1
 
         _, best_score, best_ref_len = best_reference_match(clean_protein, reference_dict)
         if is_confident_match(best_score, best_ref_len):
             counters[stop_status] += 1
             counters["matched"] += 1
-            return "ok", clean_protein, frame_offset + 1
+            return "ok", clean_protein, trimmed_nt, frame_offset + 1
 
     if had_valid_stop_frame:
         counters["no_match"] += 1
-        return "no_match", None, None
+        return "no_match", None, None, None
 
     counters["premature_stop"] += 1
-    return "premature_stop", None, None
+    return "premature_stop", None, None, None
 
 
 def process_file(input_path, output_dir, quarantine_dir, no_match_dir, reference_dict, counters):
-    """Обрабатывает один fasta-файл, раскладывая записи по трём возможным
-    итогам: успешно транслированные, преждевременный стоп-кодон, нет совпадения."""
+    """Обрабатывает один fasta-файл. На выход — нуклеотиды прошедших проверку."""
     records = read_fasta(input_path)
     filename = os.path.basename(input_path)
     print(f"\n--- {filename}: {len(records)} последовательностей ---")
@@ -221,10 +196,10 @@ def process_file(input_path, output_dir, quarantine_dir, no_match_dir, reference
 
     for i, (header, nt_seq) in enumerate(records, 1):
         nt_seq = nt_seq.upper()
-        status, protein, _frame = process_sequence(nt_seq, reference_dict, counters)
+        status, protein, trimmed_nt, _frame = process_sequence(nt_seq, reference_dict, counters)
 
         if status == "ok":
-            ok_records.append((header, protein))
+            ok_records.append((header, trimmed_nt))
         elif status == "no_match":
             no_match_records.append((header, nt_seq))
         else:
@@ -245,7 +220,7 @@ def process_file(input_path, output_dir, quarantine_dir, no_match_dir, reference
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description="Трансляция нуклеотидных fasta (V+J) в аминокислотные со сверкой по IMGT."
+        description="Верификация нуклеотидных fasta через трансляцию и сверку по IMGT. На выход — нуклеотиды."
     )
     parser.add_argument(
         "-k", "--key",
@@ -290,10 +265,8 @@ def main():
     os.makedirs(quarantine_dir, exist_ok=True)
     os.makedirs(no_match_dir, exist_ok=True)
 
-
-# !!!!!!!!!!!!!!!!!!!!
     reference_path = args.reference_fasta or os.path.join(os.path.dirname(paths["input_dir"]), DEFAULT_REFERENCE_FILENAME)
-    print(args.reference_fasta)
+    
     if os.path.isfile(reference_path):
         reference_dict, total_ref = read_aa_reference(reference_path)
         print(f"Загружен AA-справочник: {len(reference_dict)} уникальных генов, {total_ref} записей")
