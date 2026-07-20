@@ -71,7 +71,7 @@ def conda_env():
     return env
 
 
-ALL_STEPS = ["filter", "group", "filter_groups", "msa", "iqtree", "mrbayes", "viz", "clades", "mutations"]
+ALL_STEPS = ["filter", "group", "filter_groups", "verify", "msa", "iqtree", "mrbayes", "viz", "clades", "mutations"]
 
 
 def run_cmd(cmd, cwd=None, log_file=None, description=None):
@@ -141,6 +141,13 @@ def step2b_filter_groups(vj_dir, filtered_dir, log_dir, min_size, max_size):
         "-i", str(vj_dir), "-o", str(filtered_dir),
         "--min", str(min_size), "--max", str(max_size),
     ], log_file=log_dir / "step2b_filter_groups.log", description="Step 2b: Filter groups by size")
+
+
+def step_verify(vj_dir, verify_dir, log_dir):
+    return run_cmd([
+        PYTHON_BIN, str(SCRIPTS_DIR / "verify_by_amino" / "verify_by_amino.py"),
+        "-i", str(vj_dir), "-o", str(verify_dir),
+    ], log_file=log_dir / "step_verify.log", description="Step 2c: Verify by amino acid translation")
 
 
 def step3_msa(grouped_vj_dir, output_dir, log_dir):
@@ -306,6 +313,7 @@ def main():
     grouped_dir = report_dir / "grouped_by_germlines"
     grouped_vj_dir = grouped_dir / "vj"
     vj_filtered_dir = grouped_dir / "vj_filtered"
+    verify_dir = report_dir / "verify_by_amino"
     aligned_dir = report_dir / "aligned_sequences"
     trees_dir = report_dir / "trees"
     mrbayes_dir = report_dir / "mrbayes"
@@ -331,6 +339,8 @@ def main():
     if "filter_groups" in steps_to_run and "group" not in steps_to_run:
         print("WARNING: filter_groups requires group. Adding group step.")
         steps_to_run.add("group")
+    if "verify" in steps_to_run and "group" not in steps_to_run and "filter_groups" not in steps_to_run:
+        print("WARNING: verify requires group or filter_groups output.")
     if "msa" in steps_to_run and "group" not in steps_to_run and "filter_groups" not in steps_to_run:
         print("WARNING: msa requires group or filter_groups output.")
 
@@ -376,6 +386,17 @@ def main():
             return 1
     else:
         results["filter_groups"] = True
+
+    # Step 2c: Verify by amino acid
+    if "verify" in steps_to_run:
+        results["verify"] = step_verify(msa_input_dir, verify_dir, log_dir)
+        if results["verify"]:
+            msa_input_dir = verify_dir
+        else:
+            print("Pipeline stopped at verify")
+            return 1
+    else:
+        results["verify"] = True
 
     # Step 3: MSA
     if "msa" in steps_to_run:
